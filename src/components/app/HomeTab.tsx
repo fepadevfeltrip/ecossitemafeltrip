@@ -1,14 +1,25 @@
-import { BookOpen, Brain, MessageCircle, ArrowLeft } from "lucide-react";
+import { useState } from "react";
+import { BookOpen, Brain, MessageCircle, ArrowLeft, Briefcase } from "lucide-react";
 import { Card } from "@/components/ui/card";
 import { FeltripLogo } from "@/components/FeltripLogo";
 import { Button } from "@/components/ui/button";
+import { ConciergeServicesMenu } from "./ConciergeServicesMenu";
 
 interface HomeTabProps {
   onBack?: () => void;
 }
 
 export const HomeTab = ({ onBack }: HomeTabProps) => {
+  const [showConcierge, setShowConcierge] = useState(false);
+
   const features = [
+    {
+      icon: Briefcase,
+      title: "Feltrip Concierge",
+      description: "Serviços especializados para expatriados",
+      color: "text-primary",
+      onClick: () => setShowConcierge(true),
+    },
     {
       icon: BookOpen,
       title: "Diário de Bordo",
@@ -29,6 +40,26 @@ export const HomeTab = ({ onBack }: HomeTabProps) => {
     },
   ];
 
+  if (showConcierge) {
+    return (
+      <div className="flex-1 overflow-y-auto">
+        <div className="sticky top-0 bg-background/95 backdrop-blur-sm z-10 border-b border-border">
+          <div className="flex items-center justify-between p-4">
+            <Button variant="ghost" size="icon" onClick={() => setShowConcierge(false)}>
+              <ArrowLeft className="h-5 w-5" />
+            </Button>
+            <FeltripLogo className="h-30 mx-auto" />
+            <div className="w-10" />
+          </div>
+        </div>
+        
+        <div className="p-6">
+          <ConciergeServicesMenu />
+        </div>
+      </div>
+    );
+  }
+
   return (
     <div className="flex-1 overflow-y-auto">
       <div className="sticky top-0 bg-background/95 backdrop-blur-sm z-10 border-b border-border">
@@ -38,7 +69,7 @@ export const HomeTab = ({ onBack }: HomeTabProps) => {
               <ArrowLeft className="h-5 w-5" />
             </Button>
           )}
-          <FeltripLogo className="h-10 mx-auto" />
+          <FeltripLogo className="h-30 mx-auto" />
           <div className="w-10" />
         </div>
       </div>
@@ -55,7 +86,11 @@ export const HomeTab = ({ onBack }: HomeTabProps) => {
           {features.map((feature) => {
             const Icon = feature.icon;
             return (
-              <Card key={feature.title} className="p-4 hover:shadow-lg transition-shadow">
+              <Card 
+                key={feature.title} 
+                className="p-4 hover:shadow-lg transition-shadow cursor-pointer"
+                onClick={feature.onClick}
+              >
                 <div className="flex items-start space-x-4">
                   <div className={`p-3 rounded-full bg-muted ${feature.color}`}>
                     <Icon className="h-6 w-6" />
