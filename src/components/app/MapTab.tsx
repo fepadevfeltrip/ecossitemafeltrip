@@ -57,10 +57,16 @@ export const MapTab = () => {
   return (
     <div className="flex-1 overflow-y-auto relative">
       <Tabs value={activeTab} onValueChange={(v) => setActiveTab(v as NoteType)} className="w-full">
-        <TabsList className="w-full grid grid-cols-3">
-          <TabsTrigger value="idioma">Anotações Aulas de Idioma</TabsTrigger>
-          <TabsTrigger value="vida">Diário de Bordo</TabsTrigger>
-          <TabsTrigger value="proposicoes">Proposições Poéticas</TabsTrigger>
+        <TabsList className="w-full grid grid-cols-3 h-auto">
+          <TabsTrigger value="idioma" className="text-xs sm:text-sm px-2 py-3 whitespace-normal leading-tight">
+            Anotações Aulas de Idioma
+          </TabsTrigger>
+          <TabsTrigger value="vida" className="text-xs sm:text-sm px-2 py-3 whitespace-normal leading-tight">
+            Diário de Bordo
+          </TabsTrigger>
+          <TabsTrigger value="proposicoes" className="text-xs sm:text-sm px-2 py-3 whitespace-normal leading-tight">
+            Proposições Poéticas
+          </TabsTrigger>
         </TabsList>
         
         <TabsContent value={activeTab} className="mt-0">
