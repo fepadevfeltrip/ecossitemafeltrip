@@ -1,12 +1,20 @@
-import { Radar, RadarChart as RechartsRadar, PolarGrid, PolarAngleAxis, PolarRadiusAxis, ResponsiveContainer } from "recharts";
+import { BarChart, Bar, XAxis, YAxis, CartesianGrid, Tooltip, ResponsiveContainer, Cell } from "recharts";
 
 export const RadarChart = () => {
   const data = [
     { pillar: "Corpo", value: 78 },
-    { pillar: "Território", value: 85 },
-    { pillar: "Identidade", value: 72 },
-    { pillar: "O Outro", value: 90 },
     { pillar: "Espaço", value: 68 },
+    { pillar: "Território", value: 85 },
+    { pillar: "O Outro", value: 90 },
+    { pillar: "Identidade", value: 72 },
+  ];
+
+  const colors = [
+    "hsl(var(--primary))",
+    "hsl(var(--secondary))",
+    "hsl(var(--accent))",
+    "hsl(var(--energy))",
+    "hsl(var(--primary))",
   ];
 
   return (
@@ -15,18 +23,30 @@ export const RadarChart = () => {
         Métricas de Presença Relacional (Agregado/Anônimo)
       </h3>
       <ResponsiveContainer width="100%" height={350}>
-        <RechartsRadar data={data}>
-          <PolarGrid stroke="hsl(var(--border))" />
-          <PolarAngleAxis dataKey="pillar" tick={{ fill: "hsl(var(--foreground))" }} />
-          <PolarRadiusAxis angle={90} domain={[0, 100]} tick={{ fill: "hsl(var(--muted-foreground))" }} />
-          <Radar 
-            name="Conexão da Equipe" 
-            dataKey="value" 
-            stroke="hsl(var(--primary))" 
-            fill="hsl(var(--primary))" 
-            fillOpacity={0.6} 
+        <BarChart data={data} layout="horizontal">
+          <CartesianGrid strokeDasharray="3 3" stroke="hsl(var(--border))" />
+          <XAxis 
+            type="category" 
+            dataKey="pillar" 
+            tick={{ fill: "hsl(var(--foreground))", fontSize: 14 }} 
           />
-        </RechartsRadar>
+          <YAxis 
+            type="number" 
+            domain={[0, 100]} 
+            tick={{ fill: "hsl(var(--muted-foreground))" }} 
+          />
+          <Tooltip 
+            contentStyle={{ 
+              backgroundColor: "hsl(var(--card))", 
+              border: "1px solid hsl(var(--border))" 
+            }} 
+          />
+          <Bar dataKey="value" radius={[8, 8, 0, 0]}>
+            {data.map((entry, index) => (
+              <Cell key={`cell-${index}`} fill={colors[index]} />
+            ))}
+          </Bar>
+        </BarChart>
       </ResponsiveContainer>
     </div>
   );

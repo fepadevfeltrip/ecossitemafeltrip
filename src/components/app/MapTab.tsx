@@ -6,7 +6,7 @@ import { Textarea } from "@/components/ui/textarea";
 import { Checkbox } from "@/components/ui/checkbox";
 import { Tabs, TabsContent, TabsList, TabsTrigger } from "@/components/ui/tabs";
 
-type NoteType = "idioma" | "vida";
+type NoteType = "idioma" | "vida" | "proposicoes";
 
 interface Note {
   x: number;
@@ -41,6 +41,13 @@ export const MapTab = () => {
       title: "Cafeteria",
       content: "Expressões do Café:\n\n☕ Café - Coffee\n🥐 Croissant - Croissant\n🍰 Bolo - Cake\n🧃 Suco - Juice\n\n'Um café, por favor' - One coffee, please\n'A conta, por favor' - The bill, please"
     },
+    {
+      x: 50,
+      y: 45,
+      type: "proposicoes",
+      title: "Praça Paris",
+      content: "I chose to do this at Praça Paris. I felt vulnerable...\n\nProposition by Boba:\n\nWalk through the square as if the ground were remembering you before you were born. Let your steps be hesitant, honest — not graceful. Touch a tree or a bench and whisper your name to it, just once, like a secret. Stay there until the air stops judging you. Then, leave a tiny gesture behind — a pebble turned, a leaf moved — so the city knows you were real.\n\nMap of Relational Presence"
+    },
   ]);
 
   const pillars = ["Corpo", "Território", "Identidade", "O Outro", "Espaço"];
@@ -50,9 +57,10 @@ export const MapTab = () => {
   return (
     <div className="flex-1 overflow-y-auto relative">
       <Tabs value={activeTab} onValueChange={(v) => setActiveTab(v as NoteType)} className="w-full">
-        <TabsList className="w-full grid grid-cols-2">
+        <TabsList className="w-full grid grid-cols-3">
           <TabsTrigger value="idioma">Anotações Aulas de Idioma</TabsTrigger>
           <TabsTrigger value="vida">Diário de Bordo</TabsTrigger>
+          <TabsTrigger value="proposicoes">Proposições Poéticas</TabsTrigger>
         </TabsList>
         
         <TabsContent value={activeTab} className="mt-0">
