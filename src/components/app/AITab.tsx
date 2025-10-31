@@ -2,6 +2,7 @@ import { useState } from "react";
 import { Card } from "@/components/ui/card";
 import { Brain, Globe, Podcast, Play } from "lucide-react";
 import { Dialog, DialogContent, DialogHeader, DialogTitle } from "@/components/ui/dialog";
+import { RelationalPresenceRadar } from "./RelationalPresenceRadar";
 
 export const AITab = () => {
   const [showPodcasts, setShowPodcasts] = useState(false);
@@ -16,22 +17,7 @@ export const AITab = () => {
     <div className="flex-1 overflow-y-auto p-6 space-y-6">
       <h2 className="text-2xl font-bold text-foreground">Central da IA Poética (Boba)</h2>
       
-      <Card 
-        className="p-6 cursor-pointer transition-all hover:shadow-lg hover:border-primary group"
-        onClick={() => window.open("https://typebot.io/feltrip-mapa", "_blank")}
-      >
-        <div className="flex items-start space-x-4">
-          <div className="p-3 rounded-lg bg-primary/10 group-hover:bg-primary/20 transition-colors">
-            <Brain className="h-6 w-6 text-primary" />
-          </div>
-          <div className="flex-1">
-            <h3 className="font-semibold text-lg text-foreground mb-1">Mapa de Presença Relacional</h3>
-            <p className="text-sm text-muted-foreground">
-              Iniciar meu Mapa de Presença Relacional
-            </p>
-          </div>
-        </div>
-      </Card>
+      <RelationalPresenceRadar />
 
       <Card className="p-6 opacity-60">
         <div className="flex items-start space-x-4">
