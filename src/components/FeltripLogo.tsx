@@ -5,7 +5,7 @@ export const FeltripLogo = ({ className = "" }: { className?: string }) => {
     <img 
       src={logo} 
       alt="Feltrip Logo" 
-      className={`h-12 w-auto object-contain ${className}`}
+      className={`h-36 w-auto object-contain ${className}`}
     />
   );
 };

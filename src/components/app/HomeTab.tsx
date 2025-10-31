@@ -48,7 +48,7 @@ export const HomeTab = ({ onBack }: HomeTabProps) => {
             <Button variant="ghost" size="icon" onClick={() => setShowConcierge(false)}>
               <ArrowLeft className="h-5 w-5" />
             </Button>
-            <FeltripLogo className="h-30 mx-auto" />
+            <FeltripLogo className="mx-auto" />
             <div className="w-10" />
           </div>
         </div>
@@ -69,7 +69,7 @@ export const HomeTab = ({ onBack }: HomeTabProps) => {
               <ArrowLeft className="h-5 w-5" />
             </Button>
           )}
-          <FeltripLogo className="h-30 mx-auto" />
+          <FeltripLogo className="mx-auto" />
           <div className="w-10" />
         </div>
       </div>
