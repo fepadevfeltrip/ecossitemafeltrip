@@ -13,7 +13,7 @@ const Index = () => {
   }
 
   if (view === "expat") {
-    return <ExpatApp />;
+    return <ExpatApp onBack={() => setView("hub")} />;
   }
 
   return (

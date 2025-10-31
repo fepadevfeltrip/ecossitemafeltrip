@@ -5,12 +5,16 @@ import { HomeTab } from "@/components/app/HomeTab";
 import { MapTab } from "@/components/app/MapTab";
 import { AITab } from "@/components/app/AITab";
 
-const ExpatApp = () => {
+interface ExpatAppProps {
+  onBack?: () => void;
+}
+
+const ExpatApp = ({ onBack }: ExpatAppProps) => {
   const [activeTab, setActiveTab] = useState<"home" | "map" | "ai">("home");
 
   return (
     <MobileFrame>
-      {activeTab === "home" && <HomeTab />}
+      {activeTab === "home" && <HomeTab onBack={onBack} />}
       {activeTab === "map" && <MapTab />}
       {activeTab === "ai" && <AITab />}
       <BottomNav activeTab={activeTab} onTabChange={setActiveTab} />

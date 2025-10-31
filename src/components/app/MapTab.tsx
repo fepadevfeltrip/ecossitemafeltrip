@@ -1,22 +1,63 @@
 import { useState } from "react";
-import { Plus, MapPin } from "lucide-react";
+import { Plus, MapPin, X } from "lucide-react";
 import { Button } from "@/components/ui/button";
 import { Dialog, DialogContent, DialogHeader, DialogTitle, DialogTrigger } from "@/components/ui/dialog";
 import { Textarea } from "@/components/ui/textarea";
 import { Checkbox } from "@/components/ui/checkbox";
+import { Tabs, TabsContent, TabsList, TabsTrigger } from "@/components/ui/tabs";
+import { Card, CardContent, CardHeader, CardTitle } from "@/components/ui/card";
+
+type NoteType = "idioma" | "vida";
+
+interface Note {
+  x: number;
+  y: number;
+  type: NoteType;
+  title: string;
+  content: string;
+}
 
 export const MapTab = () => {
-  const [notes, setNotes] = useState<Array<{x: number, y: number}>>([
-    { x: 30, y: 40 },
-    { x: 60, y: 25 },
-    { x: 45, y: 70 },
+  const [activeTab, setActiveTab] = useState<NoteType>("idioma");
+  const [selectedNote, setSelectedNote] = useState<Note | null>(null);
+  const [notes] = useState<Array<Note>>([
+    { 
+      x: 30, 
+      y: 40, 
+      type: "idioma",
+      title: "Mercado Local",
+      content: "Vocabulário do Mercado:\n\n🍎 Maçã - Apple\n🥕 Cenoura - Carrot\n🥖 Pão - Bread\n🧀 Queijo - Cheese\n🥩 Carne - Meat\n🐟 Peixe - Fish\n🥬 Alface - Lettuce\n🍅 Tomate - Tomato\n\nFrases úteis:\n'Quanto custa?' - How much?\n'Eu quero comprar...' - I want to buy..."
+    },
+    { 
+      x: 60, 
+      y: 25, 
+      type: "vida",
+      title: "Rua Principal",
+      content: "I loved this street, I need to tell the kids that I'm coming back here with them!"
+    },
+    { 
+      x: 45, 
+      y: 70, 
+      type: "idioma",
+      title: "Cafeteria",
+      content: "Expressões do Café:\n\n☕ Café - Coffee\n🥐 Croissant - Croissant\n🍰 Bolo - Cake\n🧃 Suco - Juice\n\n'Um café, por favor' - One coffee, please\n'A conta, por favor' - The bill, please"
+    },
   ]);
 
   const pillars = ["Corpo", "Território", "Identidade", "O Outro", "Espaço"];
 
+  const filteredNotes = notes.filter(note => note.type === activeTab);
+
   return (
     <div className="flex-1 overflow-y-auto relative">
-      <div className="relative h-full min-h-[600px] bg-gradient-to-br from-muted to-background">
+      <Tabs value={activeTab} onValueChange={(v) => setActiveTab(v as NoteType)} className="w-full">
+        <TabsList className="w-full grid grid-cols-2">
+          <TabsTrigger value="idioma">Anotações Aulas de Idioma</TabsTrigger>
+          <TabsTrigger value="vida">Diário de Bordo</TabsTrigger>
+        </TabsList>
+        
+        <TabsContent value={activeTab} className="mt-0">
+          <div className="relative h-full min-h-[600px] bg-gradient-to-br from-muted to-background">
         <div className="absolute inset-0 opacity-30">
           <svg className="w-full h-full" viewBox="0 0 100 100" preserveAspectRatio="none">
             <path d="M0,50 Q25,30 50,50 T100,50 L100,100 L0,100 Z" fill="hsl(var(--primary))" opacity="0.1"/>
@@ -26,16 +67,40 @@ export const MapTab = () => {
           </svg>
         </div>
         
-        {notes.map((note, index) => (
-          <div 
-            key={index} 
-            className="absolute"
-            style={{ left: `${note.x}%`, top: `${note.y}%`, transform: 'translate(-50%, -50%)' }}
-          >
-            <MapPin className="h-8 w-8 text-energy drop-shadow-lg animate-bounce" fill="hsl(var(--energy))" />
+            {filteredNotes.map((note, index) => (
+              <button
+                key={index} 
+                className="absolute cursor-pointer transition-transform hover:scale-110"
+                style={{ left: `${note.x}%`, top: `${note.y}%`, transform: 'translate(-50%, -50%)' }}
+                onClick={() => setSelectedNote(note)}
+              >
+                <MapPin className="h-8 w-8 text-energy drop-shadow-lg animate-bounce" fill="hsl(var(--energy))" />
+              </button>
+            ))}
           </div>
-        ))}
-      </div>
+        </TabsContent>
+      </Tabs>
+
+      {selectedNote && (
+        <Dialog open={!!selectedNote} onOpenChange={() => setSelectedNote(null)}>
+          <DialogContent className="max-w-[90%] sm:max-w-md">
+            <Button 
+              variant="ghost" 
+              size="icon" 
+              className="absolute right-4 top-4"
+              onClick={() => setSelectedNote(null)}
+            >
+              <X className="h-4 w-4" />
+            </Button>
+            <DialogHeader>
+              <DialogTitle>{selectedNote.title}</DialogTitle>
+            </DialogHeader>
+            <div className="whitespace-pre-wrap text-sm leading-relaxed">
+              {selectedNote.content}
+            </div>
+          </DialogContent>
+        </Dialog>
+      )}
 
       <Dialog>
         <DialogTrigger asChild>
