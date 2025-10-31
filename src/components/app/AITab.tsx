@@ -41,21 +41,6 @@ export const AITab = () => {
         </div>
       </Card>
 
-      <Card 
-        className="p-6 cursor-pointer transition-all hover:shadow-lg hover:border-secondary group"
-        onClick={() => window.open("https://typebot.co/boba-x8s937m", "_blank")}
-      >
-        <div className="flex items-start space-x-4">
-          <div className="p-3 rounded-lg bg-secondary/10 group-hover:bg-secondary/20 transition-colors">
-            <Map className="h-6 w-6 text-secondary" />
-          </div>
-          <div className="flex-1">
-            <h3 className="font-semibold text-lg text-foreground mb-1">Jornadas Feltrip</h3>
-            <p className="text-sm text-muted-foreground">Explorar jornadas personalizadas</p>
-          </div>
-        </div>
-      </Card>
-
       <Card className="p-6 opacity-60">
         <div className="flex items-start space-x-4">
           <div className="p-3 rounded-lg bg-secondary/10">
