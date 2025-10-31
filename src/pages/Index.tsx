@@ -15,7 +15,7 @@ const Index = () => {
   return <div className="min-h-screen bg-gradient-to-br from-background via-muted/30 to-accent/10 flex flex-col items-center justify-center p-6">
       <div className="w-full max-w-5xl space-y-12">
         <div className="text-center space-y-6">
-          <FeltripLogo />
+          
           <div>
             <h1 className="text-4xl font-bold text-foreground mb-2">
               Simulador de Ecossistema de Onboarding Relacional
