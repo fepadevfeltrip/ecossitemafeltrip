@@ -1,7 +1,9 @@
 import { useState } from "react";
-import { Smartphone, LayoutDashboard } from "lucide-react";
+import { Smartphone, LayoutDashboard, ExternalLink } from "lucide-react";
 import { FeltripLogo } from "@/components/FeltripLogo";
 import { NavigationCard } from "@/components/NavigationCard";
+import { WhatsAppButton } from "@/components/WhatsAppButton";
+import { Button } from "@/components/ui/button";
 import ManagerDashboard from "./ManagerDashboard";
 import ExpatApp from "./ExpatApp";
 const Index = () => {
@@ -13,9 +15,10 @@ const Index = () => {
     return <ExpatApp onBack={() => setView("hub")} />;
   }
   return <div className="min-h-screen bg-gradient-to-br from-background via-muted/30 to-accent/10 flex flex-col items-center justify-center p-6">
+      <WhatsAppButton />
       <div className="w-full max-w-5xl space-y-12">
         <div className="text-center space-y-6">
-          
+          <FeltripLogo />
           <div>
             <h1 className="text-4xl font-bold text-foreground mb-2">
               Simulador de Ecossistema de Onboarding Relacional
@@ -23,6 +26,16 @@ const Index = () => {
             <p className="text-lg text-muted-foreground">
               Explore as duas perspectivas da plataforma Feltrip
             </p>
+          </div>
+          <div className="pt-4">
+            <Button
+              size="lg"
+              onClick={() => window.open("http://feltrip.com", "_blank")}
+              className="gap-2"
+            >
+              Saiba Mais
+              <ExternalLink className="h-4 w-4" />
+            </Button>
           </div>
         </div>
 
