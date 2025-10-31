@@ -1,14 +1,22 @@
-import { ArrowLeft } from "lucide-react";
+import { ArrowLeft, Sparkles } from "lucide-react";
 import { Button } from "@/components/ui/button";
 import { MetricsTable } from "@/components/dashboard/MetricsTable";
 import { RadarChart } from "@/components/dashboard/RadarChart";
 import { EngagementChart } from "@/components/dashboard/EngagementChart";
+import { useState } from "react";
+import CuradoriaPremium from "./CuradoriaPremium";
 
 interface ManagerDashboardProps {
   onBack: () => void;
 }
 
 const ManagerDashboard = ({ onBack }: ManagerDashboardProps) => {
+  const [showCuradoria, setShowCuradoria] = useState(false);
+
+  if (showCuradoria) {
+    return <CuradoriaPremium onBack={() => setShowCuradoria(false)} />;
+  }
+
   return (
     <div className="min-h-screen bg-background">
       <header className="bg-card border-b border-border sticky top-0 z-10">
@@ -25,6 +33,17 @@ const ManagerDashboard = ({ onBack }: ManagerDashboardProps) => {
       </header>
 
       <main className="container mx-auto px-3 sm:px-6 py-4 sm:py-8 space-y-4 sm:space-y-8">
+        <div className="flex justify-center">
+          <Button
+            onClick={() => setShowCuradoria(true)}
+            size="lg"
+            className="gap-2"
+          >
+            <Sparkles className="h-5 w-5" />
+            Feltrip Curadoria Premium
+          </Button>
+        </div>
+
         <MetricsTable />
         
         <div className="grid grid-cols-1 lg:grid-cols-2 gap-4 sm:gap-8">
