@@ -25,7 +25,7 @@ export const InteractiveMap = ({ onMapClick, pins, onPinClick }: InteractiveMapP
   const [mapLoaded, setMapLoaded] = useState(false);
   const [searchQuery, setSearchQuery] = useState("");
   const [isSearching, setIsSearching] = useState(false);
-  const token = "pk.eyJ1IjoiZmVycGFpeGFvIiwiYSI6ImNtaGZpc2F5ZjA1eXMyanBxMThjaDJlMGwifQ.FRq12MbSWJDGWi-iBEC9-w";
+  const token = "pk.eyJ1IjoiZmVycGFpeGFvIiwiYSI6ImNtaGZqamttbjA2Y20ya3BuMzhsNWYybnIifQ.-7jjcXx_PBw-vcVNUu36lQ";
 
   useEffect(() => {
     if (!mapContainer.current || map.current) return;
@@ -33,7 +33,7 @@ export const InteractiveMap = ({ onMapClick, pins, onPinClick }: InteractiveMapP
     console.log("🗺️ Inicializando mapa Mapbox...");
     
     // Token público do Mapbox
-    const token = "pk.eyJ1IjoiZmVycGFpeGFvIiwiYSI6ImNtaGZpc2F5ZjA1eXMyanBxMThjaDJlMGwifQ.FRq12MbSWJDGWi-iBEC9-w";
+    const token = "pk.eyJ1IjoiZmVycGFpeGFvIiwiYSI6ImNtaGZqamttbjA2Y20ya3BuMzhsNWYybnIifQ.-7jjcXx_PBw-vcVNUu36lQ";
     
     console.log("Token disponível:", token ? "✓ Sim" : "✗ Não");
     console.log("Container disponível:", mapContainer.current ? "✓ Sim" : "✗ Não");
