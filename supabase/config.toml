@@ -1,1 +1,4 @@
 project_id = "ycmyrvojrrsuqalrqhuh"
+
+[functions.send-suggestion]
+verify_jwt = false

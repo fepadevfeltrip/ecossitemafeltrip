@@ -6,6 +6,7 @@ import { Input } from "@/components/ui/input";
 import { Label } from "@/components/ui/label";
 import { useToast } from "@/hooks/use-toast";
 import { Card, CardContent, CardDescription, CardHeader, CardTitle } from "@/components/ui/card";
+import { supabase } from "@/integrations/supabase/client";
 
 export const SuggestionBox = () => {
   const [name, setName] = useState("");
@@ -28,17 +29,31 @@ export const SuggestionBox = () => {
 
     setIsLoading(true);
 
-    // Simulate sending email
-    setTimeout(() => {
-      setIsLoading(false);
+    try {
+      const { data, error } = await supabase.functions.invoke('send-suggestion', {
+        body: { name, email, suggestion }
+      });
+
+      if (error) throw error;
+
       toast({
         title: "Sugestão enviada!",
         description: "Obrigado pelo seu feedback. Entraremos em contato em breve.",
       });
+      
       setName("");
       setEmail("");
       setSuggestion("");
-    }, 1000);
+    } catch (error) {
+      console.error("Erro ao enviar sugestão:", error);
+      toast({
+        title: "Erro ao enviar",
+        description: "Não foi possível enviar sua sugestão. Tente novamente.",
+        variant: "destructive",
+      });
+    } finally {
+      setIsLoading(false);
+    }
   };
 
   return (
