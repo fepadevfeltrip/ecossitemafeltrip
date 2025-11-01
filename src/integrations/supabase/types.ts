@@ -14,7 +14,48 @@ export type Database = {
   }
   public: {
     Tables: {
-      [_ in never]: never
+      map_pins: {
+        Row: {
+          city_name: string | null
+          content: string
+          country_name: string | null
+          created_at: string
+          id: string
+          latitude: number
+          longitude: number
+          title: string
+          type: string
+          updated_at: string
+          user_id: string | null
+        }
+        Insert: {
+          city_name?: string | null
+          content: string
+          country_name?: string | null
+          created_at?: string
+          id?: string
+          latitude: number
+          longitude: number
+          title: string
+          type: string
+          updated_at?: string
+          user_id?: string | null
+        }
+        Update: {
+          city_name?: string | null
+          content?: string
+          country_name?: string | null
+          created_at?: string
+          id?: string
+          latitude?: number
+          longitude?: number
+          title?: string
+          type?: string
+          updated_at?: string
+          user_id?: string | null
+        }
+        Relationships: []
+      }
     }
     Views: {
       [_ in never]: never
