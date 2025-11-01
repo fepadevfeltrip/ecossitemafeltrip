@@ -21,33 +21,10 @@ const ManagerDashboard = ({ onBack }: ManagerDashboardProps) => {
   const generatePoeticalProposal = () => {
     setIsGenerating(true);
     
-    // Simulação de geração de proposta poética baseada nas métricas dos 5 pilares
     setTimeout(() => {
-      const proposal = `🌟 Proposta Poética de Presença Relacional 🌟
-
-Com base nas métricas dos 5 pilares de presença relacional, sugerimos uma jornada transformadora para fortalecer os laços entre os colaboradores:
-
-📍 Pilar da LOCALIZAÇÃO: "Caminhada dos Sentidos"
-Organize uma caminhada coletiva pelos arredores da empresa, onde cada colaborador compartilha um lugar significativo e sua história pessoal com aquele espaço.
-
-🤝 Pilar das CONEXÕES: "Círculos de Gratidão"
-Crie momentos semanais onde os colaboradores formam círculos e expressam gratidão por colegas que os apoiaram, fortalecendo vínculos autênticos.
-
-🎯 Pilar dos PROPÓSITOS: "Mapa de Sonhos Coletivo"
-Desenvolva um mural colaborativo onde cada pessoa compartilha seus sonhos pessoais e profissionais, conectando aspirações individuais aos objetivos organizacionais.
-
-🌱 Pilar do DESENVOLVIMENTO: "Mentoria Cruzada"
-Implemente um programa onde colaboradores de diferentes áreas trocam conhecimentos, promovendo crescimento mútuo e compreensão interdisciplinar.
-
-💫 Pilar do BEM-ESTAR: "Rituais de Pausa Consciente"
-Institua momentos diários de pausa coletiva com práticas de mindfulness, respiração e partilha de experiências positivas do dia.
-
-Esta proposta visa tecer uma rede relacional mais forte, onde cada colaborador se sinta visto, valorizado e conectado ao propósito maior da organização. 🌈`;
-      
-      setAiProposal(proposal);
       setIsGenerating(false);
-      toast.success("Proposta poética gerada com sucesso!");
-    }, 2000);
+      toast.info("Estamos treinando nossa IA para te atender em breve! 🤖✨");
+    }, 1000);
   };
 
   if (showCuradoria) {
