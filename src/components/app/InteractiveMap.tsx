@@ -188,28 +188,28 @@ export const InteractiveMap = ({ onMapClick, pins, onPinClick }: InteractiveMapP
   }, [pins, mapLoaded, onPinClick]);
 
   return (
-    <div className="absolute inset-0 w-full h-full bg-gray-200">
+    <div className="absolute inset-0 w-full h-full">
       <div 
         ref={mapContainer} 
-        className="absolute inset-0 w-full h-full rounded-lg"
+        className="absolute inset-0 w-full h-full"
         style={{ width: '100%', height: '100%' }}
       />
       
-      {/* Campo de busca */}
-      <div className="absolute top-4 left-4 right-4 z-10">
-        <form onSubmit={handleSearch} className="flex gap-2">
+      {/* Campo de busca flutuante */}
+      <div className="absolute top-4 left-4 right-4 z-10 max-w-md mx-auto">
+        <form onSubmit={handleSearch} className="flex gap-2 shadow-xl">
           <Input
             type="text"
             value={searchQuery}
             onChange={(e) => setSearchQuery(e.target.value)}
             placeholder="Buscar cidade ou endereço..."
-            className="bg-white shadow-lg"
+            className="bg-white border-2 border-gray-200"
             maxLength={200}
           />
           <Button 
             type="submit" 
             disabled={isSearching}
-            className="shrink-0"
+            className="shrink-0 shadow-lg"
           >
             <Search className="h-4 w-4" />
           </Button>
