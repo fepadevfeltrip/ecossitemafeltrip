@@ -30,57 +30,73 @@ export const InteractiveMap = ({ onMapClick, pins, onPinClick }: InteractiveMapP
   useEffect(() => {
     if (!mapContainer.current || map.current) return;
 
+    console.log("🗺️ Inicializando mapa Mapbox...");
+    
     // Token público do Mapbox
     const token = "pk.eyJ1IjoiZmVycGFpeGFvIiwiYSI6ImNtaGZpc2F5ZjA1eXMyanBxMThjaDJlMGwifQ.FRq12MbSWJDGWi-iBEC9-w";
     
+    console.log("Token disponível:", token ? "✓ Sim" : "✗ Não");
+    console.log("Container disponível:", mapContainer.current ? "✓ Sim" : "✗ Não");
+    
     mapboxgl.accessToken = token;
 
-    map.current = new mapboxgl.Map({
-      container: mapContainer.current,
-      style: "mapbox://styles/mapbox/streets-v12",
-      center: [-46.633, -23.55], // São Paulo como centro inicial
-      zoom: 2,
-    });
+    try {
+      map.current = new mapboxgl.Map({
+        container: mapContainer.current,
+        style: "mapbox://styles/mapbox/streets-v12",
+        center: [-46.633, -23.55], // São Paulo como centro inicial
+        zoom: 2,
+      });
 
-    map.current.addControl(new mapboxgl.NavigationControl(), "top-right");
+      console.log("✓ Mapa criado com sucesso");
 
-    map.current.on("load", () => {
-      setMapLoaded(true);
-    });
+      map.current.addControl(new mapboxgl.NavigationControl(), "top-right");
 
-    map.current.on("click", async (e) => {
-      const { lng, lat } = e.lngLat;
-      
-      // Tentar obter nome da cidade usando geocoding reverso
-      try {
-        const response = await fetch(
-          `https://api.mapbox.com/geocoding/v5/mapbox.places/${lng},${lat}.json?access_token=${token}`
-        );
-        const data = await response.json();
+      map.current.on("load", () => {
+        console.log("✓ Mapa carregado completamente");
+        setMapLoaded(true);
+      });
+
+      map.current.on("error", (e) => {
+        console.error("❌ Erro no Mapbox:", e);
+      });
+
+      map.current.on("click", async (e) => {
+        const { lng, lat } = e.lngLat;
         
-        let cityName = "";
-        let countryName = "";
-        
-        if (data.features && data.features.length > 0) {
-          const feature = data.features[0];
-          // Extrair cidade e país do contexto
-          feature.context?.forEach((ctx: any) => {
-            if (ctx.id.startsWith("place")) cityName = ctx.text;
-            if (ctx.id.startsWith("country")) countryName = ctx.text;
-          });
+        // Tentar obter nome da cidade usando geocoding reverso
+        try {
+          const response = await fetch(
+            `https://api.mapbox.com/geocoding/v5/mapbox.places/${lng},${lat}.json?access_token=${token}`
+          );
+          const data = await response.json();
           
-          // Se não encontrou no contexto, usar o place_name
-          if (!cityName && feature.place_type?.includes("place")) {
-            cityName = feature.text;
+          let cityName = "";
+          let countryName = "";
+          
+          if (data.features && data.features.length > 0) {
+            const feature = data.features[0];
+            // Extrair cidade e país do contexto
+            feature.context?.forEach((ctx: any) => {
+              if (ctx.id.startsWith("place")) cityName = ctx.text;
+              if (ctx.id.startsWith("country")) countryName = ctx.text;
+            });
+            
+            // Se não encontrou no contexto, usar o place_name
+            if (!cityName && feature.place_type?.includes("place")) {
+              cityName = feature.text;
+            }
           }
+          
+          onMapClick(lat, lng, cityName, countryName);
+        } catch (error) {
+          console.error("Erro ao obter nome da cidade:", error);
+          onMapClick(lat, lng);
         }
-        
-        onMapClick(lat, lng, cityName, countryName);
-      } catch (error) {
-        console.error("Erro ao obter nome da cidade:", error);
-        onMapClick(lat, lng);
-      }
-    });
+      });
+    } catch (error) {
+      console.error("❌ Erro ao criar mapa:", error);
+    }
 
     return () => {
       markers.current.forEach(marker => marker.remove());
