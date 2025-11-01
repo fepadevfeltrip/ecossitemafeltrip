@@ -1,5 +1,8 @@
-import { useState } from "react";
-import { Plus, MapPin, X } from "lucide-react";
+import { useState, useEffect } from "react";
+import { Plus, MapPin, X, BookOpen, FileText } from "lucide-react";
+import { InteractiveMap } from "./InteractiveMap";
+import { supabase } from "@/integrations/supabase/client";
+import { toast } from "sonner";
 import { Button } from "@/components/ui/button";
 import { Dialog, DialogContent, DialogHeader, DialogTitle, DialogTrigger } from "@/components/ui/dialog";
 import { Textarea } from "@/components/ui/textarea";
@@ -18,41 +21,97 @@ interface Note {
 
 export const MapTab = () => {
   const [activeTab, setActiveTab] = useState<NoteType>("idioma");
-  const [selectedNote, setSelectedNote] = useState<Note | null>(null);
-  const [notes] = useState<Array<Note>>([
-    { 
-      x: 30, 
-      y: 40, 
-      type: "idioma",
-      title: "Mercado Local",
-      content: "Vocabulário do Mercado:\n\n🍎 Maçã - Apple\n🥕 Cenoura - Carrot\n🥖 Pão - Bread\n🧀 Queijo - Cheese\n🥩 Carne - Meat\n🐟 Peixe - Fish\n🥬 Alface - Lettuce\n🍅 Tomate - Tomato\n\nFrases úteis:\n'Quanto custa?' - How much?\n'Eu quero comprar...' - I want to buy..."
-    },
-    { 
-      x: 60, 
-      y: 25, 
-      type: "vida",
-      title: "Rua Principal",
-      content: "I loved this street, I need to tell the kids that I'm coming back here with them!"
-    },
-    { 
-      x: 45, 
-      y: 70, 
-      type: "idioma",
-      title: "Cafeteria",
-      content: "Expressões do Café:\n\n☕ Café - Coffee\n🥐 Croissant - Croissant\n🍰 Bolo - Cake\n🧃 Suco - Juice\n\n'Um café, por favor' - One coffee, please\n'A conta, por favor' - The bill, please"
-    },
-    {
-      x: 50,
-      y: 45,
-      type: "proposicoes",
-      title: "Praça Paris",
-      content: "I chose to do this at Praça Paris. I felt vulnerable...\n\nProposition by Boba:\n\nWalk through the square as if the ground were remembering you before you were born. Let your steps be hesitant, honest — not graceful. Touch a tree or a bench and whisper your name to it, just once, like a secret. Stay there until the air stops judging you. Then, leave a tiny gesture behind — a pebble turned, a leaf moved — so the city knows you were real.\n\nMap of Relational Presence"
-    },
-  ]);
+  const [selectedNote, setSelectedNote] = useState<any | null>(null);
+  const [pins, setPins] = useState<any[]>([]);
+  const [showNewPinDialog, setShowNewPinDialog] = useState(false);
+  const [newPinData, setNewPinData] = useState<{
+    latitude: number;
+    longitude: number;
+    cityName?: string;
+    countryName?: string;
+  } | null>(null);
+  const [newPinTitle, setNewPinTitle] = useState("");
+  const [newPinContent, setNewPinContent] = useState("");
 
-  const pillars = ["Corpo", "Território", "Identidade", "O Outro", "Espaço"];
+  useEffect(() => {
+    loadPins();
+  }, []);
 
-  const filteredNotes = notes.filter(note => note.type === activeTab);
+  const loadPins = async () => {
+    try {
+      const { data, error } = await supabase
+        .from("map_pins")
+        .select("*")
+        .order("created_at", { ascending: false });
+
+      if (error) throw error;
+      setPins(data || []);
+    } catch (error) {
+      console.error("Erro ao carregar pins:", error);
+      toast.error("Erro ao carregar pins do mapa");
+    }
+  };
+
+  const handleMapClick = (lat: number, lng: number, cityName?: string, countryName?: string) => {
+    setNewPinData({ latitude: lat, longitude: lng, cityName, countryName });
+    setNewPinTitle(cityName || "");
+    setNewPinContent("");
+    setShowNewPinDialog(true);
+  };
+
+  const handleSavePin = async () => {
+    if (!newPinData || !newPinTitle.trim() || !newPinContent.trim()) {
+      toast.error("Preencha o título e o conteúdo");
+      return;
+    }
+
+    try {
+      const { data: { user } } = await supabase.auth.getUser();
+      
+      if (!user) {
+        toast.error("Você precisa estar logado");
+        return;
+      }
+
+      const { error } = await supabase.from("map_pins").insert({
+        user_id: user.id,
+        type: activeTab,
+        title: newPinTitle,
+        content: newPinContent,
+        latitude: newPinData.latitude,
+        longitude: newPinData.longitude,
+        city_name: newPinData.cityName,
+        country_name: newPinData.countryName,
+      });
+
+      if (error) throw error;
+
+      toast.success("Pin adicionado com sucesso!");
+      setShowNewPinDialog(false);
+      setNewPinData(null);
+      setNewPinTitle("");
+      setNewPinContent("");
+      loadPins();
+    } catch (error) {
+      console.error("Erro ao salvar pin:", error);
+      toast.error("Erro ao salvar pin");
+    }
+  };
+
+  const filteredPins = pins.filter(pin => pin.type === activeTab);
+
+  const getButtonIcon = () => {
+    switch (activeTab) {
+      case "idioma":
+        return <BookOpen className="h-6 w-6" />;
+      case "vida":
+        return <FileText className="h-6 w-6" />;
+      case "proposicoes":
+        return <Plus className="h-6 w-6" />;
+      default:
+        return <Plus className="h-6 w-6" />;
+    }
+  };
 
   return (
     <div className="flex-1 overflow-y-auto relative">
@@ -70,26 +129,12 @@ export const MapTab = () => {
         </TabsList>
         
         <TabsContent value={activeTab} className="mt-0">
-          <div className="relative h-full min-h-[600px] bg-gradient-to-br from-muted to-background">
-        <div className="absolute inset-0 opacity-30">
-          <svg className="w-full h-full" viewBox="0 0 100 100" preserveAspectRatio="none">
-            <path d="M0,50 Q25,30 50,50 T100,50 L100,100 L0,100 Z" fill="hsl(var(--primary))" opacity="0.1"/>
-            <path d="M0,70 Q25,60 50,70 T100,70" stroke="hsl(var(--primary))" strokeWidth="0.5" fill="none"/>
-            <circle cx="20" cy="30" r="2" fill="hsl(var(--accent))"/>
-            <circle cx="80" cy="45" r="2" fill="hsl(var(--secondary))"/>
-          </svg>
-        </div>
-        
-            {filteredNotes.map((note, index) => (
-              <button
-                key={index} 
-                className="absolute cursor-pointer transition-transform hover:scale-110"
-                style={{ left: `${note.x}%`, top: `${note.y}%`, transform: 'translate(-50%, -50%)' }}
-                onClick={() => setSelectedNote(note)}
-              >
-                <MapPin className="h-8 w-8 text-energy drop-shadow-lg animate-bounce" fill="hsl(var(--energy))" />
-              </button>
-            ))}
+          <div className="relative h-full min-h-[600px]">
+            <InteractiveMap
+              onMapClick={handleMapClick}
+              pins={filteredPins}
+              onPinClick={setSelectedNote}
+            />
           </div>
         </TabsContent>
       </Tabs>
@@ -115,35 +160,40 @@ export const MapTab = () => {
         </Dialog>
       )}
 
-      <Dialog>
-        <DialogTrigger asChild>
-          <Button 
-            size="lg"
-            className="fixed bottom-32 right-6 h-14 w-14 rounded-full shadow-xl bg-energy hover:bg-energy/90"
-          >
-            <Plus className="h-6 w-6" />
-          </Button>
-        </DialogTrigger>
+      <Dialog open={showNewPinDialog} onOpenChange={setShowNewPinDialog}>
         <DialogContent className="max-w-[90%] sm:max-w-md">
           <DialogHeader>
-            <DialogTitle>Nova Nota de Presença</DialogTitle>
+            <DialogTitle>
+              {activeTab === "idioma" ? "Anotação de Aula" : 
+               activeTab === "vida" ? "Diário de Bordo" : 
+               "Proposição Poética"}
+            </DialogTitle>
           </DialogHeader>
           <div className="space-y-4">
+            <div>
+              <label className="text-sm font-medium">Título/Local</label>
+              <input
+                type="text"
+                value={newPinTitle}
+                onChange={(e) => setNewPinTitle(e.target.value)}
+                className="w-full mt-1 px-3 py-2 border rounded-md"
+                placeholder={newPinData?.cityName || "Nome do local"}
+              />
+            </div>
             <Textarea 
-              placeholder="O que você sentiu/percebeu neste local?" 
-              rows={4}
+              value={newPinContent}
+              onChange={(e) => setNewPinContent(e.target.value)}
+              placeholder={
+                activeTab === "idioma" ? "Vocabulário e expressões aprendidas..." :
+                activeTab === "vida" ? "O que você sentiu/percebeu neste local?" :
+                "Proposição poética para este lugar..."
+              }
+              rows={6}
               className="resize-none"
             />
-            <div className="space-y-3">
-              <p className="text-sm font-medium">Pilares Relacionais:</p>
-              {pillars.map((pillar) => (
-                <div key={pillar} className="flex items-center space-x-2">
-                  <Checkbox id={pillar} />
-                  <label htmlFor={pillar} className="text-sm cursor-pointer">{pillar}</label>
-                </div>
-              ))}
-            </div>
-            <Button className="w-full">Salvar no Diário</Button>
+            <Button onClick={handleSavePin} className="w-full">
+              Salvar Pin
+            </Button>
           </div>
         </DialogContent>
       </Dialog>
