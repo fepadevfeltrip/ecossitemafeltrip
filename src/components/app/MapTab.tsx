@@ -128,8 +128,8 @@ export const MapTab = () => {
           </TabsTrigger>
         </TabsList>
         
-        <TabsContent value={activeTab} className="mt-0">
-          <div className="relative w-full" style={{ height: '600px' }}>
+        <TabsContent value={activeTab} className="mt-0 h-full">
+          <div className="w-full h-full" style={{ height: '600px', position: 'relative' }}>
             <InteractiveMap
               onMapClick={handleMapClick}
               pins={filteredPins}
