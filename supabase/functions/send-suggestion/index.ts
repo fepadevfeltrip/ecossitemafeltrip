@@ -25,7 +25,7 @@ const handler = async (req: Request): Promise<Response> => {
     console.log("Enviando sugestão de:", name, email);
 
     const emailResponse = await resend.emails.send({
-      from: "Feltrip <onboarding@resend.dev>",
+      from: "Feltrip <sugestoes@feltrip.com>",
       to: ["fpamoreira@gmail.com"],
       replyTo: email,
       subject: `Nova Sugestão de ${name}`,
