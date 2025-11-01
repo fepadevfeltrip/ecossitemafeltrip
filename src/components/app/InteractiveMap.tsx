@@ -24,9 +24,11 @@ export const InteractiveMap = ({ onMapClick, pins, onPinClick }: InteractiveMapP
   useEffect(() => {
     if (!mapContainer.current || map.current) return;
 
-    const token = import.meta.env.VITE_MAPBOX_PUBLIC_TOKEN;
-    if (!token) {
-      console.error("MAPBOX_PUBLIC_TOKEN não configurado");
+    // Token público do Mapbox - pegue em https://account.mapbox.com/access-tokens/
+    const token = "COLE_SEU_TOKEN_MAPBOX_AQUI";
+    
+    if (!token || token === "COLE_SEU_TOKEN_MAPBOX_AQUI") {
+      console.error("Configure seu token do Mapbox em InteractiveMap.tsx");
       return;
     }
 
