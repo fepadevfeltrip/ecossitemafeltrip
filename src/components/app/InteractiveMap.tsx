@@ -1,6 +1,8 @@
 import { useEffect, useRef, useState } from "react";
 import mapboxgl from "mapbox-gl";
+import MapboxGeocoder from "@mapbox/mapbox-gl-geocoder";
 import "mapbox-gl/dist/mapbox-gl.css";
+import "@mapbox/mapbox-gl-geocoder/dist/mapbox-gl-geocoder.css";
 
 interface InteractiveMapProps {
   onMapClick: (lat: number, lng: number, cityName?: string, countryName?: string) => void;
@@ -36,6 +38,28 @@ export const InteractiveMap = ({ onMapClick, pins, onPinClick }: InteractiveMapP
 
     // Adicionar controles
     map.current.addControl(new mapboxgl.NavigationControl(), "top-right");
+
+    // Adicionar busca nativa do Mapbox
+    const geocoder = new MapboxGeocoder({
+      accessToken: mapboxgl.accessToken,
+      mapboxgl: mapboxgl as any,
+      marker: false,
+      placeholder: "Buscar localização...",
+      language: "pt-BR"
+    });
+
+    map.current.addControl(geocoder);
+
+    // Quando encontrar resultado na busca
+    geocoder.on("result", (e) => {
+      const { center, place_name } = e.result;
+      const [lng, lat] = center;
+      
+      // Aguardar um pouco e abrir o diálogo para adicionar pin
+      setTimeout(() => {
+        onMapClick(lat, lng, place_name);
+      }, 500);
+    });
 
     // Quando carregar
     map.current.on("load", () => {
