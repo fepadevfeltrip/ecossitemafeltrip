@@ -188,7 +188,7 @@ export const InteractiveMap = ({ onMapClick, pins, onPinClick }: InteractiveMapP
   }, [pins, mapLoaded, onPinClick]);
 
   return (
-    <div className="relative w-full h-full">
+    <div className="absolute inset-0 w-full h-full">
       <div ref={mapContainer} className="absolute inset-0 w-full h-full rounded-lg" />
       
       {/* Campo de busca */}
