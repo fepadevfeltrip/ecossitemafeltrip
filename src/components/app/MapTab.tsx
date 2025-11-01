@@ -129,7 +129,7 @@ export const MapTab = () => {
         </TabsList>
         
         <TabsContent value={activeTab} className="mt-0">
-          <div className="relative w-full min-h-[calc(100vh-200px)]">
+          <div style={{ width: "100%", height: "600px", position: "relative" }}>
             <InteractiveMap
               onMapClick={handleMapClick}
               pins={filteredPins}
