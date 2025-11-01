@@ -24,14 +24,9 @@ export const InteractiveMap = ({ onMapClick, pins, onPinClick }: InteractiveMapP
   useEffect(() => {
     if (!mapContainer.current || map.current) return;
 
-    // Token público do Mapbox - pegue em https://account.mapbox.com/access-tokens/
-    const token = "COLE_SEU_TOKEN_MAPBOX_AQUI";
+    // Token público do Mapbox
+    const token = "pk.eyJ1IjoiZmVycGFpeGFvIiwiYSI6ImNtaGZpc2F5ZjA1eXMyanBxMThjaDJlMGwifQ.FRq12MbSWJDGWi-iBEC9-w";
     
-    if (!token || token === "COLE_SEU_TOKEN_MAPBOX_AQUI") {
-      console.error("Configure seu token do Mapbox em InteractiveMap.tsx");
-      return;
-    }
-
     mapboxgl.accessToken = token;
 
     map.current = new mapboxgl.Map({
