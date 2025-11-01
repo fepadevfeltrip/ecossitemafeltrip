@@ -1,7 +1,10 @@
 import { useEffect, useRef, useState } from "react";
 import mapboxgl from "mapbox-gl";
 import "mapbox-gl/dist/mapbox-gl.css";
-import { MapPin } from "lucide-react";
+import { MapPin, Search } from "lucide-react";
+import { Input } from "@/components/ui/input";
+import { Button } from "@/components/ui/button";
+import { toast } from "sonner";
 
 interface InteractiveMapProps {
   onMapClick: (lat: number, lng: number, cityName?: string, countryName?: string) => void;
@@ -20,6 +23,9 @@ export const InteractiveMap = ({ onMapClick, pins, onPinClick }: InteractiveMapP
   const map = useRef<mapboxgl.Map | null>(null);
   const markers = useRef<mapboxgl.Marker[]>([]);
   const [mapLoaded, setMapLoaded] = useState(false);
+  const [searchQuery, setSearchQuery] = useState("");
+  const [isSearching, setIsSearching] = useState(false);
+  const token = "pk.eyJ1IjoiZmVycGFpeGFvIiwiYSI6ImNtaGZpc2F5ZjA1eXMyanBxMThjaDJlMGwifQ.FRq12MbSWJDGWi-iBEC9-w";
 
   useEffect(() => {
     if (!mapContainer.current || map.current) return;
@@ -82,6 +88,69 @@ export const InteractiveMap = ({ onMapClick, pins, onPinClick }: InteractiveMapP
     };
   }, []);
 
+  const handleSearch = async (e: React.FormEvent) => {
+    e.preventDefault();
+    
+    if (!searchQuery.trim()) {
+      toast.error("Digite uma localização");
+      return;
+    }
+
+    if (searchQuery.trim().length > 200) {
+      toast.error("Localização muito longa");
+      return;
+    }
+
+    setIsSearching(true);
+
+    try {
+      const response = await fetch(
+        `https://api.mapbox.com/geocoding/v5/mapbox.places/${encodeURIComponent(searchQuery)}.json?access_token=${token}&limit=1`
+      );
+      
+      const data = await response.json();
+
+      if (data.features && data.features.length > 0) {
+        const [lng, lat] = data.features[0].center;
+        const placeName = data.features[0].place_name;
+        
+        // Voar para a localização
+        map.current?.flyTo({
+          center: [lng, lat],
+          zoom: 12,
+          duration: 2000
+        });
+
+        // Extrair cidade e país
+        let cityName = "";
+        let countryName = "";
+        
+        data.features[0].context?.forEach((ctx: any) => {
+          if (ctx.id.startsWith("place")) cityName = ctx.text;
+          if (ctx.id.startsWith("country")) countryName = ctx.text;
+        });
+
+        if (!cityName && data.features[0].place_type?.includes("place")) {
+          cityName = data.features[0].text;
+        }
+
+        toast.success(`Localização encontrada: ${placeName}`);
+        
+        // Oferecer adicionar pin nesta localização
+        setTimeout(() => {
+          onMapClick(lat, lng, cityName || placeName, countryName);
+        }, 2500);
+      } else {
+        toast.error("Localização não encontrada");
+      }
+    } catch (error) {
+      console.error("Erro ao buscar localização:", error);
+      toast.error("Erro ao buscar localização");
+    } finally {
+      setIsSearching(false);
+    }
+  };
+
   useEffect(() => {
     if (!map.current || !mapLoaded) return;
 
@@ -119,6 +188,29 @@ export const InteractiveMap = ({ onMapClick, pins, onPinClick }: InteractiveMapP
   }, [pins, mapLoaded, onPinClick]);
 
   return (
-    <div ref={mapContainer} className="absolute inset-0 w-full h-full rounded-lg" />
+    <div className="relative w-full h-full">
+      <div ref={mapContainer} className="absolute inset-0 w-full h-full rounded-lg" />
+      
+      {/* Campo de busca */}
+      <div className="absolute top-4 left-4 right-4 z-10">
+        <form onSubmit={handleSearch} className="flex gap-2">
+          <Input
+            type="text"
+            value={searchQuery}
+            onChange={(e) => setSearchQuery(e.target.value)}
+            placeholder="Buscar cidade ou endereço..."
+            className="bg-white shadow-lg"
+            maxLength={200}
+          />
+          <Button 
+            type="submit" 
+            disabled={isSearching}
+            className="shrink-0"
+          >
+            <Search className="h-4 w-4" />
+          </Button>
+        </form>
+      </div>
+    </div>
   );
 };
