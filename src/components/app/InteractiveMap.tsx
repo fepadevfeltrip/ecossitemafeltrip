@@ -1,10 +1,8 @@
 import { useEffect, useRef, useState } from "react";
 import mapboxgl from "mapbox-gl";
+import MapboxGeocoder from "@mapbox/mapbox-gl-geocoder";
 import "mapbox-gl/dist/mapbox-gl.css";
-import { MapPin, Search } from "lucide-react";
-import { Input } from "@/components/ui/input";
-import { Button } from "@/components/ui/button";
-import { toast } from "sonner";
+import "@mapbox/mapbox-gl-geocoder/dist/mapbox-gl-geocoder.css";
 
 interface InteractiveMapProps {
   onMapClick: (lat: number, lng: number, cityName?: string, countryName?: string) => void;
@@ -23,8 +21,7 @@ export const InteractiveMap = ({ onMapClick, pins, onPinClick }: InteractiveMapP
   const map = useRef<mapboxgl.Map | null>(null);
   const markers = useRef<mapboxgl.Marker[]>([]);
   const [mapLoaded, setMapLoaded] = useState(false);
-  const [searchQuery, setSearchQuery] = useState("");
-  const [isSearching, setIsSearching] = useState(false);
+  
   const token = "pk.eyJ1IjoiZmVycGFpeGFvIiwiYSI6ImNtaGZqamttbjA2Y20ya3BuMzhsNWYybnIifQ.-7jjcXx_PBw-vcVNUu36lQ";
 
   useEffect(() => {
@@ -32,28 +29,34 @@ export const InteractiveMap = ({ onMapClick, pins, onPinClick }: InteractiveMapP
 
     console.log("🗺️ Inicializando mapa Mapbox...");
     
-    // Token público do Mapbox
-    const token = "pk.eyJ1IjoiZmVycGFpeGFvIiwiYSI6ImNtaGZqamttbjA2Y20ya3BuMzhsNWYybnIifQ.-7jjcXx_PBw-vcVNUu36lQ";
-    
-    console.log("Token disponível:", token ? "✓ Sim" : "✗ Não");
-    console.log("Container disponível:", mapContainer.current ? "✓ Sim" : "✗ Não");
-    
     mapboxgl.accessToken = token;
 
     try {
       map.current = new mapboxgl.Map({
         container: mapContainer.current,
         style: "mapbox://styles/mapbox/streets-v12",
-        center: [-46.633, -23.55], // São Paulo como centro inicial
+        center: [-46.633, -23.55],
         zoom: 2,
       });
 
-      console.log("✓ Mapa criado com sucesso");
+      console.log("✓ Mapa criado");
 
+      // Adicionar controles de navegação
       map.current.addControl(new mapboxgl.NavigationControl(), "top-right");
 
+      // Adicionar busca oficial do Mapbox
+      const geocoder = new MapboxGeocoder({
+        accessToken: token,
+        mapboxgl: mapboxgl,
+        marker: false,
+        placeholder: "Buscar cidade ou endereço...",
+        language: "pt-BR"
+      });
+      
+      map.current.addControl(geocoder);
+
       map.current.on("load", () => {
-        console.log("✓ Mapa carregado completamente");
+        console.log("✓ Mapa carregado");
         setMapLoaded(true);
       });
 
@@ -61,10 +64,30 @@ export const InteractiveMap = ({ onMapClick, pins, onPinClick }: InteractiveMapP
         console.error("❌ Erro no Mapbox:", e);
       });
 
+      // Quando buscar, oferecer adicionar pin
+      geocoder.on("result", (e) => {
+        const { center, place_name, context } = e.result;
+        const [lng, lat] = center;
+        
+        let cityName = "";
+        let countryName = "";
+        
+        if (context) {
+          context.forEach((ctx: any) => {
+            if (ctx.id.startsWith("place")) cityName = ctx.text;
+            if (ctx.id.startsWith("country")) countryName = ctx.text;
+          });
+        }
+        
+        setTimeout(() => {
+          onMapClick(lat, lng, cityName || place_name, countryName);
+        }, 1000);
+      });
+
+      // Clique no mapa
       map.current.on("click", async (e) => {
         const { lng, lat } = e.lngLat;
         
-        // Tentar obter nome da cidade usando geocoding reverso
         try {
           const response = await fetch(
             `https://api.mapbox.com/geocoding/v5/mapbox.places/${lng},${lat}.json?access_token=${token}`
@@ -76,13 +99,11 @@ export const InteractiveMap = ({ onMapClick, pins, onPinClick }: InteractiveMapP
           
           if (data.features && data.features.length > 0) {
             const feature = data.features[0];
-            // Extrair cidade e país do contexto
             feature.context?.forEach((ctx: any) => {
               if (ctx.id.startsWith("place")) cityName = ctx.text;
               if (ctx.id.startsWith("country")) countryName = ctx.text;
             });
             
-            // Se não encontrou no contexto, usar o place_name
             if (!cityName && feature.place_type?.includes("place")) {
               cityName = feature.text;
             }
@@ -90,10 +111,11 @@ export const InteractiveMap = ({ onMapClick, pins, onPinClick }: InteractiveMapP
           
           onMapClick(lat, lng, cityName, countryName);
         } catch (error) {
-          console.error("Erro ao obter nome da cidade:", error);
+          console.error("Erro ao obter localização:", error);
           onMapClick(lat, lng);
         }
       });
+
     } catch (error) {
       console.error("❌ Erro ao criar mapa:", error);
     }
@@ -104,77 +126,13 @@ export const InteractiveMap = ({ onMapClick, pins, onPinClick }: InteractiveMapP
     };
   }, []);
 
-  const handleSearch = async (e: React.FormEvent) => {
-    e.preventDefault();
-    
-    if (!searchQuery.trim()) {
-      toast.error("Digite uma localização");
-      return;
-    }
-
-    if (searchQuery.trim().length > 200) {
-      toast.error("Localização muito longa");
-      return;
-    }
-
-    setIsSearching(true);
-
-    try {
-      const response = await fetch(
-        `https://api.mapbox.com/geocoding/v5/mapbox.places/${encodeURIComponent(searchQuery)}.json?access_token=${token}&limit=1`
-      );
-      
-      const data = await response.json();
-
-      if (data.features && data.features.length > 0) {
-        const [lng, lat] = data.features[0].center;
-        const placeName = data.features[0].place_name;
-        
-        // Voar para a localização
-        map.current?.flyTo({
-          center: [lng, lat],
-          zoom: 12,
-          duration: 2000
-        });
-
-        // Extrair cidade e país
-        let cityName = "";
-        let countryName = "";
-        
-        data.features[0].context?.forEach((ctx: any) => {
-          if (ctx.id.startsWith("place")) cityName = ctx.text;
-          if (ctx.id.startsWith("country")) countryName = ctx.text;
-        });
-
-        if (!cityName && data.features[0].place_type?.includes("place")) {
-          cityName = data.features[0].text;
-        }
-
-        toast.success(`Localização encontrada: ${placeName}`);
-        
-        // Oferecer adicionar pin nesta localização
-        setTimeout(() => {
-          onMapClick(lat, lng, cityName || placeName, countryName);
-        }, 2500);
-      } else {
-        toast.error("Localização não encontrada");
-      }
-    } catch (error) {
-      console.error("Erro ao buscar localização:", error);
-      toast.error("Erro ao buscar localização");
-    } finally {
-      setIsSearching(false);
-    }
-  };
-
+  // Atualizar pins
   useEffect(() => {
     if (!map.current || !mapLoaded) return;
 
-    // Remover marcadores antigos
     markers.current.forEach(marker => marker.remove());
     markers.current = [];
 
-    // Adicionar novos marcadores
     pins.forEach((pin) => {
       const el = document.createElement("div");
       el.className = "custom-marker";
@@ -204,33 +162,10 @@ export const InteractiveMap = ({ onMapClick, pins, onPinClick }: InteractiveMapP
   }, [pins, mapLoaded, onPinClick]);
 
   return (
-    <div className="absolute inset-0 w-full h-full">
-      <div 
-        ref={mapContainer} 
-        className="absolute inset-0 w-full h-full"
-        style={{ width: '100%', height: '100%' }}
-      />
-      
-      {/* Campo de busca flutuante */}
-      <div className="absolute top-4 left-4 right-4 z-10 max-w-md mx-auto">
-        <form onSubmit={handleSearch} className="flex gap-2 shadow-xl">
-          <Input
-            type="text"
-            value={searchQuery}
-            onChange={(e) => setSearchQuery(e.target.value)}
-            placeholder="Buscar cidade ou endereço..."
-            className="bg-white border-2 border-gray-200"
-            maxLength={200}
-          />
-          <Button 
-            type="submit" 
-            disabled={isSearching}
-            className="shrink-0 shadow-lg"
-          >
-            <Search className="h-4 w-4" />
-          </Button>
-        </form>
-      </div>
-    </div>
+    <div 
+      ref={mapContainer} 
+      className="w-full h-full"
+      style={{ minHeight: "100%" }}
+    />
   );
 };
