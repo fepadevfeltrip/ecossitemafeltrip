@@ -78,7 +78,7 @@ export const HomeTab = ({ onBack }: HomeTabProps) => {
         <Card className="p-6 bg-gradient-to-br from-primary/10 to-accent/10 border-primary/20">
           <p className="text-lg leading-relaxed text-foreground">
             Olá! Bem-vindo(a) à sua prática de <strong>Cartografia Relacional</strong>. 
-            Lembre-se: <em>Se ocupe, não se preocupe.</em>
+            Lembre-se: <em>Ocupe-se; não se preocupe.</em>
           </p>
         </Card>
 
