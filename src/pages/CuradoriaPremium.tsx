@@ -209,7 +209,7 @@ const CuradoriaPremium = ({ onBack }: CuradoriaPremiumProps) => {
         {/* Partners Carousel */}
         <section className="space-y-6">
           <h3 className="text-xl sm:text-2xl font-bold text-foreground text-center">
-            Empresas que Confiam na Feltrip
+            Confiam na Feltrip
           </h3>
           <div className="max-w-2xl mx-auto px-8 sm:px-12">
             <Carousel
