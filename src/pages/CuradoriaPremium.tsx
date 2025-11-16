@@ -131,7 +131,22 @@ const CuradoriaPremium = ({ onBack }: CuradoriaPremiumProps) => {
 
             <Card>
               <CardHeader>
-                <CardTitle className="text-lg sm:text-xl">Feltrip Impacto Social</CardTitle>
+                <CardTitle className="text-lg sm:text-xl">Parceria Oficial com The Nomad World Festival</CardTitle>
+              </CardHeader>
+              <CardContent className="space-y-3">
+                <div>
+                  <p className="font-semibold text-sm sm:text-base mb-2">O Que É:</p>
+                  <p className="text-sm sm:text-base text-muted-foreground leading-relaxed">
+                    Realização de caminhadas históricas e de construção de comunidade no Rio de Janeiro, conectando 
+                    nômades digitais e locais com a história profunda da cidade.
+                  </p>
+                </div>
+              </CardContent>
+            </Card>
+
+            <Card>
+              <CardHeader>
+                <CardTitle className="text-lg sm:text-xl" style={{ color: '#FF7D6B' }}>Feltrip Impacto Social</CardTitle>
               </CardHeader>
               <CardContent className="space-y-3">
                 <p className="text-sm sm:text-base text-muted-foreground leading-relaxed">
@@ -155,22 +170,7 @@ const CuradoriaPremium = ({ onBack }: CuradoriaPremiumProps) => {
 
             <Card>
               <CardHeader>
-                <CardTitle className="text-lg sm:text-xl">Parceria Oficial com The Nomad World Festival</CardTitle>
-              </CardHeader>
-              <CardContent className="space-y-3">
-                <div>
-                  <p className="font-semibold text-sm sm:text-base mb-2">O Que É:</p>
-                  <p className="text-sm sm:text-base text-muted-foreground leading-relaxed">
-                    Realização de caminhadas históricas e de construção de comunidade no Rio de Janeiro, conectando 
-                    nômades digitais e locais com a história profunda da cidade.
-                  </p>
-                </div>
-              </CardContent>
-            </Card>
-
-            <Card>
-              <CardHeader>
-                <CardTitle className="text-lg sm:text-xl">Acolhimento de Defensores (Justiça Global)</CardTitle>
+                <CardTitle className="text-lg sm:text-xl" style={{ color: '#FF7D6B' }}>Acolhimento de Defensores (Justiça Global)</CardTitle>
               </CardHeader>
               <CardContent className="space-y-3">
                 <div>
@@ -186,6 +186,19 @@ const CuradoriaPremium = ({ onBack }: CuradoriaPremiumProps) => {
                     aprendizado do português e a integração cultural.
                   </p>
                 </div>
+              </CardContent>
+            </Card>
+
+            <Card>
+              <CardHeader>
+                <CardTitle className="text-lg sm:text-xl" style={{ color: '#FF7D6B' }}>Caminhada Poética para equipes interestaduais</CardTitle>
+              </CardHeader>
+              <CardContent>
+                <p className="text-sm sm:text-base text-muted-foreground leading-relaxed">
+                  Como parte do nosso programa Feltrip Impacto Social, propomos à Abraço Cultural uma ativação de 
+                  curadoria pontual para seus colaboradores de SP no Rio: uma conversa-caminhada poética no Mural 
+                  das Etnias, focada nos pilares "Território" e "O Outro".
+                </p>
               </CardContent>
             </Card>
           </div>
