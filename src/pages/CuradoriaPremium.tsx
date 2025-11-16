@@ -131,6 +131,30 @@ const CuradoriaPremium = ({ onBack }: CuradoriaPremiumProps) => {
 
             <Card>
               <CardHeader>
+                <CardTitle className="text-lg sm:text-xl">Feltrip Impacto Social</CardTitle>
+              </CardHeader>
+              <CardContent className="space-y-3">
+                <p className="text-sm sm:text-base text-muted-foreground leading-relaxed">
+                  Como parte fundamental da nossa metodologia de "Ocupar o Território", o programa Feltrip Impacto Social 
+                  é o nosso braço dedicado a organizações sem fins lucrativos e ONGs.
+                </p>
+                <p className="text-sm sm:text-base text-muted-foreground leading-relaxed">
+                  Para estas organizações, não oferecemos um catálogo, mas sim uma solução de curadoria focada. Ativamos 
+                  nossa rede de parceiros homologados para desenhar um apoio pontual e sob medida, alinhado à situação 
+                  específica e aos desafios da ONG.
+                </p>
+                <p className="text-sm sm:text-base text-muted-foreground leading-relaxed">
+                  Cada projeto conta com um acompanhamento específico da Feltrip para garantir a aplicação da nossa metodologia.
+                </p>
+                <p className="text-sm sm:text-base text-muted-foreground leading-relaxed">
+                  Disponibilizamos este serviço a um valor social subsidiado, viabilizando o acesso ao nosso ecossistema 
+                  de curadoria como parte do nosso compromisso de impacto.
+                </p>
+              </CardContent>
+            </Card>
+
+            <Card>
+              <CardHeader>
                 <CardTitle className="text-lg sm:text-xl">Parceria Oficial com The Nomad World Festival</CardTitle>
               </CardHeader>
               <CardContent className="space-y-3">
