@@ -11,6 +11,7 @@ import {
 import coletivaDelasLogo from "@/assets/coletiva-delas-logo.png";
 import justicaGlobalLogo from "@/assets/justica-global-logo.png";
 import nomadWorldLogo from "@/assets/nomad-world-logo.png";
+import abracoculturalLogo from "@/assets/abraco-cultural-logo.png";
 
 interface CuradoriaPremiumProps {
   onBack: () => void;
@@ -21,6 +22,7 @@ const CuradoriaPremium = ({ onBack }: CuradoriaPremiumProps) => {
     { name: "Coletiva Delas", logo: coletivaDelasLogo },
     { name: "Justiça Global", logo: justicaGlobalLogo },
     { name: "The Nomad World", logo: nomadWorldLogo },
+    { name: "Abraço Cultural", logo: abracoculturalLogo },
   ];
 
   return (
