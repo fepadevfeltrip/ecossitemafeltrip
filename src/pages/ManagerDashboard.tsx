@@ -1,8 +1,12 @@
 import { ArrowLeft, Sparkles, Wand2 } from "lucide-react";
 import { Button } from "@/components/ui/button";
-import { MetricsTable } from "@/components/dashboard/MetricsTable";
+import { useState, useEffect } from "react";
 import { RadarChart } from "@/components/dashboard/RadarChart";
-import { EngagementChart } from "@/components/dashboard/EngagementChart";
+import { supabase } from "@/integrations/supabase/client";
+import { Card, CardContent, CardHeader, CardTitle } from "@/components/ui/card";
+import { Button } from "@/components/ui/button";
+import { Lightbulb } from "lucide-react";
+import caminhadaGrupo from "@/assets/caminhada-grupo.jpg";
 import { useState } from "react";
 import CuradoriaPremium from "./CuradoriaPremium";
 import { Card } from "@/components/ui/card";
