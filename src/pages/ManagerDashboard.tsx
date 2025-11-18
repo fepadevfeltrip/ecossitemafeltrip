@@ -5,14 +5,20 @@ import { Card, CardContent, CardHeader, CardTitle } from "@/components/ui/card";
 import { Button } from "@/components/ui/button";
 import { Lightbulb, ArrowLeft } from "lucide-react";
 import caminhadaGrupo from "@/assets/caminhada-grupo.jpg";
+import CuradoriaPremium from "./CuradoriaPremium";
 
 interface ManagerDashboardProps {
   onBack: () => void;
 }
 
 const ManagerDashboard = ({ onBack }: ManagerDashboardProps) => {
+  const [view, setView] = useState<"dashboard" | "curadoria">("dashboard");
   const [proposition, setProposition] = useState("");
   const [loadingProposition, setLoadingProposition] = useState(false);
+
+  if (view === "curadoria") {
+    return <CuradoriaPremium onBack={() => setView("dashboard")} />;
+  }
 
   useEffect(() => {
     loadProposition();
@@ -90,8 +96,13 @@ const ManagerDashboard = ({ onBack }: ManagerDashboardProps) => {
                 Experiências curatoriais in loco que conectam colaboradores ao território,
                 reduzindo riscos de adaptação e fortalecendo o senso de pertencimento.
               </p>
-              <Button size="lg" variant="secondary" className="bg-white text-primary hover:bg-white/90">
-                Solicitar Proposta de Serviço Premium
+              <Button 
+                size="lg" 
+                variant="secondary" 
+                className="bg-white text-primary hover:bg-white/90"
+                onClick={() => setView("curadoria")}
+              >
+                Curadoria Premium
               </Button>
             </div>
           </div>

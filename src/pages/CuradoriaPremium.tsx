@@ -12,6 +12,7 @@ import coletivaDelasLogo from "@/assets/coletiva-delas-logo.png";
 import justicaGlobalLogo from "@/assets/justica-global-logo.png";
 import nomadWorldLogo from "@/assets/nomad-world-logo.png";
 import abracoculturalLogo from "@/assets/abraco-cultural-logo.png";
+import feltripLogo from "@/assets/feltrip-logo.png";
 
 interface CuradoriaPremiumProps {
   onBack: () => void;
@@ -23,6 +24,7 @@ const CuradoriaPremium = ({ onBack }: CuradoriaPremiumProps) => {
     { name: "Justiça Global", logo: justicaGlobalLogo },
     { name: "The Nomad World", logo: nomadWorldLogo },
     { name: "Abraço Cultural", logo: abracoculturalLogo },
+    { name: "Feltrip", logo: feltripLogo },
   ];
 
   return (
@@ -77,7 +79,7 @@ const CuradoriaPremium = ({ onBack }: CuradoriaPremiumProps) => {
               </CardHeader>
               <CardContent>
                 <p className="text-sm sm:text-base text-muted-foreground leading-relaxed">
-                  Promove um senso de <span className="font-semibold text-primary">pertencimento</span> real. 
+                  Promove um senso de <span className="font-semibold text-primary">pertencimento real</span>. 
                   Ele deixa de ser um espectador e passa a ser um participante ativo da cultura local, 
                   entendendo seu novo contexto de forma humana e situada.
                 </p>
@@ -90,7 +92,7 @@ const CuradoriaPremium = ({ onBack }: CuradoriaPremiumProps) => {
               </CardHeader>
               <CardContent>
                 <p className="text-sm sm:text-base text-muted-foreground leading-relaxed">
-                  Nós <span className="font-semibold text-primary">ativamos sua marca</span> no cenário urbano. 
+                  Nós <span className="font-semibold text-primary">ativamos sua marca no cenário urbano</span>. 
                   Ao patrocinar e co-realizar essas ativações, sua empresa se posiciona como uma força cultural positiva, 
                   gerando espaços de diálogo e demonstrando um compromisso genuíno com a cidade onde está presente.
                 </p>
@@ -100,29 +102,29 @@ const CuradoriaPremium = ({ onBack }: CuradoriaPremiumProps) => {
         </section>
 
         {/* Projects Section */}
-        <section className="space-y-6 sm:space-y-8">
+        <section className="space-y-8">
           <h3 className="text-xl sm:text-2xl lg:text-3xl font-bold text-foreground text-center">
             Nossos Projetos de Ativação
           </h3>
-          <p className="text-base sm:text-lg text-muted-foreground text-center max-w-3xl mx-auto font-semibold">
+          <p className="text-base sm:text-lg text-muted-foreground text-center max-w-3xl mx-auto leading-relaxed">
             Não vendemos teoria. Entregamos resultados comprovados:
           </p>
 
           <div className="space-y-6">
+            {/* Narrativa Migrante */}
             <Card>
               <CardHeader>
                 <CardTitle className="text-lg sm:text-xl">Narrativa Migrante</CardTitle>
               </CardHeader>
-              <CardContent className="space-y-3">
+              <CardContent className="space-y-4">
                 <div>
-                  <p className="font-semibold text-sm sm:text-base mb-2">O Que Foi:</p>
+                  <h4 className="font-semibold text-foreground mb-2">O Que Foi:</h4>
                   <p className="text-sm sm:text-base text-muted-foreground leading-relaxed">
-                    Um projeto em co-realização com a Coletiva Delas, patrocinado pela <span className="font-semibold">EloGroup</span> e 
-                    pela <span className="font-semibold">Prefeitura do Rio de Janeiro</span>.
+                    Um projeto em co-realização com a Coletiva Delas, patrocinado pela EloGroup e pela Prefeitura do Rio de Janeiro.
                   </p>
                 </div>
                 <div>
-                  <p className="font-semibold text-sm sm:text-base mb-2">A Ativação:</p>
+                  <h4 className="font-semibold text-foreground mb-2">A Ativação:</h4>
                   <p className="text-sm sm:text-base text-muted-foreground leading-relaxed">
                     Unimos historiadores e migrantes em caminhadas-diálogo pela Pequena África (Rio), explorando temas como 
                     diáspora, afeto e interculturalidade. O resultado está sendo transformado em um ebook e uma série de vídeos.
@@ -131,75 +133,78 @@ const CuradoriaPremium = ({ onBack }: CuradoriaPremiumProps) => {
               </CardContent>
             </Card>
 
+            {/* Nomad World */}
             <Card>
               <CardHeader>
                 <CardTitle className="text-lg sm:text-xl">Parceria Oficial com The Nomad World Festival</CardTitle>
               </CardHeader>
-              <CardContent className="space-y-3">
+              <CardContent className="space-y-4">
                 <div>
-                  <p className="font-semibold text-sm sm:text-base mb-2">O Que É:</p>
+                  <h4 className="font-semibold text-foreground mb-2">O Que É:</h4>
                   <p className="text-sm sm:text-base text-muted-foreground leading-relaxed">
-                    Realização de caminhadas históricas e de construção de comunidade no Rio de Janeiro, conectando 
-                    nômades digitais e locais com a história profunda da cidade.
+                    Realização de caminhadas históricas e de construção de comunidade no Rio de Janeiro, conectando nômades 
+                    digitais e locais com a história profunda da cidade.
                   </p>
                 </div>
               </CardContent>
             </Card>
+          </div>
+        </section>
 
+        {/* Social Impact Section */}
+        <section className="space-y-6">
+          <h3 className="text-xl sm:text-2xl lg:text-3xl font-bold text-foreground text-center">
+            Feltrip Impacto Social
+          </h3>
+          <p className="text-base sm:text-lg text-muted-foreground max-w-3xl mx-auto leading-relaxed">
+            Como parte fundamental da nossa metodologia de "Ocupar o Território", o programa <span className="font-semibold text-primary">Feltrip Impacto Social</span> é 
+            o nosso braço dedicado a organizações sem fins lucrativos e ONGs.
+          </p>
+          <p className="text-base sm:text-lg text-muted-foreground max-w-3xl mx-auto leading-relaxed">
+            Para estas organizações, não oferecemos um catálogo, mas sim uma solução de curadoria focada. Ativamos nossa rede de 
+            parceiros homologados para desenhar um apoio pontual e sob medida, alinhado à situação específica e aos desafios da ONG.
+          </p>
+          <p className="text-base sm:text-lg text-muted-foreground max-w-3xl mx-auto leading-relaxed">
+            Cada projeto conta com um acompanhamento específico da Feltrip para garantir a aplicação da nossa metodologia.
+          </p>
+          <p className="text-base sm:text-lg text-muted-foreground max-w-3xl mx-auto leading-relaxed">
+            Disponibilizamos este serviço a um <span className="font-semibold text-primary">valor social subsidiado</span>, viabilizando o acesso ao nosso 
+            ecossistema de curadoria como parte do nosso compromisso de impacto.
+          </p>
+
+          <div className="space-y-6 mt-8">
+            {/* Justiça Global */}
             <Card>
               <CardHeader>
-                <CardTitle className="text-lg sm:text-xl" style={{ color: '#FF7D6B' }}>Feltrip Impacto Social</CardTitle>
+                <CardTitle className="text-lg sm:text-xl">Acolhimento de Defensores (Justiça Global)</CardTitle>
               </CardHeader>
-              <CardContent className="space-y-3">
-                <p className="text-sm sm:text-base text-muted-foreground leading-relaxed">
-                  Como parte fundamental da nossa metodologia de "Ocupar o Território", o programa Feltrip Impacto Social 
-                  é o nosso braço dedicado a organizações sem fins lucrativos e ONGs.
-                </p>
-                <p className="text-sm sm:text-base text-muted-foreground leading-relaxed">
-                  Para estas organizações, não oferecemos um catálogo, mas sim uma solução de curadoria focada. Ativamos 
-                  nossa rede de parceiros homologados para desenhar um apoio pontual e sob medida, alinhado à situação 
-                  específica e aos desafios da ONG.
-                </p>
-                <p className="text-sm sm:text-base text-muted-foreground leading-relaxed">
-                  Cada projeto conta com um acompanhamento específico da Feltrip para garantir a aplicação da nossa metodologia.
-                </p>
-                <p className="text-sm sm:text-base text-muted-foreground leading-relaxed">
-                  Disponibilizamos este serviço a um valor social subsidiado, viabilizando o acesso ao nosso ecossistema 
-                  de curadoria como parte do nosso compromisso de impacto.
-                </p>
-              </CardContent>
-            </Card>
-
-            <Card>
-              <CardHeader>
-                <CardTitle className="text-lg sm:text-xl" style={{ color: '#FF7D6B' }}>Acolhimento de Defensores (Justiça Global)</CardTitle>
-              </CardHeader>
-              <CardContent className="space-y-3">
+              <CardContent className="space-y-4">
                 <div>
-                  <p className="font-semibold text-sm sm:text-base mb-2">O Que Foi:</p>
+                  <h4 className="font-semibold text-foreground mb-2">O Que Foi:</h4>
                   <p className="text-sm sm:text-base text-muted-foreground leading-relaxed">
                     Um projeto de acolhimento para visitantes e defensores de direitos humanos da ONG Justiça Global.
                   </p>
                 </div>
                 <div>
-                  <p className="font-semibold text-sm sm:text-base mb-2">A Ativação:</p>
+                  <h4 className="font-semibold text-foreground mb-2">A Ativação:</h4>
                   <p className="text-sm sm:text-base text-muted-foreground leading-relaxed">
-                    Usamos caminhadas imersivas no cotidiano e na cultura local como uma ferramenta prática para o 
-                    aprendizado do português e a integração cultural.
+                    Usamos caminhadas imersivas no cotidiano e na cultura local como uma ferramenta prática para o aprendizado 
+                    do português e a integração cultural.
                   </p>
                 </div>
               </CardContent>
             </Card>
 
+            {/* Abraço Cultural */}
             <Card>
               <CardHeader>
-                <CardTitle className="text-lg sm:text-xl" style={{ color: '#FF7D6B' }}>Caminhada Poética para equipes interestaduais</CardTitle>
+                <CardTitle className="text-lg sm:text-xl">Caminhada Poética para equipes interestaduais</CardTitle>
               </CardHeader>
-              <CardContent>
+              <CardContent className="space-y-4">
                 <p className="text-sm sm:text-base text-muted-foreground leading-relaxed">
-                  Como parte do nosso programa Feltrip Impacto Social, propomos à Abraço Cultural uma ativação de 
-                  curadoria pontual para seus colaboradores de SP no Rio: uma conversa-caminhada poética no Mural 
-                  das Etnias, focada nos pilares "Território" e "O Outro".
+                  Como parte do nosso programa Feltrip Impacto Social, propomos à Abraço Cultural uma ativação de curadoria 
+                  pontual para seus colaboradores de SP no Rio: uma conversa-caminhada poética no Mural das Etnias, focada nos 
+                  pilares "Território" e "O Outro".
                 </p>
               </CardContent>
             </Card>
@@ -208,27 +213,27 @@ const CuradoriaPremium = ({ onBack }: CuradoriaPremiumProps) => {
 
         {/* Partners Carousel */}
         <section className="space-y-6">
-          <h3 className="text-xl sm:text-2xl font-bold text-foreground text-center">
+          <h3 className="text-xl sm:text-2xl lg:text-3xl font-bold text-foreground text-center">
             Confiam na Feltrip
           </h3>
-          <div className="max-w-2xl mx-auto px-8 sm:px-12">
+          <div className="max-w-4xl mx-auto px-12">
             <Carousel
               opts={{
-                align: "center",
+                align: "start",
                 loop: true,
               }}
               className="w-full"
             >
               <CarouselContent>
                 {partners.map((partner, index) => (
-                  <CarouselItem key={index} className="md:basis-1/2 lg:basis-1/3">
+                  <CarouselItem key={index} className="basis-1/2 md:basis-1/3 lg:basis-1/4">
                     <div className="p-4">
-                      <Card>
+                      <Card className="border-0 shadow-none">
                         <CardContent className="flex aspect-square items-center justify-center p-6">
                           <img
                             src={partner.logo}
-                            alt={`Logo ${partner.name}`}
-                            className="max-w-full max-h-full object-contain"
+                            alt={partner.name}
+                            className="max-w-full max-h-full object-contain filter grayscale hover:grayscale-0 transition-all duration-300"
                           />
                         </CardContent>
                       </Card>
