@@ -1,100 +1,102 @@
-import { ArrowLeft, Sparkles, Wand2 } from "lucide-react";
-import { Button } from "@/components/ui/button";
 import { useState, useEffect } from "react";
 import { RadarChart } from "@/components/dashboard/RadarChart";
 import { supabase } from "@/integrations/supabase/client";
 import { Card, CardContent, CardHeader, CardTitle } from "@/components/ui/card";
 import { Button } from "@/components/ui/button";
-import { Lightbulb } from "lucide-react";
+import { Lightbulb, ArrowLeft } from "lucide-react";
 import caminhadaGrupo from "@/assets/caminhada-grupo.jpg";
-import { useState } from "react";
-import CuradoriaPremium from "./CuradoriaPremium";
-import { Card } from "@/components/ui/card";
-import { Textarea } from "@/components/ui/textarea";
-import { toast } from "sonner";
 
 interface ManagerDashboardProps {
   onBack: () => void;
 }
 
 const ManagerDashboard = ({ onBack }: ManagerDashboardProps) => {
-  const [showCuradoria, setShowCuradoria] = useState(false);
-  const [aiProposal, setAiProposal] = useState("");
-  const [isGenerating, setIsGenerating] = useState(false);
+  const [proposition, setProposition] = useState("");
+  const [loadingProposition, setLoadingProposition] = useState(false);
 
-  const generatePoeticalProposal = () => {
-    setIsGenerating(true);
-    
-    setTimeout(() => {
-      setIsGenerating(false);
-      toast.info("Estamos treinando nossa IA para te atender em breve! 🤖✨");
-    }, 1000);
+  useEffect(() => {
+    loadProposition();
+  }, []);
+
+  const loadProposition = async () => {
+    setLoadingProposition(true);
+    try {
+      const { data, error } = await supabase.functions.invoke('generate-rh-proposition');
+      if (error) throw error;
+      setProposition(data || "Proposição estratégica sendo gerada...");
+    } catch (error) {
+      console.error('Error loading RH proposition:', error);
+      setProposition("Não foi possível gerar a proposição no momento.");
+    } finally {
+      setLoadingProposition(false);
+    }
   };
 
-  if (showCuradoria) {
-    return <CuradoriaPremium onBack={() => setShowCuradoria(false)} />;
-  }
-
   return (
-    <div className="min-h-screen bg-background">
-      <header className="bg-card border-b border-border sticky top-0 z-10">
-        <div className="container mx-auto px-3 sm:px-6 py-3 sm:py-4">
-          <div className="flex items-center gap-2 sm:gap-4">
-            <Button variant="ghost" size="icon" onClick={onBack} className="shrink-0">
-              <ArrowLeft className="h-4 w-4 sm:h-5 sm:w-5" />
+    <div className="min-h-screen bg-gradient-to-br from-background via-muted/30 to-accent/10 p-6">
+      <div className="max-w-7xl mx-auto space-y-8">
+        {/* Header */}
+        <div className="flex items-center justify-between">
+          <div className="flex items-center gap-4">
+            <Button variant="ghost" size="icon" onClick={onBack}>
+              <ArrowLeft className="h-5 w-5" />
             </Button>
-            <h1 className="text-base sm:text-xl lg:text-2xl font-bold text-foreground leading-tight">
-              Painel de Acompanhamento B2B (RH)
-            </h1>
+            <div>
+              <h1 className="text-3xl font-bold text-foreground">Radar do RH</h1>
+              <p className="text-muted-foreground">Visão Estratégica de Pertencimento B2B</p>
+            </div>
           </div>
         </div>
-      </header>
 
-      <main className="container mx-auto px-3 sm:px-6 py-4 sm:py-8 space-y-4 sm:space-y-8">
-        <div className="flex justify-center">
-          <Button
-            onClick={() => setShowCuradoria(true)}
-            size="lg"
-            className="gap-2"
-          >
-            <Sparkles className="h-5 w-5" />
-            Feltrip Curadoria Premium
-          </Button>
-        </div>
+        {/* Main Radar Chart */}
+        <RadarChart />
 
-        <MetricsTable />
-        
-        <div className="grid grid-cols-1 lg:grid-cols-2 gap-4 sm:gap-8">
-          <RadarChart />
-          <EngagementChart />
-        </div>
-
-        <Card className="p-6 space-y-4">
-          <div className="flex items-center justify-between">
-            <h3 className="text-lg font-semibold text-foreground">
-              Proposta Poética de Presença Relacional
-            </h3>
-            <Button
-              onClick={generatePoeticalProposal}
-              disabled={isGenerating}
-              className="gap-2"
-            >
-              <Wand2 className="h-4 w-4" />
-              {isGenerating ? "Gerando..." : "Gerar Proposta com IA"}
-            </Button>
-          </div>
-          <p className="text-sm text-muted-foreground">
-            Peça à IA para criar uma proposta poética de atividades para os colaboradores baseada nas métricas dos 5 pilares de presença relacional.
-          </p>
-          {aiProposal && (
-            <Textarea
-              value={aiProposal}
-              readOnly
-              className="min-h-[400px] font-mono text-sm"
-            />
-          )}
+        {/* AI Strategic Proposition */}
+        <Card className="border-primary/20 bg-gradient-to-br from-primary/5 to-secondary/5">
+          <CardHeader>
+            <CardTitle className="flex items-center gap-2 text-xl">
+              <Lightbulb className="h-5 w-5 text-primary" />
+              Proposição Estratégica da Boba 💡
+            </CardTitle>
+          </CardHeader>
+          <CardContent>
+            {loadingProposition ? (
+              <div className="animate-pulse space-y-3">
+                <div className="h-4 bg-muted rounded w-full" />
+                <div className="h-4 bg-muted rounded w-5/6" />
+                <div className="h-4 bg-muted rounded w-4/5" />
+              </div>
+            ) : (
+              <p className="text-foreground leading-relaxed">{proposition}</p>
+            )}
+          </CardContent>
         </Card>
-      </main>
+
+        {/* Premium Service Banner */}
+        <Card className="overflow-hidden border-2 border-accent">
+          <div className="relative">
+            <div 
+              className="absolute inset-0 bg-cover bg-center"
+              style={{ 
+                backgroundImage: `url(${caminhadaGrupo})`,
+                filter: 'brightness(0.3)'
+              }}
+            />
+            <div className="relative z-10 p-8 space-y-4">
+              <h3 className="text-2xl font-bold text-white">
+                Nossas Caminhadas de Integração: Transformando Risco em Pertencimento
+              </h3>
+              <p className="text-white/90 max-w-2xl">
+                Experiências curatoriais in loco que conectam colaboradores ao território,
+                reduzindo riscos de adaptação e fortalecendo o senso de pertencimento.
+              </p>
+              <Button size="lg" variant="secondary" className="bg-white text-primary hover:bg-white/90">
+                Solicitar Proposta de Serviço Premium
+              </Button>
+            </div>
+          </div>
+        </Card>
+      </div>
     </div>
   );
 };
