@@ -8,18 +8,17 @@ const Landing = () => {
   const navigate = useNavigate();
 
   return (
-    <div className="min-h-screen relative">
+    <div className="min-h-screen relative bg-background">
       {/* Hero Background */}
       <div 
-        className="absolute inset-0 bg-cover bg-center"
+        className="absolute inset-0 bg-cover bg-center opacity-40"
         style={{ 
-          backgroundImage: `url(${muralHero})`,
-          filter: 'brightness(0.4)'
+          backgroundImage: `url(${muralHero})`
         }}
       />
       
       {/* Content */}
-      <div className="relative z-10 min-h-screen flex flex-col items-center justify-center p-6 bg-gradient-to-b from-background/80 via-background/60 to-background/80">
+      <div className="relative z-10 min-h-screen flex flex-col items-center justify-center p-6">
         <div className="w-full max-w-5xl space-y-12">
           {/* Header */}
           <div className="text-center space-y-6">
