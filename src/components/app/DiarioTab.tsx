@@ -20,7 +20,7 @@ export const DiarioTab = ({ onEntrySubmitted }: DiarioTabProps) => {
 
   const loadPrompt = async () => {
     try {
-      const { data, error } = await supabase.rpc('generate_poetic_prompt');
+      const { data, error } = await supabase.functions.invoke('generate-poetic-prompt');
       if (error) throw error;
       setPrompt(data || "O que aconteceu hoje? Como você se sentiu?");
     } catch (error) {
@@ -45,8 +45,8 @@ export const DiarioTab = ({ onEntrySubmitted }: DiarioTabProps) => {
       if (!user) throw new Error("User not authenticated");
 
       // Analyze sentiment
-      const { data: analysis, error: analysisError } = await supabase.rpc('analyze_entry_sentiment', {
-        entry_text: entry
+      const { data: analysis, error: analysisError } = await supabase.functions.invoke('analyze-entry-sentiment', {
+        body: { entry_text: entry }
       });
 
       if (analysisError) throw analysisError;
@@ -57,8 +57,8 @@ export const DiarioTab = ({ onEntrySubmitted }: DiarioTabProps) => {
         .insert({
           user_id: user.id,
           content: entry,
-          pillar: analysis.pillar,
-          sentiment: analysis.sentiment
+          pillar: analysis?.pillar || 'Identity',
+          sentiment: analysis?.sentiment || 50
         });
 
       if (insertError) throw insertError;

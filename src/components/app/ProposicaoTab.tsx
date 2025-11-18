@@ -14,7 +14,7 @@ export const ProposicaoTab = () => {
   const loadProposition = async () => {
     setLoading(true);
     try {
-      const { data, error } = await supabase.rpc('generate_poetic_prompt');
+      const { data, error } = await supabase.functions.invoke('generate-poetic-prompt');
       if (error) throw error;
       setProposition(data || "Sua proposição poética está sendo gerada...");
     } catch (error) {
