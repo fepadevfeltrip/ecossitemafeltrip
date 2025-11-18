@@ -3,6 +3,7 @@ import { Button } from "@/components/ui/button";
 import { Textarea } from "@/components/ui/textarea";
 import { supabase } from "@/integrations/supabase/client";
 import { useToast } from "@/hooks/use-toast";
+import bobaMeditation from "@/assets/boba-meditation.png";
 
 interface DiarioTabProps {
   onEntrySubmitted: () => void;
@@ -85,6 +86,15 @@ export const DiarioTab = ({ onEntrySubmitted }: DiarioTabProps) => {
   return (
     <div className="flex-1 overflow-y-auto p-6 pb-24">
       <div className="max-w-2xl mx-auto space-y-6">
+        {/* Boba Image */}
+        <div className="flex justify-center">
+          <img 
+            src={bobaMeditation} 
+            alt="Boba meditando" 
+            className="w-48 h-48 object-contain rounded-lg"
+          />
+        </div>
+
         {/* Poetic Prompt */}
         <div className="bg-card/50 rounded-lg p-6 border border-border text-center">
           <h3 className="text-xl font-semibold text-primary mb-2">
