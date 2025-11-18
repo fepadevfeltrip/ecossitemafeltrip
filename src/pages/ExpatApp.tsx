@@ -5,7 +5,8 @@ import { MeuMapaTab } from "@/components/app/MeuMapaTab";
 import { MapaSeguroTab } from "@/components/app/MapaSeguroTab";
 import { DiarioTab } from "@/components/app/DiarioTab";
 import { ProposicaoTab } from "@/components/app/ProposicaoTab";
-import { Map, BookOpen, Sparkles, Compass, LogOut } from "lucide-react";
+import { LanguagePracticeTab } from "@/components/app/LanguagePracticeTab";
+import { Map, BookOpen, Sparkles, Compass, LogOut, MessageCircle } from "lucide-react";
 import { Button } from "@/components/ui/button";
 
 interface ExpatAppProps {
@@ -13,12 +14,13 @@ interface ExpatAppProps {
 }
 
 const ExpatApp = ({ onBack }: ExpatAppProps) => {
-  const [activeTab, setActiveTab] = useState<"mapa" | "seguro" | "diario" | "proposicao">("mapa");
+  const [activeTab, setActiveTab] = useState<"mapa" | "seguro" | "diario" | "proposicao" | "idioma">("mapa");
 
   const tabs = [
     { id: "mapa" as const, icon: Compass, label: "Meu Mapa" },
     { id: "seguro" as const, icon: Map, label: "Mapa Seguro" },
     { id: "diario" as const, icon: BookOpen, label: "Diário" },
+    { id: "idioma" as const, icon: MessageCircle, label: "Idioma" },
     { id: "proposicao" as const, icon: Sparkles, label: "Proposição" },
   ];
 
@@ -43,6 +45,7 @@ const ExpatApp = ({ onBack }: ExpatAppProps) => {
           {activeTab === "mapa" && <MeuMapaTab />}
           {activeTab === "seguro" && <MapaSeguroTab />}
           {activeTab === "diario" && <DiarioTab onEntrySubmitted={() => setActiveTab("mapa")} />}
+          {activeTab === "idioma" && <LanguagePracticeTab />}
           {activeTab === "proposicao" && <ProposicaoTab />}
         </div>
         {/* Bottom Navigation */}

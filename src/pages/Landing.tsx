@@ -9,16 +9,8 @@ const Landing = () => {
 
   return (
     <div className="min-h-screen relative bg-background">
-      {/* Hero Background */}
-      <div 
-        className="absolute inset-0 bg-cover bg-center opacity-40"
-        style={{ 
-          backgroundImage: `url(${muralHero})`
-        }}
-      />
-      
       {/* Content */}
-      <div className="relative z-10 min-h-screen flex flex-col items-center justify-center p-6">
+      <div className="min-h-screen flex flex-col items-center justify-center p-6">
         <div className="w-full max-w-5xl space-y-12">
           {/* Header */}
           <div className="text-center space-y-6">

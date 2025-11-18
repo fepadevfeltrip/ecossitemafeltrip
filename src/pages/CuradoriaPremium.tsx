@@ -43,11 +43,18 @@ const CuradoriaPremium = ({ onBack }: CuradoriaPremiumProps) => {
       </header>
 
       <main className="container mx-auto px-3 sm:px-6 py-6 sm:py-12 space-y-8 sm:space-y-12">
+        {/* Impacto Social Title */}
+        <section className="text-center">
+          <h2 className="text-3xl sm:text-4xl lg:text-5xl font-bold mb-8" style={{ color: 'hsl(15, 85%, 70%)' }}>
+            Impacto Social
+          </h2>
+        </section>
+
         {/* Hero Section */}
         <section className="text-center space-y-4 sm:space-y-6">
-          <h2 className="text-2xl sm:text-3xl lg:text-4xl font-bold text-foreground">
+          <h3 className="text-2xl sm:text-3xl lg:text-4xl font-bold text-foreground">
             Onde o Onboarding Digital Encontra a Cidade
-          </h2>
+          </h3>
           <p className="text-base sm:text-lg text-muted-foreground max-w-3xl mx-auto leading-relaxed">
             A adaptação de um expatriado não acontece apenas em um aplicativo; ela acontece no território. 
             O software da Feltrip oferece o mapa, mas nossa <span className="font-semibold text-primary">Curadoria Premium</span> oferece 
