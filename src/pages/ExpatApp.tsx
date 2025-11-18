@@ -5,7 +5,8 @@ import { MeuMapaTab } from "@/components/app/MeuMapaTab";
 import { MapaSeguroTab } from "@/components/app/MapaSeguroTab";
 import { DiarioTab } from "@/components/app/DiarioTab";
 import { ProposicaoTab } from "@/components/app/ProposicaoTab";
-import { Map, BookOpen, Sparkles, Compass } from "lucide-react";
+import { Map, BookOpen, Sparkles, Compass, LogOut } from "lucide-react";
+import { Button } from "@/components/ui/button";
 
 interface ExpatAppProps {
   onBack?: () => void;
@@ -24,11 +25,26 @@ const ExpatApp = ({ onBack }: ExpatAppProps) => {
   return (
     <AuthWrapper>
       <MobileFrame>
-        {activeTab === "mapa" && <MeuMapaTab />}
-        {activeTab === "seguro" && <MapaSeguroTab />}
-        {activeTab === "diario" && <DiarioTab onEntrySubmitted={() => setActiveTab("mapa")} />}
-        {activeTab === "proposicao" && <ProposicaoTab />}
-        
+        {/* Header with Exit Button */}
+        <div className="bg-card border-b border-border p-4 flex justify-between items-center">
+          <h2 className="text-lg font-semibold text-foreground">Feltrip</h2>
+          <Button
+            variant="ghost"
+            size="sm"
+            onClick={onBack}
+            className="gap-2"
+          >
+            <LogOut className="h-4 w-4" />
+            Sair
+          </Button>
+        </div>
+
+        <div className="flex-1 overflow-y-auto">
+          {activeTab === "mapa" && <MeuMapaTab />}
+          {activeTab === "seguro" && <MapaSeguroTab />}
+          {activeTab === "diario" && <DiarioTab onEntrySubmitted={() => setActiveTab("mapa")} />}
+          {activeTab === "proposicao" && <ProposicaoTab />}
+        </div>
         {/* Bottom Navigation */}
         <div className="bg-card border-t border-border">
           <div className="flex justify-around items-center h-20 px-4">

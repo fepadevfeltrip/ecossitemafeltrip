@@ -1,9 +1,10 @@
-import { useState, useEffect } from "react";
+import { useState } from "react";
 import { RadarChart } from "@/components/dashboard/RadarChart";
-import { supabase } from "@/integrations/supabase/client";
+import { EngagementChart } from "@/components/dashboard/EngagementChart";
+import { MetricsTable } from "@/components/dashboard/MetricsTable";
 import { Card, CardContent, CardHeader, CardTitle } from "@/components/ui/card";
 import { Button } from "@/components/ui/button";
-import { Lightbulb, ArrowLeft } from "lucide-react";
+import { ArrowLeft, ExternalLink } from "lucide-react";
 import caminhadaGrupo from "@/assets/caminhada-grupo.jpg";
 import CuradoriaPremium from "./CuradoriaPremium";
 
@@ -13,30 +14,10 @@ interface ManagerDashboardProps {
 
 const ManagerDashboard = ({ onBack }: ManagerDashboardProps) => {
   const [view, setView] = useState<"dashboard" | "curadoria">("dashboard");
-  const [proposition, setProposition] = useState("");
-  const [loadingProposition, setLoadingProposition] = useState(false);
 
   if (view === "curadoria") {
     return <CuradoriaPremium onBack={() => setView("dashboard")} />;
   }
-
-  useEffect(() => {
-    loadProposition();
-  }, []);
-
-  const loadProposition = async () => {
-    setLoadingProposition(true);
-    try {
-      const { data, error } = await supabase.functions.invoke('generate-rh-proposition');
-      if (error) throw error;
-      setProposition(data || "Proposição estratégica sendo gerada...");
-    } catch (error) {
-      console.error('Error loading RH proposition:', error);
-      setProposition("Não foi possível gerar a proposição no momento.");
-    } finally {
-      setLoadingProposition(false);
-    }
-  };
 
   return (
     <div className="min-h-screen bg-gradient-to-br from-background via-muted/30 to-accent/10 p-6">
@@ -54,27 +35,27 @@ const ManagerDashboard = ({ onBack }: ManagerDashboardProps) => {
           </div>
         </div>
 
-        {/* Main Radar Chart */}
-        <RadarChart />
-
-        {/* AI Strategic Proposition */}
-        <Card className="border-primary/20 bg-gradient-to-br from-primary/5 to-secondary/5">
+        {/* CARD 1: O Termômetro Cultural */}
+        <Card>
           <CardHeader>
-            <CardTitle className="flex items-center gap-2 text-xl">
-              <Lightbulb className="h-5 w-5 text-primary" />
-              Proposição Estratégica da Boba 💡
-            </CardTitle>
+            <CardTitle className="text-xl">Mapa de Presença Relacional (Time)</CardTitle>
           </CardHeader>
           <CardContent>
-            {loadingProposition ? (
-              <div className="animate-pulse space-y-3">
-                <div className="h-4 bg-muted rounded w-full" />
-                <div className="h-4 bg-muted rounded w-5/6" />
-                <div className="h-4 bg-muted rounded w-4/5" />
-              </div>
-            ) : (
-              <p className="text-foreground leading-relaxed">{proposition}</p>
-            )}
+            <RadarChart />
+          </CardContent>
+        </Card>
+
+        {/* CARD 2: Engajamento Linguístico & Cultural */}
+        <Card>
+          <CardContent className="pt-6">
+            <EngagementChart />
+          </CardContent>
+        </Card>
+
+        {/* CARD 3: Utilização da Rede de Parceiros */}
+        <Card>
+          <CardContent className="pt-6">
+            <MetricsTable />
           </CardContent>
         </Card>
 
@@ -96,14 +77,25 @@ const ManagerDashboard = ({ onBack }: ManagerDashboardProps) => {
                 Experiências curatoriais in loco que conectam colaboradores ao território,
                 reduzindo riscos de adaptação e fortalecendo o senso de pertencimento.
               </p>
-              <Button 
-                size="lg" 
-                variant="secondary" 
-                className="bg-white text-primary hover:bg-white/90"
-                onClick={() => setView("curadoria")}
-              >
-                Curadoria Premium
-              </Button>
+              <div className="flex gap-4">
+                <Button 
+                  size="lg" 
+                  variant="secondary" 
+                  className="bg-white text-primary hover:bg-white/90"
+                  onClick={() => setView("curadoria")}
+                >
+                  Curadoria Premium
+                </Button>
+                <Button 
+                  size="lg" 
+                  variant="outline" 
+                  className="bg-white/10 text-white border-white hover:bg-white/20"
+                  onClick={() => window.open("https://feltrip.com", "_blank")}
+                >
+                  <ExternalLink className="h-4 w-4 mr-2" />
+                  Acessar Time Feltrip
+                </Button>
+              </div>
             </div>
           </div>
         </Card>
