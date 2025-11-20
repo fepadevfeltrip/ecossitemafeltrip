@@ -73,7 +73,7 @@ export const MeuMapaTab = () => {
 
         <Tabs defaultValue="idioma" className="w-full">
           <TabsList className="grid w-full grid-cols-2">
-            <TabsTrigger value="idioma">Anotações de Idioma</TabsTrigger>
+            <TabsTrigger value="idioma">Anotações</TabsTrigger>
             <TabsTrigger value="presenca">Presença Relacional</TabsTrigger>
           </TabsList>
 
