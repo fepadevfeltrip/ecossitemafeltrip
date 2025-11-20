@@ -6,8 +6,9 @@ import { MapaSeguroTab } from "@/components/app/MapaSeguroTab";
 import { DiarioTab } from "@/components/app/DiarioTab";
 import { ProposicaoTab } from "@/components/app/ProposicaoTab";
 import { LanguagePracticeTab } from "@/components/app/LanguagePracticeTab";
+import { RedeParceirosTa } from "@/components/app/RedeParceirosTa";
 import Profile from "@/pages/Profile";
-import { Map, BookOpen, Sparkles, Compass, LogOut, StickyNote, User, Menu } from "lucide-react";
+import { Map, BookOpen, Sparkles, Compass, LogOut, StickyNote, User, Menu, Users } from "lucide-react";
 import { Button } from "@/components/ui/button";
 import { Avatar, AvatarFallback } from "@/components/ui/avatar";
 import { Sheet, SheetContent, SheetTrigger } from "@/components/ui/sheet";
@@ -18,7 +19,7 @@ interface ExpatAppProps {
 }
 
 const ExpatApp = ({ onBack }: ExpatAppProps) => {
-  const [activeTab, setActiveTab] = useState<"mapa" | "seguro" | "diario" | "proposicao" | "notas" | "perfil">("mapa");
+  const [activeTab, setActiveTab] = useState<"mapa" | "seguro" | "diario" | "proposicao" | "notas" | "perfil" | "parceiros">("mapa");
   const [isMenuOpen, setIsMenuOpen] = useState(false);
 
   // Bottom nav - apenas principais
@@ -36,6 +37,7 @@ const ExpatApp = ({ onBack }: ExpatAppProps) => {
     { id: "seguro" as const, icon: Map, label: "Mapa Seguro" },
     { id: "diario" as const, icon: BookOpen, label: "Diário" },
     { id: "notas" as const, icon: StickyNote, label: "Anotações" },
+    { id: "parceiros" as const, icon: Users, label: "Rede de Parceiros" },
     { id: "proposicao" as const, icon: Sparkles, label: "Proposição RH" },
   ];
 
@@ -134,6 +136,7 @@ const ExpatApp = ({ onBack }: ExpatAppProps) => {
           {activeTab === "seguro" && <MapaSeguroTab />}
           {activeTab === "diario" && <DiarioTab onEntrySubmitted={() => setActiveTab("mapa")} />}
           {activeTab === "notas" && <LanguagePracticeTab />}
+          {activeTab === "parceiros" && <RedeParceirosTa />}
           {activeTab === "proposicao" && <ProposicaoTab />}
           {activeTab === "perfil" && <Profile />}
         </div>
