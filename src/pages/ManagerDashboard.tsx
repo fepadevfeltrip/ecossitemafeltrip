@@ -2,6 +2,7 @@ import { useState } from "react";
 import { RadarChart } from "@/components/dashboard/RadarChart";
 import { EngagementChart } from "@/components/dashboard/EngagementChart";
 import { MetricsTable } from "@/components/dashboard/MetricsTable";
+import { SafetyChart } from "@/components/dashboard/SafetyChart";
 import { Card, CardContent, CardHeader, CardTitle } from "@/components/ui/card";
 import { Button } from "@/components/ui/button";
 import { ArrowLeft, ExternalLink } from "lucide-react";
@@ -45,10 +46,18 @@ const ManagerDashboard = ({ onBack }: ManagerDashboardProps) => {
           </CardContent>
         </Card>
 
+
         {/* CARD 2: Engajamento Linguístico & Cultural */}
         <Card>
           <CardContent className="pt-6">
             <EngagementChart />
+          </CardContent>
+        </Card>
+
+        {/* CARD 2.5: Sensação de Segurança */}
+        <Card>
+          <CardContent className="pt-6">
+            <SafetyChart />
           </CardContent>
         </Card>
 

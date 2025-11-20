@@ -1,17 +1,19 @@
 import { useState } from "react";
 import { Button } from "@/components/ui/button";
 import { Card } from "@/components/ui/card";
-import { MessageSquare, Share2, Copy, Phone, MapPin, AlertCircle } from "lucide-react";
+import { Share2, Copy, Phone, MapPin, AlertCircle, PhoneCall } from "lucide-react";
 import { useToast } from "@/hooks/use-toast";
 import { Textarea } from "@/components/ui/textarea";
-import { Input } from "@/components/ui/input";
 import { Select, SelectContent, SelectItem, SelectTrigger, SelectValue } from "@/components/ui/select";
+import { AlertDialog, AlertDialogAction, AlertDialogContent, AlertDialogDescription, AlertDialogFooter, AlertDialogHeader, AlertDialogTitle } from "@/components/ui/alert-dialog";
 
 export const MapaSeguroTab = () => {
   const { toast } = useToast();
   const [reportMode, setReportMode] = useState<'live' | 'past' | null>(null);
   const [reportText, setReportText] = useState("");
   const [selectedCity, setSelectedCity] = useState("");
+  const [showEmergencyCall, setShowEmergencyCall] = useState(false);
+  const [emergencyCallActive, setEmergencyCallActive] = useState(false);
   
   // Mock current location
   const mockLocation = {
@@ -40,57 +42,13 @@ export const MapaSeguroTab = () => {
     return `${baseUrl}/safety-alert?data=${locationData}`;
   };
 
-  const handleShareWhatsApp = (isLive: boolean) => {
-    const link = generateLocationLink(isLive);
-    const message = isLive 
-      ? `🚨 Alerta de Segurança - Localização ao Vivo\n\nEstou compartilhando minha localização atual:\n${mockLocation.address}\n\nVeja no mapa: ${link}`
-      : `⚠️ Relato de Insegurança\n\n${reportText}\n\nLocal: ${mockLocation.address}\n\nVer detalhes: ${link}`;
-    
-    const whatsappUrl = `https://wa.me/?text=${encodeURIComponent(message)}`;
-    window.open(whatsappUrl, '_blank');
-    
-    toast({
-      title: "Abrindo WhatsApp",
-      description: "Você pode escolher o contato para enviar o alerta.",
-    });
-  };
-
-  const handleShareEmail = (isLive: boolean) => {
-    const link = generateLocationLink(isLive);
-    const subject = isLive ? "🚨 Alerta de Segurança - Localização ao Vivo" : "⚠️ Relato de Insegurança";
-    const body = isLive
-      ? `Olá,\n\nEstou compartilhando minha localização atual por questões de segurança.\n\nEndereço: ${mockLocation.address}\n\nVeja no mapa: ${link}\n\nEnviado via Feltrip`
-      : `Olá,\n\nGostaria de relatar uma situação de insegurança:\n\n${reportText}\n\nLocal: ${mockLocation.address}\n\nVer detalhes: ${link}\n\nEnviado via Feltrip`;
-    
-    window.location.href = `mailto:?subject=${encodeURIComponent(subject)}&body=${encodeURIComponent(body)}`;
-    
-    toast({
-      title: "Abrindo Email",
-      description: "Preencha o destinatário e envie o alerta.",
-    });
-  };
-
-  const handleShareSMS = (isLive: boolean) => {
-    const link = generateLocationLink(isLive);
-    const message = isLive
-      ? `🚨 Alerta: Estou em ${mockLocation.address}. Ver mapa: ${link}`
-      : `⚠️ Insegurança em: ${mockLocation.address}. ${reportText}. Ver: ${link}`;
-    
-    window.location.href = `sms:?body=${encodeURIComponent(message)}`;
-    
-    toast({
-      title: "Abrindo SMS",
-      description: "Escolha o contato e envie o alerta.",
-    });
-  };
-
   const handleCopyLink = (isLive: boolean) => {
     const link = generateLocationLink(isLive);
     navigator.clipboard.writeText(link);
     
     toast({
       title: "Link Copiado!",
-      description: "Cole o link onde preferir para compartilhar.",
+      description: "Compartilhe com quem você confia.",
     });
   };
 
@@ -119,15 +77,58 @@ export const MapaSeguroTab = () => {
     }
   };
 
+  const handleEmergencyCall = () => {
+    setEmergencyCallActive(true);
+    setShowEmergencyCall(true);
+    
+    // Simular chamada por 5 segundos
+    setTimeout(() => {
+      setEmergencyCallActive(false);
+    }, 5000);
+
+    toast({
+      title: "Chamada de Emergência Ativada",
+      description: "Conectando com sua rede de segurança...",
+      variant: "destructive",
+    });
+  };
+
   return (
     <div className="flex-1 overflow-y-auto p-6 pb-24">
       <div className="max-w-2xl mx-auto space-y-6">
         <div className="text-center space-y-2">
           <h2 className="text-2xl font-bold text-foreground">Mapa de Segurança</h2>
           <p className="text-sm text-muted-foreground">
-            Compartilhe sua localização e acesse números de emergência
+            Compartilhe sua localização e acesse ajuda imediata
           </p>
         </div>
+
+        {/* Emergency Call Button - Destacado no topo */}
+        <Card className="bg-gradient-to-r from-destructive/10 to-destructive/5 border-destructive/20">
+          <div className="p-6 text-center space-y-4">
+            <div className="flex items-center justify-center gap-3">
+              <PhoneCall className={`h-8 w-8 text-destructive ${emergencyCallActive ? 'animate-pulse' : ''}`} />
+              <h3 className="text-xl font-bold text-foreground">Chamada de Urgência</h3>
+            </div>
+            <p className="text-sm text-muted-foreground max-w-md mx-auto">
+              Em situação de emergência? Acione sua rede de segurança instantaneamente. 
+              Notificará RH, família e contatos de confiança.
+            </p>
+            <Button 
+              size="lg" 
+              variant="destructive" 
+              className="w-full max-w-xs font-bold"
+              onClick={handleEmergencyCall}
+              disabled={emergencyCallActive}
+            >
+              {emergencyCallActive ? (
+                <>🚨 Chamada Ativa...</>
+              ) : (
+                <>🆘 Acionar Urgência</>
+              )}
+            </Button>
+          </div>
+        </Card>
 
         {/* Mock Map */}
         <div className="bg-muted/20 rounded-lg border border-border overflow-hidden" style={{ height: '300px' }}>
@@ -195,52 +196,29 @@ export const MapaSeguroTab = () => {
           )}
 
           {reportMode && (
-            <div className="space-y-2">
+            <div className="space-y-3">
               <p className="text-sm font-medium text-foreground">Compartilhar via:</p>
-              <div className="grid grid-cols-2 gap-2">
+              <div className="flex gap-2">
                 <Button 
                   variant="outline" 
-                  size="sm" 
-                  onClick={() => handleShareWhatsApp(reportMode === 'live')}
-                  className="gap-2"
-                >
-                  <MessageSquare className="h-4 w-4" />
-                  WhatsApp
-                </Button>
-                <Button 
-                  variant="outline" 
-                  size="sm" 
-                  onClick={() => handleShareEmail(reportMode === 'live')}
-                  className="gap-2"
-                >
-                  📧 Email
-                </Button>
-                <Button 
-                  variant="outline" 
-                  size="sm" 
-                  onClick={() => handleShareSMS(reportMode === 'live')}
-                  className="gap-2"
-                >
-                  💬 SMS
-                </Button>
-                <Button 
-                  variant="outline" 
-                  size="sm" 
+                  className="flex-1 gap-2" 
                   onClick={() => handleCopyLink(reportMode === 'live')}
-                  className="gap-2"
                 >
                   <Copy className="h-4 w-4" />
                   Copiar Link
                 </Button>
+                <Button 
+                  variant="default" 
+                  className="flex-1 gap-2" 
+                  onClick={() => handleWebShare(reportMode === 'live')}
+                >
+                  <Share2 className="h-4 w-4" />
+                  Compartilhar
+                </Button>
               </div>
-              <Button 
-                variant="default" 
-                className="w-full gap-2" 
-                onClick={() => handleWebShare(reportMode === 'live')}
-              >
-                <Share2 className="h-4 w-4" />
-                Compartilhar
-              </Button>
+              <p className="text-xs text-muted-foreground text-center">
+                Envie o link para quem você confia (WhatsApp, SMS, Email, etc)
+              </p>
             </div>
           )}
         </Card>
@@ -305,6 +283,44 @@ export const MapaSeguroTab = () => {
             </div>
           </div>
         </Card>
+
+        {/* Emergency Call Dialog */}
+        <AlertDialog open={showEmergencyCall} onOpenChange={setShowEmergencyCall}>
+          <AlertDialogContent>
+            <AlertDialogHeader>
+              <AlertDialogTitle className="flex items-center gap-2">
+                <PhoneCall className="h-5 w-5 text-destructive animate-pulse" />
+                Chamada de Urgência Acionada
+              </AlertDialogTitle>
+              <AlertDialogDescription className="space-y-3 pt-2">
+                <p className="font-semibold">Notificações enviadas para:</p>
+                <div className="space-y-2 bg-muted/50 p-3 rounded-lg">
+                  <div className="flex items-center gap-2">
+                    <span className="text-green-600">✓</span>
+                    <span>RH da Empresa (gestor@empresa.com)</span>
+                  </div>
+                  <div className="flex items-center gap-2">
+                    <span className="text-green-600">✓</span>
+                    <span>Família (contato@familia.com)</span>
+                  </div>
+                  <div className="flex items-center gap-2">
+                    <span className="text-green-600">✓</span>
+                    <span>Contato de Emergência (+55 21 99999-9999)</span>
+                  </div>
+                </div>
+                <p className="text-sm">
+                  📍 <strong>Localização:</strong> {mockLocation.address}
+                </p>
+                <p className="text-xs text-muted-foreground">
+                  Todos os contatos receberam sua localização ao vivo e podem rastrear você em tempo real.
+                </p>
+              </AlertDialogDescription>
+            </AlertDialogHeader>
+            <AlertDialogFooter>
+              <AlertDialogAction>Entendido</AlertDialogAction>
+            </AlertDialogFooter>
+          </AlertDialogContent>
+        </AlertDialog>
       </div>
     </div>
   );
