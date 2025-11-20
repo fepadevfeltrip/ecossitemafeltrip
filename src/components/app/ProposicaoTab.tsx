@@ -2,6 +2,7 @@ import { useState, useEffect } from "react";
 import { Button } from "@/components/ui/button";
 import { supabase } from "@/integrations/supabase/client";
 import { Sparkles } from "lucide-react";
+import bobaMeditation from "@/assets/boba-meditation.png";
 
 export const ProposicaoTab = () => {
   const [proposition, setProposition] = useState("");
@@ -28,7 +29,14 @@ export const ProposicaoTab = () => {
   return (
     <div className="flex-1 overflow-y-auto p-6 pb-24">
       <div className="max-w-2xl mx-auto space-y-6">
-        <div className="text-center space-y-2">
+        <div className="text-center space-y-4">
+          <div className="flex justify-center">
+            <img 
+              src={bobaMeditation} 
+              alt="Meditação na praia" 
+              className="w-48 h-48 object-contain rounded-lg"
+            />
+          </div>
           <h2 className="text-2xl font-bold text-foreground flex items-center justify-center gap-2">
             <Sparkles className="h-6 w-6 text-primary" />
             Sua Proposição Poética
