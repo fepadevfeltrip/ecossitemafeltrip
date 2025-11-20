@@ -3,7 +3,9 @@ import { supabase } from "@/integrations/supabase/client";
 import { RadarChart, PolarGrid, PolarAngleAxis, Radar, ResponsiveContainer, PieChart, Pie, Cell } from "recharts";
 import mrpDiagram from "@/assets/mrp-diagram.png";
 import { Tabs, TabsContent, TabsList, TabsTrigger } from "@/components/ui/tabs";
-import { MapPin } from "lucide-react";
+import { MapPin, Trash2 } from "lucide-react";
+import { Button } from "@/components/ui/button";
+import { useToast } from "@/components/ui/use-toast";
 
 interface DiaryEntry {
   pillar: string;
@@ -21,6 +23,7 @@ interface MapNote {
 }
 
 export const MeuMapaTab = () => {
+  const { toast } = useToast();
   const [radarData, setRadarData] = useState<DiaryEntry[]>([]);
   const [mapNotes, setMapNotes] = useState<MapNote[]>([]);
   const [loading, setLoading] = useState(true);
@@ -76,6 +79,42 @@ export const MeuMapaTab = () => {
       setMapNotes(data || []);
     } catch (error) {
       console.error('Error loading map notes:', error);
+    }
+  };
+
+  const deleteNote = async (noteId: string, audioUrl: string | null, imageUrl: string | null) => {
+    try {
+      const { data: { user } } = await supabase.auth.getUser();
+      if (!user) return;
+
+      // Deletar arquivos de storage se existirem
+      if (audioUrl) {
+        const audioPath = audioUrl.split('/').slice(-2).join('/'); // Extrai user_id/filename
+        await supabase.storage.from('map-audio').remove([audioPath]);
+      }
+
+      if (imageUrl) {
+        const imagePath = imageUrl.split('/').slice(-2).join('/');
+        await supabase.storage.from('map-images').remove([imagePath]);
+      }
+
+      // Deletar do banco
+      const { error } = await supabase
+        .from('map_pins')
+        .delete()
+        .eq('id', noteId)
+        .eq('user_id', user.id);
+
+      if (error) throw error;
+
+      toast({ title: "Anotação deletada!" });
+      loadMapNotes();
+    } catch (error: any) {
+      toast({ 
+        title: "Erro ao deletar", 
+        description: error.message,
+        variant: "destructive" 
+      });
     }
   };
 
@@ -161,9 +200,19 @@ export const MeuMapaTab = () => {
                 ) : (
                   mapNotes.map((note) => (
                     <div key={note.id} className="bg-muted/50 rounded-lg p-3 space-y-2">
-                      <div className="flex items-center gap-2">
-                        <MapPin className="h-4 w-4 text-primary" />
-                        <span className="font-medium text-sm text-foreground">{note.title}</span>
+                      <div className="flex items-center justify-between">
+                        <div className="flex items-center gap-2">
+                          <MapPin className="h-4 w-4 text-primary" />
+                          <span className="font-medium text-sm text-foreground">{note.title}</span>
+                        </div>
+                        <Button
+                          variant="ghost"
+                          size="sm"
+                          onClick={() => deleteNote(note.id, note.audio_url, note.image_url)}
+                          className="h-8 w-8 p-0 hover:bg-destructive/10 hover:text-destructive"
+                        >
+                          <Trash2 className="h-4 w-4" />
+                        </Button>
                       </div>
                       
                       {note.content && (
