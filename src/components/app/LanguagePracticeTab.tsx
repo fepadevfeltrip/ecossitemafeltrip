@@ -103,10 +103,12 @@ export const LanguagePracticeTab = () => {
         
         if (audioError) throw audioError;
         
-        const { data: { publicUrl } } = supabase.storage
+        // Gerar URL assinada (válida por 1 ano)
+        const { data: signedData } = await supabase.storage
           .from('map-audio')
-          .getPublicUrl(audioPath);
-        audioUrl = publicUrl;
+          .createSignedUrl(audioPath, 31536000); // 1 ano em segundos
+        
+        audioUrl = signedData?.signedUrl || null;
       }
 
       // Upload de imagem
