@@ -48,7 +48,7 @@ const ExpatApp = ({ onBack }: ExpatAppProps) => {
     <AuthWrapper>
       <MobileFrame>
         {/* Header with Menu and Profile */}
-        <div className="bg-card border-b border-border p-4 flex justify-between items-center">
+        <div className="bg-card border-b border-border p-4 flex justify-between items-center shrink-0">
           <div className="flex items-center gap-3">
             <Sheet open={isMenuOpen} onOpenChange={setIsMenuOpen}>
               <SheetTrigger asChild>
@@ -74,7 +74,7 @@ const ExpatApp = ({ onBack }: ExpatAppProps) => {
                   </div>
 
                   {/* Menu Items */}
-                  <div className="flex-1 py-4">
+                  <div className="flex-1 overflow-y-auto py-4">
                     {allMenuItems.map((item) => {
                       const Icon = item.icon;
                       const isActive = activeTab === item.id;
@@ -128,7 +128,8 @@ const ExpatApp = ({ onBack }: ExpatAppProps) => {
           </Button>
         </div>
 
-        <div className="flex-1 overflow-y-auto">
+        {/* Main Content */}
+        <div className="flex-1 overflow-y-auto min-h-0">
           {activeTab === "mapa" && <MeuMapaTab />}
           {activeTab === "seguro" && <MapaSeguroTab />}
           {activeTab === "diario" && <DiarioTab onEntrySubmitted={() => setActiveTab("mapa")} />}
@@ -136,8 +137,9 @@ const ExpatApp = ({ onBack }: ExpatAppProps) => {
           {activeTab === "proposicao" && <ProposicaoTab />}
           {activeTab === "perfil" && <Profile />}
         </div>
+
         {/* Bottom Navigation - Apenas 4 principais */}
-        <div className="bg-card border-t border-border">
+        <div className="bg-card border-t border-border shrink-0">
           <div className="flex justify-around items-center h-16 px-2">
             {mainTabs.map((tab) => {
               const Icon = tab.icon;
