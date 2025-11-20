@@ -49,11 +49,13 @@ export type Database = {
       }
       map_pins: {
         Row: {
+          audio_url: string | null
           city_name: string | null
           content: string
           country_name: string | null
           created_at: string
           id: string
+          image_url: string | null
           latitude: number
           longitude: number
           title: string
@@ -62,11 +64,13 @@ export type Database = {
           user_id: string | null
         }
         Insert: {
+          audio_url?: string | null
           city_name?: string | null
           content: string
           country_name?: string | null
           created_at?: string
           id?: string
+          image_url?: string | null
           latitude: number
           longitude: number
           title: string
@@ -75,11 +79,13 @@ export type Database = {
           user_id?: string | null
         }
         Update: {
+          audio_url?: string | null
           city_name?: string | null
           content?: string
           country_name?: string | null
           created_at?: string
           id?: string
+          image_url?: string | null
           latitude?: number
           longitude?: number
           title?: string
