@@ -43,13 +43,6 @@ const CuradoriaPremium = ({ onBack }: CuradoriaPremiumProps) => {
       </header>
 
       <main className="container mx-auto px-3 sm:px-6 py-6 sm:py-12 space-y-8 sm:space-y-12">
-        {/* Impacto Social Title */}
-        <section className="text-center">
-          <h2 className="text-3xl sm:text-4xl lg:text-5xl font-bold mb-8" style={{ color: 'hsl(15, 85%, 70%)' }}>
-            Impacto Social
-          </h2>
-        </section>
-
         {/* Hero Section */}
         <section className="text-center space-y-4 sm:space-y-6">
           <h3 className="text-2xl sm:text-3xl lg:text-4xl font-bold text-foreground">
@@ -160,7 +153,7 @@ const CuradoriaPremium = ({ onBack }: CuradoriaPremiumProps) => {
 
         {/* Social Impact Section */}
         <section className="space-y-6">
-          <h3 className="text-xl sm:text-2xl lg:text-3xl font-bold text-foreground text-center">
+          <h3 className="text-xl sm:text-2xl lg:text-3xl font-bold text-center" style={{ color: 'hsl(15, 85%, 70%)' }}>
             Feltrip Impacto Social
           </h3>
           <p className="text-base sm:text-lg text-muted-foreground max-w-3xl mx-auto leading-relaxed">
