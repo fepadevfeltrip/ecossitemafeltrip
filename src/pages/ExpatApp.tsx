@@ -7,7 +7,7 @@ import { DiarioTab } from "@/components/app/DiarioTab";
 import { ProposicaoTab } from "@/components/app/ProposicaoTab";
 import { LanguagePracticeTab } from "@/components/app/LanguagePracticeTab";
 import Profile from "@/pages/Profile";
-import { Map, BookOpen, Sparkles, Compass, LogOut, MessageCircle, User, Menu } from "lucide-react";
+import { Map, BookOpen, Sparkles, Compass, LogOut, StickyNote, User, Menu } from "lucide-react";
 import { Button } from "@/components/ui/button";
 import { Avatar, AvatarFallback } from "@/components/ui/avatar";
 import { Sheet, SheetContent, SheetTrigger } from "@/components/ui/sheet";
@@ -18,14 +18,14 @@ interface ExpatAppProps {
 }
 
 const ExpatApp = ({ onBack }: ExpatAppProps) => {
-  const [activeTab, setActiveTab] = useState<"mapa" | "seguro" | "diario" | "proposicao" | "idioma" | "perfil">("mapa");
+  const [activeTab, setActiveTab] = useState<"mapa" | "seguro" | "diario" | "proposicao" | "notas" | "perfil">("mapa");
   const [isMenuOpen, setIsMenuOpen] = useState(false);
 
   // Bottom nav - apenas principais
   const mainTabs = [
     { id: "mapa" as const, icon: Compass, label: "Mapa" },
     { id: "diario" as const, icon: BookOpen, label: "Diário" },
-    { id: "idioma" as const, icon: MessageCircle, label: "Idioma" },
+    { id: "notas" as const, icon: StickyNote, label: "Notas" },
     { id: "proposicao" as const, icon: Sparkles, label: "IA" },
   ];
 
@@ -35,7 +35,7 @@ const ExpatApp = ({ onBack }: ExpatAppProps) => {
     { id: "mapa" as const, icon: Compass, label: "Meu Mapa" },
     { id: "seguro" as const, icon: Map, label: "Mapa Seguro" },
     { id: "diario" as const, icon: BookOpen, label: "Diário" },
-    { id: "idioma" as const, icon: MessageCircle, label: "Prática de Idioma" },
+    { id: "notas" as const, icon: StickyNote, label: "Anotações" },
     { id: "proposicao" as const, icon: Sparkles, label: "Proposição RH" },
   ];
 
@@ -133,7 +133,7 @@ const ExpatApp = ({ onBack }: ExpatAppProps) => {
           {activeTab === "mapa" && <MeuMapaTab />}
           {activeTab === "seguro" && <MapaSeguroTab />}
           {activeTab === "diario" && <DiarioTab onEntrySubmitted={() => setActiveTab("mapa")} />}
-          {activeTab === "idioma" && <LanguagePracticeTab />}
+          {activeTab === "notas" && <LanguagePracticeTab />}
           {activeTab === "proposicao" && <ProposicaoTab />}
           {activeTab === "perfil" && <Profile />}
         </div>
