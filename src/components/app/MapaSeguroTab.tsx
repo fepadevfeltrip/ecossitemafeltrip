@@ -11,7 +11,7 @@ export const MapaSeguroTab = () => {
   const { toast } = useToast();
   const [reportMode, setReportMode] = useState<'live' | 'past' | null>(null);
   const [reportText, setReportText] = useState("");
-  const [selectedCity, setSelectedCity] = useState("");
+  const [selectedCountry, setSelectedCountry] = useState("");
   const [showEmergencyCall, setShowEmergencyCall] = useState(false);
   const [emergencyCallActive, setEmergencyCallActive] = useState(false);
   
@@ -22,11 +22,66 @@ export const MapaSeguroTab = () => {
     address: "Rua Exemplo, 123 - Copacabana, Rio de Janeiro"
   };
 
-  // Emergency numbers by city (mock data - você pode adicionar IA depois)
-  const emergencyNumbers = {
-    "Rio de Janeiro": { police: "190", ambulance: "192", fire: "193" },
-    "São Paulo": { police: "190", ambulance: "192", fire: "193" },
-    "Belo Horizonte": { police: "190", ambulance: "192", fire: "193" },
+  // Emergency numbers by country
+  const emergencyNumbers: Record<string, { police: string; ambulance: string; fire: string }> = {
+    "Brasil": { police: "190", ambulance: "192", fire: "193" },
+    "Estados Unidos": { police: "911", ambulance: "911", fire: "911" },
+    "Reino Unido": { police: "999", ambulance: "999", fire: "999" },
+    "Canadá": { police: "911", ambulance: "911", fire: "911" },
+    "Austrália": { police: "000", ambulance: "000", fire: "000" },
+    "Nova Zelândia": { police: "111", ambulance: "111", fire: "111" },
+    "Alemanha": { police: "110", ambulance: "112", fire: "112" },
+    "França": { police: "17", ambulance: "15", fire: "18" },
+    "Espanha": { police: "091", ambulance: "061", fire: "080" },
+    "Itália": { police: "113", ambulance: "118", fire: "115" },
+    "Portugal": { police: "112", ambulance: "112", fire: "112" },
+    "Holanda": { police: "112", ambulance: "112", fire: "112" },
+    "Bélgica": { police: "112", ambulance: "112", fire: "112" },
+    "Suíça": { police: "117", ambulance: "144", fire: "118" },
+    "Áustria": { police: "133", ambulance: "144", fire: "122" },
+    "Suécia": { police: "112", ambulance: "112", fire: "112" },
+    "Noruega": { police: "112", ambulance: "113", fire: "110" },
+    "Dinamarca": { police: "112", ambulance: "112", fire: "112" },
+    "Finlândia": { police: "112", ambulance: "112", fire: "112" },
+    "Irlanda": { police: "999", ambulance: "999", fire: "999" },
+    "Grécia": { police: "100", ambulance: "166", fire: "199" },
+    "Polônia": { police: "997", ambulance: "999", fire: "998" },
+    "República Tcheca": { police: "158", ambulance: "155", fire: "150" },
+    "Hungria": { police: "107", ambulance: "104", fire: "105" },
+    "Romênia": { police: "112", ambulance: "112", fire: "112" },
+    "Rússia": { police: "102", ambulance: "103", fire: "101" },
+    "Turquia": { police: "155", ambulance: "112", fire: "110" },
+    "Japão": { police: "110", ambulance: "119", fire: "119" },
+    "China": { police: "110", ambulance: "120", fire: "119" },
+    "Coreia do Sul": { police: "112", ambulance: "119", fire: "119" },
+    "Índia": { police: "100", ambulance: "102", fire: "101" },
+    "Tailândia": { police: "191", ambulance: "1669", fire: "199" },
+    "Vietnã": { police: "113", ambulance: "115", fire: "114" },
+    "Filipinas": { police: "117", ambulance: "911", fire: "160" },
+    "Indonésia": { police: "110", ambulance: "118", fire: "113" },
+    "Singapura": { police: "999", ambulance: "995", fire: "995" },
+    "Malásia": { police: "999", ambulance: "999", fire: "994" },
+    "Hong Kong": { police: "999", ambulance: "999", fire: "999" },
+    "Taiwan": { police: "110", ambulance: "119", fire: "119" },
+    "Israel": { police: "100", ambulance: "101", fire: "102" },
+    "Emirados Árabes Unidos": { police: "999", ambulance: "998", fire: "997" },
+    "Arábia Saudita": { police: "999", ambulance: "997", fire: "998" },
+    "Egito": { police: "122", ambulance: "123", fire: "180" },
+    "África do Sul": { police: "10111", ambulance: "10177", fire: "10111" },
+    "Nigéria": { police: "112", ambulance: "112", fire: "112" },
+    "Quênia": { police: "999", ambulance: "999", fire: "999" },
+    "México": { police: "911", ambulance: "911", fire: "911" },
+    "Argentina": { police: "911", ambulance: "107", fire: "100" },
+    "Chile": { police: "133", ambulance: "131", fire: "132" },
+    "Colômbia": { police: "123", ambulance: "123", fire: "119" },
+    "Peru": { police: "105", ambulance: "117", fire: "116" },
+    "Uruguai": { police: "911", ambulance: "911", fire: "911" },
+    "Paraguai": { police: "911", ambulance: "911", fire: "911" },
+    "Bolívia": { police: "110", ambulance: "118", fire: "119" },
+    "Equador": { police: "911", ambulance: "911", fire: "911" },
+    "Venezuela": { police: "911", ambulance: "171", fire: "171" },
+    "Costa Rica": { police: "911", ambulance: "911", fire: "911" },
+    "Panamá": { police: "911", ambulance: "911", fire: "911" },
   };
 
   const generateLocationLink = (isLive: boolean) => {
@@ -230,35 +285,35 @@ export const MapaSeguroTab = () => {
             <h3 className="font-semibold">Números de Emergência</h3>
           </div>
 
-          <Select value={selectedCity} onValueChange={setSelectedCity}>
+          <Select value={selectedCountry} onValueChange={setSelectedCountry}>
             <SelectTrigger>
-              <SelectValue placeholder="Selecione sua cidade" />
+              <SelectValue placeholder="Selecione seu país" />
             </SelectTrigger>
             <SelectContent>
-              {Object.keys(emergencyNumbers).map((city) => (
-                <SelectItem key={city} value={city}>{city}</SelectItem>
+              {Object.keys(emergencyNumbers).sort().map((country) => (
+                <SelectItem key={country} value={country}>{country}</SelectItem>
               ))}
             </SelectContent>
           </Select>
 
-          {selectedCity && emergencyNumbers[selectedCity as keyof typeof emergencyNumbers] && (
+          {selectedCountry && emergencyNumbers[selectedCountry] && (
             <div className="space-y-2 pt-2">
               <div className="flex justify-between items-center p-3 bg-muted/50 rounded-lg">
                 <span className="text-sm font-medium">🚔 Polícia:</span>
-                <a href={`tel:${emergencyNumbers[selectedCity as keyof typeof emergencyNumbers].police}`} className="text-lg font-bold text-primary">
-                  {emergencyNumbers[selectedCity as keyof typeof emergencyNumbers].police}
+                <a href={`tel:${emergencyNumbers[selectedCountry].police}`} className="text-lg font-bold text-primary">
+                  {emergencyNumbers[selectedCountry].police}
                 </a>
               </div>
               <div className="flex justify-between items-center p-3 bg-muted/50 rounded-lg">
-                <span className="text-sm font-medium">🚑 SAMU:</span>
-                <a href={`tel:${emergencyNumbers[selectedCity as keyof typeof emergencyNumbers].ambulance}`} className="text-lg font-bold text-primary">
-                  {emergencyNumbers[selectedCity as keyof typeof emergencyNumbers].ambulance}
+                <span className="text-sm font-medium">🚑 Ambulância:</span>
+                <a href={`tel:${emergencyNumbers[selectedCountry].ambulance}`} className="text-lg font-bold text-primary">
+                  {emergencyNumbers[selectedCountry].ambulance}
                 </a>
               </div>
               <div className="flex justify-between items-center p-3 bg-muted/50 rounded-lg">
                 <span className="text-sm font-medium">🚒 Bombeiros:</span>
-                <a href={`tel:${emergencyNumbers[selectedCity as keyof typeof emergencyNumbers].fire}`} className="text-lg font-bold text-primary">
-                  {emergencyNumbers[selectedCity as keyof typeof emergencyNumbers].fire}
+                <a href={`tel:${emergencyNumbers[selectedCountry].fire}`} className="text-lg font-bold text-primary">
+                  {emergencyNumbers[selectedCountry].fire}
                 </a>
               </div>
             </div>
