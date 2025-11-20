@@ -6,7 +6,8 @@ import { MapaSeguroTab } from "@/components/app/MapaSeguroTab";
 import { DiarioTab } from "@/components/app/DiarioTab";
 import { ProposicaoTab } from "@/components/app/ProposicaoTab";
 import { LanguagePracticeTab } from "@/components/app/LanguagePracticeTab";
-import { Map, BookOpen, Sparkles, Compass, LogOut, MessageCircle } from "lucide-react";
+import Profile from "@/pages/Profile";
+import { Map, BookOpen, Sparkles, Compass, LogOut, MessageCircle, User } from "lucide-react";
 import { Button } from "@/components/ui/button";
 
 interface ExpatAppProps {
@@ -14,7 +15,7 @@ interface ExpatAppProps {
 }
 
 const ExpatApp = ({ onBack }: ExpatAppProps) => {
-  const [activeTab, setActiveTab] = useState<"mapa" | "seguro" | "diario" | "proposicao" | "idioma">("mapa");
+  const [activeTab, setActiveTab] = useState<"mapa" | "seguro" | "diario" | "proposicao" | "idioma" | "perfil">("mapa");
 
   const tabs = [
     { id: "mapa" as const, icon: Compass, label: "Meu Mapa" },
@@ -22,6 +23,7 @@ const ExpatApp = ({ onBack }: ExpatAppProps) => {
     { id: "diario" as const, icon: BookOpen, label: "Diário" },
     { id: "idioma" as const, icon: MessageCircle, label: "Idioma" },
     { id: "proposicao" as const, icon: Sparkles, label: "Proposição" },
+    { id: "perfil" as const, icon: User, label: "Perfil" },
   ];
 
   return (
@@ -47,10 +49,11 @@ const ExpatApp = ({ onBack }: ExpatAppProps) => {
           {activeTab === "diario" && <DiarioTab onEntrySubmitted={() => setActiveTab("mapa")} />}
           {activeTab === "idioma" && <LanguagePracticeTab />}
           {activeTab === "proposicao" && <ProposicaoTab />}
+          {activeTab === "perfil" && <Profile />}
         </div>
         {/* Bottom Navigation */}
         <div className="bg-card border-t border-border">
-          <div className="flex justify-around items-center h-20 px-4">
+          <div className="flex justify-around items-center h-20 px-2">
             {tabs.map((tab) => {
               const Icon = tab.icon;
               const isActive = activeTab === tab.id;
@@ -58,12 +61,12 @@ const ExpatApp = ({ onBack }: ExpatAppProps) => {
                 <button
                   key={tab.id}
                   onClick={() => setActiveTab(tab.id)}
-                  className={`flex flex-col items-center justify-center space-y-1 transition-colors ${
+                  className={`flex flex-col items-center justify-center space-y-1 transition-colors flex-1 ${
                     isActive ? "text-primary" : "text-muted-foreground"
                   }`}
                 >
-                  <Icon className={`h-6 w-6 ${isActive ? "fill-primary/20" : ""}`} />
-                  <span className="text-xs font-medium">{tab.label}</span>
+                  <Icon className={`h-5 w-5 ${isActive ? "fill-primary/20" : ""}`} />
+                  <span className="text-[10px] font-medium leading-tight">{tab.label}</span>
                 </button>
               );
             })}
