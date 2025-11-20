@@ -10,12 +10,24 @@ interface DiaryEntry {
   sentiment: number;
 }
 
+interface MapNote {
+  id: string;
+  title: string;
+  content: string;
+  audio_url: string | null;
+  image_url: string | null;
+  latitude: number;
+  longitude: number;
+}
+
 export const MeuMapaTab = () => {
   const [radarData, setRadarData] = useState<DiaryEntry[]>([]);
+  const [mapNotes, setMapNotes] = useState<MapNote[]>([]);
   const [loading, setLoading] = useState(true);
 
   useEffect(() => {
     loadRadarData();
+    loadMapNotes();
   }, []);
 
   const loadRadarData = async () => {
@@ -48,17 +60,48 @@ export const MeuMapaTab = () => {
     }
   };
 
+  const loadMapNotes = async () => {
+    try {
+      const { data: { user } } = await supabase.auth.getUser();
+      if (!user) return;
+
+      const { data, error } = await supabase
+        .from('map_pins')
+        .select('*')
+        .eq('user_id', user.id)
+        .eq('type', 'anotacao')
+        .order('created_at', { ascending: false });
+
+      if (error) throw error;
+      setMapNotes(data || []);
+    } catch (error) {
+      console.error('Error loading map notes:', error);
+    }
+  };
+
+  // Realtime updates
+  useEffect(() => {
+    const channel = supabase
+      .channel('map-notes-changes')
+      .on(
+        'postgres_changes',
+        {
+          event: '*',
+          schema: 'public',
+          table: 'map_pins',
+        },
+        () => {
+          loadMapNotes();
+        }
+      )
+      .subscribe();
+
+    return () => {
+      supabase.removeChannel(channel);
+    };
+  }, []);
+
   const hasData = radarData.some(d => d.sentiment > 0);
-
-  // Mock language notes data
-  const languageNotes = [
-    { id: 1, location: "Praia de Copacabana", phrase: "Vamos à praia?", translation: "Shall we go to the beach?", lat: 30, lng: 35 },
-    { id: 2, location: "Mercado Municipal", phrase: "Quanto custa isso?", translation: "How much does this cost?", lat: 45, lng: 60 },
-    { id: 3, location: "Restaurante Local", phrase: "Uma mesa para dois, por favor", translation: "A table for two, please", lat: 65, lng: 40 },
-    { id: 4, location: "Padaria da Esquina", phrase: "Bom dia! Um café, por favor", translation: "Good morning! A coffee, please", lat: 25, lng: 70 },
-  ];
-
-  // Colors for pie chart
   const COLORS = ['hsl(var(--primary))', 'hsl(15, 85%, 70%)', 'hsl(142, 71%, 45%)', 'hsl(262, 83%, 58%)', 'hsl(346, 77%, 50%)'];
 
   return (
@@ -82,40 +125,72 @@ export const MeuMapaTab = () => {
             <div className="bg-card rounded-lg border border-border p-4">
               <h3 className="font-semibold text-foreground mb-4">Mapa de Aprendizado Relacional</h3>
               
-              {/* Mock Map with Language Pins */}
-              <div className="bg-muted/20 rounded-lg border border-border overflow-hidden" style={{ height: '400px' }}>
+              {/* Map Visualization */}
+              <div className="bg-muted/20 rounded-lg border border-border overflow-hidden" style={{ height: '300px' }}>
                 <div className="relative w-full h-full bg-gradient-to-br from-blue-50 to-amber-50">
                   <div className="absolute inset-0 opacity-20" style={{
                     backgroundImage: 'repeating-linear-gradient(0deg, #ccc 0px, #ccc 1px, transparent 1px, transparent 40px), repeating-linear-gradient(90deg, #ccc 0px, #ccc 1px, transparent 1px, transparent 40px)'
                   }} />
                   
-                  {/* Language note pins */}
-                  {languageNotes.map((note) => (
-                    <div 
-                      key={note.id}
-                      className="absolute w-8 h-8 bg-primary rounded-full border-2 border-white shadow-lg flex items-center justify-center cursor-pointer hover:scale-110 transition-transform"
-                      style={{ top: `${note.lat}%`, left: `${note.lng}%` }}
-                      title={note.location}
-                    >
-                      <MapPin className="h-4 w-4 text-white" />
-                    </div>
-                  ))}
+                  {mapNotes.map((note, index) => {
+                    // Distribute pins across the map if coordinates are 0
+                    const lat = note.latitude === 0 ? 20 + (index * 15) % 60 : note.latitude;
+                    const lng = note.longitude === 0 ? 20 + (index * 20) % 70 : note.longitude;
+                    
+                    return (
+                      <div 
+                        key={note.id}
+                        className="absolute w-8 h-8 bg-primary rounded-full border-2 border-white shadow-lg flex items-center justify-center cursor-pointer hover:scale-110 transition-transform"
+                        style={{ top: `${lat}%`, left: `${lng}%` }}
+                        title={note.title}
+                      >
+                        <MapPin className="h-4 w-4 text-white" />
+                      </div>
+                    );
+                  })}
                 </div>
               </div>
 
-              {/* Language Notes List */}
-              <div className="mt-4 space-y-2">
+              {/* Notes List */}
+              <div className="mt-4 space-y-3">
                 <h4 className="text-sm font-medium text-foreground">Suas Anotações:</h4>
-                {languageNotes.map((note) => (
-                  <div key={note.id} className="bg-muted/50 rounded-lg p-3 space-y-1">
-                    <div className="flex items-center gap-2">
-                      <MapPin className="h-4 w-4 text-primary" />
-                      <span className="font-medium text-sm text-foreground">{note.location}</span>
+                {mapNotes.length === 0 ? (
+                  <p className="text-sm text-muted-foreground text-center py-4">
+                    Nenhuma anotação ainda. Crie uma na aba "Notas"!
+                  </p>
+                ) : (
+                  mapNotes.map((note) => (
+                    <div key={note.id} className="bg-muted/50 rounded-lg p-3 space-y-2">
+                      <div className="flex items-center gap-2">
+                        <MapPin className="h-4 w-4 text-primary" />
+                        <span className="font-medium text-sm text-foreground">{note.title}</span>
+                      </div>
+                      
+                      {note.content && (
+                        <p className="text-sm text-foreground pl-6">{note.content}</p>
+                      )}
+                      
+                      {note.audio_url && (
+                        <div className="pl-6">
+                          <audio controls className="w-full max-w-xs h-8">
+                            <source src={note.audio_url} type="audio/webm" />
+                            Seu navegador não suporta áudio.
+                          </audio>
+                        </div>
+                      )}
+                      
+                      {note.image_url && (
+                        <div className="pl-6">
+                          <img 
+                            src={note.image_url} 
+                            alt="Anotação" 
+                            className="max-w-xs rounded-lg border border-border"
+                          />
+                        </div>
+                      )}
                     </div>
-                    <p className="text-sm text-foreground pl-6">"{note.phrase}"</p>
-                    <p className="text-xs text-muted-foreground pl-6 italic">{note.translation}</p>
-                  </div>
-                ))}
+                  ))
+                )}
               </div>
             </div>
           </TabsContent>
