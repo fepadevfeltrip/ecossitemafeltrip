@@ -38,7 +38,7 @@ const ExpatApp = ({ onBack }: ExpatAppProps) => {
     { id: "diario" as const, icon: BookOpen, label: "Diário" },
     { id: "notas" as const, icon: StickyNote, label: "Anotações" },
     { id: "parceiros" as const, icon: Users, label: "Rede de Parceiros" },
-    { id: "proposicao" as const, icon: Sparkles, label: "Proposição RH" },
+    { id: "proposicao" as const, icon: Sparkles, label: "Mapa da Presença Relacional" },
   ];
 
   const handleMenuItemClick = (tabId: typeof activeTab) => {
