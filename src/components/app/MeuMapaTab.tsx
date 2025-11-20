@@ -80,7 +80,7 @@ export const MeuMapaTab = () => {
           {/* Language Notes Map Tab */}
           <TabsContent value="idioma" className="space-y-4">
             <div className="bg-card rounded-lg border border-border p-4">
-              <h3 className="font-semibold text-foreground mb-4">Mapa de Aprendizado</h3>
+              <h3 className="font-semibold text-foreground mb-4">Mapa de Aprendizado Relacional</h3>
               
               {/* Mock Map with Language Pins */}
               <div className="bg-muted/20 rounded-lg border border-border overflow-hidden" style={{ height: '400px' }}>
