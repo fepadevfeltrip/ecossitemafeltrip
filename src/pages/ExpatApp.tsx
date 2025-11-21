@@ -3,14 +3,13 @@ import { MobileFrame } from "@/components/MobileFrame";
 import { AuthWrapper } from "@/components/app/AuthWrapper";
 import { MeuMapaTab } from "@/components/app/MeuMapaTab";
 import { MapaSeguroTab } from "@/components/app/MapaSeguroTab";
-import { DiarioTab } from "@/components/app/DiarioTab";
-import { ProposicaoTab } from "@/components/app/ProposicaoTab";
+import { AITab } from "@/components/app/AITab";
 import { LanguagePracticeTab } from "@/components/app/LanguagePracticeTab";
 import { RedeParceirosTa } from "@/components/app/RedeParceirosTa";
 import { DocumentosTab } from "@/components/app/DocumentosTab";
 import { ParceirosInternosTab } from "@/components/app/ParceirosInternosTab";
 import Profile from "@/pages/Profile";
-import { Map, BookOpen, Sparkles, Compass, LogOut, StickyNote, User, Menu, Users, FileText, Calendar } from "lucide-react";
+import { Map, Sparkles, Compass, LogOut, StickyNote, User, Menu, Users, FileText, Calendar } from "lucide-react";
 import { Button } from "@/components/ui/button";
 import { Avatar, AvatarFallback } from "@/components/ui/avatar";
 import { Sheet, SheetContent, SheetTrigger } from "@/components/ui/sheet";
@@ -21,15 +20,14 @@ interface ExpatAppProps {
 }
 
 const ExpatApp = ({ onBack }: ExpatAppProps) => {
-  const [activeTab, setActiveTab] = useState<"mapa" | "seguro" | "diario" | "proposicao" | "notas" | "perfil" | "parceiros" | "documentos" | "parceiros-internos">("mapa");
+  const [activeTab, setActiveTab] = useState<"mapa" | "seguro" | "ia" | "notas" | "perfil" | "parceiros" | "documentos" | "parceiros-internos">("mapa");
   const [isMenuOpen, setIsMenuOpen] = useState(false);
 
   // Bottom nav - apenas principais
   const mainTabs = [
     { id: "mapa" as const, icon: Compass, label: "Mapa" },
-    { id: "diario" as const, icon: BookOpen, label: "Diário" },
     { id: "notas" as const, icon: StickyNote, label: "Notas" },
-    { id: "proposicao" as const, icon: Sparkles, label: "IA" },
+    { id: "ia" as const, icon: Sparkles, label: "IA" },
   ];
 
   // Menu drawer - todos os itens
@@ -37,12 +35,11 @@ const ExpatApp = ({ onBack }: ExpatAppProps) => {
     { id: "perfil" as const, icon: User, label: "Meu Perfil" },
     { id: "mapa" as const, icon: Compass, label: "Meu Mapa" },
     { id: "seguro" as const, icon: Map, label: "Mapa Seguro" },
-    { id: "diario" as const, icon: BookOpen, label: "Diário" },
     { id: "notas" as const, icon: StickyNote, label: "Anotações" },
     { id: "documentos" as const, icon: FileText, label: "Documentos da Viagem" },
     { id: "parceiros-internos" as const, icon: Calendar, label: "Parceiros Internos" },
     { id: "parceiros" as const, icon: Users, label: "Rede de Parceiros Externa" },
-    { id: "proposicao" as const, icon: Sparkles, label: "Mapa da Presença Relacional" },
+    { id: "ia" as const, icon: Sparkles, label: "Assistentes IA" },
   ];
 
   const handleMenuItemClick = (tabId: typeof activeTab) => {
@@ -138,12 +135,11 @@ const ExpatApp = ({ onBack }: ExpatAppProps) => {
         <div className="flex-1 overflow-y-auto min-h-0">
           {activeTab === "mapa" && <MeuMapaTab />}
           {activeTab === "seguro" && <MapaSeguroTab />}
-          {activeTab === "diario" && <DiarioTab onEntrySubmitted={() => setActiveTab("mapa")} />}
           {activeTab === "notas" && <LanguagePracticeTab />}
           {activeTab === "documentos" && <DocumentosTab />}
           {activeTab === "parceiros-internos" && <ParceirosInternosTab />}
           {activeTab === "parceiros" && <RedeParceirosTa />}
-          {activeTab === "proposicao" && <ProposicaoTab />}
+          {activeTab === "ia" && <AITab />}
           {activeTab === "perfil" && <Profile />}
         </div>
 
