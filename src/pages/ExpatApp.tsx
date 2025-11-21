@@ -7,8 +7,10 @@ import { DiarioTab } from "@/components/app/DiarioTab";
 import { ProposicaoTab } from "@/components/app/ProposicaoTab";
 import { LanguagePracticeTab } from "@/components/app/LanguagePracticeTab";
 import { RedeParceirosTa } from "@/components/app/RedeParceirosTa";
+import { DocumentosTab } from "@/components/app/DocumentosTab";
+import { ParceirosInternosTab } from "@/components/app/ParceirosInternosTab";
 import Profile from "@/pages/Profile";
-import { Map, BookOpen, Sparkles, Compass, LogOut, StickyNote, User, Menu, Users } from "lucide-react";
+import { Map, BookOpen, Sparkles, Compass, LogOut, StickyNote, User, Menu, Users, FileText, Calendar } from "lucide-react";
 import { Button } from "@/components/ui/button";
 import { Avatar, AvatarFallback } from "@/components/ui/avatar";
 import { Sheet, SheetContent, SheetTrigger } from "@/components/ui/sheet";
@@ -19,7 +21,7 @@ interface ExpatAppProps {
 }
 
 const ExpatApp = ({ onBack }: ExpatAppProps) => {
-  const [activeTab, setActiveTab] = useState<"mapa" | "seguro" | "diario" | "proposicao" | "notas" | "perfil" | "parceiros">("mapa");
+  const [activeTab, setActiveTab] = useState<"mapa" | "seguro" | "diario" | "proposicao" | "notas" | "perfil" | "parceiros" | "documentos" | "parceiros-internos">("mapa");
   const [isMenuOpen, setIsMenuOpen] = useState(false);
 
   // Bottom nav - apenas principais
@@ -37,7 +39,9 @@ const ExpatApp = ({ onBack }: ExpatAppProps) => {
     { id: "seguro" as const, icon: Map, label: "Mapa Seguro" },
     { id: "diario" as const, icon: BookOpen, label: "Diário" },
     { id: "notas" as const, icon: StickyNote, label: "Anotações" },
-    { id: "parceiros" as const, icon: Users, label: "Rede de Parceiros" },
+    { id: "documentos" as const, icon: FileText, label: "Documentos da Viagem" },
+    { id: "parceiros-internos" as const, icon: Calendar, label: "Parceiros Internos" },
+    { id: "parceiros" as const, icon: Users, label: "Rede de Parceiros Externa" },
     { id: "proposicao" as const, icon: Sparkles, label: "Mapa da Presença Relacional" },
   ];
 
@@ -136,6 +140,8 @@ const ExpatApp = ({ onBack }: ExpatAppProps) => {
           {activeTab === "seguro" && <MapaSeguroTab />}
           {activeTab === "diario" && <DiarioTab onEntrySubmitted={() => setActiveTab("mapa")} />}
           {activeTab === "notas" && <LanguagePracticeTab />}
+          {activeTab === "documentos" && <DocumentosTab />}
+          {activeTab === "parceiros-internos" && <ParceirosInternosTab />}
           {activeTab === "parceiros" && <RedeParceirosTa />}
           {activeTab === "proposicao" && <ProposicaoTab />}
           {activeTab === "perfil" && <Profile />}
