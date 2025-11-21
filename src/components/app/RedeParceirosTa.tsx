@@ -100,7 +100,7 @@ export const RedeParceirosTa = () => {
     <div className="p-4 space-y-4">
       {/* Header */}
       <div>
-        <h1 className="text-2xl font-bold text-foreground mb-2">Rede de Parceiros</h1>
+        <h1 className="text-2xl font-bold text-foreground mb-2">Rede de Parceiros Externa</h1>
         <p className="text-sm text-muted-foreground">
           Conecte-se com parceiros especializados para facilitar sua adaptação
         </p>

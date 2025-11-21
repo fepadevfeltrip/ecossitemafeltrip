@@ -9,7 +9,7 @@ import { Textarea } from "@/components/ui/textarea";
 import { Checkbox } from "@/components/ui/checkbox";
 import { Tabs, TabsContent, TabsList, TabsTrigger } from "@/components/ui/tabs";
 
-type NoteType = "idioma" | "vida" | "proposicoes";
+type NoteType = "linguistica" | "restaurante" | "cultura" | "lazer";
 
 interface Note {
   x: number;
@@ -20,7 +20,7 @@ interface Note {
 }
 
 export const MapTab = () => {
-  const [activeTab, setActiveTab] = useState<NoteType>("idioma");
+  const [activeTab, setActiveTab] = useState<NoteType>("linguistica");
   const [selectedNote, setSelectedNote] = useState<any | null>(null);
   const [pins, setPins] = useState<any[]>([]);
   const [showNewPinDialog, setShowNewPinDialog] = useState(false);
@@ -102,12 +102,14 @@ export const MapTab = () => {
 
   const getButtonIcon = () => {
     switch (activeTab) {
-      case "idioma":
+      case "linguistica":
         return <BookOpen className="h-6 w-6" />;
-      case "vida":
+      case "restaurante":
         return <FileText className="h-6 w-6" />;
-      case "proposicoes":
+      case "cultura":
         return <Plus className="h-6 w-6" />;
+      case "lazer":
+        return <MapPin className="h-6 w-6" />;
       default:
         return <Plus className="h-6 w-6" />;
     }
@@ -116,15 +118,18 @@ export const MapTab = () => {
   return (
     <div className="flex-1 overflow-y-auto relative">
       <Tabs value={activeTab} onValueChange={(v) => setActiveTab(v as NoteType)} className="w-full">
-        <TabsList className="w-full grid grid-cols-3 h-auto">
-          <TabsTrigger value="idioma" className="text-xs sm:text-sm px-2 py-3 whitespace-normal leading-tight">
-            Anotações Aulas de Idioma
+        <TabsList className="w-full grid grid-cols-4 h-auto">
+          <TabsTrigger value="linguistica" className="text-xs sm:text-sm px-2 py-3 whitespace-normal leading-tight">
+            Linguística
           </TabsTrigger>
-          <TabsTrigger value="vida" className="text-xs sm:text-sm px-2 py-3 whitespace-normal leading-tight">
-            Diário de Bordo
+          <TabsTrigger value="restaurante" className="text-xs sm:text-sm px-2 py-3 whitespace-normal leading-tight">
+            Restaurante
           </TabsTrigger>
-          <TabsTrigger value="proposicoes" className="text-xs sm:text-sm px-2 py-3 whitespace-normal leading-tight">
-            Proposições Poéticas
+          <TabsTrigger value="cultura" className="text-xs sm:text-sm px-2 py-3 whitespace-normal leading-tight">
+            Cultura
+          </TabsTrigger>
+          <TabsTrigger value="lazer" className="text-xs sm:text-sm px-2 py-3 whitespace-normal leading-tight">
+            Lazer
           </TabsTrigger>
         </TabsList>
         
@@ -164,9 +169,10 @@ export const MapTab = () => {
         <DialogContent className="max-w-[90%] sm:max-w-md">
           <DialogHeader>
             <DialogTitle>
-              {activeTab === "idioma" ? "Anotação de Aula" : 
-               activeTab === "vida" ? "Diário de Bordo" : 
-               "Proposição Poética"}
+              {activeTab === "linguistica" ? "Anotação Linguística" : 
+               activeTab === "restaurante" ? "Restaurante" : 
+               activeTab === "cultura" ? "Cultura" :
+               "Lazer"}
             </DialogTitle>
           </DialogHeader>
           <div className="space-y-4">
@@ -184,9 +190,10 @@ export const MapTab = () => {
               value={newPinContent}
               onChange={(e) => setNewPinContent(e.target.value)}
               placeholder={
-                activeTab === "idioma" ? "Vocabulário e expressões aprendidas..." :
-                activeTab === "vida" ? "O que você sentiu/percebeu neste local?" :
-                "Proposição poética para este lugar..."
+                activeTab === "linguistica" ? "Vocabulário e expressões aprendidas..." :
+                activeTab === "restaurante" ? "Nome, pratos, preços, experiência..." :
+                activeTab === "cultura" ? "Eventos culturais, costumes, observações..." :
+                "Atividades de lazer, lugares visitados..."
               }
               rows={6}
               className="resize-none"
