@@ -3,13 +3,12 @@ import { MobileFrame } from "@/components/MobileFrame";
 import { AuthWrapper } from "@/components/app/AuthWrapper";
 import { MeuMapaTab } from "@/components/app/MeuMapaTab";
 import { MapaSeguroTab } from "@/components/app/MapaSeguroTab";
-import { AITab } from "@/components/app/AITab";
 import { LanguagePracticeTab } from "@/components/app/LanguagePracticeTab";
 import { RedeParceirosTa } from "@/components/app/RedeParceirosTa";
 import { DocumentosTab } from "@/components/app/DocumentosTab";
 import { ParceirosInternosTab } from "@/components/app/ParceirosInternosTab";
 import Profile from "@/pages/Profile";
-import { Map, Sparkles, Compass, LogOut, StickyNote, User, Menu, Users, FileText, Calendar } from "lucide-react";
+import { Map, Compass, LogOut, StickyNote, User, Menu, Users, FileText, Calendar } from "lucide-react";
 import { Button } from "@/components/ui/button";
 import { Avatar, AvatarFallback } from "@/components/ui/avatar";
 import { Sheet, SheetContent, SheetTrigger } from "@/components/ui/sheet";
@@ -20,14 +19,14 @@ interface ExpatAppProps {
 }
 
 const ExpatApp = ({ onBack }: ExpatAppProps) => {
-  const [activeTab, setActiveTab] = useState<"mapa" | "seguro" | "ia" | "notas" | "perfil" | "parceiros" | "documentos" | "parceiros-internos">("mapa");
+  const [activeTab, setActiveTab] = useState<"mapa" | "seguro" | "notas" | "perfil" | "parceiros" | "documentos" | "parceiros-internos">("mapa");
   const [isMenuOpen, setIsMenuOpen] = useState(false);
 
   // Bottom nav - apenas principais
   const mainTabs = [
     { id: "mapa" as const, icon: Compass, label: "Mapa" },
     { id: "notas" as const, icon: StickyNote, label: "Notas" },
-    { id: "ia" as const, icon: Sparkles, label: "IA" },
+    { id: "perfil" as const, icon: User, label: "Perfil" },
   ];
 
   // Menu drawer - todos os itens
@@ -39,7 +38,6 @@ const ExpatApp = ({ onBack }: ExpatAppProps) => {
     { id: "documentos" as const, icon: FileText, label: "Documentos da Viagem" },
     { id: "parceiros-internos" as const, icon: Calendar, label: "Parceiros Internos" },
     { id: "parceiros" as const, icon: Users, label: "Rede de Parceiros Externa" },
-    { id: "ia" as const, icon: Sparkles, label: "Assistentes IA" },
   ];
 
   const handleMenuItemClick = (tabId: typeof activeTab) => {
@@ -139,7 +137,6 @@ const ExpatApp = ({ onBack }: ExpatAppProps) => {
           {activeTab === "documentos" && <DocumentosTab />}
           {activeTab === "parceiros-internos" && <ParceirosInternosTab />}
           {activeTab === "parceiros" && <RedeParceirosTa />}
-          {activeTab === "ia" && <AITab />}
           {activeTab === "perfil" && <Profile />}
         </div>
 
