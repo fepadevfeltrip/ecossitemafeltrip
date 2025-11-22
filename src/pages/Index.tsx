@@ -82,13 +82,16 @@ const Index = () => {
                       <li>Comunidade Feltrip</li>
                       <li>Acesso à rede externa de parceiros*</li>
                       <li>Guia cultural básico das cidades (gratuito)</li>
-                      <li>1h de Aula de Cultura / Acolhimento</li>
+                      <li>1h de Aula de Cultura/ Educacional para a equipe de expatriados*</li>
                     </ul>
                   </div>
                   
                   <div className="pt-4 border-t border-border">
-                    <p className="font-bold text-lg text-foreground">US$ 89/mês – 1 pessoa</p>
+                    <p className="font-bold text-lg text-foreground">US$ 49,90/mês – 1 pessoa</p>
+                    <p className="text-muted-foreground">US$ 89/mês – 2 pessoas</p>
                     <p className="text-muted-foreground">US$ 129,90/mês – até 4 pessoas</p>
+                    <p className="text-xs text-muted-foreground mt-3">* a depender da cidade</p>
+                    <p className="text-xs text-muted-foreground">** a partir de 6 meses de assinatura</p>
                   </div>
                 </div>
               </Card>
