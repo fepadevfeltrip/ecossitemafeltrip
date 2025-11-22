@@ -1,7 +1,6 @@
 import { useEffect, useState } from "react";
 import { supabase } from "@/integrations/supabase/client";
 import { PieChart, Pie, Cell, ResponsiveContainer } from "recharts";
-import mrpDiagram from "@/assets/mrp-diagram.png";
 import bobaMeditating from "@/assets/boba-meditating.png";
 import bobaAvatar from "@/assets/boba-avatar.jpg";
 import feltripPin from "@/assets/feltrip-pin.png";
@@ -26,12 +25,21 @@ interface MapNote {
   longitude: number;
 }
 
+const pillarExplanations = {
+  "Corpo": "Percepção corporal, sensações físicas, saúde, energia e vitalidade no novo ambiente.",
+  "Espaço": "Relação com ambientes íntimos e privados, sensação de acolhimento nos espaços pessoais.",
+  "Território": "Conexão com o lugar geográfico, pertencimento ao entorno, exploração do território.",
+  "O Outro": "Vínculos relacionais, conexões sociais, qualidade das interações humanas.",
+  "Identidade": "Autoimagem, valores pessoais, senso de si mesmo no processo de adaptação."
+};
+
 export const MeuMapaTab = () => {
   const { toast } = useToast();
   const [radarData, setRadarData] = useState<DiaryEntry[]>([]);
   const [mapNotes, setMapNotes] = useState<MapNote[]>([]);
   const [loading, setLoading] = useState(true);
   const [showProposicao, setShowProposicao] = useState(false);
+  const [selectedPillar, setSelectedPillar] = useState<string | null>(null);
 
   // Se está mostrando Proposição, renderiza apenas ela
   if (showProposicao) {
@@ -238,16 +246,24 @@ export const MeuMapaTab = () => {
               </div>
             </div>
 
-            {/* MRP Diagram Reference */}
-            <div className="bg-card/50 rounded-xl p-6 border border-border/50 backdrop-blur-sm">
-              <h4 className="text-sm font-semibold text-muted-foreground mb-3 text-center">
-                Os 5 Pilares da Presença Relacional
-              </h4>
-              <img 
-                src={mrpDiagram} 
-                alt="Map of Relational Presence" 
-                className="w-full max-w-sm mx-auto"
-              />
+            {/* Metodologia */}
+            <div className="bg-card/50 rounded-xl p-6 border border-border/50 backdrop-blur-sm space-y-3">
+              <div>
+                <h4 className="text-sm font-bold text-foreground mb-1">
+                  Modelo:
+                </h4>
+                <p className="text-sm text-muted-foreground leading-relaxed">
+                  Para observação da presença relacional em processos de adaptação e pertencimento.
+                </p>
+              </div>
+              <div>
+                <h4 className="text-sm font-bold text-foreground mb-1">
+                  Método:
+                </h4>
+                <p className="text-sm text-muted-foreground leading-relaxed">
+                  A observação é realizada por meio de autoavaliações fenomenológicas (percepção corporal, emocional e simbólica), mediadas por práticas orientadas pelo Feltrip™.
+                </p>
+              </div>
             </div>
 
             {/* Pie Chart Visualization */}
@@ -271,16 +287,16 @@ export const MeuMapaTab = () => {
                       </p>
                     )}
                   </div>
-                  <ResponsiveContainer width="100%" height={400}>
+                  <ResponsiveContainer width="100%" height={380}>
                     <PieChart>
                       <Pie
                         data={displayData}
                         cx="50%"
                         cy="50%"
-                        labelLine={true}
-                        label={({ pillar, sentiment }) => `${pillar}: ${sentiment.toFixed(0)}%`}
-                        outerRadius={130}
-                        innerRadius={50}
+                        labelLine={false}
+                        label={false}
+                        outerRadius={120}
+                        innerRadius={45}
                         fill="hsl(var(--primary))"
                         dataKey="sentiment"
                         paddingAngle={3}
@@ -297,16 +313,41 @@ export const MeuMapaTab = () => {
                     </PieChart>
                   </ResponsiveContainer>
                   
-                  {/* Legend */}
-                  <div className="grid grid-cols-2 gap-3 mt-6 max-w-md mx-auto">
+                  {/* Interactive Pillar Buttons */}
+                  <div className="grid grid-cols-1 gap-3 mt-6">
                     {displayData.map((entry, index) => (
-                      <div key={entry.pillar} className="flex items-center gap-2">
+                      <button
+                        key={entry.pillar}
+                        onClick={() => setSelectedPillar(selectedPillar === entry.pillar ? null : entry.pillar)}
+                        className="w-full text-left transition-all duration-300 hover:scale-[1.02]"
+                      >
                         <div 
-                          className="w-4 h-4 rounded-full border-2 border-white shadow-sm" 
-                          style={{ backgroundColor: COLORS[index % COLORS.length] }}
-                        />
-                        <span className="text-xs font-medium text-foreground">{entry.pillar}</span>
-                      </div>
+                          className={`rounded-lg p-4 border-2 ${
+                            selectedPillar === entry.pillar 
+                              ? 'border-white shadow-lg' 
+                              : 'border-transparent'
+                          }`}
+                          style={{ backgroundColor: COLORS[index % COLORS.length] + '20' }}
+                        >
+                          <div className="flex items-center gap-3">
+                            <div 
+                              className="w-6 h-6 rounded-full border-2 border-white shadow-sm shrink-0" 
+                              style={{ backgroundColor: COLORS[index % COLORS.length] }}
+                            />
+                            <div className="flex-1">
+                              <div className="flex items-center justify-between mb-1">
+                                <span className="font-bold text-foreground">{entry.pillar}</span>
+                                <span className="text-sm font-semibold text-foreground">{entry.sentiment.toFixed(0)}%</span>
+                              </div>
+                              {selectedPillar === entry.pillar && (
+                                <p className="text-xs text-muted-foreground leading-relaxed mt-2">
+                                  {pillarExplanations[entry.pillar as keyof typeof pillarExplanations]}
+                                </p>
+                              )}
+                            </div>
+                          </div>
+                        </div>
+                      </button>
                     ))}
                   </div>
                 </div>
