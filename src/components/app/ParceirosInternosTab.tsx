@@ -4,11 +4,11 @@ import { Button } from "@/components/ui/button";
 import { Calendar } from "@/components/ui/calendar";
 import { Dialog, DialogContent, DialogHeader, DialogTitle, DialogTrigger } from "@/components/ui/dialog";
 import { Textarea } from "@/components/ui/textarea";
-import { Brain, Heart, Calendar as CalendarIcon } from "lucide-react";
+import { Brain, Heart, Calendar as CalendarIcon, GraduationCap } from "lucide-react";
 import { useToast } from "@/components/ui/use-toast";
 import { pt } from "date-fns/locale";
 
-type ServicoType = "tutor-cultura" | "saude-mental";
+type ServicoType = "tutor-cultura" | "saude-mental" | "consultor-educacional";
 
 export const ParceirosInternosTab = () => {
   const { toast } = useToast();
@@ -31,6 +31,13 @@ export const ParceirosInternosTab = () => {
       description: "Suporte psicológico para expatriados",
       icon: Heart,
       color: "bg-pink-500/10 text-pink-600"
+    },
+    {
+      id: "consultor-educacional" as ServicoType,
+      title: "Consultor Educacional",
+      description: "Orientação sobre sistema educacional e matrícula escolar",
+      icon: GraduationCap,
+      color: "bg-purple-500/10 text-purple-600"
     }
   ];
 
