@@ -2,6 +2,8 @@ import { useEffect, useState } from "react";
 import { supabase } from "@/integrations/supabase/client";
 import { RadarChart, PolarGrid, PolarAngleAxis, Radar, ResponsiveContainer, PieChart, Pie, Cell } from "recharts";
 import mrpDiagram from "@/assets/mrp-diagram.png";
+import bobaMeditating from "@/assets/boba-meditating.png";
+import feltripLogo from "@/assets/feltrip-logo.png";
 import { Tabs, TabsContent, TabsList, TabsTrigger } from "@/components/ui/tabs";
 import { MapPin, Trash2 } from "lucide-react";
 import { Button } from "@/components/ui/button";
@@ -179,11 +181,15 @@ export const MeuMapaTab = () => {
                     return (
                       <div 
                         key={note.id}
-                        className="absolute w-8 h-8 bg-primary rounded-full border-2 border-white shadow-lg flex items-center justify-center cursor-pointer hover:scale-110 transition-transform"
+                        className="absolute w-10 h-10 cursor-pointer hover:scale-125 transition-transform drop-shadow-lg"
                         style={{ top: `${lat}%`, left: `${lng}%` }}
                         title={note.title}
                       >
-                        <MapPin className="h-4 w-4 text-white" />
+                        <img 
+                          src={feltripLogo} 
+                          alt="Pin Feltrip"
+                          className="w-full h-full object-contain"
+                        />
                       </div>
                     );
                   })}
@@ -245,55 +251,100 @@ export const MeuMapaTab = () => {
           </TabsContent>
 
           {/* Relational Presence Map Tab */}
-          <TabsContent value="presenca" className="space-y-4">
-            <div className="bg-card rounded-lg border border-border p-4">
-              <h3 className="font-semibold text-foreground mb-4">Mapa de Presença Relacional</h3>
+          <TabsContent value="presenca" className="space-y-6">
+            {/* Hero Section with Boba Meditating */}
+            <div className="relative bg-gradient-to-br from-primary/10 via-accent/5 to-secondary/10 rounded-2xl border-2 border-primary/20 overflow-hidden">
+              <div className="absolute inset-0 bg-[radial-gradient(circle_at_50%_120%,rgba(120,119,198,0.1),rgba(255,255,255,0))]" />
               
-              {/* MRP Diagram Reference */}
-              <div className="bg-card/50 rounded-lg p-4 border border-border mb-4">
-                <img 
-                  src={mrpDiagram} 
-                  alt="Map of Relational Presence" 
-                  className="w-full max-w-md mx-auto"
-                />
+              <div className="relative p-8 flex flex-col items-center space-y-4">
+                <div className="w-48 h-48 relative">
+                  <img 
+                    src={bobaMeditating} 
+                    alt="Boba meditando na praia" 
+                    className="w-full h-full object-contain drop-shadow-2xl"
+                  />
+                </div>
+                
+                <div className="text-center space-y-2 max-w-md">
+                  <h3 className="text-2xl font-bold text-foreground">
+                    Seu Mapa da Presença Relacional
+                  </h3>
+                  <p className="text-sm text-muted-foreground italic leading-relaxed">
+                    "Como está sua conexão com o corpo, o território, o outro, o espaço e sua identidade nessa jornada?"
+                  </p>
+                </div>
               </div>
+            </div>
 
-              {/* Pie Chart Visualization */}
-              <div className="bg-card rounded-lg border border-border p-6">
-                {loading ? (
-                  <div className="h-80 flex items-center justify-center">
+            {/* MRP Diagram Reference */}
+            <div className="bg-card/50 rounded-xl p-6 border border-border/50 backdrop-blur-sm">
+              <h4 className="text-sm font-semibold text-muted-foreground mb-3 text-center">
+                Os 5 Pilares da Presença Relacional
+              </h4>
+              <img 
+                src={mrpDiagram} 
+                alt="Map of Relational Presence" 
+                className="w-full max-w-sm mx-auto"
+              />
+            </div>
+
+            {/* Pie Chart Visualization */}
+            <div className="bg-card rounded-xl border-2 border-border p-6">
+              {loading ? (
+                <div className="h-80 flex items-center justify-center">
+                  <div className="text-center space-y-3">
+                    <div className="w-16 h-16 rounded-full border-4 border-primary border-t-transparent animate-spin mx-auto" />
                     <p className="text-muted-foreground">Carregando seu mapa...</p>
                   </div>
-                ) : !hasData ? (
-                  <div className="h-80 flex flex-col items-center justify-center space-y-4">
-                    <div className="w-48 h-48 rounded-full bg-muted/20 border-2 border-dashed border-muted flex items-center justify-center">
-                      <p className="text-center text-muted-foreground px-6">
-                        Seu mapa está em branco.<br />
-                        Comece a preencher seu diário!
-                      </p>
-                    </div>
+                </div>
+              ) : !hasData ? (
+                <div className="h-80 flex flex-col items-center justify-center space-y-6">
+                  <div className="w-56 h-56 rounded-full bg-gradient-to-br from-muted/30 to-muted/10 border-4 border-dashed border-muted/50 flex items-center justify-center relative overflow-hidden">
+                    <div className="absolute inset-0 bg-[radial-gradient(circle_at_center,rgba(255,255,255,0.8),transparent_70%)]" />
+                    <p className="text-center text-muted-foreground px-8 relative z-10 leading-relaxed">
+                      Seu mapa está esperando<br />
+                      para ser preenchido.<br />
+                      <span className="block mt-2 font-semibold text-foreground">
+                        Comece seu diário!
+                      </span>
+                    </p>
                   </div>
-                ) : (
+                  <p className="text-xs text-muted-foreground/70 italic">
+                    A Boba vai te acompanhar nessa jornada de autoconhecimento
+                  </p>
+                </div>
+              ) : (
+                <div className="space-y-4">
+                  <h4 className="text-center font-semibold text-foreground">
+                    Sua Pizza de Presença Relacional
+                  </h4>
                   <ResponsiveContainer width="100%" height={400}>
                     <PieChart>
                       <Pie
                         data={radarData}
                         cx="50%"
                         cy="50%"
-                        labelLine={false}
+                        labelLine={true}
                         label={({ pillar, sentiment }) => `${pillar}: ${sentiment.toFixed(1)}`}
-                        outerRadius={120}
+                        outerRadius={130}
+                        innerRadius={40}
                         fill="hsl(var(--primary))"
                         dataKey="sentiment"
+                        paddingAngle={2}
                       >
                         {radarData.map((entry, index) => (
-                          <Cell key={`cell-${index}`} fill={COLORS[index % COLORS.length]} />
+                          <Cell 
+                            key={`cell-${index}`} 
+                            fill={COLORS[index % COLORS.length]}
+                            stroke="white"
+                            strokeWidth={2}
+                          />
                         ))}
                       </Pie>
                     </PieChart>
                   </ResponsiveContainer>
-                )}
-              </div>
+                </div>
+              )}
             </div>
           </TabsContent>
         </Tabs>
