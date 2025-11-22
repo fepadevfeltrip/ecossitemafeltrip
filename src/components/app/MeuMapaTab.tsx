@@ -36,10 +36,12 @@ const pillarExplanations = {
 export const MeuMapaTab = () => {
   const { toast } = useToast();
   const [radarData, setRadarData] = useState<DiaryEntry[]>([]);
+  const [historicalData, setHistoricalData] = useState<DiaryEntry[]>([]);
   const [mapNotes, setMapNotes] = useState<MapNote[]>([]);
   const [loading, setLoading] = useState(true);
   const [showProposicao, setShowProposicao] = useState(false);
   const [selectedPillar, setSelectedPillar] = useState<string | null>(null);
+  const [comparisonMode, setComparisonMode] = useState(false);
 
   // Se está mostrando Proposição, renderiza apenas ela
   if (showProposicao) {
@@ -61,6 +63,7 @@ export const MeuMapaTab = () => {
 
   useEffect(() => {
     loadRadarData();
+    loadHistoricalData();
     loadMapNotes();
   }, []);
 
@@ -77,7 +80,7 @@ export const MeuMapaTab = () => {
       if (error) throw error;
 
       // Aggregate by pillar (average sentiment)
-      const pillars = ['Territory', 'Space', 'The Other', 'Identity', 'Body'];
+      const pillars = ['Corpo', 'Espaço', 'Território', 'O Outro', 'Identidade'];
       const aggregated = pillars.map(pillar => {
         const entries = data?.filter(e => e.pillar === pillar) || [];
         const avg = entries.length > 0 
@@ -91,6 +94,39 @@ export const MeuMapaTab = () => {
       console.error('Error loading radar data:', error);
     } finally {
       setLoading(false);
+    }
+  };
+
+  const loadHistoricalData = async () => {
+    try {
+      const { data: { user } } = await supabase.auth.getUser();
+      if (!user) return;
+
+      // Buscar dados de 30 dias atrás
+      const thirtyDaysAgo = new Date();
+      thirtyDaysAgo.setDate(thirtyDaysAgo.getDate() - 30);
+
+      const { data, error } = await supabase
+        .from('diario_entries')
+        .select('pillar, sentiment')
+        .eq('user_id', user.id)
+        .lt('created_at', thirtyDaysAgo.toISOString());
+
+      if (error) throw error;
+
+      // Aggregate by pillar
+      const pillars = ['Corpo', 'Espaço', 'Território', 'O Outro', 'Identidade'];
+      const aggregated = pillars.map(pillar => {
+        const entries = data?.filter(e => e.pillar === pillar) || [];
+        const avg = entries.length > 0 
+          ? entries.reduce((sum, e) => sum + e.sentiment, 0) / entries.length 
+          : 0;
+        return { pillar, sentiment: avg };
+      });
+
+      setHistoricalData(aggregated);
+    } catch (error) {
+      console.error('Error loading historical data:', error);
     }
   };
 
@@ -172,6 +208,7 @@ export const MeuMapaTab = () => {
   }, []);
 
   const hasData = radarData.some(d => d.sentiment > 0);
+  const hasHistoricalData = historicalData.some(d => d.sentiment > 0);
   
   // Cores do dashboard RH
   const COLORS = [
@@ -183,7 +220,7 @@ export const MeuMapaTab = () => {
   ];
 
   // Dados fictícios para demonstração quando não há dados reais
-  const fakeData = [
+  const fakeDataCurrent = [
     { pillar: "Corpo", sentiment: 75 },
     { pillar: "Espaço", sentiment: 65 },
     { pillar: "Território", sentiment: 82 },
@@ -191,7 +228,16 @@ export const MeuMapaTab = () => {
     { pillar: "Identidade", sentiment: 70 },
   ];
 
-  const displayData = hasData ? radarData : fakeData;
+  const fakeDataHistorical = [
+    { pillar: "Corpo", sentiment: 60 },
+    { pillar: "Espaço", sentiment: 55 },
+    { pillar: "Território", sentiment: 70 },
+    { pillar: "O Outro", sentiment: 75 },
+    { pillar: "Identidade", sentiment: 58 },
+  ];
+
+  const displayData = hasData ? radarData : fakeDataCurrent;
+  const displayHistoricalData = hasHistoricalData ? historicalData : fakeDataHistorical;
 
   return (
     <div className="flex-1 overflow-y-auto p-6 pb-24">
@@ -277,79 +323,220 @@ export const MeuMapaTab = () => {
                 </div>
               ) : (
                 <div className="space-y-4">
-                  <div className="text-center space-y-2">
-                    <h4 className="text-lg font-bold text-foreground">
-                      Sua Pizza de Presença Relacional
-                    </h4>
-                    {!hasData && (
-                      <p className="text-xs text-muted-foreground italic">
-                        (Exemplo fictício - Complete seu diário para ver seus dados reais)
-                      </p>
-                    )}
+                  <div className="flex items-center justify-between">
+                    <div className="text-center flex-1 space-y-2">
+                      <h4 className="text-lg font-bold text-foreground">
+                        Sua Pizza de Presença Relacional
+                      </h4>
+                      {!hasData && (
+                        <p className="text-xs text-muted-foreground italic">
+                          (Exemplo fictício - Complete seu diário para ver seus dados reais)
+                        </p>
+                      )}
+                    </div>
+                    <Button
+                      variant={comparisonMode ? "default" : "outline"}
+                      size="sm"
+                      onClick={() => setComparisonMode(!comparisonMode)}
+                      className="ml-4"
+                    >
+                      {comparisonMode ? "Visão Única" : "Comparar"}
+                    </Button>
                   </div>
-                  <ResponsiveContainer width="100%" height={380}>
-                    <PieChart>
-                      <Pie
-                        data={displayData}
-                        cx="50%"
-                        cy="50%"
-                        labelLine={false}
-                        label={false}
-                        outerRadius={120}
-                        innerRadius={45}
-                        fill="hsl(var(--primary))"
-                        dataKey="sentiment"
-                        paddingAngle={3}
-                      >
-                        {displayData.map((entry, index) => (
-                          <Cell 
-                            key={`cell-${index}`} 
-                            fill={COLORS[index % COLORS.length]}
-                            stroke="white"
-                            strokeWidth={3}
-                          />
-                        ))}
-                      </Pie>
-                    </PieChart>
-                  </ResponsiveContainer>
                   
-                  {/* Interactive Pillar Buttons */}
-                  <div className="grid grid-cols-1 gap-3 mt-6">
-                    {displayData.map((entry, index) => (
-                      <button
-                        key={entry.pillar}
-                        onClick={() => setSelectedPillar(selectedPillar === entry.pillar ? null : entry.pillar)}
-                        className="w-full text-left transition-all duration-300 hover:scale-[1.02]"
-                      >
-                        <div 
-                          className={`rounded-lg p-4 border-2 ${
-                            selectedPillar === entry.pillar 
-                              ? 'border-white shadow-lg' 
-                              : 'border-transparent'
-                          }`}
-                          style={{ backgroundColor: COLORS[index % COLORS.length] + '20' }}
-                        >
-                          <div className="flex items-center gap-3">
-                            <div 
-                              className="w-6 h-6 rounded-full border-2 border-white shadow-sm shrink-0" 
-                              style={{ backgroundColor: COLORS[index % COLORS.length] }}
-                            />
-                            <div className="flex-1">
-                              <div className="flex items-center justify-between mb-1">
-                                <span className="font-bold text-foreground">{entry.pillar}</span>
-                                <span className="text-sm font-semibold text-foreground">{entry.sentiment.toFixed(0)}%</span>
-                              </div>
-                              {selectedPillar === entry.pillar && (
-                                <p className="text-xs text-muted-foreground leading-relaxed mt-2">
-                                  {pillarExplanations[entry.pillar as keyof typeof pillarExplanations]}
-                                </p>
-                              )}
-                            </div>
-                          </div>
+                  {comparisonMode ? (
+                    /* Modo Comparação - Duas Pizzas */
+                    <div className="grid grid-cols-1 md:grid-cols-2 gap-6 animate-fade-in">
+                      {/* Pizza Antes (Histórico) */}
+                      <div className="space-y-3">
+                        <div className="text-center">
+                          <h5 className="text-sm font-semibold text-muted-foreground">
+                            Há 30 dias
+                          </h5>
                         </div>
-                      </button>
-                    ))}
-                  </div>
+                        <ResponsiveContainer width="100%" height={280}>
+                          <PieChart>
+                            <Pie
+                              data={displayHistoricalData}
+                              cx="50%"
+                              cy="50%"
+                              labelLine={false}
+                              label={false}
+                              outerRadius={90}
+                              innerRadius={35}
+                              fill="hsl(var(--primary))"
+                              dataKey="sentiment"
+                              paddingAngle={3}
+                            >
+                              {displayHistoricalData.map((entry, index) => (
+                                <Cell 
+                                  key={`cell-before-${index}`} 
+                                  fill={COLORS[index % COLORS.length]}
+                                  stroke="white"
+                                  strokeWidth={2}
+                                  opacity={0.7}
+                                />
+                              ))}
+                            </Pie>
+                          </PieChart>
+                        </ResponsiveContainer>
+                      </div>
+
+                      {/* Pizza Depois (Atual) */}
+                      <div className="space-y-3">
+                        <div className="text-center">
+                          <h5 className="text-sm font-semibold text-foreground">
+                            Agora
+                          </h5>
+                        </div>
+                        <ResponsiveContainer width="100%" height={280}>
+                          <PieChart>
+                            <Pie
+                              data={displayData}
+                              cx="50%"
+                              cy="50%"
+                              labelLine={false}
+                              label={false}
+                              outerRadius={90}
+                              innerRadius={35}
+                              fill="hsl(var(--primary))"
+                              dataKey="sentiment"
+                              paddingAngle={3}
+                            >
+                              {displayData.map((entry, index) => (
+                                <Cell 
+                                  key={`cell-after-${index}`} 
+                                  fill={COLORS[index % COLORS.length]}
+                                  stroke="white"
+                                  strokeWidth={2}
+                                />
+                              ))}
+                            </Pie>
+                          </PieChart>
+                        </ResponsiveContainer>
+                      </div>
+
+                      {/* Comparação de Valores */}
+                      <div className="col-span-1 md:col-span-2 space-y-2">
+                        <h5 className="text-sm font-semibold text-foreground text-center mb-3">
+                          Evolução por Pilar
+                        </h5>
+                        {displayData.map((entry, index) => {
+                          const historicalValue = displayHistoricalData[index].sentiment;
+                          const currentValue = entry.sentiment;
+                          const difference = currentValue - historicalValue;
+                          const percentChange = historicalValue > 0 
+                            ? ((difference / historicalValue) * 100).toFixed(1)
+                            : 0;
+                          
+                          return (
+                            <div 
+                              key={entry.pillar}
+                              className="flex items-center justify-between p-3 rounded-lg bg-muted/30"
+                            >
+                              <div className="flex items-center gap-3 flex-1">
+                                <div 
+                                  className="w-4 h-4 rounded-full border-2 border-white shadow-sm shrink-0" 
+                                  style={{ backgroundColor: COLORS[index % COLORS.length] }}
+                                />
+                                <span className="font-medium text-sm text-foreground">
+                                  {entry.pillar}
+                                </span>
+                              </div>
+                              <div className="flex items-center gap-4 text-xs">
+                                <span className="text-muted-foreground">
+                                  {historicalValue.toFixed(0)}%
+                                </span>
+                                <span className="text-muted-foreground">→</span>
+                                <span className="font-semibold text-foreground">
+                                  {currentValue.toFixed(0)}%
+                                </span>
+                                <span 
+                                  className={`font-bold ${
+                                    difference > 0 
+                                      ? 'text-green-600' 
+                                      : difference < 0 
+                                      ? 'text-red-600' 
+                                      : 'text-muted-foreground'
+                                  }`}
+                                >
+                                  {difference > 0 ? '+' : ''}{difference.toFixed(0)}
+                                  {difference !== 0 && ` (${percentChange}%)`}
+                                </span>
+                              </div>
+                            </div>
+                          );
+                        })}
+                      </div>
+                    </div>
+                  ) : (
+                    /* Modo Normal - Uma Pizza */
+                    <div className="animate-fade-in">
+                      <ResponsiveContainer width="100%" height={380}>
+                        <PieChart>
+                          <Pie
+                            data={displayData}
+                            cx="50%"
+                            cy="50%"
+                            labelLine={false}
+                            label={false}
+                            outerRadius={120}
+                            innerRadius={45}
+                            fill="hsl(var(--primary))"
+                            dataKey="sentiment"
+                            paddingAngle={3}
+                          >
+                            {displayData.map((entry, index) => (
+                              <Cell 
+                                key={`cell-${index}`} 
+                                fill={COLORS[index % COLORS.length]}
+                                stroke="white"
+                                strokeWidth={3}
+                              />
+                            ))}
+                          </Pie>
+                        </PieChart>
+                      </ResponsiveContainer>
+                      
+                      {/* Interactive Pillar Buttons */}
+                      <div className="grid grid-cols-1 gap-3 mt-6">
+                        {displayData.map((entry, index) => (
+                          <button
+                            key={entry.pillar}
+                            onClick={() => setSelectedPillar(selectedPillar === entry.pillar ? null : entry.pillar)}
+                            className="w-full text-left transition-all duration-300 hover:scale-[1.02]"
+                          >
+                            <div 
+                              className={`rounded-lg p-4 border-2 ${
+                                selectedPillar === entry.pillar 
+                                  ? 'border-white shadow-lg' 
+                                  : 'border-transparent'
+                              }`}
+                              style={{ backgroundColor: COLORS[index % COLORS.length] + '20' }}
+                            >
+                              <div className="flex items-center gap-3">
+                                <div 
+                                  className="w-6 h-6 rounded-full border-2 border-white shadow-sm shrink-0" 
+                                  style={{ backgroundColor: COLORS[index % COLORS.length] }}
+                                />
+                                <div className="flex-1">
+                                  <div className="flex items-center justify-between mb-1">
+                                    <span className="font-bold text-foreground">{entry.pillar}</span>
+                                    <span className="text-sm font-semibold text-foreground">{entry.sentiment.toFixed(0)}%</span>
+                                  </div>
+                                  {selectedPillar === entry.pillar && (
+                                    <p className="text-xs text-muted-foreground leading-relaxed mt-2 animate-accordion-down">
+                                      {pillarExplanations[entry.pillar as keyof typeof pillarExplanations]}
+                                    </p>
+                                  )}
+                                </div>
+                              </div>
+                            </div>
+                          </button>
+                        ))}
+                      </div>
+                    </div>
+                  )}
                 </div>
               )}
             </div>
