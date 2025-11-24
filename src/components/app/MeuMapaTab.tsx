@@ -1,7 +1,7 @@
 import { useEffect, useState } from "react";
 import { supabase } from "@/integrations/supabase/client";
 import { PieChart, Pie, Cell, ResponsiveContainer } from "recharts";
-import bobaMeditating from "@/assets/boba-meditating.png";
+import bobaMeditating from "@/assets/boba-sem-fundo-medita.png";
 import bobaAvatar from "@/assets/boba-avatar.jpg";
 import feltripPin from "@/assets/feltrip-pin.png";
 import { Tabs, TabsContent, TabsList, TabsTrigger } from "@/components/ui/tabs";
@@ -265,8 +265,8 @@ export const MeuMapaTab = () => {
                 <div className="w-48 h-48 relative">
                   <img 
                     src={bobaMeditating} 
-                    alt="Boba meditando na praia" 
-                    className="w-full h-full object-contain drop-shadow-2xl"
+                    alt="Boba meditando" 
+                    className="w-full h-full object-contain drop-shadow-2xl animate-float"
                   />
                 </div>
                 
