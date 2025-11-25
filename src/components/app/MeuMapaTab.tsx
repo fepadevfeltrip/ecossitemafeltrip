@@ -42,6 +42,7 @@ export const MeuMapaTab = () => {
   const [showProposicao, setShowProposicao] = useState(false);
   const [selectedPillar, setSelectedPillar] = useState<string | null>(null);
   const [comparisonMode, setComparisonMode] = useState(false);
+  const [isFloating, setIsFloating] = useState(true);
 
   // Se está mostrando Proposição, renderiza apenas ela
   if (showProposicao) {
@@ -262,11 +263,11 @@ export const MeuMapaTab = () => {
               <div className="absolute inset-0 bg-[radial-gradient(circle_at_50%_120%,rgba(120,119,198,0.1),rgba(255,255,255,0))]" />
               
               <div className="relative p-8 flex flex-col items-center space-y-4">
-                <div className="w-48 h-48 relative">
+                <div className="w-48 h-48 relative cursor-pointer" onClick={() => setIsFloating(!isFloating)}>
                   <img 
                     src={bobaMeditating} 
                     alt="Boba meditando" 
-                    className="w-full h-full object-contain drop-shadow-2xl animate-float"
+                    className={`w-full h-full object-contain drop-shadow-2xl transition-all ${isFloating ? 'animate-float' : ''}`}
                   />
                 </div>
                 
