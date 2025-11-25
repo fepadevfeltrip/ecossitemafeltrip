@@ -14,7 +14,9 @@ export const AuthWrapper = ({ children }: AuthWrapperProps) => {
   const [loading, setLoading] = useState(true);
   const [email, setEmail] = useState("");
   const [password, setPassword] = useState("");
+  const [inviteCode, setInviteCode] = useState("");
   const [isLogin, setIsLogin] = useState(true);
+  const [validatingCode, setValidatingCode] = useState(false);
 
   useEffect(() => {
     supabase.auth.getSession().then(({ data: { session } }) => {
@@ -38,12 +40,60 @@ export const AuthWrapper = ({ children }: AuthWrapperProps) => {
         if (error) throw error;
         toast.success("Login realizado com sucesso!");
       } else {
-        const { error } = await supabase.auth.signUp({ email, password });
+        // Validar código de convite antes de criar conta
+        setValidatingCode(true);
+        
+        const { data: inviteData, error: inviteError } = await supabase
+          .from('invites')
+          .select('*')
+          .eq('code', inviteCode.trim())
+          .eq('email', email.toLowerCase())
+          .eq('status', 'pending')
+          .gt('expires_at', new Date().toISOString())
+          .single();
+
+        setValidatingCode(false);
+
+        if (inviteError || !inviteData) {
+          toast.error("Código de convite inválido, expirado ou não corresponde ao email informado.");
+          return;
+        }
+
+        const { data: authData, error } = await supabase.auth.signUp({ 
+          email, 
+          password,
+          options: {
+            emailRedirectTo: `${window.location.origin}/`
+          }
+        });
+        
         if (error) throw error;
+
+        // Marcar convite como usado
+        if (authData.user) {
+          await supabase
+            .from('invites')
+            .update({ 
+              status: 'used', 
+              used_by: authData.user.id,
+              used_at: new Date().toISOString()
+            })
+            .eq('id', inviteData.id);
+
+          // Criar role de usuário
+          await supabase
+            .from('user_roles')
+            .insert({ 
+              user_id: authData.user.id,
+              role: 'user'
+            });
+        }
+
         toast.success("Conta criada com sucesso!");
       }
     } catch (error: any) {
       toast.error(error.message);
+      setValidatingCode(false);
     }
   };
 
@@ -83,8 +133,22 @@ export const AuthWrapper = ({ children }: AuthWrapperProps) => {
                 required
               />
             </div>
-            <Button type="submit" className="w-full">
-              {isLogin ? "Entrar" : "Criar Conta"}
+            {!isLogin && (
+              <div>
+                <Input
+                  type="text"
+                  placeholder="Código de Convite"
+                  value={inviteCode}
+                  onChange={(e) => setInviteCode(e.target.value)}
+                  required
+                />
+                <p className="text-xs text-muted-foreground mt-1">
+                  Digite o código de convite que você recebeu
+                </p>
+              </div>
+            )}
+            <Button type="submit" className="w-full" disabled={validatingCode}>
+              {validatingCode ? "Validando..." : isLogin ? "Entrar" : "Criar Conta"}
             </Button>
           </form>
 
