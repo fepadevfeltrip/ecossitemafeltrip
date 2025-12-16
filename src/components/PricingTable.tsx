@@ -193,74 +193,72 @@ export const PricingTable = () => {
       </div>
 
       {/* Curadoria Executiva - Editorial Section */}
-      <section className="relative mt-16 -mx-4 md:-mx-8">
-        <div className="grid lg:grid-cols-2 min-h-[600px]">
-          {/* Image Side */}
-          <div className="relative h-[400px] lg:h-auto overflow-hidden">
-            <img 
-              src={curadoriaImage} 
-              alt="Escadaria com boas-vindas em múltiplos idiomas" 
-              className="absolute inset-0 w-full h-full object-cover"
-            />
-            <div className="absolute inset-0 bg-gradient-to-t lg:bg-gradient-to-r from-background via-background/60 to-transparent" />
-            
-            {/* Floating badge on image */}
-            <div className="absolute bottom-8 left-8 lg:bottom-auto lg:top-8">
-              <span className="inline-flex items-center gap-2 px-4 py-2 bg-background/90 backdrop-blur-sm text-foreground text-sm font-medium rounded-full shadow-lg">
-                <Sparkles className="h-4 w-4 text-primary" />
-                Experiência Exclusiva
-              </span>
-            </div>
+      <section className="relative mt-16 -mx-4 md:-mx-8 overflow-hidden rounded-xl">
+        {/* Image on Top */}
+        <div className="relative h-[300px] md:h-[400px] overflow-hidden">
+          <img 
+            src={curadoriaImage} 
+            alt="Escadaria com boas-vindas em múltiplos idiomas" 
+            className="absolute inset-0 w-full h-full object-cover"
+          />
+          <div className="absolute inset-0 bg-gradient-to-b from-transparent via-transparent to-background" />
+          
+          {/* Floating badge on image */}
+          <div className="absolute top-6 left-6">
+            <span className="inline-flex items-center gap-2 px-4 py-2 bg-background/90 backdrop-blur-sm text-foreground text-sm font-medium rounded-full shadow-lg">
+              <Sparkles className="h-4 w-4 text-primary" />
+              Experiência Exclusiva
+            </span>
           </div>
+        </div>
 
-          {/* Content Side */}
-          <div className="relative flex flex-col justify-center px-6 py-12 lg:px-12 lg:py-16 bg-card border-l border-border">
-            <div className="max-w-xl space-y-8">
-              <header className="space-y-4">
-                <h3 className="text-3xl md:text-4xl lg:text-5xl font-light text-foreground leading-tight tracking-tight">
-                  Curadoria<br />
-                  <span className="font-semibold">Executiva</span><br />
-                  <span className="text-primary font-light italic">Personalizada</span>
-                </h3>
-              </header>
-              
-              <div className="space-y-5 text-muted-foreground text-base leading-relaxed">
-                <p>
-                  Desenhamos experiências sob medida para colaboradores individuais ou grupos, 
-                  a partir de um diagnóstico relacional baseado no{" "}
-                  <span className="text-foreground font-medium">Mapa da Presença Relacional (MRP™)</span>.
-                </p>
-                
-                <p>
-                  A curadoria integra dinâmicas de onboarding e integração de equipes, caminhadas guiadas 
-                  no território e o apoio de uma rede selecionada de parceiros — incluindo especialistas 
-                  em saúde mental, educação e cultura.
-                </p>
-                
-                <p>
-                  Cada roteiro é construído de forma única, alinhando{" "}
-                  <span className="text-primary font-medium">cuidado humano</span>, 
-                  contexto organizacional e presença no território.
-                </p>
-              </div>
-              
-              <p className="text-sm text-muted-foreground italic">
-                *Disponível em São Paulo e Rio de Janeiro
+        {/* Content Below - Centered */}
+        <div className="bg-card px-6 py-12 md:px-12 md:py-16">
+          <div className="max-w-3xl mx-auto text-center space-y-8">
+            <header className="space-y-4">
+              <h3 className="text-3xl md:text-4xl lg:text-5xl font-light text-foreground leading-tight tracking-tight">
+                Curadoria{" "}
+                <span className="font-semibold">Executiva</span>{" "}
+                <span className="text-primary font-light italic">Personalizada</span>
+              </h3>
+            </header>
+            
+            <div className="space-y-5 text-muted-foreground text-base leading-relaxed">
+              <p>
+                Desenhamos experiências sob medida para colaboradores individuais ou grupos, 
+                a partir de um diagnóstico relacional baseado no{" "}
+                <span className="text-foreground font-medium">Mapa da Presença Relacional (MRP™)</span>.
               </p>
               
-              <div className="flex flex-col sm:flex-row items-start sm:items-center gap-6 pt-4">
-                <div>
-                  <span className="text-sm text-muted-foreground uppercase tracking-wider">Investimento</span>
-                  <div className="text-2xl font-semibold text-foreground">Sob consulta</div>
-                </div>
-                
-                <Button 
-                  size="lg"
-                  onClick={() => window.open("mailto:info@feltrip.com?subject=Curadoria Executiva Personalizada", "_blank")}
-                >
-                  Solicitar Proposta
-                </Button>
+              <p>
+                A curadoria integra dinâmicas de onboarding e integração de equipes, caminhadas guiadas 
+                no território e o apoio de uma rede selecionada de parceiros — incluindo especialistas 
+                em saúde mental, educação e cultura.
+              </p>
+              
+              <p>
+                Cada roteiro é construído de forma única, alinhando{" "}
+                <span className="text-primary font-medium">cuidado humano</span>, 
+                contexto organizacional e presença no território.
+              </p>
+            </div>
+            
+            <p className="text-sm text-muted-foreground italic">
+              *Disponível em São Paulo e Rio de Janeiro
+            </p>
+            
+            <div className="flex flex-col sm:flex-row items-center justify-center gap-6 pt-4">
+              <div className="text-center sm:text-left">
+                <span className="text-sm text-muted-foreground uppercase tracking-wider">Investimento</span>
+                <div className="text-2xl font-semibold text-foreground">Sob consulta</div>
               </div>
+              
+              <Button 
+                size="lg"
+                onClick={() => window.open("mailto:info@feltrip.com?subject=Curadoria Executiva Personalizada", "_blank")}
+              >
+                Solicitar Proposta
+              </Button>
             </div>
           </div>
         </div>
