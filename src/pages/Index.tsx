@@ -1,6 +1,5 @@
 import { useState } from "react";
-import { Smartphone, LayoutDashboard, ExternalLink, Mail, Globe } from "lucide-react";
-import { FeltripLogo } from "@/components/FeltripLogo";
+import { Smartphone, LayoutDashboard, Mail, Globe } from "lucide-react";
 import { NavigationCard } from "@/components/NavigationCard";
 import { WhatsAppButton } from "@/components/WhatsAppButton";
 import { SuggestionBox } from "@/components/SuggestionBox";
@@ -28,7 +27,7 @@ const IndexContent = () => {
   };
 
   return (
-    <div className="min-h-screen bg-gradient-to-br from-background via-muted/30 to-accent/10 flex flex-col items-center justify-center p-6">
+    <div className="min-h-screen bg-gradient-to-br from-background via-muted/30 to-accent/10 flex flex-col items-center p-6">
       <WhatsAppButton />
       
       {/* Language Toggle */}
@@ -49,45 +48,14 @@ const IndexContent = () => {
         </Button>
       </div>
 
-      <div className="w-full max-w-5xl space-y-12">
-        <div className="text-center space-y-6">
-          <FeltripLogo />
-          <div>
-            <h1 className="text-4xl font-bold text-foreground mb-2">
-              {t(
-                "Plataforma de Onboarding Relacional",
-                "Relational Onboarding Platform"
-              )}
-            </h1>
-            <p className="text-lg text-muted-foreground">
-              {t(
-                "Culture transitions made human.",
-                "Culture transitions made human."
-              )}
-            </p>
-          </div>
-          <div className="pt-4">
-            <Button
-              size="lg"
-              onClick={() => window.open("http://feltrip.com", "_blank")}
-              className="gap-2"
-            >
-              {t("Saiba Mais", "Learn More")}
-              <ExternalLink className="h-4 w-4" />
-            </Button>
-          </div>
+      <div className="w-full max-w-5xl space-y-12 pt-12">
+        <PricingTable />
+        
+        <div className="mt-12">
+          <SuggestionBox />
         </div>
 
-        {/* Pricing Table - Now First */}
-        <div className="mt-8">
-          <PricingTable />
-          
-          <div className="mt-12">
-            <SuggestionBox />
-          </div>
-        </div>
-
-        {/* Demo Section - Now Below */}
+        {/* Demo Section */}
         <div className="mt-16 space-y-8">
           <div className="text-center">
             <h2 className="text-3xl font-bold text-foreground mb-2">
