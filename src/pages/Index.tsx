@@ -8,25 +8,62 @@ import { PricingTable } from "@/components/PricingTable";
 import { Button } from "@/components/ui/button";
 import ManagerDashboard from "./ManagerDashboard";
 import ExpatApp from "./ExpatApp";
-const Index = () => {
+import { LanguageProvider, useLanguage } from "@/hooks/useLanguage";
+
+const WHATSAPP_LINK = "https://wa.me/message/BG24GCPKNF6KG1";
+
+const IndexContent = () => {
   const [view, setView] = useState<"hub" | "manager" | "expat">("hub");
+  const { language, setLanguage, t } = useLanguage();
+
   if (view === "manager") {
     return <ManagerDashboard onBack={() => setView("hub")} />;
   }
   if (view === "expat") {
     return <ExpatApp onBack={() => setView("hub")} />;
   }
-  return <div className="min-h-screen bg-gradient-to-br from-background via-muted/30 to-accent/10 flex flex-col items-center justify-center p-6">
+
+  const openWhatsApp = () => {
+    window.open(WHATSAPP_LINK, "_blank", "noopener,noreferrer");
+  };
+
+  return (
+    <div className="min-h-screen bg-gradient-to-br from-background via-muted/30 to-accent/10 flex flex-col items-center justify-center p-6">
       <WhatsAppButton />
+      
+      {/* Language Toggle */}
+      <div className="fixed top-4 right-4 z-50 flex gap-2">
+        <Button
+          variant={language === "pt" ? "default" : "outline"}
+          size="sm"
+          onClick={() => setLanguage("pt")}
+        >
+          PT
+        </Button>
+        <Button
+          variant={language === "en" ? "default" : "outline"}
+          size="sm"
+          onClick={() => setLanguage("en")}
+        >
+          EN
+        </Button>
+      </div>
+
       <div className="w-full max-w-5xl space-y-12">
         <div className="text-center space-y-6">
           <FeltripLogo />
           <div>
             <h1 className="text-4xl font-bold text-foreground mb-2">
-              Simulador de Ecossistema de Onboarding Relacional
+              {t(
+                "Plataforma de Onboarding Relacional",
+                "Relational Onboarding Platform"
+              )}
             </h1>
             <p className="text-lg text-muted-foreground">
-              Explore as duas perspectivas da plataforma Feltrip
+              {t(
+                "Culture transitions made human.",
+                "Culture transitions made human."
+              )}
             </p>
           </div>
           <div className="pt-4">
@@ -35,22 +72,51 @@ const Index = () => {
               onClick={() => window.open("http://feltrip.com", "_blank")}
               className="gap-2"
             >
-              Saiba Mais
+              {t("Saiba Mais", "Learn More")}
               <ExternalLink className="h-4 w-4" />
             </Button>
           </div>
         </div>
 
-        <div className="grid md:grid-cols-2 gap-8">
-          <NavigationCard icon={Smartphone} title="Simular a Experiência do Expatriado" subtitle="O App 'Map of Relational Presence' (MRP)" onClick={() => setView("expat")} />
-          <NavigationCard icon={LayoutDashboard} title="Simular o Painel do Gestor" subtitle="Visão de Acompanhamento B2B" onClick={() => setView("manager")} />
-        </div>
-
-        <div className="mt-16">
+        {/* Pricing Table - Now First */}
+        <div className="mt-8">
           <PricingTable />
           
           <div className="mt-12">
             <SuggestionBox />
+          </div>
+        </div>
+
+        {/* Demo Section - Now Below */}
+        <div className="mt-16 space-y-8">
+          <div className="text-center">
+            <h2 className="text-3xl font-bold text-foreground mb-2">
+              {t(
+                "Marque uma Demo com Nosso Time",
+                "Schedule a Demo with Our Team"
+              )}
+            </h2>
+            <p className="text-lg text-muted-foreground">
+              {t(
+                "Explore as duas perspectivas da plataforma Feltrip",
+                "Explore both perspectives of the Feltrip platform"
+              )}
+            </p>
+          </div>
+
+          <div className="grid md:grid-cols-2 gap-8">
+            <NavigationCard 
+              icon={Smartphone} 
+              title={t("Simular a Experiência do Expatriado", "Simulate the Expat Experience")}
+              subtitle={t("O App 'Map of Relational Presence' (MRP)", "The 'Map of Relational Presence' (MRP) App")}
+              onClick={openWhatsApp}
+            />
+            <NavigationCard 
+              icon={LayoutDashboard} 
+              title={t("Simular o Painel do Gestor", "Simulate the Manager Dashboard")}
+              subtitle={t("Visão de Acompanhamento B2B", "B2B Monitoring View")}
+              onClick={openWhatsApp}
+            />
           </div>
         </div>
 
@@ -76,6 +142,16 @@ const Index = () => {
           </div>
         </footer>
       </div>
-    </div>;
+    </div>
+  );
 };
+
+const Index = () => {
+  return (
+    <LanguageProvider>
+      <IndexContent />
+    </LanguageProvider>
+  );
+};
+
 export default Index;
