@@ -263,21 +263,6 @@ export const PricingTable = () => {
           </div>
         </div>
       </section>
-
-      {/* Bonus for Companies */}
-      <Card className="p-6 border-2 border-purple-500/20 bg-gradient-to-br from-purple-500/5 to-transparent">
-        <div className="space-y-3">
-          <div className="flex items-center gap-3">
-            <span className="text-2xl">🟪</span>
-            <h3 className="text-xl font-bold text-foreground">Bônus para Empresas</h3>
-          </div>
-          <p className="text-lg font-semibold text-foreground">Cultura que continua circulando</p>
-          <ul className="text-sm text-muted-foreground space-y-1 list-disc list-inside">
-            <li>A empresa pode inserir ex-expatriados na comunidade Feltrip gratuitamente</li>
-            <li>Guia cultural das cidades incluído sem custos adicionais</li>
-          </ul>
-        </div>
-      </Card>
     </div>
   );
 };
