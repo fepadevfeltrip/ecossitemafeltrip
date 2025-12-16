@@ -2,125 +2,141 @@ import { Check, Sparkles } from "lucide-react";
 import { Card } from "@/components/ui/card";
 import { Button } from "@/components/ui/button";
 import curadoriaImage from "@/assets/curadoria-executiva-bg.jpg";
+import { useLanguage } from "@/hooks/useLanguage";
 
-const plans = [
+const getPlans = (t: (pt: string, en: string) => string) => [
   {
-    name: "Integração Intercultural",
-    subtitle: "Crie a comunidade intercultural da sua empresa",
+    name: t("Integração Intercultural", "Intercultural Integration"),
+    subtitle: t("Crie a comunidade intercultural da sua empresa", "Create your company's intercultural community"),
     price: "US$ 150",
-    priceDetail: "até 80 pessoas",
+    priceDetail: t("até 80 pessoas", "up to 80 people"),
     highlighted: false,
   },
   {
-    name: "Raiz no Território",
-    subtitle: "Tudo do plano anterior +",
+    name: t("Raiz no Território", "Roots in the Territory"),
+    subtitle: t("Tudo do plano anterior +", "Everything from previous plan +"),
     price: "US$ 49",
-    priceDetail: "por pessoa",
-    additionalPrices: ["US$ 79/mês – 2 pessoas", "US$ 129,90/mês – até 4 pessoas"],
+    priceDetail: t("por pessoa", "per person"),
+    additionalPrices: [
+      t("US$ 79/mês – 2 pessoas", "US$ 79/mo – 2 people"),
+      t("US$ 129,90/mês – até 4 pessoas", "US$ 129.90/mo – up to 4 people"),
+    ],
     highlighted: false,
   },
   {
-    name: "Cuidado Integral",
-    subtitle: "Tudo dos planos anteriores +",
+    name: t("Cuidado Integral", "Comprehensive Care"),
+    subtitle: t("Tudo dos planos anteriores +", "Everything from previous plans +"),
     price: "US$ 59",
-    priceDetail: "por pessoa",
-    additionalPrices: ["US$ 99/mês – 2 pessoas", "US$ 179/mês – até 4 pessoas"],
+    priceDetail: t("por pessoa", "per person"),
+    additionalPrices: [
+      t("US$ 99/mês – 2 pessoas", "US$ 99/mo – 2 people"),
+      t("US$ 179/mês – até 4 pessoas", "US$ 179/mo – up to 4 people"),
+    ],
     highlighted: true,
   },
   {
-    name: "Espaço Integrado",
-    subtitle: "Premium • Tudo dos planos anteriores +",
+    name: t("Espaço Integrado", "Integrated Space"),
+    subtitle: t("Premium • Tudo dos planos anteriores +", "Premium • Everything from previous plans +"),
     price: "US$ 139",
-    priceDetail: "por pessoa",
-    additionalPrices: ["US$ 249/mês – 2 pessoas", "US$ 890/mês – até 4 pessoas"],
+    priceDetail: t("por pessoa", "per person"),
+    additionalPrices: [
+      t("US$ 249/mês – 2 pessoas", "US$ 249/mo – 2 people"),
+      t("US$ 890/mês – até 4 pessoas", "US$ 890/mo – up to 4 people"),
+    ],
     highlighted: false,
   },
 ];
 
-const features = [
+const getFeatures = (t: (pt: string, en: string) => string) => [
   {
-    name: "Mapa coletivo com rotas e dicas de segurança",
+    name: t("Mapa coletivo com rotas e dicas de segurança", "Collective map with routes and safety tips"),
     plans: [true, true, true, true],
   },
   {
-    name: "Criação de eventos na comunidade",
+    name: t("Criação de eventos na comunidade", "Community event creation"),
     plans: [true, true, true, true],
   },
   {
-    name: "IA Boba Cult - tutora de cultura e hyperlocalidade",
+    name: t("IA Boba Cult - tutora de cultura e hyperlocalidade", "Boba Cult AI - culture and hyperlocality tutor"),
     plans: [true, true, true, true],
   },
   {
-    name: "Criação de subgrupos",
+    name: t("Criação de subgrupos", "Subgroup creation"),
     plans: [true, true, true, true],
   },
   {
-    name: "Guia cultural básico das cidades",
+    name: t("Guia cultural básico das cidades", "Basic city cultural guide"),
     plans: [true, true, true, true],
   },
   {
-    name: "Acesso total ao app Feltrip",
+    name: t("Acesso total ao app Feltrip", "Full access to Feltrip app"),
     plans: [false, true, true, true],
   },
   {
-    name: "IA Feltrip - 1h30 prática de idioma contextual",
+    name: t("IA Feltrip - 1h30 prática de idioma contextual", "Feltrip AI - 1h30 contextual language practice"),
     plans: [false, true, true, true],
   },
   {
-    name: "IA de bem-estar relacional com práticas de presença",
+    name: t("IA de bem-estar relacional com práticas de presença", "Relational wellness AI with presence practices"),
     plans: [false, true, true, true],
   },
   {
-    name: "Diário-Mapa de Viagem para anotações e documentos",
+    name: t("Diário-Mapa de Viagem para anotações e documentos", "Travel Diary-Map for notes and documents"),
     plans: [false, true, true, true],
   },
   {
-    name: "Mapa de Segurança com alerta para RH",
+    name: t("Mapa de Segurança com alerta para RH", "Safety Map with HR alerts"),
     plans: [false, true, true, true],
   },
   {
-    name: "Curadoria de prestadores de serviços locais (RJ/SP)",
+    name: t("Curadoria de prestadores de serviços locais (RJ/SP)", "Local service provider curation (RJ/SP)"),
     plans: [false, true, true, true],
   },
   {
-    name: "Painel do RH completo - prevenção de risco psicossocial",
+    name: t("Painel do RH completo - prevenção de risco psicossocial", "Complete HR dashboard - psychosocial risk prevention"),
     plans: [false, false, true, true],
   },
   {
-    name: "Métricas do Mapa de Presença Relacional (espaço de trabalho)",
+    name: t("Métricas do Mapa de Presença Relacional (espaço de trabalho)", "Relational Presence Map metrics (workspace)"),
     plans: [false, false, true, true],
   },
   {
-    name: "Métrica e alerta de segurança",
+    name: t("Métrica e alerta de segurança", "Safety metrics and alerts"),
     plans: [false, false, true, true],
   },
   {
-    name: "Tutoria de Cultura - 2h caminhadas com arte educador",
+    name: t("Tutoria de Cultura - 2h caminhadas com arte educador", "Culture Tutoring - 2h walks with art educator"),
     plans: [false, false, false, true],
   },
   {
-    name: "Roteiro personalizado (museus, feiras, cultura local)",
+    name: t("Roteiro personalizado (museus, feiras, cultura local)", "Personalized itinerary (museums, fairs, local culture)"),
     plans: [false, false, false, true],
   },
   {
-    name: "Convide até 3 acompanhantes nas experiências",
+    name: t("Convide até 3 acompanhantes nas experiências", "Invite up to 3 guests to experiences"),
     plans: [false, false, false, true],
   },
 ];
 
 export const PricingTable = () => {
+  const { t } = useLanguage();
+  const plans = getPlans(t);
+  const features = getFeatures(t);
+
   return (
     <div className="space-y-12">
       <div className="text-center space-y-4">
         <h2 className="text-3xl font-bold text-foreground">
-          🌍 Planos de Onboarding Relacional Feltrip
+          🌍 {t("Planos de Onboarding Relacional Feltrip", "Feltrip Relational Onboarding Plans")}
         </h2>
         <p className="text-xl text-muted-foreground">
           Culture transitions made human.
         </p>
         <p className="text-sm text-muted-foreground max-w-2xl mx-auto">
-          Para quem é: Pessoas chegando em um novo país, famílias em transição, 
-          recém-contratados estrangeiros ou nacionais de outras cidades do Brasil.
+          {t(
+            "Para quem é: Pessoas chegando em um novo país, famílias em transição, recém-contratados estrangeiros ou nacionais de outras cidades do Brasil.",
+            "For whom: People arriving in a new country, families in transition, newly hired foreigners or nationals from other cities in Brazil."
+          )}
         </p>
       </div>
 
@@ -198,7 +214,7 @@ export const PricingTable = () => {
         <div className="relative h-[300px] md:h-[400px] overflow-hidden">
           <img 
             src={curadoriaImage} 
-            alt="Escadaria com boas-vindas em múltiplos idiomas" 
+            alt={t("Escadaria com boas-vindas em múltiplos idiomas", "Staircase with welcome in multiple languages")}
             className="absolute inset-0 w-full h-full object-cover"
           />
           <div className="absolute inset-0 bg-gradient-to-b from-transparent via-transparent to-background" />
@@ -207,7 +223,7 @@ export const PricingTable = () => {
           <div className="absolute top-6 left-6">
             <span className="inline-flex items-center gap-2 px-4 py-2 bg-background/90 backdrop-blur-sm text-foreground text-sm font-medium rounded-full shadow-lg">
               <Sparkles className="h-4 w-4 text-primary" />
-              Experiência Exclusiva
+              {t("Experiência Exclusiva", "Exclusive Experience")}
             </span>
           </div>
         </div>
@@ -217,47 +233,56 @@ export const PricingTable = () => {
           <div className="max-w-3xl mx-auto text-center space-y-8">
             <header className="space-y-4">
               <h3 className="text-3xl md:text-4xl lg:text-5xl font-light text-foreground leading-tight tracking-tight">
-                Curadoria{" "}
-                <span className="font-semibold">Executiva</span>{" "}
-                <span className="text-primary font-light italic">Personalizada</span>
+                {t("Curadoria", "Executive")}{" "}
+                <span className="font-semibold">{t("Executiva", "Curation")}</span>{" "}
+                <span className="text-primary font-light italic">{t("Personalizada", "Personalized")}</span>
               </h3>
             </header>
             
             <div className="space-y-5 text-muted-foreground text-base leading-relaxed">
               <p>
-                Desenhamos experiências sob medida para colaboradores individuais ou grupos, 
-                a partir de um diagnóstico relacional baseado no{" "}
-                <span className="text-foreground font-medium">Mapa da Presença Relacional (MRP™)</span>.
+                {t(
+                  "Desenhamos experiências sob medida para colaboradores individuais ou grupos, a partir de um diagnóstico relacional baseado no",
+                  "We design tailored experiences for individual employees or groups, based on a relational diagnosis using the"
+                )}{" "}
+                <span className="text-foreground font-medium">{t("Mapa da Presença Relacional (MRP™)", "Relational Presence Map (MRP™)")}</span>.
               </p>
               
               <p>
-                A curadoria integra dinâmicas de onboarding e integração de equipes, caminhadas guiadas 
-                no território e o apoio de uma rede selecionada de parceiros — incluindo especialistas 
-                em saúde mental, educação e cultura.
+                {t(
+                  "A curadoria integra dinâmicas de onboarding e integração de equipes, caminhadas guiadas no território e o apoio de uma rede selecionada de parceiros — incluindo especialistas em saúde mental, educação e cultura.",
+                  "The curation integrates onboarding dynamics and team integration, guided walks in the territory, and the support of a selected network of partners — including mental health, education, and culture specialists."
+                )}
               </p>
               
               <p>
-                Cada roteiro é construído de forma única, alinhando{" "}
-                <span className="text-primary font-medium">cuidado humano</span>, 
-                contexto organizacional e presença no território.
+                {t(
+                  "Cada roteiro é construído de forma única, alinhando",
+                  "Each itinerary is uniquely built, aligning"
+                )}{" "}
+                <span className="text-primary font-medium">{t("cuidado humano", "human care")}</span>, 
+                {t(
+                  " contexto organizacional e presença no território.",
+                  " organizational context and presence in the territory."
+                )}
               </p>
             </div>
             
             <p className="text-sm text-muted-foreground italic">
-              *Disponível em São Paulo e Rio de Janeiro
+              {t("*Disponível em São Paulo e Rio de Janeiro", "*Available in São Paulo and Rio de Janeiro")}
             </p>
             
             <div className="flex flex-col sm:flex-row items-center justify-center gap-6 pt-4">
               <div className="text-center sm:text-left">
-                <span className="text-sm text-muted-foreground uppercase tracking-wider">Investimento</span>
-                <div className="text-2xl font-semibold text-foreground">Sob consulta</div>
+                <span className="text-sm text-muted-foreground uppercase tracking-wider">{t("Investimento", "Investment")}</span>
+                <div className="text-2xl font-semibold text-foreground">{t("Sob consulta", "Upon request")}</div>
               </div>
               
               <Button 
                 size="lg"
                 onClick={() => window.open("mailto:info@feltrip.com?subject=Curadoria Executiva Personalizada", "_blank")}
               >
-                Solicitar Proposta
+                {t("Solicitar Proposta", "Request Proposal")}
               </Button>
             </div>
           </div>
