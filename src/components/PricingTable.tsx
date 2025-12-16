@@ -1,6 +1,7 @@
 import { Check, Sparkles } from "lucide-react";
 import { Card } from "@/components/ui/card";
 import { Button } from "@/components/ui/button";
+import curadoriaImage from "@/assets/curadoria-executiva-bg.jpg";
 
 const plans = [
   {
@@ -191,53 +192,80 @@ export const PricingTable = () => {
         </div>
       </div>
 
-      {/* Curadoria Executiva - Special Section */}
-      <Card className="p-8 border-2 border-primary/30 bg-gradient-to-br from-primary/5 via-background to-accent/10 relative overflow-hidden">
-        <div className="absolute top-4 right-4">
-          <Sparkles className="h-8 w-8 text-primary/40" />
-        </div>
-        
-        <div className="max-w-3xl mx-auto space-y-6">
-          <div className="text-center space-y-2">
-            <span className="inline-block px-3 py-1 bg-primary/10 text-primary text-sm font-medium rounded-full">
-              Exclusivo
-            </span>
-            <h3 className="text-2xl md:text-3xl font-bold text-foreground">
-              Curadoria Executiva Personalizada
-            </h3>
+      {/* Curadoria Executiva - Editorial Section */}
+      <section className="relative mt-16 -mx-4 md:-mx-8">
+        <div className="grid lg:grid-cols-2 min-h-[600px]">
+          {/* Image Side */}
+          <div className="relative h-[400px] lg:h-auto overflow-hidden">
+            <img 
+              src={curadoriaImage} 
+              alt="Escadaria com boas-vindas em múltiplos idiomas" 
+              className="absolute inset-0 w-full h-full object-cover"
+            />
+            <div className="absolute inset-0 bg-gradient-to-t lg:bg-gradient-to-r from-background via-background/60 to-transparent" />
+            
+            {/* Floating badge on image */}
+            <div className="absolute bottom-8 left-8 lg:bottom-auto lg:top-8">
+              <span className="inline-flex items-center gap-2 px-4 py-2 bg-white/90 backdrop-blur-sm text-slate-800 text-sm font-medium rounded-full shadow-lg">
+                <Sparkles className="h-4 w-4 text-amber-500" />
+                Experiência Exclusiva
+              </span>
+            </div>
           </div>
-          
-          <p className="text-muted-foreground text-center leading-relaxed">
-            Desenhamos experiências sob medida para colaboradores individuais ou grupos, 
-            a partir de um diagnóstico relacional baseado no <strong className="text-foreground">Mapa da Presença Relacional (MRP™)</strong>.
-          </p>
-          
-          <p className="text-muted-foreground text-center leading-relaxed">
-            A curadoria integra dinâmicas de onboarding e integração de equipes, caminhadas guiadas 
-            no território e o apoio de uma rede selecionada de parceiros — incluindo especialistas 
-            em saúde mental, educação e cultura.
-          </p>
-          
-          <p className="text-muted-foreground text-center leading-relaxed">
-            Cada roteiro é construído de forma única, alinhando <strong className="text-foreground">cuidado humano</strong>, 
-            contexto organizacional e presença no território.
-          </p>
-          
-          <p className="text-xs text-muted-foreground text-center">
-            *Disponível em São Paulo e Rio de Janeiro
-          </p>
-          
-          <div className="text-center pt-4">
-            <div className="text-2xl font-bold text-primary mb-4">Preço sob consulta</div>
-            <Button 
-              size="lg"
-              onClick={() => window.open("mailto:info@feltrip.com?subject=Curadoria Executiva Personalizada", "_blank")}
-            >
-              Solicitar Proposta
-            </Button>
+
+          {/* Content Side */}
+          <div className="relative flex flex-col justify-center px-6 py-12 lg:px-12 lg:py-16 bg-gradient-to-br from-slate-900 via-slate-800 to-slate-900">
+            <div className="max-w-xl space-y-8">
+              <header className="space-y-4">
+                <h3 className="text-3xl md:text-4xl lg:text-5xl font-light text-white leading-tight tracking-tight">
+                  Curadoria<br />
+                  <span className="font-semibold">Executiva</span><br />
+                  <span className="text-amber-400 font-light italic">Personalizada</span>
+                </h3>
+              </header>
+              
+              <div className="space-y-5 text-slate-300 text-base leading-relaxed">
+                <p>
+                  Desenhamos experiências sob medida para colaboradores individuais ou grupos, 
+                  a partir de um diagnóstico relacional baseado no{" "}
+                  <span className="text-white font-medium">Mapa da Presença Relacional (MRP™)</span>.
+                </p>
+                
+                <p>
+                  A curadoria integra dinâmicas de onboarding e integração de equipes, caminhadas guiadas 
+                  no território e o apoio de uma rede selecionada de parceiros — incluindo especialistas 
+                  em saúde mental, educação e cultura.
+                </p>
+                
+                <p>
+                  Cada roteiro é construído de forma única, alinhando{" "}
+                  <span className="text-amber-400 font-medium">cuidado humano</span>, 
+                  contexto organizacional e presença no território.
+                </p>
+              </div>
+              
+              <p className="text-sm text-slate-400 italic">
+                *Disponível em São Paulo e Rio de Janeiro
+              </p>
+              
+              <div className="flex flex-col sm:flex-row items-start sm:items-center gap-6 pt-4">
+                <div>
+                  <span className="text-sm text-slate-400 uppercase tracking-wider">Investimento</span>
+                  <div className="text-2xl font-semibold text-white">Sob consulta</div>
+                </div>
+                
+                <Button 
+                  size="lg"
+                  className="bg-amber-500 hover:bg-amber-400 text-slate-900 font-medium px-8"
+                  onClick={() => window.open("mailto:info@feltrip.com?subject=Curadoria Executiva Personalizada", "_blank")}
+                >
+                  Solicitar Proposta
+                </Button>
+              </div>
+            </div>
           </div>
         </div>
-      </Card>
+      </section>
 
       {/* Bonus for Companies */}
       <Card className="p-6 border-2 border-purple-500/20 bg-gradient-to-br from-purple-500/5 to-transparent">
