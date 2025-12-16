@@ -16,7 +16,7 @@ const getPlans = (t: (pt: string, en: string) => string) => [
     name: t("Raiz no Território", "Roots in the Territory"),
     subtitle: t("Tudo do plano anterior +", "Everything from previous plan +"),
     price: "US$ 49",
-    priceDetail: t("por pessoa", "per person"),
+    priceDetail: t("por usuário", "per user"),
     additionalPrices: [
       t("US$ 79/mês – 2 pessoas", "US$ 79/mo – 2 people"),
       t("US$ 129,90/mês – até 4 pessoas", "US$ 129.90/mo – up to 4 people"),
@@ -27,7 +27,7 @@ const getPlans = (t: (pt: string, en: string) => string) => [
     name: t("Cuidado Integral", "Comprehensive Care"),
     subtitle: t("Tudo dos planos anteriores +", "Everything from previous plans +"),
     price: "US$ 59",
-    priceDetail: t("por pessoa", "per person"),
+    priceDetail: t("por usuário", "per user"),
     additionalPrices: [
       t("US$ 99/mês – 2 pessoas", "US$ 99/mo – 2 people"),
       t("US$ 179/mês – até 4 pessoas", "US$ 179/mo – up to 4 people"),
@@ -38,7 +38,7 @@ const getPlans = (t: (pt: string, en: string) => string) => [
     name: t("Espaço Integrado", "Integrated Space"),
     subtitle: t("Premium • Tudo dos planos anteriores +", "Premium • Everything from previous plans +"),
     price: "US$ 139",
-    priceDetail: t("por pessoa", "per person"),
+    priceDetail: t("por usuário", "per user"),
     additionalPrices: [
       t("US$ 249/mês – 2 pessoas", "US$ 249/mo – 2 people"),
       t("US$ 890/mês – até 4 pessoas", "US$ 890/mo – up to 4 people"),
