@@ -206,29 +206,29 @@ export const PricingTable = () => {
             
             {/* Floating badge on image */}
             <div className="absolute bottom-8 left-8 lg:bottom-auto lg:top-8">
-              <span className="inline-flex items-center gap-2 px-4 py-2 bg-white/90 backdrop-blur-sm text-slate-800 text-sm font-medium rounded-full shadow-lg">
-                <Sparkles className="h-4 w-4 text-amber-500" />
+              <span className="inline-flex items-center gap-2 px-4 py-2 bg-background/90 backdrop-blur-sm text-foreground text-sm font-medium rounded-full shadow-lg">
+                <Sparkles className="h-4 w-4 text-primary" />
                 Experiência Exclusiva
               </span>
             </div>
           </div>
 
           {/* Content Side */}
-          <div className="relative flex flex-col justify-center px-6 py-12 lg:px-12 lg:py-16 bg-gradient-to-br from-slate-900 via-slate-800 to-slate-900">
+          <div className="relative flex flex-col justify-center px-6 py-12 lg:px-12 lg:py-16 bg-card border-l border-border">
             <div className="max-w-xl space-y-8">
               <header className="space-y-4">
-                <h3 className="text-3xl md:text-4xl lg:text-5xl font-light text-white leading-tight tracking-tight">
+                <h3 className="text-3xl md:text-4xl lg:text-5xl font-light text-foreground leading-tight tracking-tight">
                   Curadoria<br />
                   <span className="font-semibold">Executiva</span><br />
-                  <span className="text-amber-400 font-light italic">Personalizada</span>
+                  <span className="text-primary font-light italic">Personalizada</span>
                 </h3>
               </header>
               
-              <div className="space-y-5 text-slate-300 text-base leading-relaxed">
+              <div className="space-y-5 text-muted-foreground text-base leading-relaxed">
                 <p>
                   Desenhamos experiências sob medida para colaboradores individuais ou grupos, 
                   a partir de um diagnóstico relacional baseado no{" "}
-                  <span className="text-white font-medium">Mapa da Presença Relacional (MRP™)</span>.
+                  <span className="text-foreground font-medium">Mapa da Presença Relacional (MRP™)</span>.
                 </p>
                 
                 <p>
@@ -239,24 +239,23 @@ export const PricingTable = () => {
                 
                 <p>
                   Cada roteiro é construído de forma única, alinhando{" "}
-                  <span className="text-amber-400 font-medium">cuidado humano</span>, 
+                  <span className="text-primary font-medium">cuidado humano</span>, 
                   contexto organizacional e presença no território.
                 </p>
               </div>
               
-              <p className="text-sm text-slate-400 italic">
+              <p className="text-sm text-muted-foreground italic">
                 *Disponível em São Paulo e Rio de Janeiro
               </p>
               
               <div className="flex flex-col sm:flex-row items-start sm:items-center gap-6 pt-4">
                 <div>
-                  <span className="text-sm text-slate-400 uppercase tracking-wider">Investimento</span>
-                  <div className="text-2xl font-semibold text-white">Sob consulta</div>
+                  <span className="text-sm text-muted-foreground uppercase tracking-wider">Investimento</span>
+                  <div className="text-2xl font-semibold text-foreground">Sob consulta</div>
                 </div>
                 
                 <Button 
                   size="lg"
-                  className="bg-amber-500 hover:bg-amber-400 text-slate-900 font-medium px-8"
                   onClick={() => window.open("mailto:info@feltrip.com?subject=Curadoria Executiva Personalizada", "_blank")}
                 >
                   Solicitar Proposta
