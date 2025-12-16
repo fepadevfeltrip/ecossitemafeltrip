@@ -140,75 +140,119 @@ export const PricingTable = () => {
         </p>
       </div>
 
-      {/* Comparative Table with horizontal scroll */}
-      <div className="relative">
-        <p className="text-xs text-muted-foreground text-center mb-2 md:hidden">
-          ← {t("Deslize para ver todos os planos", "Swipe to see all plans")} →
-        </p>
-        <div className="overflow-x-auto -mx-4 px-4 pb-4">
-          <div className="min-w-[700px]">
-            {/* Header with Plans */}
-            <div className="grid grid-cols-5 gap-1.5 md:gap-2 mb-3 md:mb-4">
-              <div className="p-2 md:p-4"></div>
-              {plans.map((plan, index) => (
-                <Card 
-                  key={index} 
-                  className={`p-2 md:p-4 text-center ${
-                    plan.highlighted 
-                      ? 'bg-primary/10 border-primary/30 ring-2 ring-primary/20' 
-                      : 'bg-card'
+      {/* Mobile: Stacked Cards */}
+      <div className="block md:hidden space-y-4">
+        {plans.map((plan, planIndex) => (
+          <Card 
+            key={planIndex}
+            className={`p-4 ${
+              plan.highlighted 
+                ? 'bg-primary/10 border-primary/30 ring-2 ring-primary/20' 
+                : 'bg-card'
+            }`}
+          >
+            <div className="text-center mb-4 pb-4 border-b border-border">
+              <h3 className="font-bold text-lg text-foreground">{plan.name}</h3>
+              <p className="text-xs text-muted-foreground mt-1">{plan.subtitle}</p>
+              <div className="mt-3">
+                <span className="text-2xl font-bold text-primary">{plan.price}</span>
+                <span className="text-xs text-muted-foreground block">{plan.priceDetail}</span>
+              </div>
+              {plan.additionalPrices && (
+                <div className="mt-2 space-y-0.5">
+                  {plan.additionalPrices.map((price, i) => (
+                    <p key={i} className="text-xs text-muted-foreground">{price}</p>
+                  ))}
+                </div>
+              )}
+            </div>
+            <div className="space-y-2">
+              {features.map((feature, featureIndex) => (
+                <div 
+                  key={featureIndex} 
+                  className={`flex items-center gap-3 py-1.5 ${
+                    featureIndex !== features.length - 1 ? 'border-b border-border/50' : ''
                   }`}
                 >
-                  <h3 className="font-bold text-xs md:text-base text-foreground leading-tight">
-                    {plan.name}
-                  </h3>
-                  <p className="text-[10px] md:text-xs text-muted-foreground mt-0.5 md:mt-1 line-clamp-2">
-                    {plan.subtitle}
-                  </p>
-                  <div className="mt-2 md:mt-3">
-                    <span className="text-base md:text-xl font-bold text-primary">{plan.price}</span>
-                    <span className="text-[10px] md:text-xs text-muted-foreground block">{plan.priceDetail}</span>
-                  </div>
-                  {plan.additionalPrices && (
-                    <div className="mt-1.5 md:mt-2 space-y-0.5 hidden md:block">
-                      {plan.additionalPrices.map((price, i) => (
-                        <p key={i} className="text-xs text-muted-foreground">{price}</p>
-                      ))}
-                    </div>
+                  {feature.plans[planIndex] ? (
+                    <Check className="h-4 w-4 text-green-500 shrink-0" />
+                  ) : (
+                    <span className="h-4 w-4 flex items-center justify-center text-muted-foreground/30 shrink-0">—</span>
                   )}
-                </Card>
-              ))}
-            </div>
-
-            {/* Features Rows */}
-            <div className="border border-border rounded-lg overflow-hidden">
-              {features.map((feature, index) => (
-                <div 
-                  key={index}
-                  className={`grid grid-cols-5 gap-1 md:gap-2 ${
-                    index % 2 === 0 ? 'bg-muted/30' : 'bg-background'
-                  } ${index !== features.length - 1 ? 'border-b border-border' : ''}`}
-                >
-                  <div className="p-2 md:p-3 flex items-center">
-                    <span className="text-[11px] md:text-sm text-foreground leading-tight">{feature.name}</span>
-                  </div>
-                  {feature.plans.map((included, planIndex) => (
-                    <div 
-                      key={planIndex} 
-                      className={`p-2 md:p-3 flex items-center justify-center ${
-                        plans[planIndex].highlighted ? 'bg-primary/5' : ''
-                      }`}
-                    >
-                      {included ? (
-                        <Check className="h-4 w-4 md:h-5 md:w-5 text-green-500" />
-                      ) : (
-                        <span className="h-4 w-4 md:h-5 md:w-5 flex items-center justify-center text-muted-foreground/30">—</span>
-                      )}
-                    </div>
-                  ))}
+                  <span className={`text-xs ${feature.plans[planIndex] ? 'text-foreground' : 'text-muted-foreground/50'}`}>
+                    {feature.name}
+                  </span>
                 </div>
               ))}
             </div>
+          </Card>
+        ))}
+      </div>
+
+      {/* Desktop: Comparative Table */}
+      <div className="hidden md:block overflow-x-auto">
+        <div className="min-w-[800px]">
+          {/* Header with Plans */}
+          <div className="grid grid-cols-5 gap-2 mb-4">
+            <div className="p-4"></div>
+            {plans.map((plan, index) => (
+              <Card 
+                key={index} 
+                className={`p-4 text-center ${
+                  plan.highlighted 
+                    ? 'bg-primary/10 border-primary/30 ring-2 ring-primary/20' 
+                    : 'bg-card'
+                }`}
+              >
+                <h3 className="font-bold text-base text-foreground leading-tight">
+                  {plan.name}
+                </h3>
+                <p className="text-xs text-muted-foreground mt-1">
+                  {plan.subtitle}
+                </p>
+                <div className="mt-3">
+                  <span className="text-xl font-bold text-primary">{plan.price}</span>
+                  <span className="text-xs text-muted-foreground block">{plan.priceDetail}</span>
+                </div>
+                {plan.additionalPrices && (
+                  <div className="mt-2 space-y-0.5">
+                    {plan.additionalPrices.map((price, i) => (
+                      <p key={i} className="text-xs text-muted-foreground">{price}</p>
+                    ))}
+                  </div>
+                )}
+              </Card>
+            ))}
+          </div>
+
+          {/* Features Rows */}
+          <div className="border border-border rounded-lg overflow-hidden">
+            {features.map((feature, index) => (
+              <div 
+                key={index}
+                className={`grid grid-cols-5 gap-2 ${
+                  index % 2 === 0 ? 'bg-muted/30' : 'bg-background'
+                } ${index !== features.length - 1 ? 'border-b border-border' : ''}`}
+              >
+                <div className="p-3 flex items-center">
+                  <span className="text-sm text-foreground">{feature.name}</span>
+                </div>
+                {feature.plans.map((included, planIndex) => (
+                  <div 
+                    key={planIndex} 
+                    className={`p-3 flex items-center justify-center ${
+                      plans[planIndex].highlighted ? 'bg-primary/5' : ''
+                    }`}
+                  >
+                    {included ? (
+                      <Check className="h-5 w-5 text-green-500" />
+                    ) : (
+                      <span className="h-5 w-5 flex items-center justify-center text-muted-foreground/30">—</span>
+                    )}
+                  </div>
+                ))}
+              </div>
+            ))}
           </div>
         </div>
       </div>
