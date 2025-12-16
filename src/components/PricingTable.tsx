@@ -141,7 +141,7 @@ export const PricingTable = () => {
                 <h3 className="font-bold text-sm md:text-base text-foreground leading-tight">
                   {plan.name}
                 </h3>
-                <p className="text-xs text-muted-foreground mt-1 line-clamp-2">
+                <p className="text-xs text-muted-foreground mt-1">
                   {plan.subtitle}
                 </p>
                 <div className="mt-3">
