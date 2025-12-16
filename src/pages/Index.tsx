@@ -27,15 +27,16 @@ const IndexContent = () => {
   };
 
   return (
-    <div className="min-h-screen bg-gradient-to-br from-background via-muted/30 to-accent/10 flex flex-col items-center p-6">
+    <div className="min-h-screen bg-gradient-to-br from-background via-muted/30 to-accent/10 flex flex-col items-center px-4 py-6 md:p-6">
       <WhatsAppButton />
       
       {/* Language Toggle */}
-      <div className="fixed top-4 right-4 z-50 flex gap-2">
+      <div className="fixed top-3 right-3 z-50 flex gap-1.5">
         <Button
           variant={language === "pt" ? "default" : "outline"}
           size="sm"
           onClick={() => setLanguage("pt")}
+          className="h-8 px-3 text-xs"
         >
           PT
         </Button>
@@ -43,28 +44,29 @@ const IndexContent = () => {
           variant={language === "en" ? "default" : "outline"}
           size="sm"
           onClick={() => setLanguage("en")}
+          className="h-8 px-3 text-xs"
         >
           EN
         </Button>
       </div>
 
-      <div className="w-full max-w-5xl space-y-12 pt-12">
+      <div className="w-full max-w-5xl space-y-8 md:space-y-12 pt-10 md:pt-12">
         <PricingTable />
         
-        <div className="mt-12">
+        <div className="mt-8 md:mt-12">
           <SuggestionBox />
         </div>
 
         {/* Demo Section */}
-        <div className="mt-16 space-y-8">
-          <div className="text-center">
-            <h2 className="text-3xl font-bold text-foreground mb-2">
+        <div className="mt-10 md:mt-16 space-y-6 md:space-y-8">
+          <div className="text-center px-2">
+            <h2 className="text-2xl md:text-3xl font-bold text-foreground mb-2">
               {t(
                 "Marque uma Demo com Nosso Time",
                 "Schedule a Demo with Our Team"
               )}
             </h2>
-            <p className="text-lg text-muted-foreground">
+            <p className="text-base md:text-lg text-muted-foreground">
               {t(
                 "Explore as duas perspectivas da plataforma Feltrip",
                 "Explore both perspectives of the Feltrip platform"
@@ -72,7 +74,7 @@ const IndexContent = () => {
             </p>
           </div>
 
-          <div className="grid md:grid-cols-2 gap-8">
+          <div className="grid grid-cols-1 md:grid-cols-2 gap-4 md:gap-8">
             <NavigationCard 
               icon={Smartphone} 
               title={t("Simular a Experiência do Expatriado", "Simulate the Expat Experience")}
@@ -88,8 +90,8 @@ const IndexContent = () => {
           </div>
         </div>
 
-        <footer className="mt-12 pt-8 border-t border-border">
-          <div className="flex flex-col md:flex-row items-center justify-center gap-6 text-muted-foreground">
+        <footer className="mt-8 md:mt-12 pt-6 md:pt-8 border-t border-border">
+          <div className="flex flex-col items-center justify-center gap-4 md:gap-6 text-muted-foreground text-sm">
             <a 
               href="mailto:info@feltrip.com" 
               className="flex items-center gap-2 hover:text-foreground transition-colors"
@@ -97,7 +99,6 @@ const IndexContent = () => {
               <Mail className="h-4 w-4" />
               <span>info@feltrip.com</span>
             </a>
-            <span className="hidden md:inline">•</span>
             <a 
               href="http://feltrip.com" 
               target="_blank" 

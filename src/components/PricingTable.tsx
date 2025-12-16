@@ -124,15 +124,15 @@ export const PricingTable = () => {
   const features = getFeatures(t);
 
   return (
-    <div className="space-y-12">
-      <div className="text-center space-y-4">
-        <h2 className="text-3xl font-bold text-foreground">
+    <div className="space-y-8 md:space-y-12">
+      <div className="text-center space-y-3 md:space-y-4 px-2">
+        <h2 className="text-2xl md:text-3xl font-bold text-foreground">
           🌍 {t("Planos de Onboarding Relacional Feltrip", "Feltrip Relational Onboarding Plans")}
         </h2>
-        <p className="text-xl text-muted-foreground">
+        <p className="text-lg md:text-xl text-muted-foreground">
           Culture transitions made human.
         </p>
-        <p className="text-sm text-muted-foreground max-w-2xl mx-auto">
+        <p className="text-xs md:text-sm text-muted-foreground max-w-2xl mx-auto">
           {t(
             "Para quem é: Pessoas chegando em um novo país, famílias em transição, recém-contratados estrangeiros ou nacionais de outras cidades do Brasil.",
             "For whom: People arriving in a new country, families in transition, newly hired foreigners or nationals from other cities in Brazil."
@@ -140,8 +140,48 @@ export const PricingTable = () => {
         </p>
       </div>
 
-      {/* Comparative Table */}
-      <div className="overflow-x-auto">
+      {/* Mobile: Cards Layout */}
+      <div className="block lg:hidden space-y-4">
+        {plans.map((plan, planIndex) => (
+          <Card 
+            key={planIndex}
+            className={`p-4 ${
+              plan.highlighted 
+                ? 'bg-primary/10 border-primary/30 ring-2 ring-primary/20' 
+                : 'bg-card'
+            }`}
+          >
+            <div className="text-center mb-4">
+              <h3 className="font-bold text-lg text-foreground">{plan.name}</h3>
+              <p className="text-xs text-muted-foreground mt-1">{plan.subtitle}</p>
+              <div className="mt-3">
+                <span className="text-2xl font-bold text-primary">{plan.price}</span>
+                <span className="text-xs text-muted-foreground block">{plan.priceDetail}</span>
+              </div>
+              {plan.additionalPrices && (
+                <div className="mt-2 space-y-0.5">
+                  {plan.additionalPrices.map((price, i) => (
+                    <p key={i} className="text-xs text-muted-foreground">{price}</p>
+                  ))}
+                </div>
+              )}
+            </div>
+            <div className="border-t border-border pt-4 space-y-2">
+              {features.map((feature, featureIndex) => (
+                feature.plans[planIndex] && (
+                  <div key={featureIndex} className="flex items-start gap-2">
+                    <Check className="h-4 w-4 text-green-500 mt-0.5 shrink-0" />
+                    <span className="text-xs text-muted-foreground">{feature.name}</span>
+                  </div>
+                )
+              ))}
+            </div>
+          </Card>
+        ))}
+      </div>
+
+      {/* Desktop: Comparative Table */}
+      <div className="hidden lg:block overflow-x-auto">
         <div className="min-w-[800px]">
           {/* Header with Plans */}
           <div className="grid grid-cols-5 gap-2 mb-4">
@@ -209,9 +249,9 @@ export const PricingTable = () => {
       </div>
 
       {/* Curadoria Executiva - Editorial Section */}
-      <section className="relative mt-16 -mx-4 md:-mx-8 overflow-hidden rounded-xl">
+      <section className="relative mt-10 md:mt-16 -mx-2 md:-mx-8 overflow-hidden rounded-xl">
         {/* Image on Top */}
-        <div className="relative h-[300px] md:h-[400px] overflow-hidden">
+        <div className="relative h-[200px] md:h-[400px] overflow-hidden">
           <img 
             src={curadoriaImage} 
             alt={t("Escadaria com boas-vindas em múltiplos idiomas", "Staircase with welcome in multiple languages")}
@@ -220,26 +260,26 @@ export const PricingTable = () => {
           <div className="absolute inset-0 bg-gradient-to-b from-transparent via-transparent to-background" />
           
           {/* Floating badge on image */}
-          <div className="absolute top-6 left-6">
-            <span className="inline-flex items-center gap-2 px-4 py-2 bg-background/90 backdrop-blur-sm text-foreground text-sm font-medium rounded-full shadow-lg">
-              <Sparkles className="h-4 w-4 text-primary" />
+          <div className="absolute top-4 left-4 md:top-6 md:left-6">
+            <span className="inline-flex items-center gap-1.5 md:gap-2 px-3 py-1.5 md:px-4 md:py-2 bg-background/90 backdrop-blur-sm text-foreground text-xs md:text-sm font-medium rounded-full shadow-lg">
+              <Sparkles className="h-3 w-3 md:h-4 md:w-4 text-primary" />
               {t("Experiência Exclusiva", "Exclusive Experience")}
             </span>
           </div>
         </div>
 
         {/* Content Below - Centered */}
-        <div className="bg-card px-6 py-12 md:px-12 md:py-16">
-          <div className="max-w-3xl mx-auto text-center space-y-8">
-            <header className="space-y-4">
-              <h3 className="text-3xl md:text-4xl lg:text-5xl font-light text-foreground leading-tight tracking-tight">
+        <div className="bg-card px-4 py-8 md:px-12 md:py-16">
+          <div className="max-w-3xl mx-auto text-center space-y-6 md:space-y-8">
+            <header className="space-y-3 md:space-y-4">
+              <h3 className="text-2xl md:text-4xl lg:text-5xl font-light text-foreground leading-tight tracking-tight">
                 {t("Curadoria", "Executive")}{" "}
                 <span className="font-semibold">{t("Executiva", "Curation")}</span>{" "}
                 <span className="text-primary font-light italic">{t("Personalizada", "Personalized")}</span>
               </h3>
             </header>
             
-            <div className="space-y-5 text-muted-foreground text-base leading-relaxed">
+            <div className="space-y-4 md:space-y-5 text-muted-foreground text-sm md:text-base leading-relaxed">
               <p>
                 {t(
                   "Desenhamos experiências sob medida para colaboradores individuais ou grupos, a partir de um diagnóstico relacional baseado no",
@@ -268,18 +308,19 @@ export const PricingTable = () => {
               </p>
             </div>
             
-            <p className="text-sm text-muted-foreground italic">
+            <p className="text-xs md:text-sm text-muted-foreground italic">
               {t("*Disponível em São Paulo e Rio de Janeiro", "*Available in São Paulo and Rio de Janeiro")}
             </p>
             
-            <div className="flex flex-col sm:flex-row items-center justify-center gap-6 pt-4">
-              <div className="text-center sm:text-left">
-                <span className="text-sm text-muted-foreground uppercase tracking-wider">{t("Investimento", "Investment")}</span>
-                <div className="text-2xl font-semibold text-foreground">{t("Sob consulta", "Upon request")}</div>
+            <div className="flex flex-col items-center justify-center gap-4 md:gap-6 pt-4">
+              <div className="text-center">
+                <span className="text-xs md:text-sm text-muted-foreground uppercase tracking-wider">{t("Investimento", "Investment")}</span>
+                <div className="text-xl md:text-2xl font-semibold text-foreground">{t("Sob consulta", "Upon request")}</div>
               </div>
               
               <Button 
                 size="lg"
+                className="w-full sm:w-auto"
                 onClick={() => window.open("mailto:info@feltrip.com?subject=Curadoria Executiva Personalizada", "_blank")}
               >
                 {t("Solicitar Proposta", "Request Proposal")}
