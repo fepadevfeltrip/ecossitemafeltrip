@@ -1,0 +1,258 @@
+import { Check, Sparkles } from "lucide-react";
+import { Card } from "@/components/ui/card";
+import { Button } from "@/components/ui/button";
+
+const plans = [
+  {
+    name: "Integração Intercultural",
+    subtitle: "Crie a comunidade intercultural da sua empresa",
+    price: "US$ 150",
+    priceDetail: "até 80 pessoas",
+    highlighted: false,
+  },
+  {
+    name: "Raiz no Território",
+    subtitle: "Tudo do plano anterior +",
+    price: "US$ 49",
+    priceDetail: "por pessoa",
+    additionalPrices: ["US$ 79/mês – 2 pessoas", "US$ 129,90/mês – até 4 pessoas"],
+    highlighted: false,
+  },
+  {
+    name: "Cuidado Integral",
+    subtitle: "Tudo dos planos anteriores +",
+    price: "US$ 59",
+    priceDetail: "por pessoa",
+    additionalPrices: ["US$ 99/mês – 2 pessoas", "US$ 179/mês – até 4 pessoas"],
+    highlighted: true,
+  },
+  {
+    name: "Espaço Integrado",
+    subtitle: "Premium • Tudo dos planos anteriores +",
+    price: "US$ 139",
+    priceDetail: "por pessoa",
+    additionalPrices: ["US$ 249/mês – 2 pessoas", "US$ 890/mês – até 4 pessoas"],
+    highlighted: false,
+  },
+];
+
+const features = [
+  {
+    name: "Mapa coletivo com rotas e dicas de segurança",
+    plans: [true, true, true, true],
+  },
+  {
+    name: "Criação de eventos na comunidade",
+    plans: [true, true, true, true],
+  },
+  {
+    name: "IA Boba Cult - tutora de cultura e hyperlocalidade",
+    plans: [true, true, true, true],
+  },
+  {
+    name: "Criação de subgrupos",
+    plans: [true, true, true, true],
+  },
+  {
+    name: "Guia cultural básico das cidades",
+    plans: [true, true, true, true],
+  },
+  {
+    name: "Acesso total ao app Feltrip",
+    plans: [false, true, true, true],
+  },
+  {
+    name: "IA Feltrip - 1h30 prática de idioma contextual",
+    plans: [false, true, true, true],
+  },
+  {
+    name: "IA de bem-estar relacional com práticas de presença",
+    plans: [false, true, true, true],
+  },
+  {
+    name: "Diário-Mapa de Viagem para anotações e documentos",
+    plans: [false, true, true, true],
+  },
+  {
+    name: "Mapa de Segurança com alerta para RH",
+    plans: [false, true, true, true],
+  },
+  {
+    name: "Curadoria de prestadores de serviços locais (RJ/SP)",
+    plans: [false, true, true, true],
+  },
+  {
+    name: "Painel do RH completo - prevenção de risco psicossocial",
+    plans: [false, false, true, true],
+  },
+  {
+    name: "Métricas do Mapa de Presença Relacional (espaço de trabalho)",
+    plans: [false, false, true, true],
+  },
+  {
+    name: "Métrica e alerta de segurança",
+    plans: [false, false, true, true],
+  },
+  {
+    name: "Tutoria de Cultura - 2h caminhadas com arte educador",
+    plans: [false, false, false, true],
+  },
+  {
+    name: "Roteiro personalizado (museus, feiras, cultura local)",
+    plans: [false, false, false, true],
+  },
+  {
+    name: "Convide até 3 acompanhantes nas experiências",
+    plans: [false, false, false, true],
+  },
+];
+
+export const PricingTable = () => {
+  return (
+    <div className="space-y-12">
+      <div className="text-center space-y-4">
+        <h2 className="text-3xl font-bold text-foreground">
+          🌍 Planos de Onboarding Relacional Feltrip
+        </h2>
+        <p className="text-xl text-muted-foreground">
+          Culture transitions made human.
+        </p>
+        <p className="text-sm text-muted-foreground max-w-2xl mx-auto">
+          Para quem é: Pessoas chegando em um novo país, famílias em transição, 
+          recém-contratados estrangeiros ou nacionais de outras cidades do Brasil.
+        </p>
+      </div>
+
+      {/* Comparative Table */}
+      <div className="overflow-x-auto">
+        <div className="min-w-[800px]">
+          {/* Header with Plans */}
+          <div className="grid grid-cols-5 gap-2 mb-4">
+            <div className="p-4"></div>
+            {plans.map((plan, index) => (
+              <Card 
+                key={index} 
+                className={`p-4 text-center ${
+                  plan.highlighted 
+                    ? 'bg-primary/10 border-primary/30 ring-2 ring-primary/20' 
+                    : 'bg-card'
+                }`}
+              >
+                <h3 className="font-bold text-sm md:text-base text-foreground leading-tight">
+                  {plan.name}
+                </h3>
+                <p className="text-xs text-muted-foreground mt-1 line-clamp-2">
+                  {plan.subtitle}
+                </p>
+                <div className="mt-3">
+                  <span className="text-xl font-bold text-primary">{plan.price}</span>
+                  <span className="text-xs text-muted-foreground block">{plan.priceDetail}</span>
+                </div>
+                {plan.additionalPrices && (
+                  <div className="mt-2 space-y-0.5">
+                    {plan.additionalPrices.map((price, i) => (
+                      <p key={i} className="text-xs text-muted-foreground">{price}</p>
+                    ))}
+                  </div>
+                )}
+              </Card>
+            ))}
+          </div>
+
+          {/* Features Rows */}
+          <div className="border border-border rounded-lg overflow-hidden">
+            {features.map((feature, index) => (
+              <div 
+                key={index}
+                className={`grid grid-cols-5 gap-2 ${
+                  index % 2 === 0 ? 'bg-muted/30' : 'bg-background'
+                } ${index !== features.length - 1 ? 'border-b border-border' : ''}`}
+              >
+                <div className="p-3 flex items-center">
+                  <span className="text-sm text-foreground">{feature.name}</span>
+                </div>
+                {feature.plans.map((included, planIndex) => (
+                  <div 
+                    key={planIndex} 
+                    className={`p-3 flex items-center justify-center ${
+                      plans[planIndex].highlighted ? 'bg-primary/5' : ''
+                    }`}
+                  >
+                    {included ? (
+                      <Check className="h-5 w-5 text-green-500" />
+                    ) : (
+                      <span className="h-5 w-5 flex items-center justify-center text-muted-foreground/30">—</span>
+                    )}
+                  </div>
+                ))}
+              </div>
+            ))}
+          </div>
+        </div>
+      </div>
+
+      {/* Curadoria Executiva - Special Section */}
+      <Card className="p-8 border-2 border-primary/30 bg-gradient-to-br from-primary/5 via-background to-accent/10 relative overflow-hidden">
+        <div className="absolute top-4 right-4">
+          <Sparkles className="h-8 w-8 text-primary/40" />
+        </div>
+        
+        <div className="max-w-3xl mx-auto space-y-6">
+          <div className="text-center space-y-2">
+            <span className="inline-block px-3 py-1 bg-primary/10 text-primary text-sm font-medium rounded-full">
+              Exclusivo
+            </span>
+            <h3 className="text-2xl md:text-3xl font-bold text-foreground">
+              Curadoria Executiva Personalizada
+            </h3>
+          </div>
+          
+          <p className="text-muted-foreground text-center leading-relaxed">
+            Desenhamos experiências sob medida para colaboradores individuais ou grupos, 
+            a partir de um diagnóstico relacional baseado no <strong className="text-foreground">Mapa da Presença Relacional (MRP™)</strong>.
+          </p>
+          
+          <p className="text-muted-foreground text-center leading-relaxed">
+            A curadoria integra dinâmicas de onboarding e integração de equipes, caminhadas guiadas 
+            no território e o apoio de uma rede selecionada de parceiros — incluindo especialistas 
+            em saúde mental, educação e cultura.
+          </p>
+          
+          <p className="text-muted-foreground text-center leading-relaxed">
+            Cada roteiro é construído de forma única, alinhando <strong className="text-foreground">cuidado humano</strong>, 
+            contexto organizacional e presença no território.
+          </p>
+          
+          <p className="text-xs text-muted-foreground text-center">
+            *Disponível em São Paulo e Rio de Janeiro
+          </p>
+          
+          <div className="text-center pt-4">
+            <div className="text-2xl font-bold text-primary mb-4">Preço sob consulta</div>
+            <Button 
+              size="lg"
+              onClick={() => window.open("mailto:info@feltrip.com?subject=Curadoria Executiva Personalizada", "_blank")}
+            >
+              Solicitar Proposta
+            </Button>
+          </div>
+        </div>
+      </Card>
+
+      {/* Bonus for Companies */}
+      <Card className="p-6 border-2 border-purple-500/20 bg-gradient-to-br from-purple-500/5 to-transparent">
+        <div className="space-y-3">
+          <div className="flex items-center gap-3">
+            <span className="text-2xl">🟪</span>
+            <h3 className="text-xl font-bold text-foreground">Bônus para Empresas</h3>
+          </div>
+          <p className="text-lg font-semibold text-foreground">Cultura que continua circulando</p>
+          <ul className="text-sm text-muted-foreground space-y-1 list-disc list-inside">
+            <li>A empresa pode inserir ex-expatriados na comunidade Feltrip gratuitamente</li>
+            <li>Guia cultural das cidades incluído sem custos adicionais</li>
+          </ul>
+        </div>
+      </Card>
+    </div>
+  );
+};
