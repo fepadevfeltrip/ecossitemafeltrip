@@ -148,10 +148,8 @@ export const LandingPage = () => {
         <div className="max-w-4xl mx-auto space-y-4">
           <p className="text-lg text-muted-foreground">
             {t(
-              "A Feltrip oferece soluções corporativas para adaptação cultural e onboarding intercultural de equipes globalmente móveis e colaboradores nacionais e internacionais expandindo para o Brasil.
-      Utilizamos nossa metodologia proprietária Mapa da Presença Relacional, (MRP™)",
-              "Feltrip provides corporate solutions for cultural adaptation and intercultural onboarding of globally mobile teams, national and international employees expanding to Brazil.
-            We use our proprietary methodology, the Map of Relational Presence (MRP™) "
+              "A Feltrip oferece soluções corporativas para adaptação cultural e onboarding intercultural de equipes globalmente móveis e colaboradores nacionais e internacionais expandindo para o Brasil. Utilizamos nossa metodologia proprietária Mapa da Presença Relacional, (MRP™)",
+              "Feltrip provides corporate solutions for cultural adaptation and intercultural onboarding of globally mobile teams, national and international employees expanding to Brazil. We use our proprietary methodology, the Map of Relational Presence (MRP™)"
             )}
           </p>
           <p className="text-lg text-muted-foreground">
