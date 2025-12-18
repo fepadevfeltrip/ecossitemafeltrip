@@ -1,9 +1,9 @@
 import { Button } from "@/components/ui/button";
 import { useLanguage } from "@/hooks/useLanguage";
-import { Bot, MapPin, LayoutDashboard, Sparkles, Users, Building2, Heart, Globe } from "lucide-react";
+import { Users, Building2, Heart, Globe } from "lucide-react";
 
 // Images
-import feltripLogo from "@/assets/feltrip-logo.png";
+import feltripLogo from "@/assets/feltrip-logo-trans.png";
 import teamHands from "@/assets/team-hands.jpg";
 import bobaDeboas from "@/assets/boba-deboas.png";
 import metricsAnalysis from "@/assets/metrics-analysis.jpg";
@@ -34,7 +34,7 @@ export const LandingPage = () => {
         "Our Brazilian culture and hyperlocal AI tutor interacts with team members around everyday habits, cultural nuances, communication styles, and relational dynamics — supporting cultural adaptation and relational well-being through conversation and guidance."
       ),
       image: bobaDeboas,
-      imageAlt: "Boba Cult - IA tutora de cultura brasileira",
+      imageAlt: t("Boba Cult - IA tutora de cultura brasileira", "Boba Cult - Brazilian culture AI tutor"),
     },
     {
       number: "2",
@@ -44,7 +44,7 @@ export const LandingPage = () => {
         "Curated cultural walks, museum visits, personalized itineraries, and internal group experiences designed to connect employees with the territory, local communities, and shared cultural references."
       ),
       image: caminhadaGrupo,
-      imageAlt: "Experiência guiada - caminhada cultural",
+      imageAlt: t("Experiência guiada - caminhada cultural", "Guided experience - cultural walk"),
       imageCredit: "Foto: Julia Souza",
     },
     {
@@ -55,7 +55,7 @@ export const LandingPage = () => {
         "Access to travel diary-maps, the Relational Presence Map (MRP™), safety alerts, and a complete HR dashboard to monitor cultural integration, engagement, and psychosocial risk indicators."
       ),
       image: metricsAnalysis,
-      imageAlt: "Dashboard de métricas e análise",
+      imageAlt: t("Dashboard de métricas e análise de integração cultural", "Cultural integration metrics and analysis dashboard"),
     },
     {
       number: "4",
@@ -65,7 +65,7 @@ export const LandingPage = () => {
         "Carefully selected local service providers and specialized partners in culture, education, and mental health, supporting both individual employees and corporate teams."
       ),
       image: escadaAzul,
-      imageAlt: "Curadoria personalizada - escada azul com boas-vindas em vários idiomas",
+      imageAlt: t("Curadoria personalizada - boas-vindas em vários idiomas", "Personalized curation - welcome in multiple languages"),
     },
   ];
 
@@ -84,43 +84,46 @@ export const LandingPage = () => {
   ];
 
   return (
-    <div className="space-y-8 md:space-y-16">
+    <main className="space-y-6 md:space-y-12" role="main">
       {/* Logo - Top Left */}
-      <div className="flex justify-start">
+      <header className="flex justify-start">
         <img 
           src={feltripLogo} 
-          alt="Feltrip" 
-          className="h-12 md:h-20 w-auto"
+          alt="Feltrip - Cultural Adaptation and Intercultural Integration"
+          className="h-16 md:h-28 w-auto"
+          width="200"
+          height="80"
         />
-      </div>
+      </header>
 
       {/* Hero Section */}
-      <section className="relative -mt-4 md:mt-0">
-        <div className="relative h-[400px] md:h-[550px] overflow-hidden rounded-xl md:rounded-2xl">
+      <section className="relative" aria-labelledby="hero-heading">
+        <div className="relative h-[350px] md:h-[500px] overflow-hidden rounded-xl md:rounded-2xl">
           <img 
             src={teamHands} 
-            alt={t("Equipe diversa unida", "Diverse team united")}
+            alt={t("Equipe diversa unida em ambiente corporativo", "Diverse team united in corporate environment")}
             className="absolute inset-0 w-full h-full object-cover"
+            loading="eager"
           />
           <div className="absolute inset-0 bg-gradient-to-t from-background via-background/70 to-transparent" />
           
           <div className="absolute inset-0 flex flex-col items-center justify-center px-3 md:px-4 text-center">
-            <h1 className="text-xl md:text-3xl lg:text-5xl font-bold text-foreground max-w-4xl leading-tight mb-3 md:mb-4">
+            <h1 id="hero-heading" className="text-xl md:text-3xl lg:text-5xl font-bold text-foreground max-w-4xl leading-tight mb-2 md:mb-4">
               {t(
                 "Adaptação Cultural e Integração Intercultural para Equipes Globais",
                 "Cultural Adaptation and Intercultural Integration for Global Teams"
-            )}
+              )}
             </h1>
-            <p className="text-sm md:text-lg lg:text-xl text-muted-foreground max-w-3xl mb-4 md:mb-8">
+            <p className="text-sm md:text-lg lg:text-xl text-muted-foreground max-w-3xl mb-3 md:mb-6">
               {t(
                 "Transformamos experiências de integração de equipes através de IA, atividades humanas guiadas e métricas de presença relacional.",
                 "We transform team integration experiences through AI, guided human activities, and relational presence metrics."
               )}
             </p>
-            <p className="text-xs md:text-sm font-medium mb-4 md:mb-6" style={{ color: 'hsl(330, 100%, 50%)' }}>
+            <p className="text-xs md:text-sm font-medium mb-3 md:mb-5" style={{ color: 'hsl(330, 100%, 50%)' }}>
               {t("Apenas para empresas.", "For companies only.")}
             </p>
-            <Button size="default" onClick={openWhatsApp} className="text-sm md:text-lg px-4 md:px-8 py-3 md:py-6">
+            <Button size="default" onClick={openWhatsApp} className="text-sm md:text-lg px-4 md:px-8 py-3 md:py-6" aria-label={t("Solicitar uma demonstração via WhatsApp", "Request a demo via WhatsApp")}>
               {t("Solicitar uma Demo", "Request a Demo")}
             </Button>
           </div>
@@ -128,11 +131,11 @@ export const LandingPage = () => {
       </section>
 
       {/* Why Cultural Adaptation Matters */}
-      <section className="text-center space-y-4 md:space-y-6 px-2">
-        <h2 className="text-xl md:text-3xl lg:text-4xl font-bold text-foreground">
+      <section className="text-center space-y-3 md:space-y-5 px-2" aria-labelledby="why-heading">
+        <h2 id="why-heading" className="text-xl md:text-3xl lg:text-4xl font-bold text-foreground">
           {t("Por que Adaptação Cultural Importa", "Why Cultural Adaptation Matters")}
         </h2>
-        <div className="max-w-3xl mx-auto space-y-3 md:space-y-4">
+        <div className="max-w-3xl mx-auto space-y-2 md:space-y-3">
           <p className="text-sm md:text-base lg:text-lg text-muted-foreground">
             {t(
               "Desalinhamento cultural durante realocação e onboarding leva a desengajamento, risco psicossocial e alta rotatividade.",
@@ -149,11 +152,11 @@ export const LandingPage = () => {
       </section>
 
       {/* What We Do */}
-      <section className="text-center space-y-4 md:space-y-6 px-2">
-        <h2 className="text-xl md:text-3xl lg:text-4xl font-bold text-foreground">
+      <section className="text-center space-y-3 md:space-y-5 px-2" aria-labelledby="whatwedo-heading">
+        <h2 id="whatwedo-heading" className="text-xl md:text-3xl lg:text-4xl font-bold text-foreground">
           {t("O que Fazemos", "What We Do")}
         </h2>
-        <div className="max-w-4xl mx-auto space-y-3 md:space-y-4">
+        <div className="max-w-4xl mx-auto space-y-2 md:space-y-3">
           <p className="text-sm md:text-base lg:text-lg text-muted-foreground">
             {t(
               "A Feltrip oferece soluções corporativas para adaptação cultural e onboarding intercultural de equipes globalmente móveis e colaboradores internacionais expandindo para o Brasil.",
@@ -170,84 +173,87 @@ export const LandingPage = () => {
       </section>
 
       {/* How It Works */}
-      <section className="space-y-6 md:space-y-10">
-        <h2 className="text-xl md:text-3xl lg:text-4xl font-bold text-foreground text-center">
+      <section className="space-y-5 md:space-y-8" aria-labelledby="howitworks-heading">
+        <h2 id="howitworks-heading" className="text-xl md:text-3xl lg:text-4xl font-bold text-foreground text-center">
           {t("Como Funciona", "How It Works")}
         </h2>
         
-        <div className="grid gap-6 md:gap-10">
+        <div className="grid gap-5 md:gap-8">
           {howItWorksSteps.map((step, index) => (
-            <div 
+            <article 
               key={index} 
-              className={`flex flex-col ${index % 2 === 0 ? 'md:flex-row' : 'md:flex-row-reverse'} gap-4 md:gap-8 items-center`}
+              className={`flex flex-col ${index % 2 === 0 ? 'md:flex-row' : 'md:flex-row-reverse'} gap-4 md:gap-6 items-center`}
             >
-              <div className="w-full md:w-1/2">
-                <div className="relative overflow-hidden rounded-xl md:rounded-2xl aspect-[4/3] md:aspect-[4/3]">
+              <figure className="w-full md:w-1/2">
+                <div className="relative overflow-hidden rounded-xl md:rounded-2xl aspect-[4/3]">
                   <img 
                     src={step.image} 
                     alt={step.imageAlt} 
                     className="absolute inset-0 w-full h-full object-cover"
+                    loading="lazy"
                   />
                   {step.imageCredit && (
-                    <span className="absolute bottom-2 right-2 text-xs text-white/80 bg-black/40 px-2 py-1 rounded">
+                    <figcaption className="absolute bottom-2 right-2 text-xs text-white/80 bg-black/40 px-2 py-1 rounded">
                       {step.imageCredit}
-                    </span>
+                    </figcaption>
                   )}
                 </div>
-              </div>
+              </figure>
               
-              <div className="w-full md:w-1/2 space-y-3 md:space-y-4">
+              <div className="w-full md:w-1/2 space-y-2 md:space-y-3">
                 <div className="flex items-center gap-3 md:gap-4">
-                  <span className="flex items-center justify-center w-10 h-10 md:w-12 md:h-12 rounded-full bg-primary text-primary-foreground text-lg md:text-xl font-bold">
+                  <span className="flex items-center justify-center w-10 h-10 md:w-12 md:h-12 rounded-full bg-primary text-primary-foreground text-lg md:text-xl font-bold" aria-hidden="true">
                     {step.number}
                   </span>
                   <h3 className="text-lg md:text-xl lg:text-2xl font-bold text-foreground">{step.title}</h3>
                 </div>
                 <p className="text-sm md:text-base text-muted-foreground leading-relaxed">{step.description}</p>
               </div>
-            </div>
+            </article>
           ))}
         </div>
       </section>
 
-      {/* Designed For - No cards, integrated with background */}
-      <section className="space-y-4 md:space-y-8">
-        <h2 className="text-xl md:text-3xl lg:text-4xl font-bold text-foreground text-center">
+      {/* Designed For */}
+      <section className="space-y-3 md:space-y-6" aria-labelledby="designedfor-heading">
+        <h2 id="designedfor-heading" className="text-xl md:text-3xl lg:text-4xl font-bold text-foreground text-center">
           {t("Projetado Para", "Designed For")}
         </h2>
         
-        <div className="grid grid-cols-1 md:grid-cols-2 gap-3 md:gap-6 max-w-4xl mx-auto">
+        <ul className="grid grid-cols-1 md:grid-cols-2 gap-2 md:gap-4 max-w-4xl mx-auto list-none">
           {designedFor.map((item, index) => {
             const Icon = item.icon;
             return (
-              <div key={index} className="flex items-center gap-3 md:gap-4 py-2 md:py-3">
-                <div className="p-2 md:p-3 rounded-full" style={{ backgroundColor: 'hsl(184, 100%, 22%, 0.1)' }}>
+              <li key={index} className="flex items-center gap-3 md:gap-4 py-2">
+                <div className="p-2 md:p-3 rounded-full bg-primary/10" aria-hidden="true">
                   <Icon className="h-5 w-5 md:h-6 md:w-6 text-primary" />
                 </div>
-                <p className="text-sm md:text-base text-foreground font-medium">{item.text}</p>
-              </div>
+                <span className="text-sm md:text-base text-foreground font-medium">{item.text}</span>
+              </li>
             );
           })}
-        </div>
+        </ul>
       </section>
 
       {/* Trusted By */}
-      <section className="space-y-4 md:space-y-8 py-6 md:py-10 border-y border-border">
-        <h2 className="text-lg md:text-xl lg:text-2xl font-semibold text-muted-foreground text-center">
+      <section className="space-y-3 md:space-y-6 py-5 md:py-8 border-y border-border" aria-labelledby="trustedby-heading">
+        <h2 id="trustedby-heading" className="text-lg md:text-xl lg:text-2xl font-semibold text-muted-foreground text-center">
           {t("Quem Confia na Gente", "Trusted By")}
         </h2>
         
-        <div className="flex flex-wrap justify-center items-center gap-6 md:gap-10">
+        <div className="flex flex-wrap justify-center items-center gap-5 md:gap-8" role="list" aria-label={t("Empresas parceiras", "Partner companies")}>
           {partnerLogos.map((logo, index) => (
             <img 
               key={index}
               src={logo.src} 
               alt={logo.alt}
               className="h-10 md:h-14 w-auto grayscale hover:grayscale-0 transition-all opacity-70 hover:opacity-100"
+              loading="lazy"
+              role="listitem"
             />
           ))}
         </div>
       </section>
-    </div>
+    </main>
   );
 };
