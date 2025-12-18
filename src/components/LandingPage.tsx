@@ -8,6 +8,8 @@ import feltripLogoFull from "@/assets/feltrip-logo-full.png";
 import teamHands from "@/assets/team-hands.jpg";
 import bobaDeboas from "@/assets/boba-deboas.png";
 import metricsAnalysis from "@/assets/metrics-analysis.jpg";
+import caminhadaGrupo from "@/assets/caminhada-grupo.jpg";
+import escadaAzul from "@/assets/escada-azul.jpg";
 
 // Partner logos
 import abracoLogo from "@/assets/abraco-cultural-logo.png";
@@ -42,6 +44,8 @@ export const LandingPage = () => {
         "Caminhadas culturais curadas, visitas a museus, roteiros personalizados e experiências em grupo projetadas para conectar colaboradores ao território, comunidades locais e referências culturais compartilhadas.",
         "Curated cultural walks, museum visits, personalized itineraries, and internal group experiences designed to connect employees with the territory, local communities, and shared cultural references."
       ),
+      image: caminhadaGrupo,
+      imageAlt: "Experiência guiada em grupo - Foto: Julia Souza",
     },
     {
       number: "3",
@@ -60,6 +64,8 @@ export const LandingPage = () => {
         "Prestadores de serviços locais cuidadosamente selecionados e parceiros especializados em cultura, educação e saúde mental, apoiando tanto colaboradores individuais quanto equipes corporativas.",
         "Carefully selected local service providers and specialized partners in culture, education, and mental health, supporting both individual employees and corporate teams."
       ),
+      image: escadaAzul,
+      imageAlt: "Curadoria personalizada - Escadaria Selarón",
     },
   ];
 
