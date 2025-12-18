@@ -86,7 +86,7 @@ export const LandingPage = () => {
   ];
 
   const partnerLogos = [
-    { src: abracoLogo, alt: "Abraço Cultural" },
+    { src: koinzCapitalLogo, alt: "Abraço Cultural" },
     { src: coletivaDelasLogo, alt: "Coletiva Delas" },
     { src: justicaGlobalLogo, alt: "Justiça Global" },
     { src: nomadWorldLogo, alt: "Nomad World" },
