@@ -12,7 +12,7 @@ import caminhadaGrupo from "@/assets/caminhada-grupo.jpg";
 import escadaAzul from "@/assets/escada-azul.jpg";
 
 // Partner logos
-import koinzcapitalLogo from "@/assets/koinz-capital-logo.png";
+import koinzCapitalLogo from "@/assets/koinz-capital-logo.png";
 import coletivaDelasLogo from "@/assets/coletiva-delas-logo.png";
 import justicaGlobalLogo from "@/assets/justica-global-logo.png";
 import nomadWorldLogo from "@/assets/nomad-world-logo.png";
