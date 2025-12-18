@@ -115,10 +115,10 @@ export const LandingPage = () => {
                 "We transform team integration experiences through AI, guided human activities, and relational presence metrics."
               )}
             </p>
-            <p className="text-sm text-primary font-medium mb-6">
+            <p className="text-sm text-energy font-semibold mb-6">
               {t("Apenas para empresas.", "For companies only.")}
             </p>
-            <Button size="lg" onClick={openWhatsApp} className="text-lg px-8 py-6">
+            <Button size="lg" onClick={openWhatsApp} className="text-lg px-8 py-6 bg-energy hover:bg-energy/90 text-white shadow-lg">
               {t("Solicitar uma Demo", "Request a Demo")}
             </Button>
           </div>
@@ -187,6 +187,11 @@ export const LandingPage = () => {
                       alt={step.imageAlt} 
                       className="absolute inset-0 w-full h-full object-cover"
                     />
+                    {index === 1 && (
+                      <span className="absolute bottom-2 right-2 text-xs text-white/80 bg-black/40 px-2 py-1 rounded">
+                        Foto: Julia Souza
+                      </span>
+                    )}
                   </div>
                 </div>
               ) : (
@@ -202,7 +207,7 @@ export const LandingPage = () => {
               
               <div className="w-full md:w-1/2 space-y-4">
                 <div className="flex items-center gap-4">
-                  <span className="flex items-center justify-center w-12 h-12 rounded-full bg-primary text-primary-foreground text-xl font-bold">
+                  <span className="flex items-center justify-center w-12 h-12 rounded-full bg-energy text-white text-xl font-bold shadow-lg">
                     {step.number}
                   </span>
                   <h3 className="text-xl md:text-2xl font-bold text-foreground">{step.title}</h3>
@@ -223,13 +228,20 @@ export const LandingPage = () => {
         <div className="grid grid-cols-1 md:grid-cols-2 gap-4">
           {designedFor.map((item, index) => {
             const Icon = item.icon;
+            const colors = [
+              { bg: "bg-energy/10", text: "text-energy" },
+              { bg: "bg-warm/10", text: "text-warm" },
+              { bg: "bg-accent/10", text: "text-accent" },
+              { bg: "bg-primary/10", text: "text-primary" },
+            ];
+            const color = colors[index % colors.length];
             return (
-              <Card key={index} className="p-6 flex items-center gap-4 hover:bg-muted/50 transition-colors">
-                <div className="p-3 rounded-xl bg-primary/10">
-                  <Icon className="h-6 w-6 text-primary" />
+              <div key={index} className="p-6 flex items-center gap-4 rounded-xl border border-border/30 hover:border-primary/30 transition-colors bg-card/50">
+                <div className={`p-3 rounded-xl ${color.bg}`}>
+                  <Icon className={`h-6 w-6 ${color.text}`} />
                 </div>
                 <p className="text-foreground font-medium">{item.text}</p>
-              </Card>
+              </div>
             );
           })}
         </div>
