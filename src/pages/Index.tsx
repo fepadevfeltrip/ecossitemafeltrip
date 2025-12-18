@@ -28,7 +28,7 @@ const IndexContent = () => {
   };
 
   return (
-    <div className="min-h-screen bg-gradient-to-br from-background via-muted/30 to-accent/10 flex flex-col items-center px-4 py-6 md:p-6">
+    <div className="min-h-screen bg-gradient-to-br from-background via-muted/30 to-accent/10 flex flex-col items-center px-3 py-4 md:px-6 md:py-6">
       <WhatsAppButton />
       
       {/* Language Toggle */}
@@ -51,7 +51,7 @@ const IndexContent = () => {
         </Button>
       </div>
 
-      <div className="w-full max-w-5xl space-y-12 md:space-y-16 pt-10 md:pt-12">
+      <div className="w-full max-w-5xl space-y-8 md:space-y-12 pt-8 md:pt-10">
         {/* Landing Page Content */}
         <LandingPage />
 

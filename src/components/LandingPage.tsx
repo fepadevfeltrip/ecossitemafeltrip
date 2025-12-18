@@ -84,19 +84,19 @@ export const LandingPage = () => {
   ];
 
   return (
-    <div className="space-y-16 md:space-y-24">
+    <div className="space-y-8 md:space-y-16">
       {/* Logo - Top Left */}
       <div className="flex justify-start">
         <img 
           src={feltripLogo} 
           alt="Feltrip" 
-          className="h-16 md:h-24 w-auto"
+          className="h-12 md:h-20 w-auto"
         />
       </div>
 
       {/* Hero Section */}
-      <section className="relative">
-        <div className="relative h-[500px] md:h-[600px] overflow-hidden rounded-2xl">
+      <section className="relative -mt-4 md:mt-0">
+        <div className="relative h-[400px] md:h-[550px] overflow-hidden rounded-xl md:rounded-2xl">
           <img 
             src={teamHands} 
             alt={t("Equipe diversa unida", "Diverse team united")}
@@ -104,23 +104,23 @@ export const LandingPage = () => {
           />
           <div className="absolute inset-0 bg-gradient-to-t from-background via-background/70 to-transparent" />
           
-          <div className="absolute inset-0 flex flex-col items-center justify-center px-4 text-center">
-            <h1 className="text-2xl md:text-4xl lg:text-5xl font-bold text-foreground max-w-4xl leading-tight mb-4">
+          <div className="absolute inset-0 flex flex-col items-center justify-center px-3 md:px-4 text-center">
+            <h1 className="text-xl md:text-3xl lg:text-5xl font-bold text-foreground max-w-4xl leading-tight mb-3 md:mb-4">
               {t(
                 "Adaptação Cultural e Integração Intercultural para Equipes Globais",
                 "Cultural Adaptation and Intercultural Integration for Global Teams"
-              )}
+            )}
             </h1>
-            <p className="text-base md:text-xl text-muted-foreground max-w-3xl mb-8">
+            <p className="text-sm md:text-lg lg:text-xl text-muted-foreground max-w-3xl mb-4 md:mb-8">
               {t(
                 "Transformamos experiências de integração de equipes através de IA, atividades humanas guiadas e métricas de presença relacional.",
                 "We transform team integration experiences through AI, guided human activities, and relational presence metrics."
               )}
             </p>
-            <p className="text-sm font-medium mb-6" style={{ color: 'hsl(330, 100%, 50%)' }}>
+            <p className="text-xs md:text-sm font-medium mb-4 md:mb-6" style={{ color: 'hsl(330, 100%, 50%)' }}>
               {t("Apenas para empresas.", "For companies only.")}
             </p>
-            <Button size="lg" onClick={openWhatsApp} className="text-lg px-8 py-6">
+            <Button size="default" onClick={openWhatsApp} className="text-sm md:text-lg px-4 md:px-8 py-3 md:py-6">
               {t("Solicitar uma Demo", "Request a Demo")}
             </Button>
           </div>
@@ -128,18 +128,18 @@ export const LandingPage = () => {
       </section>
 
       {/* Why Cultural Adaptation Matters */}
-      <section className="text-center space-y-6 px-2">
-        <h2 className="text-2xl md:text-4xl font-bold text-foreground">
+      <section className="text-center space-y-4 md:space-y-6 px-2">
+        <h2 className="text-xl md:text-3xl lg:text-4xl font-bold text-foreground">
           {t("Por que Adaptação Cultural Importa", "Why Cultural Adaptation Matters")}
         </h2>
-        <div className="max-w-3xl mx-auto space-y-4">
-          <p className="text-lg text-muted-foreground">
+        <div className="max-w-3xl mx-auto space-y-3 md:space-y-4">
+          <p className="text-sm md:text-base lg:text-lg text-muted-foreground">
             {t(
               "Desalinhamento cultural durante realocação e onboarding leva a desengajamento, risco psicossocial e alta rotatividade.",
               "Cultural misalignment during relocation and onboarding leads to disengagement, psychosocial risk, and high turnover."
             )}
           </p>
-          <p className="text-lg text-foreground font-medium">
+          <p className="text-sm md:text-base lg:text-lg text-foreground font-medium">
             {t(
               "A Feltrip ajuda empresas a reduzir atrito cultural e apoiar equipes na construção de pertencimento, presença e confiança relacional desde o primeiro dia.",
               "Feltrip helps companies reduce cultural friction and support teams in building belonging, presence, and relational trust from day one."
@@ -149,18 +149,18 @@ export const LandingPage = () => {
       </section>
 
       {/* What We Do */}
-      <section className="text-center space-y-6 px-2">
-        <h2 className="text-2xl md:text-4xl font-bold text-foreground">
+      <section className="text-center space-y-4 md:space-y-6 px-2">
+        <h2 className="text-xl md:text-3xl lg:text-4xl font-bold text-foreground">
           {t("O que Fazemos", "What We Do")}
         </h2>
-        <div className="max-w-4xl mx-auto space-y-4">
-          <p className="text-lg text-muted-foreground">
+        <div className="max-w-4xl mx-auto space-y-3 md:space-y-4">
+          <p className="text-sm md:text-base lg:text-lg text-muted-foreground">
             {t(
               "A Feltrip oferece soluções corporativas para adaptação cultural e onboarding intercultural de equipes globalmente móveis e colaboradores internacionais expandindo para o Brasil.",
               "Feltrip provides corporate solutions for cultural adaptation and intercultural onboarding of globally mobile teams and international employees expanding to Brazil."
             )}
           </p>
-          <p className="text-lg text-muted-foreground">
+          <p className="text-sm md:text-base lg:text-lg text-muted-foreground">
             {t(
               "Combinando tecnologia, experiências práticas e métricas estratégicas, apoiamos empresas na criação de equipes mais saudáveis, conectadas e culturalmente sintonizadas.",
               "By combining technology, hands-on experiences, and strategic metrics, we support companies in creating healthier, more connected, and culturally attuned teams."
@@ -170,19 +170,19 @@ export const LandingPage = () => {
       </section>
 
       {/* How It Works */}
-      <section className="space-y-10">
-        <h2 className="text-2xl md:text-4xl font-bold text-foreground text-center">
+      <section className="space-y-6 md:space-y-10">
+        <h2 className="text-xl md:text-3xl lg:text-4xl font-bold text-foreground text-center">
           {t("Como Funciona", "How It Works")}
         </h2>
         
-        <div className="grid gap-8 md:gap-12">
+        <div className="grid gap-6 md:gap-10">
           {howItWorksSteps.map((step, index) => (
             <div 
               key={index} 
-              className={`flex flex-col ${index % 2 === 0 ? 'md:flex-row' : 'md:flex-row-reverse'} gap-6 md:gap-10 items-center`}
+              className={`flex flex-col ${index % 2 === 0 ? 'md:flex-row' : 'md:flex-row-reverse'} gap-4 md:gap-8 items-center`}
             >
               <div className="w-full md:w-1/2">
-                <div className="relative overflow-hidden rounded-2xl aspect-square md:aspect-[4/3]">
+                <div className="relative overflow-hidden rounded-xl md:rounded-2xl aspect-[4/3] md:aspect-[4/3]">
                   <img 
                     src={step.image} 
                     alt={step.imageAlt} 
@@ -196,14 +196,14 @@ export const LandingPage = () => {
                 </div>
               </div>
               
-              <div className="w-full md:w-1/2 space-y-4">
-                <div className="flex items-center gap-4">
-                  <span className="flex items-center justify-center w-12 h-12 rounded-full bg-primary text-primary-foreground text-xl font-bold">
+              <div className="w-full md:w-1/2 space-y-3 md:space-y-4">
+                <div className="flex items-center gap-3 md:gap-4">
+                  <span className="flex items-center justify-center w-10 h-10 md:w-12 md:h-12 rounded-full bg-primary text-primary-foreground text-lg md:text-xl font-bold">
                     {step.number}
                   </span>
-                  <h3 className="text-xl md:text-2xl font-bold text-foreground">{step.title}</h3>
+                  <h3 className="text-lg md:text-xl lg:text-2xl font-bold text-foreground">{step.title}</h3>
                 </div>
-                <p className="text-muted-foreground leading-relaxed">{step.description}</p>
+                <p className="text-sm md:text-base text-muted-foreground leading-relaxed">{step.description}</p>
               </div>
             </div>
           ))}
@@ -211,20 +211,20 @@ export const LandingPage = () => {
       </section>
 
       {/* Designed For - No cards, integrated with background */}
-      <section className="space-y-8">
-        <h2 className="text-2xl md:text-4xl font-bold text-foreground text-center">
+      <section className="space-y-4 md:space-y-8">
+        <h2 className="text-xl md:text-3xl lg:text-4xl font-bold text-foreground text-center">
           {t("Projetado Para", "Designed For")}
         </h2>
         
-        <div className="grid grid-cols-1 md:grid-cols-2 gap-6 max-w-4xl mx-auto">
+        <div className="grid grid-cols-1 md:grid-cols-2 gap-3 md:gap-6 max-w-4xl mx-auto">
           {designedFor.map((item, index) => {
             const Icon = item.icon;
             return (
-              <div key={index} className="flex items-center gap-4 py-3">
-                <div className="p-3 rounded-full" style={{ backgroundColor: 'hsl(184, 100%, 22%, 0.1)' }}>
-                  <Icon className="h-6 w-6 text-primary" />
+              <div key={index} className="flex items-center gap-3 md:gap-4 py-2 md:py-3">
+                <div className="p-2 md:p-3 rounded-full" style={{ backgroundColor: 'hsl(184, 100%, 22%, 0.1)' }}>
+                  <Icon className="h-5 w-5 md:h-6 md:w-6 text-primary" />
                 </div>
-                <p className="text-foreground font-medium">{item.text}</p>
+                <p className="text-sm md:text-base text-foreground font-medium">{item.text}</p>
               </div>
             );
           })}
@@ -232,18 +232,18 @@ export const LandingPage = () => {
       </section>
 
       {/* Trusted By */}
-      <section className="space-y-8 py-10 border-y border-border">
-        <h2 className="text-xl md:text-2xl font-semibold text-muted-foreground text-center">
+      <section className="space-y-4 md:space-y-8 py-6 md:py-10 border-y border-border">
+        <h2 className="text-lg md:text-xl lg:text-2xl font-semibold text-muted-foreground text-center">
           {t("Quem Confia na Gente", "Trusted By")}
         </h2>
         
-        <div className="flex flex-wrap justify-center items-center gap-8 md:gap-12">
+        <div className="flex flex-wrap justify-center items-center gap-6 md:gap-10">
           {partnerLogos.map((logo, index) => (
             <img 
               key={index}
               src={logo.src} 
               alt={logo.alt}
-              className="h-12 md:h-16 w-auto grayscale hover:grayscale-0 transition-all opacity-70 hover:opacity-100"
+              className="h-10 md:h-14 w-auto grayscale hover:grayscale-0 transition-all opacity-70 hover:opacity-100"
             />
           ))}
         </div>
