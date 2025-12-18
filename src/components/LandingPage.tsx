@@ -1,16 +1,17 @@
 import { Button } from "@/components/ui/button";
-import { Card } from "@/components/ui/card";
 import { useLanguage } from "@/hooks/useLanguage";
 import { Bot, MapPin, LayoutDashboard, Sparkles, Users, Building2, Heart, Globe } from "lucide-react";
 
 // Images
-import feltripLogoFull from "@/assets/feltrip-logo-full.png";
+import feltripLogo from "@/assets/feltrip-logo.png";
 import teamHands from "@/assets/team-hands.jpg";
 import bobaDeboas from "@/assets/boba-deboas.png";
 import metricsAnalysis from "@/assets/metrics-analysis.jpg";
+import caminhadaGrupo from "@/assets/caminhada-grupo.jpg";
+import escadaAzul from "@/assets/escada-azul.jpg";
 
 // Partner logos
-import abracoLogo from "@/assets/abraco-cultural-logo.png";
+import koinzCapitalLogo from "@/assets/koinz-capital-logo.png";
 import coletivaDelasLogo from "@/assets/coletiva-delas-logo.png";
 import justicaGlobalLogo from "@/assets/justica-global-logo.png";
 import nomadWorldLogo from "@/assets/nomad-world-logo.png";
@@ -42,6 +43,9 @@ export const LandingPage = () => {
         "Caminhadas culturais curadas, visitas a museus, roteiros personalizados e experiências em grupo projetadas para conectar colaboradores ao território, comunidades locais e referências culturais compartilhadas.",
         "Curated cultural walks, museum visits, personalized itineraries, and internal group experiences designed to connect employees with the territory, local communities, and shared cultural references."
       ),
+      image: caminhadaGrupo,
+      imageAlt: "Experiência guiada - caminhada cultural",
+      imageCredit: "Foto: Julia Souza",
     },
     {
       number: "3",
@@ -60,6 +64,8 @@ export const LandingPage = () => {
         "Prestadores de serviços locais cuidadosamente selecionados e parceiros especializados em cultura, educação e saúde mental, apoiando tanto colaboradores individuais quanto equipes corporativas.",
         "Carefully selected local service providers and specialized partners in culture, education, and mental health, supporting both individual employees and corporate teams."
       ),
+      image: escadaAzul,
+      imageAlt: "Curadoria personalizada - escada azul com boas-vindas em vários idiomas",
     },
   ];
 
@@ -71,7 +77,7 @@ export const LandingPage = () => {
   ];
 
   const partnerLogos = [
-    { src: abracoLogo, alt: "Abraço Cultural" },
+    { src: koinzCapitalLogo, alt: "Koinz Capital" },
     { src: coletivaDelasLogo, alt: "Coletiva Delas" },
     { src: justicaGlobalLogo, alt: "Justiça Global" },
     { src: nomadWorldLogo, alt: "Nomad World" },
@@ -79,9 +85,17 @@ export const LandingPage = () => {
 
   return (
     <div className="space-y-16 md:space-y-24">
+      {/* Logo - Top Left */}
+      <div className="flex justify-start">
+        <img 
+          src={feltripLogo} 
+          alt="Feltrip" 
+          className="h-16 md:h-24 w-auto"
+        />
+      </div>
+
       {/* Hero Section */}
       <section className="relative">
-        {/* Background Image */}
         <div className="relative h-[500px] md:h-[600px] overflow-hidden rounded-2xl">
           <img 
             src={teamHands} 
@@ -90,13 +104,7 @@ export const LandingPage = () => {
           />
           <div className="absolute inset-0 bg-gradient-to-t from-background via-background/70 to-transparent" />
           
-          {/* Content */}
           <div className="absolute inset-0 flex flex-col items-center justify-center px-4 text-center">
-            <img 
-              src={feltripLogoFull} 
-              alt="Feltrip" 
-              className="h-20 md:h-32 w-auto mb-6 md:mb-8 drop-shadow-lg"
-            />
             <h1 className="text-2xl md:text-4xl lg:text-5xl font-bold text-foreground max-w-4xl leading-tight mb-4">
               {t(
                 "Adaptação Cultural e Integração Intercultural para Equipes Globais",
@@ -109,7 +117,7 @@ export const LandingPage = () => {
                 "We transform team integration experiences through AI, guided human activities, and relational presence metrics."
               )}
             </p>
-            <p className="text-sm text-primary font-medium mb-6">
+            <p className="text-sm font-medium mb-6" style={{ color: 'hsl(330, 100%, 50%)' }}>
               {t("Apenas para empresas.", "For companies only.")}
             </p>
             <Button size="lg" onClick={openWhatsApp} className="text-lg px-8 py-6">
@@ -173,26 +181,20 @@ export const LandingPage = () => {
               key={index} 
               className={`flex flex-col ${index % 2 === 0 ? 'md:flex-row' : 'md:flex-row-reverse'} gap-6 md:gap-10 items-center`}
             >
-              {step.image ? (
-                <div className="w-full md:w-1/2">
-                  <div className="relative overflow-hidden rounded-2xl aspect-square md:aspect-[4/3]">
-                    <img 
-                      src={step.image} 
-                      alt={step.imageAlt} 
-                      className="absolute inset-0 w-full h-full object-cover"
-                    />
-                  </div>
+              <div className="w-full md:w-1/2">
+                <div className="relative overflow-hidden rounded-2xl aspect-square md:aspect-[4/3]">
+                  <img 
+                    src={step.image} 
+                    alt={step.imageAlt} 
+                    className="absolute inset-0 w-full h-full object-cover"
+                  />
+                  {step.imageCredit && (
+                    <span className="absolute bottom-2 right-2 text-xs text-white/80 bg-black/40 px-2 py-1 rounded">
+                      {step.imageCredit}
+                    </span>
+                  )}
                 </div>
-              ) : (
-                <div className="w-full md:w-1/2">
-                  <Card className="aspect-square md:aspect-[4/3] flex items-center justify-center bg-gradient-to-br from-primary/10 to-accent/20">
-                    <div className="text-center p-8">
-                      {index === 1 && <MapPin className="h-20 w-20 mx-auto text-primary/60" />}
-                      {index === 3 && <Sparkles className="h-20 w-20 mx-auto text-primary/60" />}
-                    </div>
-                  </Card>
-                </div>
-              )}
+              </div>
               
               <div className="w-full md:w-1/2 space-y-4">
                 <div className="flex items-center gap-4">
@@ -208,22 +210,22 @@ export const LandingPage = () => {
         </div>
       </section>
 
-      {/* Designed For */}
+      {/* Designed For - No cards, integrated with background */}
       <section className="space-y-8">
         <h2 className="text-2xl md:text-4xl font-bold text-foreground text-center">
           {t("Projetado Para", "Designed For")}
         </h2>
         
-        <div className="grid grid-cols-1 md:grid-cols-2 gap-4">
+        <div className="grid grid-cols-1 md:grid-cols-2 gap-6 max-w-4xl mx-auto">
           {designedFor.map((item, index) => {
             const Icon = item.icon;
             return (
-              <Card key={index} className="p-6 flex items-center gap-4 hover:bg-muted/50 transition-colors">
-                <div className="p-3 rounded-xl bg-primary/10">
+              <div key={index} className="flex items-center gap-4 py-3">
+                <div className="p-3 rounded-full" style={{ backgroundColor: 'hsl(184, 100%, 22%, 0.1)' }}>
                   <Icon className="h-6 w-6 text-primary" />
                 </div>
                 <p className="text-foreground font-medium">{item.text}</p>
-              </Card>
+              </div>
             );
           })}
         </div>
