@@ -4,6 +4,7 @@ import { NavigationCard } from "@/components/NavigationCard";
 import { WhatsAppButton } from "@/components/WhatsAppButton";
 import { SuggestionBox } from "@/components/SuggestionBox";
 import { PricingTable } from "@/components/PricingTable";
+import { LandingPage } from "@/components/LandingPage";
 import { Button } from "@/components/ui/button";
 import ManagerDashboard from "./ManagerDashboard";
 import ExpatApp from "./ExpatApp";
@@ -50,9 +51,14 @@ const IndexContent = () => {
         </Button>
       </div>
 
-      <div className="w-full max-w-5xl space-y-8 md:space-y-12 pt-10 md:pt-12">
+      <div className="w-full max-w-5xl space-y-12 md:space-y-16 pt-10 md:pt-12">
+        {/* Landing Page Content */}
+        <LandingPage />
+
+        {/* Pricing Section */}
         <PricingTable />
         
+        {/* Suggestion Box */}
         <div className="mt-8 md:mt-12">
           <SuggestionBox />
         </div>
