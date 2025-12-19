@@ -58,6 +58,27 @@ const IndexContent = () => {
         {/* Pricing Section */}
         <PricingTable />
         
+        {/* Culture Guide Button */}
+        <div className="mt-8 md:mt-12 text-center">
+          <a
+            href="https://cultureguide.feltrip.com"
+            target="_blank"
+            rel="noopener noreferrer"
+            className="inline-block"
+          >
+            <Button
+              size="lg"
+              variant="outline"
+              className="text-base px-6 py-5 border-primary/30 hover:border-primary hover:bg-primary/5"
+            >
+              {t(
+                "Conheça algumas nuances culturais do jeitinho brasileiro, sem clichê.",
+                "Discover some cultural nuances of the Brazilian jeitinho, without clichés."
+              )}
+            </Button>
+          </a>
+        </div>
+
         {/* Suggestion Box */}
         <div className="mt-8 md:mt-12">
           <SuggestionBox />

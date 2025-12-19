@@ -4,7 +4,7 @@ import { useLanguage } from "@/hooks/useLanguage";
 import { Bot, MapPin, LayoutDashboard, Sparkles, Users, Building2, Heart, Globe } from "lucide-react";
 
 // Images
-import feltripLogoFull from "@/assets/feltrip-logo-full.png";
+import feltripLogoTrans from "@/assets/feltrip-logo-trans.png";
 import teamHands from "@/assets/team-hands.jpg";
 import bobaDeboas from "@/assets/boba-deboas.png";
 import metricsAnalysis from "@/assets/metrics-analysis.jpg";
@@ -52,7 +52,7 @@ export const LandingPage = () => {
       title: t("Ferramentas Digitais", "Digital Tools"),
       description: t(
         "Acesso a diários-mapas de viagem, o Mapa de Presença Relacional (MRP™), alertas de segurança e um painel completo de RH para monitorar integração cultural, engajamento e indicadores de risco psicossocial.",
-        "Access to travel diary-maps, the Relational Presence Map (MRP™), safety alerts, and a complete HR dashboard to monitor cultural integration, engagement, and psychosocial risk indicators.",
+        "Access to travel diary-maps, the Map of Relational Presence (MRP™), safety alerts, and a complete HR dashboard to monitor cultural integration, engagement, and psychosocial risk indicators.",
       ),
       image: metricsAnalysis,
       imageAlt: "Dashboard de métricas e análise",
@@ -107,7 +107,7 @@ export const LandingPage = () => {
 
           {/* Content */}
           <div className="absolute inset-0 flex flex-col items-center justify-center px-4 text-center">
-            <img src={feltripLogoFull} alt="Feltrip" className="h-20 md:h-32 w-auto mb-6 md:mb-8 drop-shadow-lg" />
+            <img src={feltripLogoTrans} alt="Feltrip" className="h-20 md:h-32 w-auto mb-6 md:mb-8 drop-shadow-lg" />
             <h1 className="text-2xl md:text-4xl lg:text-5xl font-bold text-foreground max-w-4xl leading-tight mb-4">
               {t(
                 "Adaptação Cultural e Integração Intercultural para Equipes Globais",
