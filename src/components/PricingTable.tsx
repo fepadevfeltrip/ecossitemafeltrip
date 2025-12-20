@@ -138,6 +138,12 @@ export const PricingTable = () => {
             "For whom: People arriving in a new country, families in transition, newly hired foreigners or nationals from other cities in Brazil."
           )}
         </p>
+        <p className="text-xs md:text-sm text-primary font-bold max-w-2xl mx-auto">
+          {t(
+            "Descontos progressivos para grupos de 10+ colaboradores. Fale com nosso time.",
+            "Progressive discounts for groups of 10+ employees. Talk to our team."
+          )}
+        </p>
       </div>
 
       {/* Mobile: Stacked Cards */}
