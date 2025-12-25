@@ -35,42 +35,42 @@ export const LandingPage = () => {
         "Our Brazilian culture and hyperlocal AI tutor interacts with team members around everyday habits, cultural nuances, communication styles, and relational dynamics — supporting cultural adaptation and relational well-being through conversation and guidance.",
       ),
       image: bobaDeboas,
-      imageAlt: "Boba Cult - IA tutora de cultura brasileira",
+      imageAlt: t("Boba Cult - IA tutora de cultura brasileira para treinamento intercultural", "Boba Cult - Brazilian culture AI tutor for cross-cultural training"),
     },
     {
       number: "2",
-      title: t("Experiências Guiadas", "Guided Experiences"),
+      title: t("Experiências Guiadas", "Guided Cultural Experiences"),
       description: t(
-        "Caminhadas culturais curadas, visitas a museus, roteiros personalizados e experiências em grupo projetadas para conectar colaboradores ao território, comunidades locais e referências culturais compartilhadas.",
-        "Curated cultural walks, museum visits, personalized itineraries, and internal group experiences designed to connect employees with the territory, local communities, and shared cultural references.",
+        "Caminhadas culturais curadas, visitas a museus, roteiros personalizados e experiências em grupo projetadas para conectar colaboradores ao território, comunidades locais e referências culturais compartilhadas — parte essencial do onboarding cultural.",
+        "Curated cultural walks, museum visits, personalized itineraries, and group experiences designed to connect employees with the territory, local communities, and shared cultural references — an essential part of cultural onboarding.",
       ),
       image: caminhadaGrupo,
-      imageAlt: "Experiência guiada em grupo - Foto: Julia Souza",
+      imageAlt: t("Experiência guiada de onboarding cultural em grupo", "Guided cultural onboarding group experience"),
     },
     {
       number: "3",
-      title: t("Ferramentas Digitais", "Digital Tools"),
+      title: t("Ferramentas Digitais para RH", "Digital Tools for HR"),
       description: t(
-        "Acesso a diários-mapas de viagem, o Mapa de Presença Relacional (MRP™), alertas de segurança e um painel completo de RH para monitorar integração cultural, engajamento e indicadores de risco psicossocial.",
-        "Access to travel diary-maps, the Map of Relational Presence (MRP™), safety alerts, and a complete HR dashboard to monitor cultural integration, engagement, and psychosocial risk indicators.",
+        "Acesso a diários-mapas de viagem, o Mapa de Presença Relacional (MRP™), alertas de segurança e um painel completo para RH de mobilidade global monitorar integração cultural, engajamento e indicadores de risco psicossocial.",
+        "Access to travel diary-maps, the Map of Relational Presence (MRP™), safety alerts, and a complete dashboard for global mobility HR to monitor cultural integration, engagement, and psychosocial risk indicators.",
       ),
       image: metricsAnalysis,
-      imageAlt: "Dashboard de métricas e análise",
+      imageAlt: t("Dashboard de métricas para RH mobilidade global", "Metrics dashboard for global mobility HR"),
     },
     {
       number: "4",
-      title: t("Curadoria Personalizada", "Personalized Curation"),
+      title: t("Curadoria de Orientação Cultural", "Cultural Orientation Curation"),
       description: t(
-        "Prestadores de serviços locais cuidadosamente selecionados e parceiros especializados em cultura, educação e saúde mental, apoiando tanto colaboradores individuais quanto equipes corporativas.",
-        "Carefully selected local service providers and specialized partners in culture, education, and mental health, supporting both individual employees and corporate teams.",
+        "Prestadores de serviços locais cuidadosamente selecionados e parceiros especializados em cultura, educação e saúde mental, apoiando tanto colaboradores individuais quanto equipes corporativas na adaptação cultural pós-relocação.",
+        "Carefully selected local service providers and specialized partners in culture, education, and mental health, supporting both individual employees and corporate teams in post-arrival cultural adaptation.",
       ),
       image: escadaAzul,
-      imageAlt: "Curadoria personalizada - Escadaria Selarón",
+      imageAlt: t("Curadoria de orientação cultural para estrangeiros no Brasil", "Cultural orientation curation for foreigners in Brazil"),
     },
   ];
 
   const designedFor = [
-    { icon: Globe, text: t("Equipes globais e interculturais", "Global and intercultural teams") },
+    { icon: Globe, text: t("Equipes globais e interculturais em mobilidade", "Global and intercultural teams in mobility") },
     {
       icon: Building2,
       text: t("Empresas expandindo operações para o Brasil", "Companies expanding operations to Brazil"),
@@ -79,8 +79,8 @@ export const LandingPage = () => {
     {
       icon: Users,
       text: t(
-        "Times de RH gerenciando onboarding, realocação e mobilidade",
-        "HR and People teams managing onboarding, relocation, and mobility",
+        "Times de RH de mobilidade global gerenciando onboarding e realocação",
+        "Global mobility HR teams managing onboarding and relocation",
       ),
     },
   ];
@@ -93,28 +93,34 @@ export const LandingPage = () => {
   ];
 
   return (
-    <div className="space-y-16 md:space-y-24">
+    <main className="space-y-16 md:space-y-24" role="main">
       {/* Hero Section */}
-      <section className="relative">
+      <header className="relative">
         {/* Background Image */}
         <div className="relative h-[500px] md:h-[600px] overflow-hidden rounded-2xl">
           <img
             src={teamHands}
-            alt={t("Equipe diversa unida", "Diverse team united")}
+            alt={t("Equipe diversa em treinamento intercultural no Brasil", "Diverse team in cross-cultural training in Brazil")}
             className="absolute inset-0 w-full h-full object-cover"
           />
           <div className="absolute inset-0 bg-gradient-to-t from-background via-background/70 to-transparent" />
 
           {/* Content */}
           <div className="absolute inset-0 flex flex-col items-center justify-center px-4 text-center">
-            <img src={feltripLogoTrans} alt="Feltrip" className="h-20 md:h-32 w-auto mb-6 md:mb-8 drop-shadow-lg" />
+            <img src={feltripLogoTrans} alt="Feltrip - Treinamento Intercultural e Onboarding Cultural" className="h-20 md:h-32 w-auto mb-6 md:mb-8 drop-shadow-lg" />
             <h1 className="text-2xl md:text-4xl lg:text-5xl font-bold text-foreground max-w-4xl leading-tight mb-4">
               {t(
-                "Adaptação Cultural e Integração Intercultural para Equipes Globais",
-                "Cultural Adaptation and Intercultural Integration for Global Teams",
+                "Conectamos Pessoas à Cultura Brasileira",
+                "We Connect People to Brazilian Culture",
               )}
             </h1>
-            <p className="text-base md:text-xl text-muted-foreground max-w-3xl mb-8">
+            <h2 className="text-lg md:text-xl text-foreground/90 max-w-3xl mb-4 font-medium">
+              {t(
+                "Treinamento intercultural e onboarding cultural para expatriados, empresas e equipes globais no Brasil",
+                "Cross-cultural training and cultural onboarding for expatriates, companies and global teams in Brazil",
+              )}
+            </h2>
+            <p className="text-base md:text-lg text-muted-foreground max-w-3xl mb-8">
               {t(
                 "Transformamos experiências de integração de equipes através de IA, atividades humanas guiadas e métricas de presença relacional.",
                 "We transform team integration experiences through AI, guided human activities, and relational presence metrics.",
@@ -127,69 +133,76 @@ export const LandingPage = () => {
               size="lg"
               onClick={openWhatsApp}
               className="text-lg px-8 py-6 bg-energy hover:bg-energy/90 text-white shadow-lg"
+              aria-label={t("Solicitar uma demonstração de treinamento intercultural", "Request a cross-cultural training demo")}
             >
               {t("Solicitar uma Demo", "Request a Demo")}
             </Button>
           </div>
         </div>
-      </section>
+      </header>
 
-      {/* Why Cultural Adaptation Matters */}
-      <section className="text-center space-y-6 px-2">
-        <h2 className="text-2xl md:text-4xl font-bold text-foreground">
+      {/* Why Cultural Adaptation Matters - SEO Section */}
+      <section className="text-center space-y-6 px-2" aria-labelledby="why-cultural-adaptation">
+        <h2 id="why-cultural-adaptation" className="text-2xl md:text-4xl font-bold text-foreground">
           {t("Por que Adaptação Cultural Importa", "Why Cultural Adaptation Matters")}
         </h2>
         <div className="max-w-3xl mx-auto space-y-4">
           <p className="text-lg text-muted-foreground">
             {t(
-              "Desalinhamento cultural durante realocação e onboarding leva a desengajamento, risco psicossocial e alta rotatividade.",
-              "Cultural misalignment during relocation and onboarding leads to disengagement, psychosocial risk, and high turnover.",
+              "Desalinhamento cultural durante relocação e onboarding leva a desengajamento, risco psicossocial e alta rotatividade. Por isso, treinamento intercultural para expatriados e orientação cultural para estrangeiros são essenciais.",
+              "Cultural misalignment during relocation and onboarding leads to disengagement, psychosocial risk, and high turnover. That's why cross-cultural training for expatriates and cultural orientation are essential.",
             )}
           </p>
           <p className="text-lg text-foreground font-medium">
             {t(
-              "A Feltrip ajuda empresas a reduzir atrito cultural e apoiar equipes na construção de pertencimento, presença e confiança relacional desde o primeiro dia.",
-              "Feltrip helps companies reduce cultural friction and support teams in building belonging, presence, and relational trust from day one.",
+              "A Feltrip ajuda empresas e profissionais de RH de mobilidade global a reduzir atrito cultural, apoiando equipes na construção de pertencimento, presença e confiança relacional desde o primeiro dia.",
+              "Feltrip helps companies and global mobility HR professionals reduce cultural friction, supporting teams in building belonging, presence, and relational trust from day one.",
             )}
           </p>
         </div>
       </section>
 
-      {/* What We Do */}
-      <section className="text-center space-y-6 px-2">
-        <h2 className="text-2xl md:text-4xl font-bold text-foreground">{t("O que Fazemos", "What We Do")}</h2>
+      {/* What We Do - Core Service Description */}
+      <section className="text-center space-y-6 px-2" aria-labelledby="what-we-do">
+        <h2 id="what-we-do" className="text-2xl md:text-4xl font-bold text-foreground">{t("O que Fazemos", "What We Do")}</h2>
+        <h3 className="text-lg md:text-xl text-primary font-semibold max-w-3xl mx-auto">
+          {t(
+            "Onboarding Cultural e Treinamento de Cultura Brasileira para Empresas",
+            "Cultural Onboarding and Intercultural Training for Global Mobility",
+          )}
+        </h3>
         <div className="max-w-4xl mx-auto space-y-4">
           <p className="text-lg text-muted-foreground">
             {t(
-              "A Feltrip oferece soluções corporativas para adaptação cultural e onboarding intercultural de equipes globalmente móveis e colaboradores nacionais e internacionais expandindo para o Brasil. Utilizamos nossa metodologia proprietária Mapa da Presença Relacional, (MRP™)",
-              "Feltrip provides corporate solutions for cultural adaptation and intercultural onboarding of globally mobile teams, national and international employees expanding to Brazil. We use our proprietary methodology, the Map of Relational Presence (MRP™)",
+              "A Feltrip oferece soluções corporativas de adaptação cultural pós-relocação e onboarding intercultural para equipes globalmente móveis, colaboradores nacionais e internacionais expandindo para o Brasil. Utilizamos nossa metodologia proprietária Mapa da Presença Relacional (MRP™).",
+              "Feltrip provides corporate solutions for post-arrival cultural integration and intercultural onboarding for globally mobile teams, national and international employees expanding to Brazil. We use our proprietary methodology, the Map of Relational Presence (MRP™).",
             )}
           </p>
           <p className="text-lg text-muted-foreground">
             {t(
-              "Combinando tecnologia, experiências práticas e métricas estratégicas, apoiamos empresas na criação de equipes mais saudáveis, conectadas e culturalmente sintonizadas.",
-              "By combining technology, hands-on experiences, and strategic metrics, we support companies in creating healthier, more connected, and culturally attuned teams.",
+              "Combinando tecnologia, experiências práticas e métricas estratégicas, apoiamos empresas e profissionais de RH na criação de equipes mais saudáveis, conectadas e culturalmente sintonizadas.",
+              "By combining technology, hands-on experiences, and strategic metrics, we support companies and HR professionals in creating healthier, more connected, and culturally attuned global teams.",
             )}
           </p>
         </div>
       </section>
 
-      {/* How It Works */}
-      <section className="space-y-10">
-        <h2 className="text-2xl md:text-4xl font-bold text-foreground text-center">
-          {t("Como Funciona", "How It Works")}
+      {/* How It Works - Service Details */}
+      <section className="space-y-10" aria-labelledby="how-it-works">
+        <h2 id="how-it-works" className="text-2xl md:text-4xl font-bold text-foreground text-center">
+          {t("Como Funciona o Treinamento Intercultural", "How Cross-cultural Training Works")}
         </h2>
 
         <div className="grid gap-8 md:gap-12">
           {howItWorksSteps.map((step, index) => (
-            <div
+            <article
               key={index}
               className={`flex flex-col ${index % 2 === 0 ? "md:flex-row" : "md:flex-row-reverse"} gap-6 md:gap-10 items-center`}
             >
               {step.image ? (
                 <div className="w-full md:w-1/2">
                   <div className="relative overflow-hidden rounded-2xl aspect-square md:aspect-[4/3]">
-                    <img src={step.image} alt={step.imageAlt} className="absolute inset-0 w-full h-full object-cover" />
+                    <img src={step.image} alt={step.imageAlt} className="absolute inset-0 w-full h-full object-cover" loading="lazy" />
                     {index === 1 && (
                       <span className="absolute bottom-2 right-2 text-xs text-white/80 bg-black/40 px-2 py-1 rounded">
                         Foto: Julia Souza
@@ -217,15 +230,15 @@ export const LandingPage = () => {
                 </div>
                 <p className="text-muted-foreground leading-relaxed">{step.description}</p>
               </div>
-            </div>
+            </article>
           ))}
         </div>
       </section>
 
-      {/* Designed For */}
-      <section className="space-y-8">
-        <h2 className="text-2xl md:text-4xl font-bold text-foreground text-center">
-          {t("Projetado Para", "Designed For")}
+      {/* Designed For - Target Audience */}
+      <section className="space-y-8" aria-labelledby="designed-for">
+        <h2 id="designed-for" className="text-2xl md:text-4xl font-bold text-foreground text-center">
+          {t("Projetado Para Profissionais de RH e Mobilidade Global", "Designed For HR and Global Mobility Professionals")}
         </h2>
 
         <div className="grid grid-cols-1 md:grid-cols-2 gap-4">
@@ -254,8 +267,8 @@ export const LandingPage = () => {
       </section>
 
       {/* Trusted By */}
-      <section className="space-y-8 py-10 border-y border-border">
-        <h2 className="text-xl md:text-2xl font-semibold text-muted-foreground text-center">
+      <section className="space-y-8 py-10 border-y border-border" aria-labelledby="trusted-by">
+        <h2 id="trusted-by" className="text-xl md:text-2xl font-semibold text-muted-foreground text-center">
           {t("Quem Confia na Gente", "Trusted By")}
         </h2>
 
@@ -266,10 +279,11 @@ export const LandingPage = () => {
               src={logo.src}
               alt={logo.alt}
               className="h-12 md:h-16 w-auto grayscale hover:grayscale-0 transition-all opacity-70 hover:opacity-100"
+              loading="lazy"
             />
           ))}
         </div>
       </section>
-    </div>
+    </main>
   );
 };
