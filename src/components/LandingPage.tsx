@@ -235,6 +235,23 @@ export const LandingPage = () => {
         </div>
       </section>
 
+      {/* Video Section */}
+      <section className="flex justify-center py-4" aria-label={t("Vídeo sobre treinamento intercultural", "Cross-cultural training video")}>
+        <div className="w-full max-w-4xl">
+          <div className="relative overflow-hidden rounded-2xl shadow-xl">
+            <video
+              controls
+              preload="metadata"
+              className="w-full h-auto"
+              aria-label={t("Vídeo de apresentação Feltrip", "Feltrip presentation video")}
+            >
+              <source src="/videos/feltrip-overview.mp4" type="video/mp4" />
+              {t("Seu navegador não suporta vídeos HTML5.", "Your browser does not support HTML5 video.")}
+            </video>
+          </div>
+        </div>
+      </section>
+
       {/* Designed For - Target Audience */}
       <section className="space-y-8" aria-labelledby="designed-for">
         <h2 id="designed-for" className="text-2xl md:text-4xl font-bold text-foreground text-center">
