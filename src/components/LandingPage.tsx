@@ -229,6 +229,15 @@ export const LandingPage = () => {
                   <h3 className="text-xl md:text-2xl font-bold text-foreground">{step.title}</h3>
                 </div>
                 <p className="text-muted-foreground leading-relaxed">{step.description}</p>
+                {index === 0 && (
+                  <Button
+                    onClick={openWhatsApp}
+                    className="mt-2 bg-energy hover:bg-energy/90 text-white"
+                    aria-label={t("Falar com Boba", "Talk to Boba")}
+                  >
+                    {t("Falar com Boba", "Talk to Boba")}
+                  </Button>
+                )}
               </div>
             </article>
           ))}
