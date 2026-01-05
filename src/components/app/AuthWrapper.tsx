@@ -40,24 +40,28 @@ export const AuthWrapper = ({ children }: AuthWrapperProps) => {
         if (error) throw error;
         toast.success("Login realizado com sucesso!");
       } else {
-        // Validar código de convite antes de criar conta
+        // Validar código de convite usando função segura (não expõe email)
         setValidatingCode(true);
         
-        const { data: inviteData, error: inviteError } = await supabase
-          .from('invites')
-          .select('*')
-          .eq('code', inviteCode.trim())
-          .eq('email', email.toLowerCase())
-          .eq('status', 'pending')
-          .gt('expires_at', new Date().toISOString())
-          .single();
+        const { data: validationResult, error: validationError } = await supabase
+          .rpc('validate_invite_code', { invite_code: inviteCode.trim() }) as { 
+            data: { valid: boolean; message?: string; invite_id?: string } | null; 
+            error: any 
+          };
 
-        setValidatingCode(false);
-
-        if (inviteError || !inviteData) {
-          toast.error("Código de convite inválido, expirado ou não corresponde ao email informado.");
+        if (validationError) {
+          setValidatingCode(false);
+          toast.error("Erro ao validar código de convite.");
           return;
         }
+
+        if (!validationResult?.valid) {
+          setValidatingCode(false);
+          toast.error("Código de convite inválido ou expirado.");
+          return;
+        }
+
+        setValidatingCode(false);
 
         const { data: authData, error } = await supabase.auth.signUp({ 
           email, 
@@ -69,24 +73,17 @@ export const AuthWrapper = ({ children }: AuthWrapperProps) => {
         
         if (error) throw error;
 
-        // Marcar convite como usado
+        // Resgatar convite usando função segura
         if (authData.user) {
-          await supabase
-            .from('invites')
-            .update({ 
-              status: 'used', 
-              used_by: authData.user.id,
-              used_at: new Date().toISOString()
-            })
-            .eq('id', inviteData.id);
-
-          // Criar role de usuário
-          await supabase
-            .from('user_roles')
-            .insert({ 
-              user_id: authData.user.id,
-              role: 'user'
+          const { data: redeemResult, error: redeemError } = await supabase
+            .rpc('redeem_invite', { 
+              invite_code: inviteCode.trim(), 
+              redeeming_user_id: authData.user.id 
             });
+
+          if (redeemError) {
+            console.error("Erro ao resgatar convite:", redeemError);
+          }
         }
 
         toast.success("Conta criada com sucesso!");
