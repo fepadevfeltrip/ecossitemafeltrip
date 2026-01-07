@@ -245,7 +245,7 @@ export const LandingPage = () => {
       </section>
 
       {/* Video Section */}
-      <section className="flex justify-center py-4" aria-label={t("Vídeo sobre treinamento intercultural", "Cross-cultural training video")}>
+      <section className="flex flex-col items-center justify-center py-4 space-y-6" aria-label={t("Vídeo sobre treinamento intercultural", "Cross-cultural training video")}>
         <div className="w-full max-w-4xl">
           <div className="relative overflow-hidden rounded-2xl shadow-xl">
             <video
@@ -259,6 +259,19 @@ export const LandingPage = () => {
             </video>
           </div>
         </div>
+        <a
+          href="https://cultureguide.feltrip.com"
+          target="_blank"
+          rel="noopener noreferrer"
+        >
+          <Button
+            size="lg"
+            variant="outline"
+            className="text-base px-6 py-5 border-primary/30 hover:border-primary hover:bg-primary/5"
+          >
+            {t("Acesse nosso Guia de Cultura", "Access our Culture Guide")}
+          </Button>
+        </a>
       </section>
 
       {/* Designed For - Target Audience */}
