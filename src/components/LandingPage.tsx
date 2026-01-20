@@ -230,13 +230,18 @@ export const LandingPage = () => {
                 </div>
                 <p className="text-muted-foreground leading-relaxed">{step.description}</p>
                 {index === 0 && (
-                  <Button
-                    onClick={openWhatsApp}
-                    className="mt-2 bg-energy hover:bg-energy/90 text-white"
-                    aria-label={t("Falar com Boba", "Talk to Boba")}
+                  <a
+                    href="https://boba-feltrip-assistant-690453797160.us-west1.run.app"
+                    target="_blank"
+                    rel="noopener noreferrer"
                   >
-                    {t("Falar com Boba", "Talk to Boba")}
-                  </Button>
+                    <Button
+                      className="mt-2 bg-energy hover:bg-energy/90 text-white"
+                      aria-label={t("Falar com Boba", "Talk to Boba")}
+                    >
+                      {t("Falar com Boba", "Talk to Boba")}
+                    </Button>
+                  </a>
                 )}
               </div>
             </article>
