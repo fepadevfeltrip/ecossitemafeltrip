@@ -14,6 +14,24 @@ export type Database = {
   }
   public: {
     Tables: {
+      community_waitlist: {
+        Row: {
+          created_at: string
+          id: string
+          whatsapp: string
+        }
+        Insert: {
+          created_at?: string
+          id?: string
+          whatsapp: string
+        }
+        Update: {
+          created_at?: string
+          id?: string
+          whatsapp?: string
+        }
+        Relationships: []
+      }
       diario_entries: {
         Row: {
           content: string
