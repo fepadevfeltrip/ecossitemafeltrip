@@ -52,8 +52,8 @@ export const LandingPage = () => {
       number: "3",
       title: t("Ferramentas Digitais para RH", "Digital Tools for HR"),
       description: t(
-        "Acesso a diários-mapas de viagem, o Mapa de Presença Relacional (MRP™), alertas de segurança e um painel completo para RH de mobilidade global monitorar integração cultural, engajamento e indicadores de risco psicossocial.",
-        "Access to travel diary-maps, the Map of Relational Presence (MRP™), safety alerts, and a complete dashboard for global mobility HR to monitor cultural integration, engagement, and psychosocial risk indicators.",
+        "Acesso a uma lista de prestadores de serviços bem recomendados das cidades de São Paulo e Rio de Janeiro. Além de diários-mapas de viagem, o Mapa de Presença Relacional (MRP™), alertas de segurança e um painel completo para RH de mobilidade global monitorar integração cultural, engajamento e indicadores de risco psicossocial.",
+        "Access to a list of well-recommended service providers in São Paulo and Rio de Janeiro. Plus travel diary-maps, the Map of Relational Presence (MRP™), safety alerts, and a complete dashboard for global mobility HR to monitor cultural integration, engagement, and psychosocial risk indicators.",
       ),
       image: metricsAnalysis,
       imageAlt: t("Dashboard de métricas para RH mobilidade global", "Metrics dashboard for global mobility HR"),
