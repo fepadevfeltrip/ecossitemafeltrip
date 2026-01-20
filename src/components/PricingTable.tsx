@@ -1,10 +1,18 @@
+import { useState } from "react";
 import { Check, Sparkles, Users } from "lucide-react";
 import { Card } from "@/components/ui/card";
 import { Button } from "@/components/ui/button";
+import { Input } from "@/components/ui/input";
+import {
+  Dialog,
+  DialogContent,
+  DialogHeader,
+  DialogTitle,
+  DialogDescription,
+} from "@/components/ui/dialog";
 import curadoriaImage from "@/assets/curadoria-executiva-bg.jpg";
 import { useLanguage } from "@/hooks/useLanguage";
-
-const WHATSAPP_LINK = "https://wa.me/message/BG24GCPKNF6KG1";
+import { useToast } from "@/hooks/use-toast";
 
 const getPlans = (t: (pt: string, en: string) => string) => [
   {
@@ -83,14 +91,7 @@ const getFeatures = (t: (pt: string, en: string) => string) => [
     plans: [false, false, true, true],
   },
   {
-    name: (
-      <span>
-        {t("Curadoria de prestadores de serviços de relocação", "Relocation service provider curation")}
-        <span className="block text-xs text-muted-foreground mt-0.5">
-          {t("(ex. jurídico, educação, moradia, contabilidade)", "(e.g. legal, education, housing, accounting)")}
-        </span>
-      </span>
-    ),
+    name: t("Curadoria de prestadores de serviços de relocação (ex. jurídico, educação, moradia, contabilidade)", "Relocation service provider curation (e.g. legal, education, housing, accounting)"),
     plans: [false, false, true, true],
   },
   {
@@ -121,118 +122,101 @@ const getFeatures = (t: (pt: string, en: string) => string) => [
 
 export const PricingTable = () => {
   const { t } = useLanguage();
+  const { toast } = useToast();
+  const [showWaitlistDialog, setShowWaitlistDialog] = useState(false);
+  const [whatsappNumber, setWhatsappNumber] = useState("");
   const plans = getPlans(t);
   const features = getFeatures(t);
 
+  const handleJoinWaitlist = () => {
+    if (whatsappNumber.trim()) {
+      toast({
+        title: t("Adicionado à lista!", "Added to the list!"),
+        description: t("Entraremos em contato em breve!", "We'll contact you soon!"),
+      });
+      setWhatsappNumber("");
+      setShowWaitlistDialog(false);
+    }
+  };
+
+  const CommunityButton = ({ size = "sm" }: { size?: "sm" | "default" }) => (
+    <Button 
+      size={size}
+      variant="outline"
+      className="border-primary/30 hover:border-primary hover:bg-primary/5"
+      onClick={() => setShowWaitlistDialog(true)}
+    >
+      <Users className="h-4 w-4 mr-2" />
+      {t("Entrar na Comunidade", "Join the Community")}
+    </Button>
+  );
+
   return (
-    <div className="space-y-8 md:space-y-12">
-      <div className="text-center space-y-3 md:space-y-4 px-2">
-        <h2 className="text-2xl md:text-3xl font-bold text-foreground">
-          🌍 {t("Planos de Onboarding Relacional Feltrip", "Feltrip Relational Onboarding Plans")}
-        </h2>
-        <p className="text-lg md:text-xl text-muted-foreground">
-          Culture transitions made human.
-        </p>
-        <p className="text-xs md:text-sm text-muted-foreground max-w-2xl mx-auto">
-          {t(
-            "Para quem é: Pessoas chegando em um novo país, famílias em transição, recém-contratados estrangeiros ou nacionais de outras cidades do Brasil.",
-            "For whom: People arriving in a new country, families in transition, newly hired foreigners or nationals from other cities in Brazil."
-          )}
-        </p>
-        <p className="text-xs md:text-sm text-primary font-bold max-w-2xl mx-auto">
-          {t(
-            "Descontos progressivos para grupos de 10+ colaboradores. Fale com nosso time.",
-            "Progressive discounts for groups of 10+ employees. Talk to our team."
-          )}
-        </p>
-      </div>
-
-      {/* Mobile: Stacked Cards */}
-      <div className="block md:hidden space-y-4">
-        {plans.map((plan, planIndex) => (
-          <Card 
-            key={planIndex}
-            className={`p-4 ${
-              plan.highlighted 
-                ? 'bg-primary/10 border-primary/30 ring-2 ring-primary/20' 
-                : 'bg-card'
-            }`}
-          >
-            <div className="text-center mb-4 pb-4 border-b border-border">
-              <h3 className="font-bold text-lg text-foreground">{plan.name}</h3>
-              <p className="text-xs text-muted-foreground mt-1">{plan.subtitle}</p>
-              <div className="mt-3">
-                <span className="text-2xl font-bold text-primary">{plan.price}</span>
-                {plan.priceDetail && (
-                  <span className="text-xs text-muted-foreground block">{plan.priceDetail}</span>
-                )}
-              </div>
-              {plan.isFree && (
-                <div className="mt-3">
-                  <p className="text-xs text-muted-foreground mb-2">
-                    {t(
-                      "A comunidade Feltrip tem pessoas de todos os lugares do mundo",
-                      "The Feltrip community has people from all over the world"
-                    )}
-                  </p>
-                  <Button 
-                    size="sm"
-                    variant="outline"
-                    className="border-primary/30 hover:border-primary hover:bg-primary/5"
-                    onClick={() => window.open(WHATSAPP_LINK, "_blank", "noopener,noreferrer")}
-                  >
-                    <Users className="h-4 w-4 mr-2" />
-                    {t("Entrar na Comunidade", "Join the Community")}
-                  </Button>
-                </div>
+    <>
+      <Dialog open={showWaitlistDialog} onOpenChange={setShowWaitlistDialog}>
+        <DialogContent className="sm:max-w-md">
+          <DialogHeader>
+            <DialogTitle className="text-center">
+              🚀 {t("Em breve!", "Coming soon!")}
+            </DialogTitle>
+            <DialogDescription className="text-center pt-2">
+              {t(
+                "Deixe seu WhatsApp na lista de espera que já tem 200 pessoas do mundo todo!",
+                "Leave your WhatsApp on the waitlist that already has 200 people from all over the world!"
               )}
-            </div>
-            <div className="space-y-2">
-              {features.map((feature, featureIndex) => (
-                <div 
-                  key={featureIndex} 
-                  className={`flex items-start gap-3 py-1.5 ${
-                    featureIndex !== features.length - 1 ? 'border-b border-border/50' : ''
-                  }`}
-                >
-                  {feature.plans[planIndex] ? (
-                    <Check className="h-4 w-4 text-green-500 shrink-0 mt-0.5" />
-                  ) : (
-                    <span className="h-4 w-4 flex items-center justify-center text-muted-foreground/30 shrink-0">—</span>
-                  )}
-                  <span className={`text-xs ${feature.plans[planIndex] ? 'text-foreground' : 'text-muted-foreground/50'}`}>
-                    {feature.name}
-                  </span>
-                </div>
-              ))}
-            </div>
-          </Card>
-        ))}
-      </div>
+            </DialogDescription>
+          </DialogHeader>
+          <div className="flex flex-col gap-4 pt-4">
+            <Input
+              placeholder={t("Seu WhatsApp (ex: +55 21 99999-9999)", "Your WhatsApp (e.g. +55 21 99999-9999)")}
+              value={whatsappNumber}
+              onChange={(e) => setWhatsappNumber(e.target.value)}
+            />
+            <Button onClick={handleJoinWaitlist} disabled={!whatsappNumber.trim()}>
+              {t("Entrar na lista de espera", "Join the waitlist")}
+            </Button>
+          </div>
+        </DialogContent>
+      </Dialog>
 
-      {/* Desktop: Comparative Table */}
-      <div className="hidden md:block overflow-x-auto">
-        <div className="min-w-[900px]">
-          {/* Header with Plans */}
-          <div className="grid grid-cols-5 gap-2 mb-4">
-            <div className="p-4"></div>
-            {plans.map((plan, index) => (
-              <Card 
-                key={index} 
-                className={`p-4 text-center ${
-                  plan.highlighted 
-                    ? 'bg-primary/10 border-primary/30 ring-2 ring-primary/20' 
-                    : 'bg-card'
-                }`}
-              >
-                <h3 className="font-bold text-base text-foreground leading-tight">
-                  {plan.name}
-                </h3>
-                <p className="text-xs text-muted-foreground mt-1">
-                  {plan.subtitle}
-                </p>
+      <div className="space-y-8 md:space-y-12">
+        <div className="text-center space-y-3 md:space-y-4 px-2">
+          <h2 className="text-2xl md:text-3xl font-bold text-foreground">
+            🌍 {t("Planos de Onboarding Relacional Feltrip", "Feltrip Relational Onboarding Plans")}
+          </h2>
+          <p className="text-lg md:text-xl text-muted-foreground">
+            Culture transitions made human.
+          </p>
+          <p className="text-xs md:text-sm text-muted-foreground max-w-2xl mx-auto">
+            {t(
+              "Para quem é: Pessoas chegando em um novo país, famílias em transição, recém-contratados estrangeiros ou nacionais de outras cidades do Brasil.",
+              "For whom: People arriving in a new country, families in transition, newly hired foreigners or nationals from other cities in Brazil."
+            )}
+          </p>
+          <p className="text-xs md:text-sm text-primary font-bold max-w-2xl mx-auto">
+            {t(
+              "Descontos progressivos para grupos de 10+ colaboradores. Fale com nosso time.",
+              "Progressive discounts for groups of 10+ employees. Talk to our team."
+            )}
+          </p>
+        </div>
+
+        {/* Mobile: Stacked Cards */}
+        <div className="block md:hidden space-y-4">
+          {plans.map((plan, planIndex) => (
+            <Card 
+              key={planIndex}
+              className={`p-4 ${
+                plan.highlighted 
+                  ? 'bg-primary/10 border-primary/30 ring-2 ring-primary/20' 
+                  : 'bg-card'
+              }`}
+            >
+              <div className="text-center mb-4 pb-4 border-b border-border">
+                <h3 className="font-bold text-lg text-foreground">{plan.name}</h3>
+                <p className="text-xs text-muted-foreground mt-1">{plan.subtitle}</p>
                 <div className="mt-3">
-                  <span className="text-xl font-bold text-primary">{plan.price}</span>
+                  <span className="text-2xl font-bold text-primary">{plan.price}</span>
                   {plan.priceDetail && (
                     <span className="text-xs text-muted-foreground block">{plan.priceDetail}</span>
                   )}
@@ -245,134 +229,189 @@ export const PricingTable = () => {
                         "The Feltrip community has people from all over the world"
                       )}
                     </p>
-                    <Button 
-                      size="sm"
-                      variant="outline"
-                      className="border-primary/30 hover:border-primary hover:bg-primary/5"
-                      onClick={() => window.open(WHATSAPP_LINK, "_blank", "noopener,noreferrer")}
-                    >
-                      <Users className="h-4 w-4 mr-2" />
-                      {t("Entrar na Comunidade", "Join the Community")}
-                    </Button>
+                    <CommunityButton />
                   </div>
                 )}
-              </Card>
-            ))}
-          </div>
-
-          {/* Features Rows */}
-          <div className="border border-border rounded-lg overflow-hidden">
-            {features.map((feature, index) => (
-              <div 
-                key={index}
-                className={`grid grid-cols-5 gap-2 ${
-                  index % 2 === 0 ? 'bg-muted/30' : 'bg-background'
-                } ${index !== features.length - 1 ? 'border-b border-border' : ''}`}
-              >
-                <div className="p-3 flex items-center">
-                  <span className="text-sm text-foreground">{feature.name}</span>
-                </div>
-                {feature.plans.map((included, planIndex) => (
+              </div>
+              <div className="space-y-2">
+                {features.map((feature, featureIndex) => (
                   <div 
-                    key={planIndex} 
-                    className={`p-3 flex items-center justify-center ${
-                      plans[planIndex].highlighted ? 'bg-primary/5' : ''
+                    key={featureIndex} 
+                    className={`flex items-start gap-3 py-1.5 ${
+                      featureIndex !== features.length - 1 ? 'border-b border-border/50' : ''
                     }`}
                   >
-                    {included ? (
-                      <Check className="h-5 w-5 text-green-500" />
+                    {feature.plans[planIndex] ? (
+                      <Check className="h-4 w-4 text-green-500 shrink-0 mt-0.5" />
                     ) : (
-                      <span className="h-5 w-5 flex items-center justify-center text-muted-foreground/30">—</span>
+                      <span className="h-4 w-4 flex items-center justify-center text-muted-foreground/30 shrink-0">—</span>
                     )}
+                    <span className={`text-xs ${feature.plans[planIndex] ? 'text-foreground' : 'text-muted-foreground/50'}`}>
+                      {feature.name}
+                    </span>
                   </div>
                 ))}
               </div>
-            ))}
-          </div>
-        </div>
-      </div>
-
-      {/* Curadoria Executiva - Editorial Section */}
-      <section className="relative mt-10 md:mt-16 -mx-2 md:-mx-8 overflow-hidden rounded-xl">
-        {/* Image on Top */}
-        <div className="relative h-[200px] md:h-[400px] overflow-hidden">
-          <img 
-            src={curadoriaImage} 
-            alt={t("Escadaria com boas-vindas em múltiplos idiomas", "Staircase with welcome in multiple languages")}
-            className="absolute inset-0 w-full h-full object-cover"
-          />
-          <div className="absolute inset-0 bg-gradient-to-b from-transparent via-transparent to-background" />
-          
-          {/* Floating badge on image */}
-          <div className="absolute top-4 left-4 md:top-6 md:left-6">
-            <span className="inline-flex items-center gap-1.5 md:gap-2 px-3 py-1.5 md:px-4 md:py-2 bg-background/90 backdrop-blur-sm text-foreground text-xs md:text-sm font-medium rounded-full shadow-lg">
-              <Sparkles className="h-3 w-3 md:h-4 md:w-4 text-primary" />
-              {t("Experiência Exclusiva", "Exclusive Experience")}
-            </span>
-          </div>
+            </Card>
+          ))}
         </div>
 
-        {/* Content Below - Centered */}
-        <div className="bg-card px-4 py-8 md:px-12 md:py-16">
-          <div className="max-w-3xl mx-auto text-center space-y-6 md:space-y-8">
-            <header className="space-y-3 md:space-y-4">
-              <h3 className="text-2xl md:text-4xl lg:text-5xl font-light text-foreground leading-tight tracking-tight">
-                {t("Curadoria", "Executive")}{" "}
-                <span className="font-semibold">{t("Executiva", "Curation")}</span>{" "}
-                <span className="text-primary font-light italic">{t("Personalizada", "Personalized")}</span>
-              </h3>
-            </header>
-            
-            <div className="space-y-4 md:space-y-5 text-muted-foreground text-sm md:text-base leading-relaxed">
-              <p>
-                {t(
-                  "Desenhamos experiências sob medida para colaboradores individuais ou grupos, a partir de um diagnóstico relacional baseado no",
-                  "We design tailored experiences for individual employees or groups, based on a relational diagnosis using the"
-                )}{" "}
-                <span className="text-foreground font-medium">{t("Mapa da Presença Relacional (MRP™)", "Relational Presence Map (MRP™)")}</span>.
-              </p>
-              
-              <p>
-                {t(
-                  "A curadoria integra dinâmicas de onboarding e integração de equipes, caminhadas guiadas no território e o apoio de uma rede selecionada de parceiros — incluindo especialistas em saúde mental, educação e cultura.",
-                  "The curation integrates onboarding dynamics and team integration, guided walks in the territory, and the support of a selected network of partners — including mental health, education, and culture specialists."
-                )}
-              </p>
-              
-              <p>
-                {t(
-                  "Cada roteiro é construído de forma única, alinhando",
-                  "Each itinerary is uniquely built, aligning"
-                )}{" "}
-                <span className="text-primary font-medium">{t("cuidado humano", "human care")}</span>, 
-                {t(
-                  " contexto organizacional e presença no território.",
-                  " organizational context and presence in the territory."
-                )}
-              </p>
+        {/* Desktop: Comparative Table */}
+        <div className="hidden md:block overflow-x-auto">
+          <div className="min-w-[900px]">
+            {/* Header with Plans */}
+            <div className="grid grid-cols-5 gap-2 mb-4">
+              <div className="p-4"></div>
+              {plans.map((plan, index) => (
+                <Card 
+                  key={index} 
+                  className={`p-4 text-center ${
+                    plan.highlighted 
+                      ? 'bg-primary/10 border-primary/30 ring-2 ring-primary/20' 
+                      : 'bg-card'
+                  }`}
+                >
+                  <h3 className="font-bold text-base text-foreground leading-tight">
+                    {plan.name}
+                  </h3>
+                  <p className="text-xs text-muted-foreground mt-1">
+                    {plan.subtitle}
+                  </p>
+                  <div className="mt-3">
+                    <span className="text-xl font-bold text-primary">{plan.price}</span>
+                    {plan.priceDetail && (
+                      <span className="text-xs text-muted-foreground block">{plan.priceDetail}</span>
+                    )}
+                  </div>
+                  {plan.isFree && (
+                    <div className="mt-3">
+                      <p className="text-xs text-muted-foreground mb-2">
+                        {t(
+                          "A comunidade Feltrip tem pessoas de todos os lugares do mundo",
+                          "The Feltrip community has people from all over the world"
+                        )}
+                      </p>
+                      <CommunityButton />
+                    </div>
+                  )}
+                </Card>
+              ))}
             </div>
+
+            {/* Features Rows */}
+            <div className="border border-border rounded-lg overflow-hidden">
+              {features.map((feature, index) => (
+                <div 
+                  key={index}
+                  className={`grid grid-cols-5 gap-2 ${
+                    index % 2 === 0 ? 'bg-muted/30' : 'bg-background'
+                  } ${index !== features.length - 1 ? 'border-b border-border' : ''}`}
+                >
+                  <div className="p-3 flex items-center">
+                    <span className="text-sm text-foreground">{feature.name}</span>
+                  </div>
+                  {feature.plans.map((included, planIndex) => (
+                    <div 
+                      key={planIndex} 
+                      className={`p-3 flex items-center justify-center ${
+                        plans[planIndex].highlighted ? 'bg-primary/5' : ''
+                      }`}
+                    >
+                      {included ? (
+                        <Check className="h-5 w-5 text-green-500" />
+                      ) : (
+                        <span className="h-5 w-5 flex items-center justify-center text-muted-foreground/30">—</span>
+                      )}
+                    </div>
+                  ))}
+                </div>
+              ))}
+            </div>
+          </div>
+        </div>
+
+        {/* Curadoria Executiva - Editorial Section */}
+        <section className="relative mt-10 md:mt-16 -mx-2 md:-mx-8 overflow-hidden rounded-xl">
+          {/* Image on Top */}
+          <div className="relative h-[200px] md:h-[400px] overflow-hidden">
+            <img 
+              src={curadoriaImage} 
+              alt={t("Escadaria com boas-vindas em múltiplos idiomas", "Staircase with welcome in multiple languages")}
+              className="absolute inset-0 w-full h-full object-cover"
+            />
+            <div className="absolute inset-0 bg-gradient-to-b from-transparent via-transparent to-background" />
             
-            <p className="text-xs md:text-sm text-muted-foreground italic">
-              {t("*Disponível em São Paulo e Rio de Janeiro", "*Available in São Paulo and Rio de Janeiro")}
-            </p>
-            
-            <div className="flex flex-col items-center justify-center gap-4 md:gap-6 pt-4">
-              <div className="text-center">
-                <span className="text-xs md:text-sm text-muted-foreground uppercase tracking-wider">{t("Investimento", "Investment")}</span>
-                <div className="text-xl md:text-2xl font-semibold text-foreground">{t("Sob consulta", "Upon request")}</div>
+            {/* Floating badge on image */}
+            <div className="absolute top-4 left-4 md:top-6 md:left-6">
+              <span className="inline-flex items-center gap-1.5 md:gap-2 px-3 py-1.5 md:px-4 md:py-2 bg-background/90 backdrop-blur-sm text-foreground text-xs md:text-sm font-medium rounded-full shadow-lg">
+                <Sparkles className="h-3 w-3 md:h-4 md:w-4 text-primary" />
+                {t("Experiência Exclusiva", "Exclusive Experience")}
+              </span>
+            </div>
+          </div>
+
+          {/* Content Below - Centered */}
+          <div className="bg-card px-4 py-8 md:px-12 md:py-16">
+            <div className="max-w-3xl mx-auto text-center space-y-6 md:space-y-8">
+              <header className="space-y-3 md:space-y-4">
+                <h3 className="text-2xl md:text-4xl lg:text-5xl font-light text-foreground leading-tight tracking-tight">
+                  {t("Curadoria", "Executive")}{" "}
+                  <span className="font-semibold">{t("Executiva", "Curation")}</span>{" "}
+                  <span className="text-primary font-light italic">{t("Personalizada", "Personalized")}</span>
+                </h3>
+              </header>
+              
+              <div className="space-y-4 md:space-y-5 text-muted-foreground text-sm md:text-base leading-relaxed">
+                <p>
+                  {t(
+                    "Desenhamos experiências sob medida para colaboradores individuais ou grupos, a partir de um diagnóstico relacional baseado no",
+                    "We design tailored experiences for individual employees or groups, based on a relational diagnosis using the"
+                  )}{" "}
+                  <span className="text-foreground font-medium">{t("Mapa da Presença Relacional (MRP™)", "Relational Presence Map (MRP™)")}</span>.
+                </p>
+                
+                <p>
+                  {t(
+                    "A curadoria integra dinâmicas de onboarding e integração de equipes, caminhadas guiadas no território e o apoio de uma rede selecionada de parceiros — incluindo especialistas em saúde mental, educação e cultura.",
+                    "The curation integrates onboarding dynamics and team integration, guided walks in the territory, and the support of a selected network of partners — including mental health, education, and culture specialists."
+                  )}
+                </p>
+                
+                <p>
+                  {t(
+                    "Cada roteiro é construído de forma única, alinhando",
+                    "Each itinerary is uniquely built, aligning"
+                  )}{" "}
+                  <span className="text-primary font-medium">{t("cuidado humano", "human care")}</span>, 
+                  {t(
+                    " contexto organizacional e presença no território.",
+                    " organizational context and presence in the territory."
+                  )}
+                </p>
               </div>
               
-              <Button 
-                size="lg"
-                className="w-full sm:w-auto"
-                onClick={() => window.open("mailto:info@feltrip.com?subject=Curadoria Executiva Personalizada", "_blank")}
-              >
-                {t("Solicitar Proposta", "Request Proposal")}
-              </Button>
+              <p className="text-xs md:text-sm text-muted-foreground italic">
+                {t("*Disponível em São Paulo e Rio de Janeiro", "*Available in São Paulo and Rio de Janeiro")}
+              </p>
+              
+              <div className="flex flex-col items-center justify-center gap-4 md:gap-6 pt-4">
+                <div className="text-center">
+                  <span className="text-xs md:text-sm text-muted-foreground uppercase tracking-wider">{t("Investimento", "Investment")}</span>
+                  <div className="text-xl md:text-2xl font-semibold text-foreground">{t("Sob consulta", "Upon request")}</div>
+                </div>
+                
+                <Button 
+                  size="lg"
+                  className="w-full sm:w-auto"
+                  onClick={() => window.open("mailto:info@feltrip.com?subject=Curadoria Executiva Personalizada", "_blank")}
+                >
+                  {t("Solicitar Proposta", "Request Proposal")}
+                </Button>
+              </div>
             </div>
           </div>
-        </div>
-      </section>
-    </div>
+        </section>
+      </div>
+    </>
   );
 };
