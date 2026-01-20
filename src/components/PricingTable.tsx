@@ -1,49 +1,43 @@
-import { Check, Sparkles } from "lucide-react";
+import { Check, Sparkles, Users } from "lucide-react";
 import { Card } from "@/components/ui/card";
 import { Button } from "@/components/ui/button";
 import curadoriaImage from "@/assets/curadoria-executiva-bg.jpg";
 import { useLanguage } from "@/hooks/useLanguage";
 
+const WHATSAPP_LINK = "https://wa.me/message/BG24GCPKNF6KG1";
+
 const getPlans = (t: (pt: string, en: string) => string) => [
+  {
+    name: t("Free - Comunidade Feltrip", "Free - Feltrip Community"),
+    subtitle: t("Conecte-se com pessoas do mundo todo", "Connect with people from all over the world"),
+    price: t("Grátis", "Free"),
+    priceDetail: "",
+    highlighted: false,
+    isFree: true,
+  },
   {
     name: t("Integração Intercultural", "Intercultural Integration"),
     subtitle: t("Crie a comunidade intercultural da sua empresa", "Create your company's intercultural community"),
-    price: "US$ 150",
-    priceDetail: t("até 80 pessoas", "up to 80 people"),
+    price: "R$ 35,00",
+    priceDetail: t("por usuário", "per user"),
     highlighted: false,
+    isFree: false,
   },
   {
     name: t("Raiz no Território", "Roots in the Territory"),
     subtitle: t("Tudo do plano anterior +", "Everything from previous plan +"),
-    price: "US$ 49",
+    price: "R$ 99,90",
     priceDetail: t("por usuário", "per user"),
-    additionalPrices: [
-      t("US$ 79/mês – 2 pessoas", "US$ 79/mo – 2 people"),
-      t("US$ 129,90/mês – até 4 pessoas", "US$ 129.90/mo – up to 4 people"),
-    ],
-    highlighted: false,
-  },
-  {
-    name: t("Cuidado Integral", "Comprehensive Care"),
-    subtitle: t("Tudo dos planos anteriores +", "Everything from previous plans +"),
-    price: "US$ 59",
-    priceDetail: t("por usuário", "per user"),
-    additionalPrices: [
-      t("US$ 99/mês – 2 pessoas", "US$ 99/mo – 2 people"),
-      t("US$ 179/mês – até 4 pessoas", "US$ 179/mo – up to 4 people"),
-    ],
     highlighted: true,
+    isFree: false,
   },
   {
-    name: t("Espaço Integrado", "Integrated Space"),
-    subtitle: t("Premium • Tudo dos planos anteriores +", "Premium • Everything from previous plans +"),
-    price: "US$ 139",
+    name: t("Espaço Integrado Premium", "Premium Integrated Space"),
+    subtitle: t("Tudo dos planos anteriores +", "Everything from previous plans +"),
+    price: "R$ 650,00",
     priceDetail: t("por usuário", "per user"),
-    additionalPrices: [
-      t("US$ 249/mês – 2 pessoas", "US$ 249/mo – 2 people"),
-      t("US$ 890/mês – até 4 pessoas", "US$ 890/mo – up to 4 people"),
-    ],
     highlighted: false,
+    isFree: false,
   },
 ];
 
@@ -57,52 +51,59 @@ const getFeatures = (t: (pt: string, en: string) => string) => [
     plans: [true, true, true, true],
   },
   {
-    name: t("IA Boba Cult - tutora de cultura e hyperlocalidade", "Boba Cult AI - culture and hyperlocality tutor"),
+    name: t("Guia cultural básico das cidades", "Basic city cultural guide"),
     plans: [true, true, true, true],
+  },
+  {
+    name: t("IA Boba Cult - tutora de cultura e hyperlocalidade", "Boba Cult AI - culture and hyperlocality tutor"),
+    plans: [false, true, true, true],
   },
   {
     name: t("Criação de subgrupos", "Subgroup creation"),
-    plans: [true, true, true, true],
-  },
-  {
-    name: t("Guia cultural básico das cidades", "Basic city cultural guide"),
-    plans: [true, true, true, true],
+    plans: [false, true, true, true],
   },
   {
     name: t("Acesso total ao app Feltrip", "Full access to Feltrip app"),
     plans: [false, true, true, true],
   },
   {
-    name: t("IA Feltrip - 1h30 prática de idioma contextual", "Feltrip AI - 1h30 contextual language practice"),
-    plans: [false, true, true, true],
+    name: t("IA Feltrip - 1h30 prática de idioma semanal inclusa", "Feltrip AI - 1h30 weekly language practice included"),
+    plans: [false, false, true, true],
   },
   {
     name: t("IA de bem-estar relacional com práticas de presença", "Relational wellness AI with presence practices"),
-    plans: [false, true, true, true],
+    plans: [false, false, true, true],
   },
   {
     name: t("Diário-Mapa de Viagem para anotações e documentos", "Travel Diary-Map for notes and documents"),
-    plans: [false, true, true, true],
+    plans: [false, false, true, true],
   },
   {
     name: t("Mapa de Segurança com alerta para RH", "Safety Map with HR alerts"),
-    plans: [false, true, true, true],
+    plans: [false, false, true, true],
   },
   {
-    name: t("Curadoria de prestadores de serviços locais (RJ/SP)", "Local service provider curation (RJ/SP)"),
-    plans: [false, true, true, true],
+    name: (
+      <span>
+        {t("Curadoria de prestadores de serviços de relocação", "Relocation service provider curation")}
+        <span className="block text-xs text-muted-foreground mt-0.5">
+          {t("(ex. jurídico, educação, moradia, contabilidade)", "(e.g. legal, education, housing, accounting)")}
+        </span>
+      </span>
+    ),
+    plans: [false, false, true, true],
   },
   {
     name: t("Painel do RH completo - prevenção de risco psicossocial", "Complete HR dashboard - psychosocial risk prevention"),
-    plans: [false, false, true, true],
+    plans: [false, false, false, true],
   },
   {
     name: t("Métricas do Mapa de Presença Relacional (espaço de trabalho)", "Relational Presence Map metrics (workspace)"),
-    plans: [false, false, true, true],
+    plans: [false, false, false, true],
   },
   {
     name: t("Métrica e alerta de segurança", "Safety metrics and alerts"),
-    plans: [false, false, true, true],
+    plans: [false, false, false, true],
   },
   {
     name: t("Tutoria de Cultura - 2h caminhadas com arte educador", "Culture Tutoring - 2h walks with art educator"),
@@ -162,13 +163,27 @@ export const PricingTable = () => {
               <p className="text-xs text-muted-foreground mt-1">{plan.subtitle}</p>
               <div className="mt-3">
                 <span className="text-2xl font-bold text-primary">{plan.price}</span>
-                <span className="text-xs text-muted-foreground block">{plan.priceDetail}</span>
+                {plan.priceDetail && (
+                  <span className="text-xs text-muted-foreground block">{plan.priceDetail}</span>
+                )}
               </div>
-              {plan.additionalPrices && (
-                <div className="mt-2 space-y-0.5">
-                  {plan.additionalPrices.map((price, i) => (
-                    <p key={i} className="text-xs text-muted-foreground">{price}</p>
-                  ))}
+              {plan.isFree && (
+                <div className="mt-3">
+                  <p className="text-xs text-muted-foreground mb-2">
+                    {t(
+                      "A comunidade Feltrip tem pessoas de todos os lugares do mundo",
+                      "The Feltrip community has people from all over the world"
+                    )}
+                  </p>
+                  <Button 
+                    size="sm"
+                    variant="outline"
+                    className="border-primary/30 hover:border-primary hover:bg-primary/5"
+                    onClick={() => window.open(WHATSAPP_LINK, "_blank", "noopener,noreferrer")}
+                  >
+                    <Users className="h-4 w-4 mr-2" />
+                    {t("Entrar na Comunidade", "Join the Community")}
+                  </Button>
                 </div>
               )}
             </div>
@@ -176,12 +191,12 @@ export const PricingTable = () => {
               {features.map((feature, featureIndex) => (
                 <div 
                   key={featureIndex} 
-                  className={`flex items-center gap-3 py-1.5 ${
+                  className={`flex items-start gap-3 py-1.5 ${
                     featureIndex !== features.length - 1 ? 'border-b border-border/50' : ''
                   }`}
                 >
                   {feature.plans[planIndex] ? (
-                    <Check className="h-4 w-4 text-green-500 shrink-0" />
+                    <Check className="h-4 w-4 text-green-500 shrink-0 mt-0.5" />
                   ) : (
                     <span className="h-4 w-4 flex items-center justify-center text-muted-foreground/30 shrink-0">—</span>
                   )}
@@ -197,7 +212,7 @@ export const PricingTable = () => {
 
       {/* Desktop: Comparative Table */}
       <div className="hidden md:block overflow-x-auto">
-        <div className="min-w-[800px]">
+        <div className="min-w-[900px]">
           {/* Header with Plans */}
           <div className="grid grid-cols-5 gap-2 mb-4">
             <div className="p-4"></div>
@@ -218,13 +233,27 @@ export const PricingTable = () => {
                 </p>
                 <div className="mt-3">
                   <span className="text-xl font-bold text-primary">{plan.price}</span>
-                  <span className="text-xs text-muted-foreground block">{plan.priceDetail}</span>
+                  {plan.priceDetail && (
+                    <span className="text-xs text-muted-foreground block">{plan.priceDetail}</span>
+                  )}
                 </div>
-                {plan.additionalPrices && (
-                  <div className="mt-2 space-y-0.5">
-                    {plan.additionalPrices.map((price, i) => (
-                      <p key={i} className="text-xs text-muted-foreground">{price}</p>
-                    ))}
+                {plan.isFree && (
+                  <div className="mt-3">
+                    <p className="text-xs text-muted-foreground mb-2">
+                      {t(
+                        "A comunidade Feltrip tem pessoas de todos os lugares do mundo",
+                        "The Feltrip community has people from all over the world"
+                      )}
+                    </p>
+                    <Button 
+                      size="sm"
+                      variant="outline"
+                      className="border-primary/30 hover:border-primary hover:bg-primary/5"
+                      onClick={() => window.open(WHATSAPP_LINK, "_blank", "noopener,noreferrer")}
+                    >
+                      <Users className="h-4 w-4 mr-2" />
+                      {t("Entrar na Comunidade", "Join the Community")}
+                    </Button>
                   </div>
                 )}
               </Card>
