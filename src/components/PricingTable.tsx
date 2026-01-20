@@ -13,6 +13,7 @@ import {
 import curadoriaImage from "@/assets/curadoria-executiva-bg.jpg";
 import { useLanguage } from "@/hooks/useLanguage";
 import { useToast } from "@/hooks/use-toast";
+import { supabase } from "@/integrations/supabase/client";
 
 const getPlans = (t: (pt: string, en: string) => string) => [
   {
@@ -128,26 +129,40 @@ export const PricingTable = () => {
   const plans = getPlans(t);
   const features = getFeatures(t);
 
-  const handleJoinWaitlist = () => {
+  const handleJoinWaitlist = async () => {
     if (whatsappNumber.trim()) {
-      toast({
-        title: t("Adicionado à lista!", "Added to the list!"),
-        description: t("Entraremos em contato em breve!", "We'll contact you soon!"),
-      });
-      setWhatsappNumber("");
-      setShowWaitlistDialog(false);
+      try {
+        const { error } = await supabase
+          .from('community_waitlist')
+          .insert({ whatsapp: whatsappNumber.trim() });
+        
+        if (error) throw error;
+        
+        toast({
+          title: t("Adicionado à lista!", "Added to the list!"),
+          description: t("Entraremos em contato em breve!", "We'll contact you soon!"),
+        });
+        setWhatsappNumber("");
+        setShowWaitlistDialog(false);
+      } catch (error) {
+        toast({
+          title: t("Erro", "Error"),
+          description: t("Tente novamente mais tarde.", "Please try again later."),
+          variant: "destructive",
+        });
+      }
     }
   };
 
-  const CommunityButton = ({ size = "sm" }: { size?: "sm" | "default" }) => (
+  const CommunityButton = () => (
     <Button 
-      size={size}
+      size="sm"
       variant="outline"
-      className="border-primary/30 hover:border-primary hover:bg-primary/5"
+      className="border-primary/30 hover:border-primary hover:bg-primary/5 text-xs px-3 py-1.5 h-auto"
       onClick={() => setShowWaitlistDialog(true)}
     >
-      <Users className="h-4 w-4 mr-2" />
-      {t("Entrar na Comunidade", "Join the Community")}
+      <Users className="h-3 w-3 mr-1.5" />
+      {t("Entrar", "Join")}
     </Button>
   );
 
