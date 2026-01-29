@@ -141,14 +141,34 @@ export const SiteHeader = () => {
           </Button>
         </div>
 
-        {/* Mobile Menu */}
-        <Sheet open={isOpen} onOpenChange={setIsOpen}>
-          <SheetTrigger asChild className="lg:hidden">
-            <Button variant="ghost" size="icon">
-              <Menu className="h-5 w-5" />
-              <span className="sr-only">Menu</span>
+        {/* Mobile Language Toggle + Menu */}
+        <div className="flex items-center gap-2 lg:hidden">
+          <div className="flex gap-1">
+            <Button
+              variant={language === "pt" ? "default" : "ghost"}
+              size="sm"
+              onClick={() => setLanguage("pt")}
+              className="h-8 px-2 text-xs"
+            >
+              PT
             </Button>
-          </SheetTrigger>
+            <Button
+              variant={language === "en" ? "default" : "ghost"}
+              size="sm"
+              onClick={() => setLanguage("en")}
+              className="h-8 px-2 text-xs"
+            >
+              EN
+            </Button>
+          </div>
+          
+          <Sheet open={isOpen} onOpenChange={setIsOpen}>
+            <SheetTrigger asChild>
+              <Button variant="ghost" size="icon">
+                <Menu className="h-5 w-5" />
+                <span className="sr-only">Menu</span>
+              </Button>
+            </SheetTrigger>
           <SheetContent side="right" className="w-[300px] sm:w-[400px]">
             <nav className="flex flex-col gap-4 mt-8">
               {/* Soluções section */}
@@ -207,26 +227,6 @@ export const SiteHeader = () => {
 
               <hr className="border-border" />
 
-              {/* Language + CTA */}
-              <div className="flex gap-2 mt-2">
-                <Button
-                  variant={language === "pt" ? "default" : "outline"}
-                  size="sm"
-                  onClick={() => setLanguage("pt")}
-                  className="flex-1"
-                >
-                  Português
-                </Button>
-                <Button
-                  variant={language === "en" ? "default" : "outline"}
-                  size="sm"
-                  onClick={() => setLanguage("en")}
-                  className="flex-1"
-                >
-                  English
-                </Button>
-              </div>
-
               <Button 
                 className="w-full bg-energy hover:bg-energy/90 mt-2"
                 onClick={() => {
@@ -239,6 +239,7 @@ export const SiteHeader = () => {
             </nav>
           </SheetContent>
         </Sheet>
+      </div>
       </div>
     </header>
   );
