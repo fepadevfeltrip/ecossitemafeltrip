@@ -92,7 +92,7 @@ const QuemSomos = () => {
                 )}
               </blockquote>
               <p className="text-lg text-muted-foreground">
-                — Fernanda, {t("Fundadora da Feltrip", "Founder of Feltrip")}
+                — Fernanda Paixão, {t("Fundadora da Feltrip", "Founder of Feltrip")}
               </p>
             </div>
           </div>
