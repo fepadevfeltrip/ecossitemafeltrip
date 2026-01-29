@@ -26,7 +26,7 @@ export const SiteHeader = () => {
     { label: t("Para você", "For You"), href: "/para-voce", isPage: true },
     { label: t("Para sua empresa", "For Companies"), href: "/para-empresa", isPage: true },
     { label: t("Quem somos", "About Us"), href: "/quem-somos", isPage: true },
-    { label: t("Conteúdos", "Content"), href: "/conteudos", isPage: true },
+    { label: t("Newsletter", "Newsletter"), href: "https://thebobamanifesto.substack.com", isExternal: true },
     { label: t("Seja parceiro", "Become a Partner"), href: WHATSAPP_LINK, isExternal: true },
   ];
 

@@ -305,16 +305,44 @@ export const LandingPageNew = () => {
             ))}
           </div>
 
-          {/* Testimonial */}
-          <div className="max-w-2xl mx-auto text-center mb-16">
-            <Quote className="h-10 w-10 text-primary/30 mx-auto mb-4" />
-            <blockquote className="text-xl md:text-2xl text-foreground italic mb-4">
-              {t(
-                "A Feltrip transformou nossa integração cultural — foi direto ao ponto.",
-                "Feltrip transformed our cultural integration — it was straight to the point."
-              )}
-            </blockquote>
-            <cite className="text-muted-foreground">— {t("Cliente satisfeito", "Satisfied customer")}</cite>
+          {/* Testimonials */}
+          <div className="max-w-4xl mx-auto mb-16">
+            <div className="grid grid-cols-1 md:grid-cols-3 gap-6 mb-8">
+              <div className="p-6 rounded-xl bg-background border border-border/50 space-y-4">
+                <Quote className="h-8 w-8 text-primary/30" />
+                <blockquote className="text-foreground italic text-sm leading-relaxed">
+                  "Fernanda and Jessica gave an amazing tour of Little Africa and museums in Rio. They shared so much about the city's culture, especially Black history in Brazil, and made it super engaging. Fernanda was really knowledgeable and quick to answer any questions. I learned a lot and would definitely recommend this tour!"
+                </blockquote>
+                <cite className="text-muted-foreground text-sm block">— Betty T, from Eritreia</cite>
+              </div>
+              
+              <div className="p-6 rounded-xl bg-background border border-border/50 space-y-4">
+                <Quote className="h-8 w-8 text-primary/30" />
+                <blockquote className="text-foreground italic text-sm leading-relaxed">
+                  "Enjoyed a wonderful Carioca Tour this morning learning about Black history in Brazil. Very informative and gives a new perspective to the city and it's culture. Enjoyed a wonderful lunch as well. The guide was wonderful and spoke English for us. Highly recommend the experience."
+                </blockquote>
+                <cite className="text-muted-foreground text-sm block">— Diane K, from USA</cite>
+              </div>
+              
+              <div className="p-6 rounded-xl bg-background border border-border/50 space-y-4">
+                <Quote className="h-8 w-8 text-primary/30" />
+                <blockquote className="text-foreground italic text-sm leading-relaxed">
+                  "Fizemos uma parceria para defensores de direitos humanos e foi de muita importância para a passagem de uma pessoa ameaçada de morte por sua atuação como líder comunitário em seu país de origem. Fernanda e a equipe sempre muito solicita e a disposição para construir um ambiente de respeito e colaboração."
+                </blockquote>
+                <cite className="text-muted-foreground text-sm block">— Antonio Neto, from Justiça Global</cite>
+              </div>
+            </div>
+            
+            <div className="text-center">
+              <a 
+                href="https://share.google/6tCYIWQimhBdlJBV4" 
+                target="_blank" 
+                rel="noopener noreferrer"
+                className="text-primary hover:text-primary/80 text-sm font-medium underline underline-offset-4"
+              >
+                {t("Ver mais avaliações no Google", "See more reviews on Google")}
+              </a>
+            </div>
           </div>
 
           {/* Por que funciona */}
