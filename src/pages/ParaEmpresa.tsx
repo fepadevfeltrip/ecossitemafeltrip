@@ -1,0 +1,196 @@
+import { Button } from "@/components/ui/button";
+import { useLanguage } from "@/hooks/useLanguage";
+import { ArrowRight, Check, Building2, BarChart3, Shield, Users } from "lucide-react";
+import { MainLayout } from "@/components/layout/MainLayout";
+import { PricingTable } from "@/components/PricingTable";
+
+const WHATSAPP_LINK = "https://wa.me/message/BG24GCPKNF6KG1";
+
+const ParaEmpresa = () => {
+  const { t } = useLanguage();
+
+  const painPoints = [
+    {
+      problem: t("Sem adaptação cultural", "Without cultural adaptation"),
+      result: t("não existe permanência.", "there is no permanence."),
+    },
+    {
+      problem: t("Sem permanência", "Without permanence"),
+      result: t("não existe retenção.", "there is no retention."),
+    },
+    {
+      problem: t("Sem retenção", "Without retention"),
+      result: t("não existe resultado.", "there are no results."),
+    },
+  ];
+
+  const steps = [
+    {
+      number: "1",
+      title: t("Diagnóstico", "Diagnosis"),
+      description: t(
+        "Entendemos o que o seu time precisa através do Mapa de Presença Relacional.",
+        "We understand what your team needs through the Relational Presence Map."
+      ),
+      icon: BarChart3,
+    },
+    {
+      number: "2",
+      title: t("Plano personalizado", "Personalized plan"),
+      description: t(
+        "Criamos um plano simples e direto para as necessidades da sua empresa.",
+        "We create a simple and direct plan for your company's needs."
+      ),
+      icon: Building2,
+    },
+    {
+      number: "3",
+      title: t("Implementamos", "We implement"),
+      description: t(
+        "Treinamentos e acompanhamento de perto para garantir a integração.",
+        "Training and close monitoring to ensure integration."
+      ),
+      icon: Users,
+    },
+    {
+      number: "4",
+      title: t("Resultados", "Results"),
+      description: t(
+        "Times mais alinhados e produtivos. Turnover reduzido.",
+        "More aligned and productive teams. Reduced turnover."
+      ),
+      icon: Shield,
+    },
+  ];
+
+  const benefits = [
+    t("Redução de turnover em equipes internacionais", "Reduced turnover in international teams"),
+    t("Onboarding cultural completo para novos colaboradores", "Complete cultural onboarding for new employees"),
+    t("Painel de RH com métricas de integração", "HR dashboard with integration metrics"),
+    t("Alertas de risco psicossocial em tempo real", "Real-time psychosocial risk alerts"),
+    t("Curadoria de prestadores de serviços locais", "Local service provider curation"),
+    t("Experiências guiadas para team building", "Guided experiences for team building"),
+  ];
+
+  return (
+    <MainLayout>
+      {/* Hero */}
+      <section className="py-20 md:py-28 bg-gradient-to-b from-muted/50 to-background">
+        <div className="container px-4">
+          <div className="max-w-3xl mx-auto text-center space-y-6">
+            <h1 className="text-4xl md:text-5xl lg:text-6xl font-bold text-foreground leading-tight">
+              {t("Para sua empresa", "For your company")}
+            </h1>
+            <p className="text-xl text-muted-foreground">
+              {t(
+                "Estrutura intercultural para empresas, equipes globais e ambientes híbridos.",
+                "Intercultural structure for companies, global teams, and hybrid environments."
+              )}
+            </p>
+          </div>
+        </div>
+      </section>
+
+      {/* Pain Points */}
+      <section className="py-16 md:py-24 bg-foreground text-background">
+        <div className="container px-4">
+          <div className="max-w-3xl mx-auto text-center space-y-8">
+            {painPoints.map((point, index) => (
+              <p key={index} className="text-2xl md:text-3xl font-medium">
+                <span className="text-energy">{point.problem}</span>, {point.result}
+              </p>
+            ))}
+          </div>
+        </div>
+      </section>
+
+      {/* Steps */}
+      <section className="py-16 md:py-24">
+        <div className="container px-4">
+          <h2 className="text-3xl font-bold text-foreground text-center mb-12">
+            {t("Como funciona", "How it works")}
+          </h2>
+          <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-4 gap-8">
+            {steps.map((step, index) => {
+              const Icon = step.icon;
+              return (
+                <div key={index} className="text-center space-y-4">
+                  <div className="w-16 h-16 rounded-full bg-primary/10 flex items-center justify-center mx-auto">
+                    <Icon className="h-8 w-8 text-primary" />
+                  </div>
+                  <div className="w-10 h-10 rounded-full bg-energy text-white text-lg font-bold flex items-center justify-center mx-auto -mt-8 border-4 border-background">
+                    {step.number}
+                  </div>
+                  <h3 className="text-xl font-bold text-foreground">{step.title}</h3>
+                  <p className="text-muted-foreground">{step.description}</p>
+                </div>
+              );
+            })}
+          </div>
+        </div>
+      </section>
+
+      {/* Benefits */}
+      <section className="py-16 md:py-24 bg-muted/30">
+        <div className="container px-4">
+          <h2 className="text-3xl font-bold text-foreground text-center mb-12">
+            {t("Benefícios para sua empresa", "Benefits for your company")}
+          </h2>
+          <div className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-3 gap-4 max-w-5xl mx-auto">
+            {benefits.map((benefit, index) => (
+              <div
+                key={index}
+                className="flex items-center gap-3 p-4 rounded-xl bg-background border border-border/50"
+              >
+                <Check className="h-5 w-5 text-green-500 shrink-0" />
+                <span className="text-foreground">{benefit}</span>
+              </div>
+            ))}
+          </div>
+        </div>
+      </section>
+
+      {/* Pricing */}
+      <section className="py-16 md:py-24">
+        <div className="container px-4">
+          <PricingTable />
+        </div>
+      </section>
+
+      {/* CTA */}
+      <section className="py-16 md:py-24 bg-primary/5">
+        <div className="container px-4 text-center">
+          <h2 className="text-3xl font-bold text-foreground mb-4">
+            {t(
+              "Vamos fazer sua equipe funcionar de verdade com times globais.",
+              "Let's make your team truly work with global teams."
+            )}
+          </h2>
+          <p className="text-muted-foreground mb-8">
+            {t(
+              "Descontos progressivos para grupos de 10+ colaboradores.",
+              "Progressive discounts for groups of 10+ employees."
+            )}
+          </p>
+          <a href={WHATSAPP_LINK} target="_blank" rel="noopener noreferrer">
+            <Button size="lg" className="bg-energy hover:bg-energy/90 text-lg px-8 py-6 gap-2">
+              {t("Falar com especialista", "Talk to a specialist")}
+              <ArrowRight className="h-5 w-5" />
+            </Button>
+          </a>
+        </div>
+      </section>
+
+      {/* SEO Keywords */}
+      <div className="sr-only">
+        <p>
+          Integração intercultural empresas, mobilidade global corporativa, onboarding cultural B2B,
+          RH global mobility, treinamento intercultural equipes, adaptação cultural colaboradores,
+          expatriados Brasil empresas, integração de migrantes corporativo.
+        </p>
+      </div>
+    </MainLayout>
+  );
+};
+
+export default ParaEmpresa;
