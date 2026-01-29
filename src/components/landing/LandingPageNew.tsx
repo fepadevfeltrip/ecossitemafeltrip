@@ -1,6 +1,6 @@
 import { Button } from "@/components/ui/button";
 import { useLanguage } from "@/hooks/useLanguage";
-import { ArrowRight, Bot, MapPin, LayoutDashboard, Users, Briefcase, Shield, Compass, Sparkles, Check, Quote } from "lucide-react";
+import { ArrowRight, Bot, MapPin, LayoutDashboard, Users, Briefcase, Shield, Compass, Check, Quote, MessageSquare } from "lucide-react";
 import { Link } from "react-router-dom";
 
 // Images
@@ -10,6 +10,8 @@ import bobaDeboas from "@/assets/boba-deboas.png";
 import metricsAnalysis from "@/assets/metrics-analysis.jpg";
 import caminhadaGrupo from "@/assets/caminhada-grupo.jpg";
 import escadaAzul from "@/assets/escada-azul.jpg";
+import robotHand from "@/assets/robot-hand.jpg";
+import tutorCredenciado from "@/assets/tutor-credenciado.jpg";
 
 // Partner logos
 import koinzCapitalLogo from "@/assets/koinz-capital-logo.png";
@@ -43,7 +45,7 @@ export const LandingPageNew = () => {
       cta: { label: t("Falar com Boba", "Talk to Boba"), href: BOBA_ASSISTANT_LINK, external: true },
     },
     {
-      icon: Sparkles,
+      icon: MessageSquare,
       title: t("Agente de Acolhimento Cultural Personalizado", "Personalized Cultural Welcome Agent"),
       subtitle: t(
         "IA de hospitalidade cultural adaptada à identidade do seu evento ou organização",
@@ -53,6 +55,7 @@ export const LandingPageNew = () => {
         "O agente pode ser totalmente personalizado com nome, tom de voz, identidade visual e conteúdos locais. Uma IA de hospitalidade cultural que representa sua marca e acolhe visitantes internacionais com excelência.",
         "The agent can be fully customized with name, tone of voice, visual identity, and local content. A cultural hospitality AI that represents your brand and welcomes international visitors with excellence."
       ),
+      image: robotHand,
       cta: { label: t("Falar com um especialista", "Talk to a specialist"), href: WHATSAPP_LINK, external: true },
     },
     {
@@ -74,7 +77,7 @@ export const LandingPageNew = () => {
         "Nossos concierges são interculturais e poliglotas! Aqui acontece integração de verdade à cidade, idioma, serviços, rotina, cultura e integração local, com concierge intercultural. Apoiando tanto colaboradores individuais quanto equipes corporativas na adaptação cultural pós-relocação.",
         "Our concierges are intercultural and polyglots! Here real integration happens to the city, language, services, routine, culture, and local integration, with intercultural concierge. Supporting both individual employees and corporate teams in post-relocation cultural adaptation."
       ),
-      image: escadaAzul,
+      image: tutorCredenciado,
       cta: { label: t("Falar com um especialista", "Talk to a specialist"), href: WHATSAPP_LINK, external: true },
     },
     {
@@ -96,6 +99,7 @@ export const LandingPageNew = () => {
         "Desenhamos experiências sob medida para colaboradores individuais ou grupos, a partir de um diagnóstico relacional baseado no Mapa da Presença Relacional (MRP™).",
         "We design tailored experiences for individual employees or groups, based on a relational diagnosis using the Relational Presence Map (MRP™)."
       ),
+      image: escadaAzul,
       cta: { label: t("Falar com um especialista", "Talk to a specialist"), href: WHATSAPP_LINK, external: true },
     },
   ];
@@ -129,10 +133,9 @@ export const LandingPageNew = () => {
         </div>
 
         <div className="relative container px-4 py-20 md:py-32">
-          <div className="max-w-3xl space-y-6">
+          <div className="max-w-3xl mx-auto text-center space-y-6">
             {/* Badge */}
             <span className="inline-flex items-center gap-2 px-4 py-2 bg-primary/10 text-primary text-sm font-medium rounded-full">
-              <Sparkles className="h-4 w-4" />
               {t("O primeiro ecossistema relacional do Brasil", "Brazil's first relational ecosystem")}
             </span>
 
@@ -164,7 +167,7 @@ export const LandingPageNew = () => {
               )}
             </p>
 
-            <div className="flex flex-col sm:flex-row gap-4 pt-4">
+            <div className="flex flex-col sm:flex-row justify-center gap-4 pt-4">
               <Link to="/para-empresa">
                 <Button
                   size="lg"
@@ -345,24 +348,6 @@ export const LandingPageNew = () => {
         </div>
       </section>
 
-      {/* Video Section */}
-      <section className="py-16 md:py-20">
-        <div className="container px-4">
-          <div className="max-w-4xl mx-auto">
-            <div className="relative overflow-hidden rounded-2xl shadow-xl">
-              <video
-                controls
-                preload="metadata"
-                className="w-full h-auto"
-                aria-label={t("Vídeo de apresentação Feltrip", "Feltrip presentation video")}
-              >
-                <source src="/videos/feltrip-overview.mp4" type="video/mp4" />
-                {t("Seu navegador não suporta vídeos HTML5.", "Your browser does not support HTML5 video.")}
-              </video>
-            </div>
-          </div>
-        </div>
-      </section>
 
       {/* SEO Hidden Keywords */}
       <div className="sr-only" aria-hidden="true">
