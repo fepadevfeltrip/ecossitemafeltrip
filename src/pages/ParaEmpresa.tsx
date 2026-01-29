@@ -1,6 +1,6 @@
 import { Button } from "@/components/ui/button";
 import { useLanguage } from "@/hooks/useLanguage";
-import { ArrowRight, Check, Building2, BarChart3, Shield, Users, Bot, LayoutDashboard, Compass, Sparkles, Briefcase } from "lucide-react";
+import { ArrowRight, Check, Building2, BarChart3, Shield, Users, Bot, LayoutDashboard, Compass, MessageSquare, Briefcase } from "lucide-react";
 import { MainLayout } from "@/components/layout/MainLayout";
 
 // Images
@@ -8,6 +8,8 @@ import bobaDeboas from "@/assets/boba-deboas.png";
 import metricsAnalysis from "@/assets/metrics-analysis.jpg";
 import caminhadaGrupo from "@/assets/caminhada-grupo.jpg";
 import escadaAzul from "@/assets/escada-azul.jpg";
+import robotHand from "@/assets/robot-hand.jpg";
+import tutorCredenciado from "@/assets/tutor-credenciado.jpg";
 
 const WHATSAPP_LINK = "https://wa.me/message/BG24GCPKNF6KG1";
 
@@ -83,7 +85,7 @@ const ParaEmpresa = () => {
       image: bobaDeboas,
     },
     {
-      icon: Sparkles,
+      icon: MessageSquare,
       title: t("Agente de Acolhimento Cultural Personalizado", "Personalized Cultural Welcome Agent"),
       subtitle: t(
         "IA de hospitalidade cultural adaptada à identidade da sua organização",
@@ -93,6 +95,7 @@ const ParaEmpresa = () => {
         "O agente pode ser totalmente personalizado com nome, tom de voz, identidade visual e conteúdos locais para representar sua marca.",
         "The agent can be fully customized with name, tone of voice, visual identity, and local content to represent your brand."
       ),
+      image: robotHand,
     },
     {
       icon: LayoutDashboard,
@@ -112,7 +115,7 @@ const ParaEmpresa = () => {
         "Integração real à cidade, idioma, serviços e cultura local com concierge intercultural para equipes corporativas.",
         "Real integration to the city, language, services, and local culture with intercultural concierge for corporate teams."
       ),
-      image: escadaAzul,
+      image: tutorCredenciado,
     },
     {
       icon: Compass,
@@ -132,6 +135,7 @@ const ParaEmpresa = () => {
         "Experiências sob medida a partir de um diagnóstico relacional baseado no Mapa da Presença Relacional (MRP™).",
         "Tailored experiences based on a relational diagnosis using the Relational Presence Map (MRP™)."
       ),
+      image: escadaAzul,
     },
   ];
 
@@ -272,6 +276,26 @@ const ParaEmpresa = () => {
                 <span className="text-foreground">{benefit}</span>
               </div>
             ))}
+          </div>
+        </div>
+      </section>
+
+      {/* Video Section */}
+      <section className="py-16 md:py-20">
+        <div className="container px-4">
+          <div className="max-w-4xl mx-auto">
+            <div className="relative overflow-hidden rounded-2xl shadow-xl">
+              <video
+                controls
+                preload="metadata"
+                poster="/videos/feltrip-overview.mp4#t=0.1"
+                className="w-full h-auto"
+                aria-label={t("Vídeo de apresentação Feltrip", "Feltrip presentation video")}
+              >
+                <source src="/videos/feltrip-overview.mp4" type="video/mp4" />
+                {t("Seu navegador não suporta vídeos HTML5.", "Your browser does not support HTML5 video.")}
+              </video>
+            </div>
           </div>
         </div>
       </section>
