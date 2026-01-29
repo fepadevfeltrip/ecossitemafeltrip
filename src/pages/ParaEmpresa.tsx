@@ -8,7 +8,7 @@ import bobaDeboas from "@/assets/boba-deboas.png";
 import metricsAnalysis from "@/assets/metrics-analysis.jpg";
 import caminhadaGrupo from "@/assets/caminhada-grupo.jpg";
 import escadaAzul from "@/assets/escada-azul.jpg";
-import robotHand from "@/assets/robot-hand.jpg";
+import agentePersonalizado from "@/assets/agente-personalizado.jpg";
 import tutorCredenciado from "@/assets/tutor-credenciado.jpg";
 
 const WHATSAPP_LINK = "https://wa.me/message/BG24GCPKNF6KG1";
@@ -95,7 +95,7 @@ const ParaEmpresa = () => {
         "O agente pode ser totalmente personalizado com nome, tom de voz, identidade visual e conteúdos locais para representar sua marca.",
         "The agent can be fully customized with name, tone of voice, visual identity, and local content to represent your brand."
       ),
-      image: robotHand,
+      image: agentePersonalizado,
     },
     {
       icon: LayoutDashboard,
