@@ -380,11 +380,20 @@ export const LandingPageNew = () => {
       {/* SEO Hidden Keywords */}
       <div className="sr-only" aria-hidden="true">
         <p>
-          Integração intercultural, mobilidade global, onboarding cultural, hospitalidade intercultural,
-          estrangeiros no Brasil, imigrantes no Brasil, adaptação cultural, treinamento intercultural,
-          ecossistema relacional, infraestrutura relacional, integração relacional, cross-cultural training,
-          global mobility HR, cultural orientation, expatriates Brazil, expat support, integração de migrantes,
-          educação intercultural, comunidades interculturais, bem-estar relacional.
+          {/* Portuguese Keywords */}
+          Integração Intercultural, Mobilidade Global, Onboarding Cultural, Hospitalidade Intercultural,
+          Comunidades, Educação Intercultural, Ecossistema Feltrip, Ecossistema Relacional,
+          Estrangeiros no Brasil, Imigrantes no Brasil, Integração de Migrantes,
+          Adaptação Cultural, Treinamento Intercultural, Infraestrutura Relacional, 
+          Bem-estar Relacional, Expatriados Brasil, Relocação Brasil.
+        </p>
+        <p>
+          {/* English Keywords */}
+          Intercultural Integration, Global Mobility, Cultural Onboarding, Intercultural Hospitality,
+          Communities, Intercultural Education, Feltrip Ecosystem, Relational Ecosystem,
+          Foreigners in Brazil, Immigrants in Brazil, Migrant Integration,
+          Cultural Adaptation, Cross-cultural Training, Relational Infrastructure,
+          Relational Well-being, Expat Support Brazil, Brazil Relocation.
         </p>
       </div>
     </main>
