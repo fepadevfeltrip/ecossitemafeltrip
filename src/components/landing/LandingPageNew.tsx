@@ -32,8 +32,8 @@ export const LandingPageNew = () => {
       icon: Bot,
       title: "Boba Cult AI",
       subtitle: t(
-        "Agente de Acolhimento Cultural Personalizado",
-        "Personalized Cultural Welcome Agent"
+        "Tutora de cultura brasileira e hyperlocalidade",
+        "Brazilian culture and hyperlocality tutor"
       ),
       description: t(
         "Nossa IA tutora de cultura brasileira e hyperlocalidade interage com membros do ecossistema sobre hábitos cotidianos, nuances culturais, estilos de comunicação e dinâmicas relacionais, apoiando a adaptação cultural e o bem-estar relacional através de conversas e orientações.",
@@ -41,6 +41,19 @@ export const LandingPageNew = () => {
       ),
       image: bobaDeboas,
       cta: { label: t("Falar com Boba", "Talk to Boba"), href: BOBA_ASSISTANT_LINK, external: true },
+    },
+    {
+      icon: Sparkles,
+      title: t("Agente de Acolhimento Cultural Personalizado", "Personalized Cultural Welcome Agent"),
+      subtitle: t(
+        "IA de hospitalidade cultural adaptada à identidade do seu evento ou organização",
+        "Cultural hospitality AI adapted to your event or organization's identity"
+      ),
+      description: t(
+        "O agente pode ser totalmente personalizado com nome, tom de voz, identidade visual e conteúdos locais. Uma IA de hospitalidade cultural que representa sua marca e acolhe visitantes internacionais com excelência.",
+        "The agent can be fully customized with name, tone of voice, visual identity, and local content. A cultural hospitality AI that represents your brand and welcomes international visitors with excellence."
+      ),
+      cta: { label: t("Falar com um especialista", "Talk to a specialist"), href: WHATSAPP_LINK, external: true },
     },
     {
       icon: LayoutDashboard,
@@ -76,7 +89,7 @@ export const LandingPageNew = () => {
       cta: { label: t("Quero saber mais", "Learn more"), href: WHATSAPP_LINK, external: true },
     },
     {
-      icon: Sparkles,
+      icon: Briefcase,
       title: t("Consultoria Personalizada", "Personalized Consulting"),
       subtitle: t("Solução feita para o seu caso", "Solution made for your case"),
       description: t(
@@ -174,55 +187,6 @@ export const LandingPageNew = () => {
         </div>
       </section>
 
-      {/* SEÇÃO 2 - O problema que resolvemos */}
-      <section className="py-20 md:py-28 bg-muted/30">
-        <div className="container px-4">
-          <div className="max-w-4xl mx-auto text-center space-y-8">
-            <h2 className="text-3xl md:text-4xl lg:text-5xl font-bold text-foreground leading-tight">
-              {t(
-                "Integração cultural não é conteúdo. É estrutura de vida, trabalho e pertencimento.",
-                "Cultural integration is not content. It's life, work, and belonging structure."
-              )}
-            </h2>
-
-            <div className="flex flex-wrap justify-center gap-8 md:gap-16 py-8">
-              <div className="text-center">
-                <p className="text-4xl md:text-5xl font-bold text-primary">+100</p>
-                <p className="text-sm text-muted-foreground mt-1">
-                  {t("estrangeiros atendidos", "foreigners served")}
-                </p>
-              </div>
-              <div className="text-center">
-                <p className="text-4xl md:text-5xl font-bold text-primary">+15</p>
-                <p className="text-sm text-muted-foreground mt-1">
-                  {t("nacionalidades", "nationalities")}
-                </p>
-              </div>
-              <div className="text-center">
-                <p className="text-4xl md:text-5xl font-bold text-primary">+113</p>
-                <p className="text-sm text-muted-foreground mt-1">
-                  {t("caminhadas interculturais", "intercultural walks")}
-                </p>
-              </div>
-            </div>
-
-            <p className="text-lg text-muted-foreground max-w-3xl mx-auto">
-              {t(
-                "A base da Feltrip vem de observação social real, convivência, comunidades, caminhadas, grupos, cidades, migração e vida intercultural na prática.",
-                "Feltrip's foundation comes from real social observation, coexistence, communities, walks, groups, cities, migration, and intercultural life in practice."
-              )}
-            </p>
-
-            <Button
-              size="lg"
-              onClick={openWhatsApp}
-              className="bg-energy hover:bg-energy/90 text-lg px-8 py-6"
-            >
-              {t("Quero um plano agora", "I want a plan now")}
-            </Button>
-          </div>
-        </div>
-      </section>
 
       {/* SEÇÃO 3 - Soluções */}
       <section className="py-20 md:py-28" id="solucoes">
