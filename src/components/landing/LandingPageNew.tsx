@@ -165,14 +165,15 @@ export const LandingPageNew = () => {
             </p>
 
             <div className="flex flex-col sm:flex-row gap-4 pt-4">
-              <Button
-                size="lg"
-                onClick={openWhatsApp}
-                className="text-lg px-8 py-6 bg-energy hover:bg-energy/90 text-white shadow-lg gap-2"
-              >
-                {t("Conheça nossas soluções", "Discover our solutions")}
-                <ArrowRight className="h-5 w-5" />
-              </Button>
+              <Link to="/para-empresa">
+                <Button
+                  size="lg"
+                  className="text-lg px-8 py-6 bg-energy hover:bg-energy/90 text-white shadow-lg gap-2"
+                >
+                  {t("Conheça nossas soluções", "Discover our solutions")}
+                  <ArrowRight className="h-5 w-5" />
+                </Button>
+              </Link>
               <Link to="/para-voce">
                 <Button
                   size="lg"
