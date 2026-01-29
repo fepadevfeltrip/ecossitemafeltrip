@@ -10,7 +10,7 @@ import bobaDeboas from "@/assets/boba-deboas.png";
 import metricsAnalysis from "@/assets/metrics-analysis.jpg";
 import caminhadaGrupo from "@/assets/caminhada-grupo.jpg";
 import escadaAzul from "@/assets/escada-azul.jpg";
-import robotHand from "@/assets/robot-hand.jpg";
+import agentePersonalizado from "@/assets/agente-personalizado.jpg";
 import tutorCredenciado from "@/assets/tutor-credenciado.jpg";
 
 // Partner logos
@@ -55,7 +55,7 @@ export const LandingPageNew = () => {
         "O agente pode ser totalmente personalizado com nome, tom de voz, identidade visual e conteúdos locais. Uma IA de hospitalidade cultural que representa sua marca e acolhe visitantes internacionais com excelência.",
         "The agent can be fully customized with name, tone of voice, visual identity, and local content. A cultural hospitality AI that represents your brand and welcomes international visitors with excellence."
       ),
-      image: robotHand,
+      image: agentePersonalizado,
       cta: { label: t("Falar com um especialista", "Talk to a specialist"), href: WHATSAPP_LINK, external: true },
     },
     {
