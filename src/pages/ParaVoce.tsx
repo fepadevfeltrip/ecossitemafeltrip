@@ -109,7 +109,7 @@ const ParaVoce = () => {
       </section>
 
       {/* Pricing */}
-      <section className="py-16 md:py-24">
+      <section className="py-16 md:py-24" id="planos">
         <div className="container px-4">
           <PricingTable />
         </div>
@@ -121,7 +121,7 @@ const ParaVoce = () => {
           <h2 className="text-3xl font-bold text-foreground mb-6">
             {t("Pronto para começar?", "Ready to start?")}
           </h2>
-          <a href={WHATSAPP_LINK} target="_blank" rel="noopener noreferrer">
+          <a href="#planos">
             <Button size="lg" className="bg-energy hover:bg-energy/90 text-lg px-8 py-6 gap-2">
               {t("Escolher meu plano", "Choose my plan")}
               <ArrowRight className="h-5 w-5" />
