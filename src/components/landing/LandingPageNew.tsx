@@ -170,7 +170,7 @@ export const LandingPageNew = () => {
                   size="lg"
                   className="text-lg px-8 py-6 bg-energy hover:bg-energy/90 text-white shadow-lg gap-2"
                 >
-                  {t("Conheça nossas soluções", "Discover our solutions")}
+                  {t("Para sua empresa", "For your company")}
                   <ArrowRight className="h-5 w-5" />
                 </Button>
               </Link>
