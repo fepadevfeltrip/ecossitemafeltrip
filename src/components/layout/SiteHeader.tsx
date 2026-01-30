@@ -133,6 +133,13 @@ export const SiteHeader = () => {
             </Button>
           </div>
           <Button 
+            variant="outline"
+            size="sm" 
+            onClick={() => window.open("https://platform.feltrip.com", "_blank")}
+          >
+            {t("Entrar", "Login")}
+          </Button>
+          <Button 
             size="sm" 
             className="bg-energy hover:bg-energy/90"
             onClick={() => window.open(WHATSAPP_LINK, "_blank")}
@@ -227,6 +234,16 @@ export const SiteHeader = () => {
 
               <hr className="border-border" />
 
+              <Button 
+                variant="outline"
+                className="w-full mt-2"
+                onClick={() => {
+                  window.open("https://platform.feltrip.com", "_blank");
+                  setIsOpen(false);
+                }}
+              >
+                {t("Entrar", "Login")}
+              </Button>
               <Button 
                 className="w-full bg-energy hover:bg-energy/90 mt-2"
                 onClick={() => {
