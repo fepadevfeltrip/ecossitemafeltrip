@@ -129,15 +129,6 @@ const ParaVoce = () => {
           </a>
         </div>
       </section>
-
-      {/* SEO Keywords */}
-      <div className="sr-only">
-        <p>
-          Estrangeiros no Brasil, imigrantes no Brasil, adaptação cultural para expatriados,
-          integração de migrantes, mobilidade global, onboarding cultural individual,
-          brasileiros em mobilidade, relocação para o Brasil.
-        </p>
-      </div>
     </MainLayout>
   );
 };

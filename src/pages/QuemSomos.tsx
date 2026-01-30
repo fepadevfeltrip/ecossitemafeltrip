@@ -179,15 +179,6 @@ const QuemSomos = () => {
           </div>
         </div>
       </section>
-
-      {/* SEO Keywords */}
-      <div className="sr-only">
-        <p>
-          Feltrip empresa, integração intercultural Brasil, ecossistema relacional,
-          educação intercultural, comunidades interculturais, hospitalidade intercultural,
-          Fernanda Feltrip, história Feltrip, Koinz Capital.
-        </p>
-      </div>
     </MainLayout>
   );
 };
