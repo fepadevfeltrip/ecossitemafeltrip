@@ -1,8 +1,7 @@
 import { Button } from "@/components/ui/button";
 import { useLanguage } from "@/hooks/useLanguage";
-import { ArrowRight, MapPin, Users, MessageSquare, User, ExternalLink } from "lucide-react";
+import { MapPin, Users, MessageSquare, User, ExternalLink } from "lucide-react";
 import { MainLayout } from "@/components/layout/MainLayout";
-import mrpDiagram from "@/assets/mrp-diagram.png";
 
 const ARTICLE_LINK = "https://oestrangeiro.org/2026/01/08/mapa-da-presenca-relacional-uma-cartografia-dos-modos-de-presenca-nos-encontros-e-vinculos-com-o-territorio/";
 
@@ -68,6 +67,7 @@ const NossaMetodologia = () => {
               </p>
             </div>
 
+            {/* Academic Background */}
             <div className="bg-primary/5 rounded-2xl p-8 md:p-10 border border-primary/10">
               <p className="text-lg text-foreground leading-relaxed">
                 {t(
@@ -96,15 +96,6 @@ const NossaMetodologia = () => {
                   </div>
                 );
               })}
-            </div>
-
-            {/* MRP Diagram */}
-            <div className="flex justify-center">
-              <img
-                src={mrpDiagram}
-                alt={t("Diagrama do Mapa da Presença Relacional", "Relational Presence Map Diagram")}
-                className="max-w-md w-full rounded-2xl shadow-lg"
-              />
             </div>
 
             {/* Closing Statement */}
