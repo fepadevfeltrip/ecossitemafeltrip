@@ -139,12 +139,55 @@ export const LandingPageNew = () => {
               {t("O primeiro ecossistema relacional do Brasil", "Brazil's first relational ecosystem")}
             </span>
 
-            <h1 className="text-4xl md:text-5xl lg:text-6xl font-bold text-foreground leading-tight">
-              {t(
-                "Ajudamos pessoas, empresas, comunidades e eventos a se integrarem entre culturas.",
-                "We help people, companies, communities and events integrate across cultures."
-              )}
-            </h1>
+            <div className="relative inline-block">
+              <h1 className="text-4xl md:text-5xl lg:text-6xl font-bold text-foreground leading-tight relative z-10">
+                {t(
+                  "Ajudamos pessoas, empresas, comunidades e eventos a se integrarem entre culturas.",
+                  "We help people, companies, communities and events integrate across cultures."
+                )}
+              </h1>
+              {/* Hand-drawn circle SVG */}
+              <svg
+                className="absolute -inset-4 md:-inset-6 w-[calc(100%+2rem)] md:w-[calc(100%+3rem)] h-[calc(100%+2rem)] md:h-[calc(100%+3rem)] z-0 pointer-events-none"
+                viewBox="0 0 400 120"
+                preserveAspectRatio="none"
+                fill="none"
+                xmlns="http://www.w3.org/2000/svg"
+              >
+                <ellipse
+                  cx="200"
+                  cy="60"
+                  rx="195"
+                  ry="55"
+                  stroke="#EAA823"
+                  strokeWidth="2.5"
+                  strokeLinecap="round"
+                  fill="none"
+                  style={{
+                    strokeDasharray: "4 2 12 4 8 2",
+                    transform: "rotate(-1deg)",
+                    transformOrigin: "center",
+                  }}
+                />
+                {/* Second slightly offset ellipse for hand-drawn effect */}
+                <ellipse
+                  cx="202"
+                  cy="58"
+                  rx="192"
+                  ry="52"
+                  stroke="#EAA823"
+                  strokeWidth="1.5"
+                  strokeLinecap="round"
+                  fill="none"
+                  opacity="0.6"
+                  style={{
+                    strokeDasharray: "8 3 4 2",
+                    transform: "rotate(0.5deg)",
+                    transformOrigin: "center",
+                  }}
+                />
+              </svg>
+            </div>
 
             <h2 className="text-xl md:text-2xl text-muted-foreground font-medium">
               {t(
