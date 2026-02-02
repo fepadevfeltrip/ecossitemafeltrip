@@ -230,6 +230,17 @@ export const LandingPageNew = () => {
                 </Button>
               </Link>
             </div>
+
+            {/* Nossa Metodologia Link */}
+            <div className="pt-2">
+              <Link 
+                to="/nossa-metodologia"
+                className="inline-flex items-center gap-2 text-primary hover:text-primary/80 font-medium transition-colors underline underline-offset-4"
+              >
+                {t("Nossa Metodologia", "Our Methodology")}
+                <ArrowRight className="h-4 w-4" />
+              </Link>
+            </div>
           </div>
         </div>
       </section>
