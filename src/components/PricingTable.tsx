@@ -268,7 +268,7 @@ export const PricingTable = () => {
                   </div>
                 )}
                 {plan.isPremium && (
-                  <div className="mt-3">
+                  <div className="mt-3 flex justify-center">
                     <SpecialistButton />
                   </div>
                 )}
@@ -335,7 +335,7 @@ export const PricingTable = () => {
                     </div>
                   )}
                   {plan.isPremium && (
-                    <div className="mt-3">
+                    <div className="mt-3 flex justify-center">
                       <SpecialistButton />
                     </div>
                   )}
