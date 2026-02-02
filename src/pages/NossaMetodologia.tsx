@@ -3,7 +3,8 @@ import { useLanguage } from "@/hooks/useLanguage";
 import { MapPin, Users, MessageSquare, User, ExternalLink } from "lucide-react";
 import { MainLayout } from "@/components/layout/MainLayout";
 
-const ARTICLE_LINK = "https://oestrangeiro.org/2026/01/08/mapa-da-presenca-relacional-uma-cartografia-dos-modos-de-presenca-nos-encontros-e-vinculos-com-o-territorio/";
+const ARTICLE_LINK =
+  "https://oestrangeiro.org/2026/01/08/mapa-da-presenca-relacional-uma-cartografia-dos-modos-de-presenca-nos-encontros-e-vinculos-com-o-territorio/";
 
 const NossaMetodologia = () => {
   const { t } = useLanguage();
@@ -46,7 +47,7 @@ const NossaMetodologia = () => {
             <p className="text-xl text-muted-foreground">
               {t(
                 "Uma metodologia prática desenhada para tornar visível o que ninguém vê: a dor invisível da adaptação cultural.",
-                "A practical methodology designed to make visible what no one sees: the invisible pain of cultural adaptation."
+                "A practical methodology designed to make visible what no one sees: the invisible pain of cultural adaptation.",
               )}
             </p>
           </div>
@@ -62,7 +63,7 @@ const NossaMetodologia = () => {
               <p className="text-lg text-foreground leading-relaxed">
                 {t(
                   "Desenvolvida a partir da minha experiência direta com estrangeiros e validada em mais de 200 caminhadas, esta ferramenta nasce da necessidade de traduzir a complexidade das relações em um dispositivo real de transformação.",
-                  "Developed from my direct experience with foreigners and validated in over 200 walks, this tool was born from the need to translate the complexity of relationships into a real transformation device."
+                  "Developed from my direct experience with foreigners and validated in over 200 walks, this tool was born from the need to translate the complexity of relationships into a real transformation device.",
                 )}
               </p>
             </div>
@@ -71,8 +72,8 @@ const NossaMetodologia = () => {
             <div className="bg-primary/5 rounded-2xl p-8 md:p-10 border border-primary/10">
               <p className="text-lg text-foreground leading-relaxed">
                 {t(
-                  'Minha trajetória como pesquisadora em Arte Relacional — com estudos publicados pela Funarte e UFRJ — é o que dá o lastro teórico a este método. No Mapa, eu transformo a "performance do encontro" em um ecossistema de hospitalidade que investiga como nos tornamos presentes (ou ausentes) diante de:',
-                  'My trajectory as a researcher in Relational Art — with studies published by Funarte and UFRJ — is what gives the theoretical foundation to this method. In the Map, I transform the "performance of encounter" into a hospitality ecosystem that investigates how we become present (or absent) in the face of:'
+                  'Minha trajetória como pesquisadora em Arte Relacional, com estudos publicados pela Funarte e UFRJ, é o que dá o lastro teórico a este método. No Mapa, eu transformo a "performance do encontro" em um ecossistema de hospitalidade que investiga como nos tornamos presentes (ou ausentes) diante de:',
+                  'My trajectory as a researcher in Relational Art, with studies published by Funarte and UFRJ, is what gives the theoretical foundation to this method. In the Map, I transform the "performance of encounter" into a hospitality ecosystem that investigates how we become present (or absent) in the face of:',
                 )}
               </p>
             </div>
@@ -103,7 +104,7 @@ const NossaMetodologia = () => {
               <p className="text-xl text-foreground font-medium leading-relaxed">
                 {t(
                   "Aqui, o encontro não é apenas teoria; é uma ferramenta reflexiva de leitura relacional para quem vive a mobilidade na pele.",
-                  "Here, the encounter is not just theory; it is a reflective tool for relational reading for those who live mobility in their skin."
+                  "Here, the encounter is not just theory; it is a reflective tool for relational reading for those who live mobility in their skin.",
                 )}
               </p>
             </div>
@@ -111,9 +112,10 @@ const NossaMetodologia = () => {
             {/* CTA to Article */}
             <div className="bg-muted/50 rounded-2xl p-8 md:p-10 text-center space-y-6">
               <p className="text-lg text-foreground">
-                📎 {t(
+                📎{" "}
+                {t(
                   "Quer entender como essa cartografia funciona na prática? Confira a reportagem sobre a metodologia publicada originalmente para o grupo de pesquisa da UFRJ:",
-                  "Want to understand how this cartography works in practice? Check out the article about the methodology originally published for the UFRJ research group:"
+                  "Want to understand how this cartography works in practice? Check out the article about the methodology originally published for the UFRJ research group:",
                 )}
               </p>
               <a href={ARTICLE_LINK} target="_blank" rel="noopener noreferrer">
