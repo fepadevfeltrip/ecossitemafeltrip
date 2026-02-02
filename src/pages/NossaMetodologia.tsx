@@ -35,9 +35,9 @@ const NossaMetodologia = () => {
   return (
     <MainLayout>
       {/* Hero */}
-      <section className="py-20 md:py-28 bg-gradient-to-b from-muted/50 to-background">
+      <section className="py-12 md:py-16 bg-gradient-to-b from-muted/50 to-background">
         <div className="container px-4">
-          <div className="max-w-3xl mx-auto text-center space-y-6">
+          <div className="max-w-3xl mx-auto text-center space-y-4">
             <span className="inline-flex items-center gap-2 px-4 py-2 bg-primary/10 text-primary text-sm font-medium rounded-full">
               {t("Nossa Metodologia", "Our Methodology")}
             </span>
