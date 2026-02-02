@@ -36,6 +36,7 @@ export const SiteHeader = () => {
     { label: t("Onboarding Cultural", "Cultural Onboarding"), href: "/onboarding-cultural" },
     { label: t("Hospitalidade Intercultural", "Intercultural Hospitality"), href: "/hospitalidade-intercultural" },
     { label: t("Ecossistema Feltrip", "Feltrip Ecosystem"), href: "/ecossistema-relacional" },
+    { label: t("Nossa Metodologia", "Our Methodology"), href: "/nossa-metodologia" },
   ];
 
   const isActive = (href: string) => location.pathname === href;

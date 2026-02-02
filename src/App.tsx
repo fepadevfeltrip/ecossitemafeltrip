@@ -16,6 +16,7 @@ import ImigrantesNoBrasil from "./pages/ImigrantesNoBrasil";
 import IntegracaoDeMigrantes from "./pages/IntegracaoDeMigrantes";
 import HospitalidadeIntercultural from "./pages/HospitalidadeIntercultural";
 import EcossistemaRelacional from "./pages/EcossistemaRelacional";
+import NossaMetodologia from "./pages/NossaMetodologia";
 import AdminInvites from "./pages/AdminInvites";
 import NotFound from "./pages/NotFound";
 import { LanguageProvider } from "@/hooks/useLanguage";
@@ -44,6 +45,7 @@ const App = () => {
               <Route path="/integracao-de-migrantes" element={<IntegracaoDeMigrantes />} />
               <Route path="/hospitalidade-intercultural" element={<HospitalidadeIntercultural />} />
               <Route path="/ecossistema-relacional" element={<EcossistemaRelacional />} />
+              <Route path="/nossa-metodologia" element={<NossaMetodologia />} />
               <Route path="/admin/invites" element={<AdminInvites />} />
               <Route path="*" element={<NotFound />} />
             </Routes>
