@@ -53,7 +53,7 @@ const getPlans = (t: (pt: string, en: string) => string) => [
 const getFeatures = (t: (pt: string, en: string) => string) => [
   {
     name: t("Mapa coletivo com rotas e dicas de segurança", "Collective map with routes and safety tips"),
-    plans: [true, true, true, true],
+    plans: [false, true, true, true],
   },
   {
     name: t("Criação de eventos na comunidade", "Community event creation"),
@@ -154,16 +154,19 @@ export const PricingTable = () => {
     }
   };
 
+  const WHATSAPP_GROUP_LINK = "https://chat.whatsapp.com/DMjDbxdjmJYKInnqsJcyJf";
+
   const CommunityButton = () => (
-    <Button 
-      size="sm"
-      variant="outline"
-      className="border-primary/30 hover:border-primary hover:bg-primary/5 text-xs px-3 py-1.5 h-auto"
-      onClick={() => setShowWaitlistDialog(true)}
-    >
-      <Users className="h-3 w-3 mr-1.5" />
-      {t("Entrar", "Join")}
-    </Button>
+    <a href={WHATSAPP_GROUP_LINK} target="_blank" rel="noopener noreferrer">
+      <Button 
+        size="sm"
+        variant="outline"
+        className="border-primary/30 hover:border-primary hover:bg-primary/5 text-xs px-3 py-1.5 h-auto"
+      >
+        <Users className="h-3 w-3 mr-1.5" />
+        {t("Participar do grupo", "Join the group")}
+      </Button>
+    </a>
   );
 
   return (
@@ -240,8 +243,8 @@ export const PricingTable = () => {
                   <div className="mt-3">
                     <p className="text-xs text-muted-foreground mb-2">
                       {t(
-                        "A comunidade Feltrip tem pessoas de todos os lugares do mundo",
-                        "The Feltrip community has people from all over the world"
+                        "Participe do grupo no WhatsApp com pessoas do mundo todo!",
+                        "Join the WhatsApp group with people from all over the world!"
                       )}
                     </p>
                     <CommunityButton />
@@ -302,8 +305,8 @@ export const PricingTable = () => {
                     <div className="mt-3">
                       <p className="text-xs text-muted-foreground mb-2">
                         {t(
-                          "A comunidade Feltrip tem pessoas de todos os lugares do mundo",
-                          "The Feltrip community has people from all over the world"
+                          "Participe do grupo no WhatsApp com pessoas do mundo todo!",
+                          "Join the WhatsApp group with people from all over the world!"
                         )}
                       </p>
                       <CommunityButton />
