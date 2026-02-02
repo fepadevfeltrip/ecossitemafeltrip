@@ -23,6 +23,7 @@ const getPlans = (t: (pt: string, en: string) => string) => [
     priceDetail: "",
     highlighted: false,
     isFree: true,
+    isPremium: false,
   },
   {
     name: t("Integração Intercultural", "Intercultural Integration"),
@@ -31,6 +32,7 @@ const getPlans = (t: (pt: string, en: string) => string) => [
     priceDetail: t("por usuário", "per user"),
     highlighted: false,
     isFree: false,
+    isPremium: false,
   },
   {
     name: t("Raiz no Território", "Roots in the Territory"),
@@ -39,6 +41,7 @@ const getPlans = (t: (pt: string, en: string) => string) => [
     priceDetail: t("por usuário", "per user"),
     highlighted: true,
     isFree: false,
+    isPremium: false,
   },
   {
     name: t("Espaço Integrado Premium", "Premium Integrated Space"),
@@ -47,6 +50,7 @@ const getPlans = (t: (pt: string, en: string) => string) => [
     priceDetail: t("por usuário", "per user"),
     highlighted: false,
     isFree: false,
+    isPremium: true,
   },
 ];
 
@@ -155,6 +159,7 @@ export const PricingTable = () => {
   };
 
   const WHATSAPP_GROUP_LINK = "https://chat.whatsapp.com/DMjDbxdjmJYKInnqsJcyJf";
+  const WHATSAPP_SPECIALIST_LINK = "https://wa.me/message/BG24GCPKNF6KG1";
 
   const CommunityButton = () => (
     <a href={WHATSAPP_GROUP_LINK} target="_blank" rel="noopener noreferrer">
@@ -165,6 +170,18 @@ export const PricingTable = () => {
       >
         <Users className="h-3 w-3 mr-1.5" />
         {t("Participar do grupo", "Join the group")}
+      </Button>
+    </a>
+  );
+
+  const SpecialistButton = () => (
+    <a href={WHATSAPP_SPECIALIST_LINK} target="_blank" rel="noopener noreferrer">
+      <Button 
+        size="sm"
+        className="bg-primary hover:bg-primary/90 text-xs px-3 py-1.5 h-auto"
+      >
+        <Users className="h-3 w-3 mr-1.5" />
+        {t("Falar com especialista", "Talk to specialist")}
       </Button>
     </a>
   );
@@ -250,6 +267,11 @@ export const PricingTable = () => {
                     <CommunityButton />
                   </div>
                 )}
+                {plan.isPremium && (
+                  <div className="mt-3">
+                    <SpecialistButton />
+                  </div>
+                )}
               </div>
               <div className="space-y-2">
                 {features.map((feature, featureIndex) => (
@@ -310,6 +332,11 @@ export const PricingTable = () => {
                         )}
                       </p>
                       <CommunityButton />
+                    </div>
+                  )}
+                  {plan.isPremium && (
+                    <div className="mt-3">
+                      <SpecialistButton />
                     </div>
                   )}
                 </Card>
