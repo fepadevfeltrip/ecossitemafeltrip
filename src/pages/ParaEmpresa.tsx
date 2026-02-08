@@ -2,6 +2,7 @@ import { Button } from "@/components/ui/button";
 import { useLanguage } from "@/hooks/useLanguage";
 import { ArrowRight, Check, Building2, BarChart3, Shield, Users, Bot, LayoutDashboard, Compass, MessageSquare, Briefcase } from "lucide-react";
 import { MainLayout } from "@/components/layout/MainLayout";
+import { B2BPricingTable } from "@/components/B2BPricingTable";
 
 // Images
 import bobaDeboas from "@/assets/boba-deboas.png";
@@ -280,6 +281,13 @@ const ParaEmpresa = () => {
         </div>
       </section>
 
+      {/* Corporate Pricing */}
+      <section className="py-16 md:py-24" id="planos">
+        <div className="container px-4">
+          <B2BPricingTable />
+        </div>
+      </section>
+
       {/* Video Section */}
       <section className="py-16 md:py-20">
         <div className="container px-4">
@@ -317,7 +325,7 @@ const ParaEmpresa = () => {
           </p>
           <a href={WHATSAPP_LINK} target="_blank" rel="noopener noreferrer">
             <Button size="lg" className="bg-energy hover:bg-energy/90 text-lg px-8 py-6 gap-2">
-              {t("Contrate agora", "Hire now")}
+              {t("Solicitar orçamento", "Request a quote")}
               <ArrowRight className="h-5 w-5" />
             </Button>
           </a>

@@ -1,9 +1,8 @@
 import { Button } from "@/components/ui/button";
 import { useLanguage } from "@/hooks/useLanguage";
-import { ArrowRight, Check, Users, Bot, MapPin, Shield } from "lucide-react";
+import { ArrowRight, Check } from "lucide-react";
 import { MainLayout } from "@/components/layout/MainLayout";
-import { PricingTable } from "@/components/PricingTable";
-import { Link } from "react-router-dom";
+import { NewPricingPlans } from "@/components/NewPricingPlans";
 
 const WHATSAPP_LINK = "https://wa.me/message/BG24GCPKNF6KG1";
 
@@ -111,7 +110,7 @@ const ParaVoce = () => {
       {/* Pricing */}
       <section className="py-16 md:py-24" id="planos">
         <div className="container px-4">
-          <PricingTable />
+          <NewPricingPlans />
         </div>
       </section>
 
