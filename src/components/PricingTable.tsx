@@ -68,7 +68,7 @@ const getFeatures = (t: (pt: string, en: string) => string) => [
     plans: [true, true, true, true],
   },
   {
-    name: t("IA Boba Cult - tutora de cultura e hyperlocalidade", "Boba Cult AI - culture and hyperlocality tutor"),
+    name: t("IA Cult - tutora de cultura e hyperlocalidade", "Cult AI - culture and hyperlocality tutor"),
     plans: [false, true, true, true],
   },
   {

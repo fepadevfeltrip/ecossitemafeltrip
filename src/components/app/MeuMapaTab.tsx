@@ -266,7 +266,7 @@ export const MeuMapaTab = () => {
                 <div className="w-48 h-48 relative cursor-pointer" onClick={() => setIsFloating(!isFloating)}>
                   <img 
                     src={bobaMeditating} 
-                    alt="Boba meditando" 
+                    alt="Cult meditando" 
                     className={`w-full h-full object-contain drop-shadow-2xl transition-all ${isFloating ? 'animate-float' : ''}`}
                   />
                 </div>
@@ -547,14 +547,14 @@ export const MeuMapaTab = () => {
               <div className="flex items-center gap-4">
                 <img 
                   src={bobaAvatar} 
-                  alt="Boba professora"
+                  alt="Cult professora"
                   className="w-20 h-20 rounded-full object-cover border-3 border-accent shadow-lg"
                 />
                 <div className="flex-1 space-y-2">
-                  <h3 className="font-bold text-lg text-foreground">Boba Professora</h3>
-                  <p className="text-sm text-muted-foreground leading-snug">
-                    Como se comunicar no novo idioma sem constrangimento?
-                    <span className="block mt-1 font-medium text-accent">A Boba te ajuda!</span>
+                   <h3 className="font-bold text-lg text-foreground">Cult Professora</h3>
+                   <p className="text-sm text-muted-foreground leading-snug">
+                     Como se comunicar no novo idioma sem constrangimento?
+                     <span className="block mt-1 font-medium text-accent">A Cult te ajuda!</span>
                   </p>
                 </div>
               </div>

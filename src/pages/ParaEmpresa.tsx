@@ -73,7 +73,7 @@ const ParaEmpresa = () => {
   const solutions = [
     {
       icon: Bot,
-      title: "Boba Cult AI",
+      title: "Cult AI",
       subtitle: t(
         "Tutora de cultura brasileira e hyperlocalidade",
         "Brazilian culture and hyperlocality tutor"

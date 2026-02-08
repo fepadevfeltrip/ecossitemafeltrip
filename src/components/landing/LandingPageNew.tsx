@@ -32,7 +32,7 @@ export const LandingPageNew = () => {
   const solutions = [
     {
       icon: Bot,
-      title: "Boba Cult AI",
+      title: "Cult AI",
       subtitle: t(
         "Tutora de cultura brasileira e hyperlocalidade",
         "Brazilian culture and hyperlocality tutor"
@@ -42,7 +42,7 @@ export const LandingPageNew = () => {
         "Our Brazilian culture and hyperlocality AI tutor interacts with ecosystem members about everyday habits, cultural nuances, communication styles, and relational dynamics, supporting cultural adaptation and relational well-being through conversations and guidance."
       ),
       image: bobaDeboas,
-      cta: { label: t("Falar com Boba", "Talk to Boba"), href: BOBA_ASSISTANT_LINK, external: true },
+      cta: { label: t("Falar com Cult", "Talk to Cult"), href: BOBA_ASSISTANT_LINK, external: true },
     },
     {
       icon: MessageSquare,

@@ -44,14 +44,14 @@ export const AITab = () => {
             <div className="flex justify-center">
               <img 
                 src={bobaAvatar} 
-                alt="Boba professora"
+               alt="Cult professora"
                 className="w-32 h-32 rounded-full object-cover border-4 border-accent shadow-2xl"
               />
             </div>
             <div>
-              <h2 className="text-2xl font-bold text-foreground mb-2">Boba Professora</h2>
+              <h2 className="text-2xl font-bold text-foreground mb-2">Cult Professora</h2>
               <p className="text-muted-foreground italic">
-                Treinamento de idioma com a Boba - Em desenvolvimento
+                Treinamento de idioma com a Cult - Em desenvolvimento
               </p>
             </div>
           </div>
@@ -78,7 +78,7 @@ export const AITab = () => {
           <div className="relative inline-block">
             <img 
               src={bobaAvatar} 
-              alt="Boba - Sua guia cultural"
+              alt="Cult - Sua guia cultural"
               className="w-32 h-32 mx-auto rounded-full border-4 border-primary shadow-2xl object-cover"
             />
             <div className="absolute -bottom-2 -right-2 w-12 h-12">
@@ -86,7 +86,7 @@ export const AITab = () => {
             </div>
           </div>
           <div>
-            <h1 className="text-3xl font-bold text-foreground mb-2">Olá, sou a Boba!</h1>
+            <h1 className="text-3xl font-bold text-foreground mb-2">Olá, sou a Cult!</h1>
             <p className="text-lg text-muted-foreground italic">
               Sua companheira nessa jornada cultural, interior e linguística
             </p>
@@ -102,7 +102,7 @@ export const AITab = () => {
             <div className="flex items-start gap-6">
               <img 
                 src={bobaHappy} 
-                alt="Boba feliz"
+                alt="Cult feliz"
                 className="w-24 h-24 object-contain shrink-0"
               />
               <div className="flex-1 space-y-3">
@@ -134,15 +134,15 @@ export const AITab = () => {
             <div className="w-20 h-20 rounded-full bg-accent/20 flex items-center justify-center shrink-0 border-2 border-accent/30">
               <img 
                 src={bobaAvatar} 
-                alt="Boba professora"
+               alt="Cult professora"
                 className="w-16 h-16 rounded-full object-cover opacity-80"
               />
             </div>
             <div className="flex-1 space-y-1">
-              <h3 className="font-bold text-lg text-foreground">Boba Professora</h3>
+              <h3 className="font-bold text-lg text-foreground">Cult Professora</h3>
               <p className="text-sm text-muted-foreground leading-snug">
                 Como se comunicar no novo idioma sem constrangimento? 
-                <span className="block mt-1 font-medium text-accent">A Boba te ajuda!</span>
+                <span className="block mt-1 font-medium text-accent">A Cult te ajuda!</span>
               </p>
             </div>
           </div>
@@ -151,7 +151,7 @@ export const AITab = () => {
         {/* Decorative Element */}
         <div className="text-center pt-4">
           <p className="text-xs text-muted-foreground/70 italic">
-            "A cultura é um caminho que se faz caminhando... e eu caminho com você!"
+           "A cultura é um caminho que se faz caminhando... e eu caminho com você!"
           </p>
         </div>
       </div>

@@ -31,15 +31,15 @@ const ParaVoce = () => {
       number: "3",
       title: t("Agora é só aproveitar", "Now just enjoy"),
       description: t(
-        "Acesse todas as ferramentas, a IA Boba Cult, comunidade e experiências guiadas.",
-        "Access all tools, Boba Cult AI, community, and guided experiences."
+        "Acesse todas as ferramentas, a Cult AI, comunidade e experiências guiadas.",
+        "Access all tools, Cult AI, community, and guided experiences."
       ),
     },
   ];
 
   const benefits = [
     t("Acesso à comunidade global Feltrip", "Access to the global Feltrip community"),
-    t("IA Boba Cult para adaptação cultural", "Boba Cult AI for cultural adaptation"),
+    t("Cult AI para adaptação cultural", "Cult AI for cultural adaptation"),
     t("Mapa de segurança e dicas locais", "Safety map and local tips"),
     t("Prática de idioma semanal", "Weekly language practice"),
     t("Diário-mapa de viagem pessoal", "Personal travel diary-map"),
