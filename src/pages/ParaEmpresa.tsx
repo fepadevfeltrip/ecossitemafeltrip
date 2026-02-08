@@ -75,12 +75,12 @@ const ParaEmpresa = () => {
       icon: Bot,
       title: "Cult AI",
       subtitle: t(
-        "Tutora de cultura brasileira e hyperlocalidade",
-        "Brazilian culture and hyperlocality tutor"
+        "Tutora de cultura brasileira e hyperlocalidade para empresas e eventos",
+        "Brazilian culture and hyperlocality tutor for companies and events"
       ),
       description: t(
-        "Nossa IA tutora de cultura brasileira interage com colaboradores sobre hábitos cotidianos, nuances culturais e dinâmicas relacionais, apoiando a adaptação cultural.",
-        "Our Brazilian culture AI tutor interacts with employees about everyday habits, cultural nuances, and relational dynamics, supporting cultural adaptation."
+        "Seja para integrar equipes internacionais no dia a dia corporativo ou para acolher participantes de eventos e conferências, a Cult AI orienta sobre hábitos culturais, nuances de comunicação e dinâmicas relacionais — garantindo uma experiência autêntica e fluida para sua empresa ou evento.",
+        "Whether integrating international teams into daily corporate life or welcoming participants at events and conferences, Cult AI guides on cultural habits, communication nuances, and relational dynamics — ensuring an authentic and seamless experience for your company or event."
       ),
       image: bobaDeboas,
     },
@@ -88,12 +88,12 @@ const ParaEmpresa = () => {
       icon: MessageSquare,
       title: t("Agente de Acolhimento Cultural Personalizado", "Personalized Cultural Welcome Agent"),
       subtitle: t(
-        "IA de hospitalidade cultural adaptada à identidade da sua organização",
-        "Cultural hospitality AI adapted to your organization's identity"
+        "IA de hospitalidade cultural sob medida para sua empresa ou evento",
+        "Custom cultural hospitality AI for your company or event"
       ),
       description: t(
-        "O agente pode ser totalmente personalizado com nome, tom de voz, identidade visual e conteúdos locais para representar sua marca.",
-        "The agent can be fully customized with name, tone of voice, visual identity, and local content to represent your brand."
+        "Crie um agente com a cara da sua marca — nome, tom de voz, identidade visual e conteúdos locais — para acolher colaboradores em processos de relocação ou surpreender participantes de eventos com orientações culturais personalizadas e relevantes.",
+        "Create an agent with your brand's identity — name, tone of voice, visual style, and local content — to welcome employees during relocation or delight event attendees with personalized and relevant cultural guidance."
       ),
       image: agentePersonalizado,
     },
