@@ -2,6 +2,7 @@ import { Button } from "@/components/ui/button";
 import { useLanguage } from "@/hooks/useLanguage";
 import { ArrowRight, Check, Quote } from "lucide-react";
 import { Link } from "react-router-dom";
+import { CommunityBanner } from "@/components/CommunityBanner";
 
 // Images
 import feltripLogoTrans from "@/assets/feltrip-logo-trans.png";
@@ -254,6 +255,13 @@ export const LandingPageNew = () => {
               <ArrowRight className="h-5 w-5" />
             </Button>
           </div>
+        </div>
+      </section>
+
+      {/* Community */}
+      <section className="py-12 md:py-16">
+        <div className="container px-4">
+          <CommunityBanner />
         </div>
       </section>
     </main>

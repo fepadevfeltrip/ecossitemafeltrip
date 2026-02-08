@@ -13,6 +13,7 @@ import {
 import { useLanguage } from "@/hooks/useLanguage";
 import { useToast } from "@/hooks/use-toast";
 import { supabase } from "@/integrations/supabase/client";
+import { CommunityBanner } from "@/components/CommunityBanner";
 
 const WHATSAPP_GROUP_LINK = "https://chat.whatsapp.com/DMjDbxdjmJYKInnqsJcyJf";
 const CULT_LINK = "https://cult.feltrip.com";
@@ -50,25 +51,6 @@ export const NewPricingPlans = () => {
   };
 
   const plans = [
-    {
-      name: t("Explorador", "Explorer"),
-      tagline: t(
-        "Para quem quer sair do óbvio e encontrar o pulso da cidade.",
-        "For those who want to go beyond the obvious and find the city's pulse."
-      ),
-      highlighted: false,
-      benefits: [
-        t("Acesso à Comunidade Feltrip no WhatsApp", "Access to the Feltrip Community on WhatsApp"),
-        t("Drops semanais de \"Gemas\" selecionadas", "Weekly drops of selected \"Gems\""),
-        t("Curadoria colaborativa de eventos", "Collaborative event curation"),
-      ],
-      priceText: t("Grátis", "Free"),
-      cta: {
-        label: t("Entrar na Comunidade", "Join the Community"),
-        action: () => window.open(WHATSAPP_GROUP_LINK, "_blank", "noopener,noreferrer"),
-        variant: "outline" as const,
-      },
-    },
     {
       name: t("Cartógrafo", "Cartographer"),
       subtitle: "Cult AI",
@@ -156,7 +138,7 @@ export const NewPricingPlans = () => {
           </h2>
         </div>
 
-        <div className="grid grid-cols-1 md:grid-cols-3 gap-6">
+        <div className="grid grid-cols-1 md:grid-cols-2 gap-6 max-w-3xl mx-auto">
           {plans.map((plan, index) => (
             <Card
               key={index}
@@ -214,6 +196,8 @@ export const NewPricingPlans = () => {
             </Card>
           ))}
         </div>
+
+        <CommunityBanner />
       </div>
     </>
   );
