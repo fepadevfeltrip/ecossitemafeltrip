@@ -90,7 +90,7 @@ export const DiarioTab = ({ onEntrySubmitted }: DiarioTabProps) => {
         <div className="flex justify-center">
           <img 
             src={bobaMeditation} 
-            alt="Boba meditando" 
+            alt="Cult meditando" 
             className="w-48 h-48 object-contain rounded-lg"
           />
         </div>

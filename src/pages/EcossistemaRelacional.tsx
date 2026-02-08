@@ -13,7 +13,7 @@ const EcossistemaRelacional = () => {
   const pillars = [
     {
       icon: Bot,
-      title: "Boba Cult AI",
+      title: "Cult AI",
       description: t(
         "IA tutora de cultura brasileira e hyperlocalidade que apoia a adaptação cultural.",
         "AI tutor of Brazilian culture and hyperlocality that supports cultural adaptation."
@@ -126,18 +126,18 @@ const EcossistemaRelacional = () => {
             <div className="w-full md:w-1/3">
               <img
                 src={bobaDeboas}
-                alt="Boba Cult AI"
+                alt="Cult AI"
                 className="w-48 h-48 mx-auto object-contain"
               />
             </div>
             <div className="w-full md:w-2/3 space-y-4">
               <h3 className="text-2xl font-bold text-foreground">
-                {t("Boba: o coração do ecossistema", "Boba: the heart of the ecosystem")}
+                {t("Cult: o coração do ecossistema", "Cult: the heart of the ecosystem")}
               </h3>
               <p className="text-muted-foreground">
                 {t(
-                  "Boba é nossa IA tutora de cultura brasileira e hyperlocalidade. Ela é o ponto de contato principal do ecossistema, guiando membros através de conversas sobre hábitos, nuances culturais e dinâmicas relacionais.",
-                  "Boba is our AI tutor of Brazilian culture and hyperlocality. She is the main contact point of the ecosystem, guiding members through conversations about habits, cultural nuances, and relational dynamics."
+                   "Cult é nossa IA tutora de cultura brasileira e hyperlocalidade. Ela é o ponto de contato principal do ecossistema, guiando membros através de conversas sobre hábitos, nuances culturais e dinâmicas relacionais.",
+                   "Cult is our AI tutor of Brazilian culture and hyperlocality. She is the main contact point of the ecosystem, guiding members through conversations about habits, cultural nuances, and relational dynamics."
                 )}
               </p>
             </div>
@@ -227,7 +227,7 @@ const EcossistemaRelacional = () => {
         <p>
           Ecossistema relacional, relational ecosystem, infraestrutura relacional, integração relacional,
           Feltrip ecossistema, plataforma integração cultural, sistema intercultural Brasil,
-          tecnologia integração cultural, Boba Cult AI, MRP metodologia.
+          tecnologia integração cultural, Cult AI, MRP metodologia.
         </p>
       </div>
     </MainLayout>

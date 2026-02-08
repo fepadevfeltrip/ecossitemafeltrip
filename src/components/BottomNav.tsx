@@ -9,7 +9,7 @@ export const BottomNav = ({ activeTab, onTabChange }: BottomNavProps) => {
   const tabs = [
     { id: "home" as const, icon: Home, label: "Início" },
     { id: "map" as const, icon: Map, label: "Diário de Bordo" },
-    { id: "ai" as const, icon: Sparkles, label: "Minha IA" },
+    { id: "ai" as const, icon: Sparkles, label: "Cult AI" },
   ];
 
   return (

@@ -28,7 +28,7 @@ export const HomeTab = ({ onBack }: HomeTabProps) => {
     },
     {
       icon: Brain,
-      title: "IA Poética (Boba)",
+      title: "IA Poética (Cult)",
       description: "Seu assistente de Cartografia Relacional",
       color: "text-secondary",
     },

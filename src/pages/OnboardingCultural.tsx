@@ -69,8 +69,8 @@ const OnboardingCultural = () => {
       icon: MessageCircle,
       title: t("Suporte Contínuo", "Ongoing Support"),
       description: t(
-        "Acesso à IA Boba Cult, concierge intercultural e suporte humano quando necessário.",
-        "Access to Boba Cult AI, intercultural concierge, and human support when needed."
+        "Acesso à Cult AI, concierge intercultural e suporte humano quando necessário.",
+        "Access to Cult AI, intercultural concierge, and human support when needed."
       ),
     },
   ];

@@ -23,12 +23,12 @@ const Conteudos = () => {
     },
     {
       icon: Mic,
-      title: t("Boba Cult AI", "Boba Cult AI"),
+      title: t("Cult AI", "Cult AI"),
       description: t(
         "Converse com nossa IA tutora de cultura brasileira. Tire dúvidas sobre hábitos, expressões, e nuances culturais em tempo real.",
         "Chat with our Brazilian culture AI tutor. Ask questions about habits, expressions, and cultural nuances in real time."
       ),
-      cta: t("Falar com Boba", "Talk to Boba"),
+      cta: t("Falar com Cult", "Talk to Cult"),
       href: BOBA_ASSISTANT_LINK,
       external: true,
     },

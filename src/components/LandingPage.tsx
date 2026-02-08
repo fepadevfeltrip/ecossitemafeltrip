@@ -30,13 +30,13 @@ export const LandingPage = () => {
   const howItWorksSteps = [
     {
       number: "1",
-      title: "Boba Cult AI",
+      title: "Cult AI",
       description: t(
         "Nossa IA tutora de cultura brasileira e hyperlocalidade interage com membros da equipe sobre hábitos cotidianos, nuances culturais, estilos de comunicação e dinâmicas relacionais — apoiando a adaptação cultural e o bem-estar relacional através de conversas e orientações.",
         "Our Brazilian culture and hyperlocal AI tutor interacts with team members around everyday habits, cultural nuances, communication styles, and relational dynamics — supporting cultural adaptation and relational well-being through conversation and guidance.",
       ),
       image: bobaDeboas,
-      imageAlt: t("Boba Cult - IA tutora de cultura brasileira para treinamento intercultural", "Boba Cult - Brazilian culture AI tutor for cross-cultural training"),
+      imageAlt: t("Cult AI - IA tutora de cultura brasileira para treinamento intercultural", "Cult AI - Brazilian culture AI tutor for cross-cultural training"),
     },
     {
       number: "2",
@@ -238,9 +238,9 @@ export const LandingPage = () => {
                   >
                     <Button
                       className="mt-2 bg-energy hover:bg-energy/90 text-white"
-                      aria-label={t("Falar com Boba", "Talk to Boba")}
+                      aria-label={t("Falar com Cult", "Talk to Cult")}
                     >
-                      {t("Falar com Boba", "Talk to Boba")}
+                      {t("Falar com Cult", "Talk to Cult")}
                     </Button>
                   </a>
                 )}
