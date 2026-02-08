@@ -20,7 +20,7 @@ import justicaGlobalLogo from "@/assets/justica-global-logo.png";
 import nomadWorldLogo from "@/assets/nomad-world-logo.png";
 
 const WHATSAPP_LINK = "https://wa.me/message/BG24GCPKNF6KG1";
-const BOBA_ASSISTANT_LINK = "https://boba-feltrip-assistant-690453797160.us-west1.run.app";
+const CULT_ASSISTANT_LINK = "https://cult.feltrip.com";
 
 export const LandingPageNew = () => {
   const { t } = useLanguage();
@@ -42,7 +42,7 @@ export const LandingPageNew = () => {
         "Our Brazilian culture and hyperlocality AI tutor interacts with ecosystem members about everyday habits, cultural nuances, communication styles, and relational dynamics, supporting cultural adaptation and relational well-being through conversations and guidance."
       ),
       image: bobaDeboas,
-      cta: { label: t("Falar com Cult", "Talk to Cult"), href: BOBA_ASSISTANT_LINK, external: true },
+      cta: { label: t("Falar com Cult", "Talk to Cult"), href: CULT_ASSISTANT_LINK, external: true },
     },
     {
       icon: MessageSquare,
