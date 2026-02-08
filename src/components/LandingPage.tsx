@@ -18,7 +18,7 @@ import justicaGlobalLogo from "@/assets/justica-global-logo.png";
 import nomadWorldLogo from "@/assets/nomad-world-logo.png";
 
 const WHATSAPP_LINK = "https://wa.me/message/BG24GCPKNF6KG1";
-const BOBA_ASSISTANT_LINK = "https://boba-feltrip-assistant-690453797160.us-west1.run.app";
+const CULT_ASSISTANT_LINK = "https://cult.feltrip.com";
 
 export const LandingPage = () => {
   const { t } = useLanguage();
@@ -232,7 +232,7 @@ export const LandingPage = () => {
                 <p className="text-muted-foreground leading-relaxed">{step.description}</p>
                 {index === 0 && (
                   <a
-                    href={BOBA_ASSISTANT_LINK}
+                    href={CULT_ASSISTANT_LINK}
                     target="_blank"
                     rel="noopener noreferrer"
                   >

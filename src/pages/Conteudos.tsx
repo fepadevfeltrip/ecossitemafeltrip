@@ -4,7 +4,7 @@ import { ArrowRight, BookOpen, Video, Mic, FileText, ExternalLink } from "lucide
 import { MainLayout } from "@/components/layout/MainLayout";
 
 const CULTURE_GUIDE_LINK = "https://cultureguide.feltrip.com";
-const BOBA_ASSISTANT_LINK = "https://boba-feltrip-assistant-690453797160.us-west1.run.app";
+const CULT_ASSISTANT_LINK = "https://cult.feltrip.com";
 
 const Conteudos = () => {
   const { t } = useLanguage();
@@ -29,7 +29,7 @@ const Conteudos = () => {
         "Chat with our Brazilian culture AI tutor. Ask questions about habits, expressions, and cultural nuances in real time."
       ),
       cta: t("Falar com Cult", "Talk to Cult"),
-      href: BOBA_ASSISTANT_LINK,
+      href: CULT_ASSISTANT_LINK,
       external: true,
     },
     {
