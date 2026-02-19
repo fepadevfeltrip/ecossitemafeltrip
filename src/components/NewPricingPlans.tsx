@@ -1,4 +1,4 @@
-import { Sparkles, ArrowRight } from "lucide-react";
+import { Sparkles, ArrowRight, Check } from "lucide-react";
 import { Card } from "@/components/ui/card";
 import { Button } from "@/components/ui/button";
 import { useLanguage } from "@/hooks/useLanguage";
@@ -36,6 +36,20 @@ export const NewPricingPlans = () => {
                   "The intelligence that translates your vibe into a destination. Your personal and editable cartography."
                 )}"
               </p>
+            </div>
+
+            <div className="space-y-2.5">
+              {[
+                t("Calibragem MRP: Questionário completo dos 5 pilares (Corpo, Identidade, Relações, Espaço, Território)", "MRP Calibration: Complete questionnaire of the 5 pillars (Body, Identity, Relations, Space, Territory)"),
+                t("Proposição Poética: Diagnóstico da sua frequência atual gerado por IA", "Poetic Proposition: AI-generated diagnosis of your current frequency"),
+                t("Mapa Editável: Salve e personalize suas gemas de Carnaval (80 RJ + 80 SP)", "Editable Map: Save and customize your Carnival gems (80 RJ + 80 SP)"),
+                t("Acesso VIP: Prioridade no recebimento de novas rotas urbanas pós-Carnaval", "VIP Access: Priority for receiving new post-Carnival urban routes"),
+              ].map((benefit, i) => (
+                <div key={i} className="flex items-start gap-2.5">
+                  <Check className="h-4 w-4 text-green-500 shrink-0 mt-0.5" />
+                  <span className="text-sm text-foreground">{benefit}</span>
+                </div>
+              ))}
             </div>
 
             <p className="text-xs text-muted-foreground bg-muted/50 rounded-lg p-3 italic">
