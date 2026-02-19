@@ -115,12 +115,6 @@ export const LandingPageNew = () => {
               )}
             </h2>
 
-            <p className="text-lg text-muted-foreground leading-relaxed">
-              {t(
-                "Seja para quem está chegando no Brasil ou para quem precisa gerenciar equipes interestaduais ou internacionais. Com tecnologia, nós fazemos essa ponte acontecer com clareza, prática e sem complicação.",
-                "Whether for those arriving in Brazil or for those who need to manage interstate or international teams. With technology, we make this bridge happen with clarity, practice, and no complications."
-              )}
-            </p>
 
             <p className="text-base text-foreground">
               {t(
