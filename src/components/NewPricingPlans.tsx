@@ -14,7 +14,7 @@ export const NewPricingPlans = () => {
     <div className="space-y-10">
       <div className="text-center space-y-3">
         <h2 className="text-2xl md:text-3xl font-bold text-foreground">
-          🌍 {t("Escolha sua forma de habitar a cidade", "Choose your way to inhabit the city")}
+          🌍 {t("Escolha sua forma de habitar São Paulo, Rio de Janeiro e Florianópolis.", "Choose your way to inhabit São Paulo, Rio de Janeiro and Florianópolis.")}
         </h2>
       </div>
 
