@@ -61,8 +61,8 @@ export const LandingPageNew = () => {
             <div className="relative inline-block my-4 md:my-6 py-6 md:py-8 px-4 md:px-8">
               <h1 className="text-4xl md:text-5xl lg:text-6xl font-bold text-foreground leading-tight relative z-10">
                 {t(
-                  "Ajudamos pessoas, empresas, comunidades e eventos a se integrarem entre culturas.",
-                  "We help people, companies, communities and events integrate across cultures."
+                  "Ajudamos pessoas, empresas e eventos a se integrarem entre culturas.",
+                  "We help people, companies and events integrate across cultures."
                 )}
               </h1>
               {/* Hand-drawn circle SVG */}
