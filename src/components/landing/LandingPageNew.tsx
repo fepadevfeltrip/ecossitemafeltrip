@@ -116,12 +116,6 @@ export const LandingPageNew = () => {
             </h2>
 
 
-            <p className="text-base text-foreground">
-              {t(
-                "Com método, tecnologia e suporte humano, fazemos essa adaptação acontecer de forma prática, simples e sustentável.",
-                "With method, technology, and human support, we make this adaptation happen in a practical, simple, and sustainable way."
-              )}
-            </p>
 
             <div className="flex flex-col sm:flex-row justify-center gap-4 pt-4">
               <Link to="/para-empresa">
