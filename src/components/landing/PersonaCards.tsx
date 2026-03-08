@@ -18,7 +18,8 @@ export const PersonaCards = () => {
         t("Novo ciclo", "New chapter"),
         t("Nova vida", "New life"),
       ],
-      href: "/para-voce",
+      href: "https://cult.feltrip.com",
+      external: true,
       cta: t("Começar agora", "Start now"),
     },
     {
