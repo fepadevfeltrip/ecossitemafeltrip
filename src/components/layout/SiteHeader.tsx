@@ -24,7 +24,7 @@ export const SiteHeader = () => {
 
   const navItems = [
     { label: t("Para Empresas", "For Companies"), href: "/para-empresa", isPage: true },
-    { label: t("Para Você", "For You"), href: "/para-voce", isPage: true },
+    { label: t("Para Você", "For You"), href: "https://cult.feltrip.com", isExternal: true },
     { label: t("Cases", "Cases"), href: "/quem-somos", isPage: true },
     { label: t("Newsletter", "Newsletter"), href: "https://thebobamanifesto.substack.com", isExternal: true },
   ];

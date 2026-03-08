@@ -4,7 +4,7 @@ import { TooltipProvider } from "@/components/ui/tooltip";
 import { QueryClient, QueryClientProvider } from "@tanstack/react-query";
 import { BrowserRouter, Routes, Route } from "react-router-dom";
 import Index from "./pages/Index";
-import ParaVoce from "./pages/ParaVoce";
+
 import ParaEmpresa from "./pages/ParaEmpresa";
 import QuemSomos from "./pages/QuemSomos";
 import Conteudos from "./pages/Conteudos";
@@ -33,7 +33,7 @@ const App = () => {
             <Sonner />
             <Routes>
               <Route path="/" element={<Index />} />
-              <Route path="/para-voce" element={<ParaVoce />} />
+              
               <Route path="/para-empresa" element={<ParaEmpresa />} />
               <Route path="/quem-somos" element={<QuemSomos />} />
               <Route path="/conteudos" element={<Conteudos />} />

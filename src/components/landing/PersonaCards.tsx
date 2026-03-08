@@ -18,7 +18,8 @@ export const PersonaCards = () => {
         t("Novo ciclo", "New chapter"),
         t("Nova vida", "New life"),
       ],
-      href: "/para-voce",
+      href: "https://cult.feltrip.com",
+      external: true,
       cta: t("Começar agora", "Start now"),
     },
     {
@@ -45,7 +46,8 @@ export const PersonaCards = () => {
         "Local integration",
         "Expert support",
       ],
-      href: "/para-voce",
+      href: "https://cult.feltrip.com",
+      external: true,
       cta: t("Discover more", "Discover more"),
     },
   ];
@@ -60,32 +62,40 @@ export const PersonaCards = () => {
         </div>
 
         <div className="grid grid-cols-1 md:grid-cols-3 gap-6 max-w-5xl mx-auto">
-          {personas.map((persona, index) => (
-            <Link
-              key={index}
-              to={persona.href}
-              className="group p-8 rounded-2xl border border-border/50 bg-card hover:border-primary/30 hover:shadow-lg transition-all duration-300"
-            >
-              <persona.icon className="h-10 w-10 text-primary mb-4" />
-              <h3 className="text-xl font-bold text-foreground mb-2">
-                {persona.title}
-              </h3>
-              <p className="text-muted-foreground mb-4 font-medium">
-                {persona.question}
-              </p>
-              <ul className="space-y-2 mb-6">
-                {persona.points.map((point, i) => (
-                  <li key={i} className="text-sm text-muted-foreground flex items-center gap-2">
-                    <span className="w-1.5 h-1.5 rounded-full bg-primary shrink-0" />
-                    {point}
-                  </li>
-                ))}
-              </ul>
-              <span className="text-primary font-medium text-sm group-hover:underline">
-                {persona.cta} →
-              </span>
-            </Link>
-          ))}
+          {personas.map((persona, index) => {
+            const cardContent = (
+              <>
+                <persona.icon className="h-10 w-10 text-primary mb-4" />
+                <h3 className="text-xl font-bold text-foreground mb-2">
+                  {persona.title}
+                </h3>
+                <p className="text-muted-foreground mb-4 font-medium">
+                  {persona.question}
+                </p>
+                <ul className="space-y-2 mb-6">
+                  {persona.points.map((point, i) => (
+                    <li key={i} className="text-sm text-muted-foreground flex items-center gap-2">
+                      <span className="w-1.5 h-1.5 rounded-full bg-primary shrink-0" />
+                      {point}
+                    </li>
+                  ))}
+                </ul>
+                <span className="text-primary font-medium text-sm group-hover:underline">
+                  {persona.cta} →
+                </span>
+              </>
+            );
+            const className = "group p-8 rounded-2xl border border-border/50 bg-card hover:border-primary/30 hover:shadow-lg transition-all duration-300 block";
+            return persona.external ? (
+              <a key={index} href={persona.href} target="_blank" rel="noopener noreferrer" className={className}>
+                {cardContent}
+              </a>
+            ) : (
+              <Link key={index} to={persona.href} className={className}>
+                {cardContent}
+              </Link>
+            );
+          })}
         </div>
       </div>
     </section>
