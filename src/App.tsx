@@ -33,7 +33,7 @@ const App = () => {
             <Sonner />
             <Routes>
               <Route path="/" element={<Index />} />
-              <Route path="/para-voce" element={<ParaVoce />} />
+              
               <Route path="/para-empresa" element={<ParaEmpresa />} />
               <Route path="/quem-somos" element={<QuemSomos />} />
               <Route path="/conteudos" element={<Conteudos />} />
