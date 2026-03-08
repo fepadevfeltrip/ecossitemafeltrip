@@ -283,13 +283,18 @@ const ParaEmpresa = () => {
                 className="p-6 rounded-2xl border border-border/50 bg-background space-y-4"
               >
                 {solution.image && (
-                  <div className="aspect-video rounded-xl overflow-hidden mb-4">
+                  <div className="aspect-video rounded-xl overflow-hidden mb-4 relative">
                     <img
                       src={solution.image}
                       alt={solution.title}
                       className="w-full h-full object-cover"
                       loading="lazy"
                     />
+                    {solution.watermark && (
+                      <span className="absolute bottom-2 right-2 text-xs text-primary-foreground/60 bg-foreground/30 px-2 py-0.5 rounded backdrop-blur-sm">
+                        📷 {solution.watermark}
+                      </span>
+                    )}
                   </div>
                 )}
                 <h3 className="text-xl font-bold text-foreground">{solution.title}</h3>
