@@ -23,11 +23,10 @@ export const SiteHeader = () => {
   const location = useLocation();
 
   const navItems = [
-    { label: t("Para você", "For You"), href: "/para-voce", isPage: true },
-    { label: t("Para sua empresa", "For Companies"), href: "/para-empresa", isPage: true },
-    { label: t("Quem somos", "About Us"), href: "/quem-somos", isPage: true },
+    { label: t("Para Empresas", "For Companies"), href: "/para-empresa", isPage: true },
+    { label: t("Para Você", "For You"), href: "/para-voce", isPage: true },
+    { label: t("Cases", "Cases"), href: "/quem-somos", isPage: true },
     { label: t("Newsletter", "Newsletter"), href: "https://thebobamanifesto.substack.com", isExternal: true },
-    { label: t("Seja parceiro", "Become a Partner"), href: WHATSAPP_LINK, isExternal: true },
   ];
 
   const solutionsItems = [
