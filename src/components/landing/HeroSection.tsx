@@ -52,15 +52,15 @@ export const HeroSection = () => {
           </div>
 
           <div className="flex flex-col sm:flex-row justify-center gap-4 pt-6">
-            <Link to="/para-voce">
+            <a href="https://cult.feltrip.com" target="_blank" rel="noopener noreferrer">
               <Button
                 size="lg"
                 className="text-lg px-8 py-6 bg-energy hover:bg-energy/90 text-energy-foreground shadow-lg gap-2 w-full sm:w-auto"
               >
-                {t("Descubra sua cidade", "Discover your city")}
+                {t("Descubra lugares perfeitos para você", "Discover perfect places for you")}
                 <ArrowRight className="h-5 w-5" />
               </Button>
-            </Link>
+            </a>
             <Link to="/para-empresa">
               <Button
                 size="lg"

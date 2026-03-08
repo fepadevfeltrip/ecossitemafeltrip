@@ -46,7 +46,8 @@ export const PersonaCards = () => {
         "Local integration",
         "Expert support",
       ],
-      href: "/para-voce",
+      href: "https://cult.feltrip.com",
+      external: true,
       cta: t("Discover more", "Discover more"),
     },
   ];
