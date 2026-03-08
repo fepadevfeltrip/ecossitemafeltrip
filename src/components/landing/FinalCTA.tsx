@@ -37,7 +37,7 @@ export const FinalCTA = () => {
             <Button
               size="lg"
               variant="outline"
-              className="text-lg px-8 py-6 border-primary-foreground/30 hover:border-primary-foreground text-primary-foreground hover:bg-primary-foreground/10 w-full sm:w-auto"
+              className="text-lg px-8 py-6 border-2 border-primary-foreground text-primary-foreground bg-primary-foreground/10 hover:bg-primary-foreground/20 w-full sm:w-auto font-semibold"
               onClick={() => window.open(WHATSAPP_LINK, "_blank")}
             >
               {t("Agendar demo", "Book demo")}
