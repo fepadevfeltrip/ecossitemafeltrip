@@ -1,6 +1,6 @@
 import { Button } from "@/components/ui/button";
 import { useLanguage } from "@/hooks/useLanguage";
-import { ArrowRight, Check, Building2, BarChart3, Shield, Users, Bot, LayoutDashboard, Compass, MessageSquare, Briefcase } from "lucide-react";
+import { ArrowRight, Check, Building2, BarChart3, Users, Bot, Compass, MessageSquare, Briefcase, TrendingDown, TrendingUp, MapPin } from "lucide-react";
 import { MainLayout } from "@/components/layout/MainLayout";
 import { B2BPricingTable } from "@/components/B2BPricingTable";
 
@@ -17,18 +17,21 @@ const WHATSAPP_LINK = "https://wa.me/message/BG24GCPKNF6KG1";
 const ParaEmpresa = () => {
   const { t } = useLanguage();
 
-  const painPoints = [
+  const challenges = [
     {
-      problem: t("Sem adaptação cultural", "Without cultural adaptation"),
-      result: t("não existe permanência.", "there is no permanence."),
+      icon: TrendingDown,
+      problem: t("Times distribuídos sem conexão cultural", "Distributed teams without cultural connection"),
+      impact: t("Baixa produtividade e alto turnover", "Low productivity and high turnover"),
     },
     {
-      problem: t("Sem permanência", "Without permanence"),
-      result: t("não existe retenção.", "there is no retention."),
+      icon: MapPin,
+      problem: t("Colaboradores relocados sem suporte local", "Relocated employees without local support"),
+      impact: t("Desengajamento nos primeiros 90 dias", "Disengagement in the first 90 days"),
     },
     {
-      problem: t("Sem retenção", "Without retention"),
-      result: t("não existe resultado.", "there are no results."),
+      icon: Users,
+      problem: t("Equipes híbridas BR + internacional", "Hybrid BR + international teams"),
+      impact: t("Ruídos de comunicação e conflitos culturais", "Communication noise and cultural conflicts"),
     },
   ];
 
@@ -37,37 +40,33 @@ const ParaEmpresa = () => {
       number: "1",
       title: t("Diagnóstico", "Diagnosis"),
       description: t(
-        "Entendemos o que o seu time precisa através do Mapa de Presença Relacional.",
-        "We understand what your team needs through the Relational Presence Map."
+        "Mapeamos a realidade cultural do seu time com o MRP™ — onde estão, de onde vieram, o que precisam.",
+        "We map your team's cultural reality with MRP™ — where they are, where they came from, what they need."
       ),
-      icon: BarChart3,
     },
     {
       number: "2",
-      title: t("Plano personalizado", "Personalized plan"),
+      title: t("Plano sob medida", "Custom plan"),
       description: t(
-        "Criamos um plano simples e direto para as necessidades da sua empresa.",
-        "We create a simple and direct plan for your company's needs."
+        "Criamos uma estratégia de integração cultural específica para os desafios da sua empresa.",
+        "We create a cultural integration strategy specific to your company's challenges."
       ),
-      icon: Building2,
     },
     {
       number: "3",
-      title: t("Implementamos", "We implement"),
+      title: t("Implementação", "Implementation"),
       description: t(
-        "Treinamentos e acompanhamento de perto para garantir a integração.",
-        "Training and close monitoring to ensure integration."
+        "Onboarding cultural, Cult AI, tutores locais e métricas de adaptação em tempo real.",
+        "Cultural onboarding, Cult AI, local tutors and real-time adaptation metrics."
       ),
-      icon: Users,
     },
     {
       number: "4",
       title: t("Resultados", "Results"),
       description: t(
-        "Times mais alinhados e produtivos. Turnover reduzido.",
-        "More aligned and productive teams. Reduced turnover."
+        "Times integrados, retenção acima de 87% e colaboradores que realmente pertencem à cidade.",
+        "Integrated teams, retention above 87%, and employees who truly belong to the city."
       ),
-      icon: Shield,
     },
   ];
 
@@ -76,106 +75,162 @@ const ParaEmpresa = () => {
       icon: Bot,
       title: "Cult AI",
       subtitle: t(
-        "Tutora de cultura brasileira e hyperlocalidade para empresas e eventos",
-        "Brazilian culture and hyperlocality tutor for companies and events"
+        "Tutora de cultura e hyperlocalidade para sua empresa",
+        "Culture and hyperlocality tutor for your company"
       ),
       description: t(
-        "Seja para integrar equipes internacionais no dia a dia corporativo ou para acolher participantes de eventos e conferências, a Cult AI orienta sobre hábitos culturais, nuances de comunicação e dinâmicas relacionais — garantindo uma experiência autêntica e fluida para sua empresa ou evento.",
-        "Whether integrating international teams into daily corporate life or welcoming participants at events and conferences, Cult AI guides on cultural habits, communication nuances, and relational dynamics — ensuring an authentic and seamless experience for your company or event."
+        "IA que orienta seus colaboradores sobre hábitos culturais, comunicação local e dinâmicas da cidade — seja um paulistano no Rio ou um expatriado em Floripa.",
+        "AI that guides your employees on cultural habits, local communication and city dynamics — whether a paulistano in Rio or an expat in Floripa."
       ),
       image: bobaDeboas,
     },
     {
       icon: MessageSquare,
-      title: t("Agente de Acolhimento Cultural Personalizado", "Personalized Cultural Welcome Agent"),
+      title: t("Agente Cultural Personalizado", "Custom Cultural Agent"),
       subtitle: t(
-        "IA de hospitalidade cultural sob medida para sua empresa ou evento",
-        "Custom cultural hospitality AI for your company or event"
+        "IA com a cara da sua marca",
+        "AI with your brand's identity"
       ),
       description: t(
-        "Crie um agente com a cara da sua marca — nome, tom de voz, identidade visual e conteúdos locais — para acolher colaboradores em processos de relocação ou surpreender participantes de eventos com orientações culturais personalizadas e relevantes.",
-        "Create an agent with your brand's identity — name, tone of voice, visual style, and local content — to welcome employees during relocation or delight event attendees with personalized and relevant cultural guidance."
+        "Crie um agente com nome, tom de voz e conteúdos locais da sua empresa para acolher colaboradores em relocação ou participantes de eventos.",
+        "Create an agent with your company's name, tone and local content to welcome relocated employees or event attendees."
       ),
       image: agentePersonalizado,
     },
     {
-      icon: LayoutDashboard,
-      title: t("Integração Cultural Monitorada", "Monitored Cultural Integration"),
-      subtitle: t("Em tempo real", "In real time"),
+      icon: BarChart3,
+      title: t("Painel de Integração", "Integration Dashboard"),
+      subtitle: t("Métricas em tempo real", "Real-time metrics"),
       description: t(
-        "Diários de experiência, mapas de integração, alertas de segurança e painel para acompanhar adaptação cultural e riscos psicossociais.",
-        "Experience diaries, integration maps, safety alerts, and dashboard to track cultural adaptation and psychosocial risks."
+        "Diários de experiência, mapas de integração, alertas de segurança e painel de RH para acompanhar adaptação cultural e riscos psicossociais.",
+        "Experience diaries, integration maps, safety alerts and HR dashboard to track cultural adaptation and psychosocial risks."
       ),
       image: metricsAnalysis,
     },
     {
       icon: Users,
-      title: t("Tutor Credenciado Feltrip", "Feltrip Certified Tutor"),
-      subtitle: t("Concierge intercultural e poliglota", "Intercultural and polyglot concierge"),
+      title: t("Tutor Local Credenciado", "Certified Local Tutor"),
+      subtitle: t("Concierge intercultural e poliglota", "Intercultural polyglot concierge"),
       description: t(
-        "Integração real à cidade, idioma, serviços e cultura local com concierge intercultural para equipes corporativas.",
-        "Real integration to the city, language, services, and local culture with intercultural concierge for corporate teams."
+        "Integração real à cidade com concierge que conhece os bairros, serviços, idioma e cultura local de SP, Rio ou Floripa.",
+        "Real city integration with a concierge who knows the neighborhoods, services, language and local culture of SP, Rio or Floripa."
       ),
       image: tutorCredenciado,
     },
     {
       icon: Compass,
-      title: t("Experiência Guiada", "Guided Experience"),
-      subtitle: t("Roteiros culturais e vivências locais", "Cultural itineraries and local experiences"),
+      title: t("Experiências Guiadas", "Guided Experiences"),
+      subtitle: t("Team building com raiz local", "Team building with local roots"),
       description: t(
-        "Roteiros culturais e experiências em grupo que aceleram a adaptação cultural e fortalecem a integração com a equipe.",
-        "Cultural itineraries and group experiences that accelerate cultural adaptation and strengthen team integration."
+        "Roteiros culturais e vivências em grupo que aceleram adaptação e fortalecem conexão entre times distribuídos.",
+        "Cultural itineraries and group experiences that accelerate adaptation and strengthen connection between distributed teams."
       ),
       image: caminhadaGrupo,
     },
     {
       icon: Briefcase,
-      title: t("Consultoria Personalizada", "Personalized Consulting"),
-      subtitle: t("Solução feita para o seu caso", "Solution made for your case"),
+      title: t("Consultoria Estratégica", "Strategic Consulting"),
+      subtitle: t("Para casos complexos de mobilidade", "For complex mobility cases"),
       description: t(
-        "Experiências sob medida a partir de um diagnóstico relacional baseado no Mapa da Presença Relacional (MRP™).",
-        "Tailored experiences based on a relational diagnosis using the Relational Presence Map (MRP™)."
+        "Diagnóstico relacional completo com MRP™ para empresas com desafios específicos de integração cultural.",
+        "Complete relational diagnosis with MRP™ for companies with specific cultural integration challenges."
       ),
       image: escadaAzul,
     },
   ];
 
+  const results = [
+    { metric: "87%", label: t("retenção de colaboradores relocados", "retention of relocated employees") },
+    { metric: "3x", label: t("mais rápido na adaptação cultural", "faster cultural adaptation") },
+    { metric: "280+", label: t("mapas culturais criados para empresas", "cultural maps created for companies") },
+    { metric: "24h", label: t("suporte via Cult AI", "support via Cult AI") },
+  ];
+
   const benefits = [
-    t("Redução de turnover em equipes internacionais", "Reduced turnover in international teams"),
-    t("Onboarding cultural completo para novos colaboradores", "Complete cultural onboarding for new employees"),
-    t("Painel de RH com métricas de integração", "HR dashboard with integration metrics"),
-    t("Alertas de risco psicossocial em tempo real", "Real-time psychosocial risk alerts"),
-    t("Curadoria de prestadores de serviços locais", "Local service provider curation"),
+    t("Onboarding cultural para brasileiros e estrangeiros", "Cultural onboarding for Brazilians and foreigners"),
+    t("Suporte para times distribuídos pelo Brasil", "Support for teams distributed across Brazil"),
+    t("Métricas de integração e alertas para RH", "Integration metrics and HR alerts"),
+    t("Curadoria de serviços locais verificados", "Curated verified local services"),
     t("Experiências guiadas para team building", "Guided experiences for team building"),
+    t("Consultoria para mobilidade nacional e internacional", "Consulting for national and international mobility"),
   ];
 
   return (
     <MainLayout>
       {/* Hero */}
-      <section className="py-20 md:py-28 bg-gradient-to-b from-muted/50 to-background">
+      <section className="py-20 md:py-28 bg-gradient-to-b from-primary/5 to-background">
         <div className="container px-4">
           <div className="max-w-3xl mx-auto text-center space-y-6">
+            <span className="inline-flex items-center gap-2 px-4 py-2 bg-primary/10 text-primary text-sm font-medium rounded-full">
+              {t("São Paulo · Rio de Janeiro · Florianópolis", "São Paulo · Rio de Janeiro · Florianópolis")}
+            </span>
             <h1 className="text-4xl md:text-5xl lg:text-6xl font-bold text-foreground leading-tight">
-              {t("Para sua empresa", "For your company")}
-            </h1>
-            <p className="text-xl text-muted-foreground">
               {t(
-                "Estrutura intercultural para empresas, equipes globais e ambientes híbridos.",
-                "Intercultural structure for companies, global teams, and hybrid environments."
+                "Seu time distribuído precisa pertencer à cidade.",
+                "Your distributed team needs to belong to the city."
+              )}
+            </h1>
+            <p className="text-xl text-muted-foreground max-w-2xl mx-auto">
+              {t(
+                "Onboarding cultural, suporte local e métricas de adaptação para empresas brasileiras com times em movimento.",
+                "Cultural onboarding, local support and adaptation metrics for Brazilian companies with teams on the move."
+              )}
+            </p>
+            <div className="flex flex-col sm:flex-row justify-center gap-4 pt-4">
+              <a href={WHATSAPP_LINK} target="_blank" rel="noopener noreferrer">
+                <Button size="lg" className="text-lg px-8 py-6 bg-energy hover:bg-energy/90 text-energy-foreground shadow-lg gap-2 w-full sm:w-auto">
+                  {t("Agendar demo", "Book demo")}
+                  <ArrowRight className="h-5 w-5" />
+                </Button>
+              </a>
+              <Button
+                size="lg"
+                variant="outline"
+                className="text-lg px-8 py-6 border-primary/30 hover:border-primary"
+                onClick={() => document.getElementById("planos")?.scrollIntoView({ behavior: "smooth" })}
+              >
+                {t("Ver planos", "See plans")}
+              </Button>
+            </div>
+          </div>
+        </div>
+      </section>
+
+      {/* Challenges */}
+      <section className="py-16 md:py-24 bg-foreground text-primary-foreground">
+        <div className="container px-4">
+          <div className="max-w-4xl mx-auto">
+            <h2 className="text-2xl md:text-3xl font-bold text-center mb-12">
+              {t("Sua empresa enfrenta isso?", "Does your company face this?")}
+            </h2>
+            <div className="grid grid-cols-1 md:grid-cols-3 gap-6">
+              {challenges.map((item, index) => (
+                <div key={index} className="p-6 rounded-2xl bg-primary-foreground/5 border border-primary-foreground/10 space-y-3">
+                  <item.icon className="h-8 w-8 text-energy" />
+                  <p className="font-bold text-lg">{item.problem}</p>
+                  <p className="text-primary-foreground/70 text-sm">{item.impact}</p>
+                </div>
+              ))}
+            </div>
+            <p className="text-center mt-10 text-xl font-medium text-energy">
+              {t(
+                "Sem adaptação cultural → sem pertencimento → sem resultado.",
+                "Without cultural adaptation → no belonging → no results."
               )}
             </p>
           </div>
         </div>
       </section>
 
-      {/* Pain Points */}
-      <section className="py-16 md:py-24 bg-foreground text-background">
+      {/* Results metrics */}
+      <section className="py-12 border-b border-border/30 bg-muted/20">
         <div className="container px-4">
-          <div className="max-w-3xl mx-auto text-center space-y-8">
-            {painPoints.map((point, index) => (
-              <p key={index} className="text-2xl md:text-3xl font-medium">
-                <span className="text-energy">{point.problem}</span>, {point.result}
-              </p>
+          <div className="flex flex-wrap justify-center gap-8 md:gap-16">
+            {results.map((item, index) => (
+              <div key={index} className="text-center">
+                <p className="text-3xl md:text-4xl font-bold text-primary">{item.metric}</p>
+                <p className="text-sm text-muted-foreground mt-1">{item.label}</p>
+              </div>
             ))}
           </div>
         </div>
@@ -184,25 +239,25 @@ const ParaEmpresa = () => {
       {/* Steps */}
       <section className="py-16 md:py-24">
         <div className="container px-4">
-          <h2 className="text-3xl font-bold text-foreground text-center mb-12">
+          <h2 className="text-3xl font-bold text-foreground text-center mb-4">
             {t("Como funciona", "How it works")}
           </h2>
-          <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-4 gap-8">
-            {steps.map((step, index) => {
-              const Icon = step.icon;
-              return (
-                <div key={index} className="text-center space-y-4">
-                  <div className="w-16 h-16 rounded-full bg-primary/10 flex items-center justify-center mx-auto">
-                    <Icon className="h-8 w-8 text-primary" />
-                  </div>
-                  <div className="w-10 h-10 rounded-full bg-energy text-white text-lg font-bold flex items-center justify-center mx-auto -mt-8 border-4 border-background">
-                    {step.number}
-                  </div>
-                  <h3 className="text-xl font-bold text-foreground">{step.title}</h3>
-                  <p className="text-muted-foreground">{step.description}</p>
+          <p className="text-muted-foreground text-center mb-12 max-w-xl mx-auto">
+            {t(
+              "Do diagnóstico ao resultado em 4 etapas.",
+              "From diagnosis to results in 4 steps."
+            )}
+          </p>
+          <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-4 gap-8 max-w-5xl mx-auto">
+            {steps.map((step, index) => (
+              <div key={index} className="text-center space-y-3">
+                <div className="w-12 h-12 rounded-full bg-energy text-energy-foreground text-xl font-bold flex items-center justify-center mx-auto">
+                  {step.number}
                 </div>
-              );
-            })}
+                <h3 className="text-lg font-bold text-foreground">{step.title}</h3>
+                <p className="text-sm text-muted-foreground">{step.description}</p>
+              </div>
+            ))}
           </div>
         </div>
       </section>
@@ -215,45 +270,38 @@ const ParaEmpresa = () => {
           </h2>
           <p className="text-lg text-muted-foreground text-center mb-12 max-w-2xl mx-auto">
             {t(
-              "Prepare sua empresa para trabalhar com qualquer cultura - nacional ou internacional.",
-              "Prepare your company to work with any culture - national or international."
+              "Para times distribuídos pelo Brasil, equipes híbridas e mobilidade nacional ou internacional.",
+              "For teams distributed across Brazil, hybrid teams and national or international mobility."
             )}
           </p>
-          
+
           <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-6">
-            {solutions.map((solution, index) => {
-              const Icon = solution.icon;
-              return (
-                <div
-                  key={index}
-                  className="p-6 rounded-2xl border border-border/50 bg-background space-y-4"
-                >
-                  {solution.image ? (
-                    <div className="aspect-video rounded-xl overflow-hidden mb-4">
-                      <img
-                        src={solution.image}
-                        alt={solution.title}
-                        className="w-full h-full object-cover"
-                        loading="lazy"
-                      />
-                    </div>
-                  ) : (
-                    <div className="p-3 rounded-xl bg-energy/10 w-fit">
-                      <Icon className="h-6 w-6 text-energy" />
-                    </div>
-                  )}
-                  <h3 className="text-xl font-bold text-foreground">{solution.title}</h3>
-                  <p className="text-sm text-primary font-medium">{solution.subtitle}</p>
-                  <p className="text-muted-foreground text-sm">{solution.description}</p>
-                </div>
-              );
-            })}
+            {solutions.map((solution, index) => (
+              <div
+                key={index}
+                className="p-6 rounded-2xl border border-border/50 bg-background space-y-4"
+              >
+                {solution.image && (
+                  <div className="aspect-video rounded-xl overflow-hidden mb-4">
+                    <img
+                      src={solution.image}
+                      alt={solution.title}
+                      className="w-full h-full object-cover"
+                      loading="lazy"
+                    />
+                  </div>
+                )}
+                <h3 className="text-xl font-bold text-foreground">{solution.title}</h3>
+                <p className="text-sm text-primary font-medium">{solution.subtitle}</p>
+                <p className="text-muted-foreground text-sm">{solution.description}</p>
+              </div>
+            ))}
           </div>
 
           <div className="text-center mt-12">
             <a href={WHATSAPP_LINK} target="_blank" rel="noopener noreferrer">
               <Button size="lg" className="bg-energy hover:bg-energy/90 text-lg px-8 py-6 gap-2">
-                {t("Contrate agora", "Hire now")}
+                {t("Falar com especialista", "Talk to a specialist")}
                 <ArrowRight className="h-5 w-5" />
               </Button>
             </a>
@@ -265,16 +313,16 @@ const ParaEmpresa = () => {
       <section className="py-16 md:py-24">
         <div className="container px-4">
           <h2 className="text-3xl font-bold text-foreground text-center mb-12">
-            {t("Benefícios para sua empresa", "Benefits for your company")}
+            {t("O que sua empresa ganha", "What your company gains")}
           </h2>
           <div className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-3 gap-4 max-w-5xl mx-auto">
             {benefits.map((benefit, index) => (
               <div
                 key={index}
-                className="flex items-center gap-3 p-4 rounded-xl bg-background border border-border/50"
+                className="flex items-center gap-3 p-4 rounded-xl bg-muted/30 border border-border/50"
               >
-                <Check className="h-5 w-5 text-green-500 shrink-0" />
-                <span className="text-foreground">{benefit}</span>
+                <Check className="h-5 w-5 text-primary shrink-0" />
+                <span className="text-foreground text-sm">{benefit}</span>
               </div>
             ))}
           </div>
@@ -282,13 +330,13 @@ const ParaEmpresa = () => {
       </section>
 
       {/* Corporate Pricing */}
-      <section className="py-16 md:py-24" id="planos">
+      <section className="py-16 md:py-24 bg-muted/30" id="planos">
         <div className="container px-4">
           <B2BPricingTable />
         </div>
       </section>
 
-      {/* Video Section */}
+      {/* Video */}
       <section className="py-16 md:py-20">
         <div className="container px-4">
           <div className="max-w-4xl mx-auto">
@@ -308,36 +356,46 @@ const ParaEmpresa = () => {
         </div>
       </section>
 
-      {/* CTA */}
-      <section className="py-16 md:py-24 bg-primary/5">
+      {/* Final CTA */}
+      <section className="py-16 md:py-24 bg-primary text-primary-foreground">
         <div className="container px-4 text-center">
-          <h2 className="text-3xl font-bold text-foreground mb-4">
+          <h2 className="text-3xl md:text-4xl font-bold mb-4">
             {t(
-              "Vamos fazer sua equipe funcionar de verdade com times globais.",
-              "Let's make your team truly work with global teams."
+              "Pronto para integrar seu time de verdade?",
+              "Ready to truly integrate your team?"
             )}
           </h2>
-          <p className="text-muted-foreground mb-8">
+          <p className="text-primary-foreground/80 text-lg mb-8 max-w-xl mx-auto">
             {t(
               "Descontos progressivos para grupos de 10+ colaboradores.",
               "Progressive discounts for groups of 10+ employees."
             )}
           </p>
-          <a href={WHATSAPP_LINK} target="_blank" rel="noopener noreferrer">
-            <Button size="lg" className="bg-energy hover:bg-energy/90 text-lg px-8 py-6 gap-2">
-              {t("Solicitar orçamento", "Request a quote")}
-              <ArrowRight className="h-5 w-5" />
+          <div className="flex flex-col sm:flex-row justify-center gap-4">
+            <a href={WHATSAPP_LINK} target="_blank" rel="noopener noreferrer">
+              <Button size="lg" className="bg-energy hover:bg-energy/90 text-lg px-8 py-6 gap-2 w-full sm:w-auto">
+                {t("Agendar demo", "Book demo")}
+                <ArrowRight className="h-5 w-5" />
+              </Button>
+            </a>
+            <Button
+              size="lg"
+              variant="outline"
+              className="text-lg px-8 py-6 border-primary-foreground/30 hover:border-primary-foreground text-primary-foreground hover:bg-primary-foreground/10 w-full sm:w-auto"
+              onClick={() => document.getElementById("planos")?.scrollIntoView({ behavior: "smooth" })}
+            >
+              {t("Ver planos", "See plans")}
             </Button>
-          </a>
+          </div>
         </div>
       </section>
 
-      {/* SEO Keywords */}
+      {/* SEO */}
       <div className="sr-only">
         <p>
-          Integração intercultural empresas, mobilidade global corporativa, onboarding cultural B2B,
-          RH global mobility, treinamento intercultural equipes, adaptação cultural colaboradores,
-          expatriados Brasil empresas, integração de migrantes corporativo.
+          Adaptação cultural empresas brasileiras, times distribuídos Brasil, onboarding cultural corporativo,
+          mudança corporativa, integração de equipes, suporte local empresas, mobilidade nacional,
+          pertencimento urbano corporativo, RH mobilidade global, expatriados Brasil.
         </p>
       </div>
     </MainLayout>
