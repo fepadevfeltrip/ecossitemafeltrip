@@ -126,6 +126,7 @@ const ParaEmpresa = () => {
         "Cultural itineraries and group experiences that accelerate adaptation and strengthen connection between distributed teams."
       ),
       image: caminhadaGrupo,
+      watermark: "Julia de Souza",
     },
     {
       icon: Briefcase,
