@@ -82,7 +82,7 @@ const ParaEmpresa = () => {
                 </Button>
                 <a href={WHATSAPP_LINK} target="_blank" rel="noopener noreferrer">
                   <Button size="lg" className="text-base px-6 py-5 bg-energy hover:bg-energy/90 text-energy-foreground gap-2 w-full">
-                    {t("Falar com a Fernanda", "Talk to Fernanda")}
+                    {t("Fale com a gente", "Talk to us")}
                     <ArrowRight className="h-4 w-4" />
                   </Button>
                 </a>
