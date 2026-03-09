@@ -179,8 +179,8 @@ const ParaEmpresa = () => {
                   <div>
                     <p className="text-sm text-foreground/80 italic leading-relaxed">
                       {t(
-                        "Fizemos uma parceria para defensores de direitos humanos e foi de muita importância. Fernanda e a equipe sempre muito solicita.",
-                        "We partnered for human rights defenders and it was very important. Fernanda and the team were always very helpful."
+                        "Fizemos uma parceria para aulas de português para defensores de direitos humanos e foi de muita importância para a passagem de uma pessoa ameaçada de morte por sua atuação como líder comunitário em seu país de origem. Fernanda e a equipe sempre muito solicita e a disposição para construir um ambiente de respeito e colaboração. Certeza que seguiremos nos encontrando.",
+                        "We partnered for Portuguese classes for human rights defenders and it was very important for the passage of a person threatened with death due to their role as a community leader in their country of origin. Fernanda and the team were always very helpful and willing to build an environment of respect and collaboration. We're sure we'll keep meeting."
                       )}
                     </p>
                     <p className="text-xs text-muted-foreground mt-2 font-medium">
@@ -269,8 +269,8 @@ const ParaEmpresa = () => {
             <Quote className="h-10 w-10 text-primary/30 mx-auto" />
             <blockquote className="text-xl md:text-2xl text-foreground font-medium leading-relaxed italic">
               {t(
-                "Fizemos uma parceria para defensores de direitos humanos e foi de muita importância. Fernanda e a equipe sempre muito solicita.",
-                "We partnered for human rights defenders and it was very important. Fernanda and the team were always very helpful."
+                "Fizemos uma parceria para aulas de português para defensores de direitos humanos e foi de muita importância para a passagem de uma pessoa ameaçada de morte por sua atuação como líder comunitário em seu país de origem. Fernanda e a equipe sempre muito solicita e a disposição para construir um ambiente de respeito e colaboração. Certeza que seguiremos nos encontrando.",
+                "We partnered for Portuguese classes for human rights defenders and it was very important for the passage of a person threatened with death due to their role as a community leader in their country of origin. Fernanda and the team were always very helpful and willing to build an environment of respect and collaboration. We're sure we'll keep meeting."
               )}
             </blockquote>
             <p className="text-muted-foreground font-medium">
