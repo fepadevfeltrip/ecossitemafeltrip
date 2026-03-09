@@ -8,8 +8,7 @@ import { Badge } from "@/components/ui/badge";
 import justicaGlobalLogo from "@/assets/justica-global-logo.png";
 import coletivaDelasLogo from "@/assets/coletiva-delas-logo.png";
 import nomadWorldLogo from "@/assets/nomad-world-logo.png";
-import prefeituraRioLogo from "@/assets/prefeitura-rio-logo.png";
-import elogroupLogo from "@/assets/elogroup-logo.png";
+import koinzCapitalLogo from "@/assets/koinz-capital-logo.png";
 
 // Mascot
 import bobaHappy from "@/assets/boba-happy.png";
@@ -23,8 +22,7 @@ const ParaEmpresa = () => {
     { src: justicaGlobalLogo, alt: "Justiça Global" },
     { src: coletivaDelasLogo, alt: "ColetivA Delas" },
     { src: nomadWorldLogo, alt: "The Nomad World" },
-    { src: prefeituraRioLogo, alt: "Prefeitura do Rio de Janeiro" },
-    { src: elogroupLogo, alt: "EloGroup" },
+    { src: koinzCapitalLogo, alt: "Koinz Capital" },
   ];
 
   const steps = [
@@ -132,14 +130,13 @@ const ParaEmpresa = () => {
             <div className="rounded-2xl border border-border/50 bg-background p-6 md:p-8 space-y-5">
               <div className="flex flex-wrap gap-2">
                 <Badge variant="secondary" className="text-xs font-medium">{t("Projeto Cultural", "Cultural Project")}</Badge>
-                <Badge variant="outline" className="text-xs">{t("Prefeitura do Rio", "Rio City Hall")}</Badge>
                 <Badge variant="outline" className="text-xs">{t("Lei de Incentivo à Cultura", "Cultural Incentive Law")}</Badge>
               </div>
               <h3 className="text-xl md:text-2xl font-bold text-foreground">Narrativa Migrante</h3>
               <p className="text-muted-foreground text-sm leading-relaxed">
                 {t(
-                  "Caminhadas interculturais na Pequena África guiadas por migrantes de Angola, Venezuela e Tunísia ao lado de historiadores brasileiros. Curadoria e idealização pela Feltrip, patrocinado pela Prefeitura do Rio e EloGroup.",
-                  "Intercultural walks through Pequena África led by migrants from Angola, Venezuela and Tunisia alongside Brazilian historians. Curated and conceived by Feltrip, sponsored by Rio City Hall and EloGroup."
+                  "Caminhadas interculturais na Pequena África guiadas por migrantes de Angola, Venezuela e Tunísia ao lado de historiadores brasileiros. Idealização Feltrip, realização Coletiva Delas.",
+                  "Intercultural walks through Pequena África led by migrants from Angola, Venezuela and Tunisia alongside Brazilian historians. Idealized by Feltrip, produced by Coletiva Delas."
                 )}
               </p>
               <div className="pt-2 space-y-2">
