@@ -130,8 +130,14 @@ const ParaEmpresa = () => {
               <h3 className="text-xl font-bold text-foreground">City Intelligence — Cult AI</h3>
               <p className="text-muted-foreground text-sm leading-relaxed">
                 {t(
-                  "A Cult AI conecta pessoas com lugares através de perfil, mood e contexto cultural — não de listas genéricas. Se o seu espaço tem uma identidade própria, ele provavelmente já encontra as pessoas certas através da nossa plataforma. Oferecemos uma mentoria aprofundada de comportamento para estabelecimentos que querem entender melhor quem são seus clientes — de forma anônima, ética e contextual. Não é publicidade. É inteligência.",
-                  "Cult AI connects people with places through profile, mood and cultural context — not generic lists. If your space has its own identity, it probably already finds the right people through our platform. We offer in-depth behavioral mentoring for establishments that want to better understand who their customers are — anonymously, ethically and contextually. It's not advertising. It's intelligence."
+                  "A Cult AI conecta pessoas com lugares através de perfil, mood e contexto cultural — não de listas genéricas. Se o seu espaço tem uma identidade própria, ele provavelmente já encontra as pessoas certas através da nossa plataforma.",
+                  "Cult AI connects people with places through profile, mood and cultural context — not generic lists. If your space has its own identity, it probably already finds the right people through our platform."
+                )}
+              </p>
+              <p className="text-muted-foreground text-sm leading-relaxed">
+                {t(
+                  "Oferecemos uma mentoria aprofundada de comportamento para estabelecimentos que querem entender melhor quem são seus clientes — de forma anônima, ética e contextual. Não é publicidade. É inteligência.",
+                  "We offer in-depth behavioral mentoring for establishments that want to better understand who their customers are — anonymously, ethically and contextually. It's not advertising. It's intelligence."
                 )}
               </p>
               <div className="flex flex-wrap gap-2 pt-2">
