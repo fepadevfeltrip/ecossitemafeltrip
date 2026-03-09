@@ -135,8 +135,8 @@ const ParaEmpresa = () => {
               <h3 className="text-xl md:text-2xl font-bold text-foreground">Narrativa Migrante</h3>
               <p className="text-muted-foreground text-sm leading-relaxed">
                 {t(
-                  "Caminhadas interculturais na Pequena África guiadas por migrantes de Angola, Venezuela e Tunísia ao lado de historiadores brasileiros. Idealização Feltrip, realização Coletiva Delas.",
-                  "Intercultural walks through Pequena África led by migrants from Angola, Venezuela and Tunisia alongside Brazilian historians. Idealized by Feltrip, produced by Coletiva Delas."
+                  "Caminhadas interculturais na Pequena África guiadas por migrantes de Angola, Venezuela e Tunísia ao lado de historiadores brasileiros. Idealização Feltrip, realização Coletiva Delas. Patrocinado por EloGroup e Prefeitura do Rio de Janeiro.",
+                  "Intercultural walks through Pequena África led by migrants from Angola, Venezuela and Tunisia alongside Brazilian historians. Idealized by Feltrip, produced by Coletiva Delas. Sponsored by EloGroup and Rio de Janeiro City Hall."
                 )}
               </p>
               <div className="pt-2 space-y-2">
