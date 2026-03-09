@@ -119,14 +119,56 @@ const ParaEmpresa = () => {
         </div>
       </section>
 
-      {/* SECTION 3 — TWO REAL CASES */}
+      {/* O QUE OFERECEMOS */}
+      <section className="py-16 md:py-24 bg-muted/20">
+        <div className="container px-4">
+          <h2 className="text-2xl md:text-3xl font-bold text-primary text-center mb-12">
+            {t("O que oferecemos", "What we offer")}
+          </h2>
+          <div className="grid grid-cols-1 md:grid-cols-2 gap-8 max-w-4xl mx-auto">
+            <div className="rounded-2xl border border-border/50 bg-background p-6 md:p-8 space-y-4">
+              <h3 className="text-xl font-bold text-foreground">City Intelligence — Cult AI</h3>
+              <p className="text-muted-foreground text-sm leading-relaxed">
+                {t(
+                  "Seu estabelecimento já aparece na Cult AI. Saiba quem são as pessoas que chegam até você — perfil, mood, contexto cultural. Dados anônimos e éticos para entender seu cliente de verdade.",
+                  "Your establishment already appears on Cult AI. Know who the people reaching you are — profile, mood, cultural context. Anonymous and ethical data to truly understand your customer."
+                )}
+              </p>
+              <div className="flex flex-wrap gap-2 pt-2">
+                <Badge variant="outline" className="text-xs">{t("Restaurantes", "Restaurants")}</Badge>
+                <Badge variant="outline" className="text-xs">Hostels</Badge>
+                <Badge variant="outline" className="text-xs">{t("Bares Culturais", "Cultural Bars")}</Badge>
+                <Badge variant="outline" className="text-xs">{t("Espaços Criativos", "Creative Spaces")}</Badge>
+              </div>
+            </div>
+            <div className="rounded-2xl border border-border/50 bg-background p-6 md:p-8 space-y-4">
+              <h3 className="text-xl font-bold text-foreground">
+                {t("Projetos Culturais e Editais", "Cultural Projects & Public Grants")}
+              </h3>
+              <p className="text-muted-foreground text-sm leading-relaxed">
+                {t(
+                  "Curadoria, idealização e execução de experiências interculturais para ONGs, prefeituras e leis de incentivo cultural. Cada projeto nasce do território, das pessoas e da memória do lugar.",
+                  "Curation, ideation and execution of intercultural experiences for NGOs, municipalities and cultural incentive laws. Each project is born from the territory, the people and the memory of the place."
+                )}
+              </p>
+              <div className="flex flex-wrap gap-2 pt-2">
+                <Badge variant="outline" className="text-xs">ONGs</Badge>
+                <Badge variant="outline" className="text-xs">{t("Prefeituras", "Municipalities")}</Badge>
+                <Badge variant="outline" className="text-xs">{t("Lei de Incentivo", "Incentive Laws")}</Badge>
+                <Badge variant="outline" className="text-xs">{t("Editais Culturais", "Cultural Grants")}</Badge>
+              </div>
+            </div>
+          </div>
+        </div>
+      </section>
+
+      {/* PROJETOS REALIZADOS */}
       <section id="cases" className="py-16 md:py-24 bg-background">
         <div className="container px-4">
           <h2 className="text-2xl md:text-3xl font-bold text-primary text-center mb-12">
             {t("Projetos que já fizemos", "Projects we've completed")}
           </h2>
           <div className="grid grid-cols-1 lg:grid-cols-2 gap-8 max-w-5xl mx-auto">
-            {/* Card 1 — Narrativa Migrante */}
             <div className="rounded-2xl border border-border/50 bg-background p-6 md:p-8 space-y-5">
               <div className="flex flex-wrap gap-2">
                 <Badge variant="secondary" className="text-xs font-medium">{t("Projeto Cultural", "Cultural Project")}</Badge>
@@ -155,8 +197,6 @@ const ParaEmpresa = () => {
                 <ArrowRight className="h-3.5 w-3.5" />
               </a>
             </div>
-
-            {/* Card 2 — Justiça Global */}
             <div className="rounded-2xl border border-border/50 bg-background p-6 md:p-8 space-y-5">
               <div className="flex flex-wrap gap-2">
                 <Badge variant="secondary" className="text-xs font-medium">{t("Impacto Social", "Social Impact")}</Badge>
@@ -191,56 +231,8 @@ const ParaEmpresa = () => {
         </div>
       </section>
 
-      {/* SECTION 4 — O QUE OFERECEMOS */}
-      <section className="py-16 md:py-24 bg-muted/20">
-        <div className="container px-4">
-          <h2 className="text-2xl md:text-3xl font-bold text-primary text-center mb-12">
-            {t("O que oferecemos", "What we offer")}
-          </h2>
-          <div className="grid grid-cols-1 md:grid-cols-2 gap-8 max-w-4xl mx-auto">
-            {/* Card A */}
-            <div className="rounded-2xl border border-border/50 bg-background p-6 md:p-8 space-y-4">
-              <h3 className="text-xl font-bold text-foreground">
-                {t("Projetos Culturais e Editais", "Cultural Projects & Public Grants")}
-              </h3>
-              <p className="text-muted-foreground text-sm leading-relaxed">
-                {t(
-                  "Curadoria, idealização e execução de experiências interculturais para ONGs, prefeituras e leis de incentivo cultural. Cada projeto nasce do território, das pessoas e da memória do lugar.",
-                  "Curation, ideation and execution of intercultural experiences for NGOs, municipalities and cultural incentive laws. Each project is born from the territory, the people and the memory of the place."
-                )}
-              </p>
-              <div className="flex flex-wrap gap-2 pt-2">
-                <Badge variant="outline" className="text-xs">ONGs</Badge>
-                <Badge variant="outline" className="text-xs">{t("Prefeituras", "Municipalities")}</Badge>
-                <Badge variant="outline" className="text-xs">{t("Lei de Incentivo", "Incentive Laws")}</Badge>
-                <Badge variant="outline" className="text-xs">{t("Editais Culturais", "Cultural Grants")}</Badge>
-              </div>
-            </div>
-
-            {/* Card B */}
-            <div className="rounded-2xl border border-border/50 bg-background p-6 md:p-8 space-y-4">
-              <h3 className="text-xl font-bold text-foreground">
-                City Intelligence — Cult AI
-              </h3>
-              <p className="text-muted-foreground text-sm leading-relaxed">
-                {t(
-                  "Seu estabelecimento já aparece na Cult AI. Saiba quem são as pessoas que chegam até você — perfil, mood, contexto cultural. Dados anônimos e éticos para entender seu cliente de verdade.",
-                  "Your establishment already appears on Cult AI. Know who the people reaching you are — profile, mood, cultural context. Anonymous and ethical data to truly understand your customer."
-                )}
-              </p>
-              <div className="flex flex-wrap gap-2 pt-2">
-                <Badge variant="outline" className="text-xs">{t("Restaurantes", "Restaurants")}</Badge>
-                <Badge variant="outline" className="text-xs">Hostels</Badge>
-                <Badge variant="outline" className="text-xs">{t("Bares Culturais", "Cultural Bars")}</Badge>
-                <Badge variant="outline" className="text-xs">{t("Espaços Criativos", "Creative Spaces")}</Badge>
-              </div>
-            </div>
-          </div>
-        </div>
-      </section>
-
-      {/* SECTION 5 — COMO TRABALHAMOS */}
-      <section className="py-16 md:py-24 bg-background">
+      {/* COMO TRABALHAMOS */}
+      <section className="py-16 md:py-24 bg-muted/30">
         <div className="container px-4">
           <h2 className="text-2xl md:text-3xl font-bold text-primary text-center mb-12">
             {t("Como trabalhamos", "How we work")}
@@ -255,24 +247,6 @@ const ParaEmpresa = () => {
                 <p className="text-sm text-muted-foreground leading-relaxed">{step.description}</p>
               </div>
             ))}
-          </div>
-        </div>
-      </section>
-
-      {/* SECTION 6 — TESTIMONIAL HIGHLIGHT */}
-      <section className="py-16 md:py-24 bg-muted/30">
-        <div className="container px-4">
-          <div className="max-w-3xl mx-auto text-center space-y-6">
-            <Quote className="h-10 w-10 text-primary/30 mx-auto" />
-            <blockquote className="text-xl md:text-2xl text-foreground font-medium leading-relaxed italic">
-              {t(
-                "Fizemos uma parceria para aulas de português para defensores de direitos humanos e foi de muita importância para a passagem de uma pessoa ameaçada de morte por sua atuação como líder comunitário em seu país de origem. Fernanda e a equipe sempre muito solicita e a disposição para construir um ambiente de respeito e colaboração. Certeza que seguiremos nos encontrando.",
-                "We partnered for Portuguese classes for human rights defenders and it was very important for the passage of a person threatened with death due to their role as a community leader in their country of origin. Fernanda and the team were always very helpful and willing to build an environment of respect and collaboration. We're sure we'll keep meeting."
-              )}
-            </blockquote>
-            <p className="text-muted-foreground font-medium">
-              — Antonio Neto, Justiça Global
-            </p>
           </div>
         </div>
       </section>
