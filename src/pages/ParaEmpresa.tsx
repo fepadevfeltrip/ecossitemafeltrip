@@ -8,8 +8,7 @@ import { Badge } from "@/components/ui/badge";
 import justicaGlobalLogo from "@/assets/justica-global-logo.png";
 import coletivaDelasLogo from "@/assets/coletiva-delas-logo.png";
 import nomadWorldLogo from "@/assets/nomad-world-logo.png";
-import prefeituraRioLogo from "@/assets/prefeitura-rio-logo.png";
-import elogroupLogo from "@/assets/elogroup-logo.png";
+import koinzCapitalLogo from "@/assets/koinz-capital-logo.png";
 
 // Mascot
 import bobaHappy from "@/assets/boba-happy.png";
@@ -23,8 +22,7 @@ const ParaEmpresa = () => {
     { src: justicaGlobalLogo, alt: "Justiça Global" },
     { src: coletivaDelasLogo, alt: "ColetivA Delas" },
     { src: nomadWorldLogo, alt: "The Nomad World" },
-    { src: prefeituraRioLogo, alt: "Prefeitura do Rio de Janeiro" },
-    { src: elogroupLogo, alt: "EloGroup" },
+    { src: koinzCapitalLogo, alt: "Koinz Capital" },
   ];
 
   const steps = [
