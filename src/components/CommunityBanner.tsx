@@ -2,7 +2,7 @@ import { Users } from "lucide-react";
 import { Button } from "@/components/ui/button";
 import { useLanguage } from "@/hooks/useLanguage";
 
-const WHATSAPP_GROUP_LINK = "https://chat.whatsapp.com/DMjDbxdjmJYKInnqsJcyJf";
+const WHATSAPP_GROUP_LINK = "https://chat.whatsapp.com/EKkwSLYSZ4ULRWwhh5XloO?mode=gi_t";
 
 export const CommunityBanner = () => {
   const { t } = useLanguage();
@@ -12,16 +12,13 @@ export const CommunityBanner = () => {
       <div className="flex items-center justify-center gap-2">
         <Users className="h-5 w-5 text-primary" />
         <h3 className="text-lg md:text-xl font-semibold text-foreground">
-          {t(
-            "Entre na nossa comunidade internacional no WhatsApp",
-            "Join our international community on WhatsApp"
-          )}
+          {t("Entre na nossa comunidade internacional no WhatsApp", "Join our international community on WhatsApp")}
         </h3>
       </div>
       <p className="text-muted-foreground text-sm max-w-lg mx-auto">
         {t(
           "Pessoas do mundo todo compartilhando dicas, eventos e experiências culturais.",
-          "People from all over the world sharing tips, events and cultural experiences."
+          "People from all over the world sharing tips, events and cultural experiences.",
         )}
       </p>
       <a href={WHATSAPP_GROUP_LINK} target="_blank" rel="noopener noreferrer">
